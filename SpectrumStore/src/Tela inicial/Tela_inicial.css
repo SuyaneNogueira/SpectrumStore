@@ -1,5 +1,4 @@
 .div-tela-inicial-principal{
-    /* border: 2px solid rgb(0, 0, 0); */
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -7,7 +6,6 @@
     overflow-x: hidden; 
 }
 .div-elementos-tela-inicial{
-    /* border: 2px solid; */
     width: 100%;
     height: 92%;
     display: flex;
@@ -15,13 +13,11 @@
     overflow: visible;
 }
 .div-fundo-brinquedos-container {
-    /* border: 2px solid; */
     position: relative;
     width: 100%;
     height: 50%; 
 }
 .foto-fundo-b {
-    /* border: 2px solid; */
     width: 100%;
     height: 100%;
     display: block;
@@ -51,35 +47,30 @@
     margin-top: 20px; 
     transition: background-color 0.3s ease;
 }
-
 .botao-saiba-mais:hover {
     background-color: rgb(85, 149, 155); 
 }
-
-/* Mídia query para telas menores (opcional, mas recomendado) */
 @media (max-width: 768px) {
     .conteudo-principal-brinquedos {
-      top: 15%; /* Ajuste a posição para telas menores */
-      left: 5%;
-    }   
+    top: 15%;
+    left: 5%;
+    } 
     .titulo-brinquedos {
-      font-size: 2em;
+    font-size: 2em;
     }
-
     .botao-saiba-mais {
-      padding: 10px 20px;
-      font-size: 1em;
+    padding: 10px 20px;
+    font-size: 1em;
     }
 }
 .separacao-divs-produtos-fundo{
-    /* border: 2px solid; */
     width: 100%;
     height: 100%;
 }
 .container-produtos-store{
     /* border: 2px solid; */
     width: 100%;
-    height: 100%;
+    height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,12 +78,12 @@
 }
 .produtos-store{
     border: 2px solid #dadada;
-    margin-top: 5%;
+    margin-top: 3%;
     width: 20%;
-    height:74%;
+    height:88%;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha o texto ao início */
+    align-items: flex-start;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: "Poppins", sans-serif;
@@ -104,7 +95,6 @@
     width: 85%; 
     margin: 0 auto; 
     margin-top: 10px;
-
 }
 .foto-abaco{
     border: 2px solid #cecece;
@@ -122,19 +112,16 @@
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
-    z-index: 10; /* Garante que fique na frente da imagem */
+    z-index: 10;
 }
 .cor-amarela-preco{
     color: #FFF0A6;
 }
 .icone-favorito{
     position: absolute;
-    top: 10px;
+    top: -1.7%;
     right: 10px;
-    color: #03374C;
-    font-size: 1.5em;
-    cursor: pointer;
-    z-index: 10; /* Garante que fique na frente da imagem */
+    z-index: 10;
 }
 .produto-detalhes{
     padding: 10px;
@@ -162,6 +149,5 @@
     word-break: break-word;
 }
 .estrela-vazia{
-    /* border: 2px solid; */
     color: #ccc;
 }
