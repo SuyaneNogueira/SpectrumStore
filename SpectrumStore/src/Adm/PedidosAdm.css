@@ -1,0 +1,13 @@
+.background-adm-pordutos{
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+.layout-modal-adm{
+    background-color: #A2C9CD;
+    border: solid rebeccapurple;
+    height: 100%;
+    width: 20%;
+}
