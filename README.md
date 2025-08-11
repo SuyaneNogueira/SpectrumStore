@@ -62,19 +62,19 @@ Dominós de sílabas
 
 Possíveis personalizações:
 
-Nível de dificuldade: por idade ou nível de desenvolvimento cognitivo. &Revisar
+Nível de dificuldade: por idade ou nível de desenvolvimento cognitivo. 
 
 
-Fonte e tamanho das letras: acessibilidade para baixa visão ou dislexia. *
+Fonte e tamanho das letras: acessibilidade para baixa visão ou dislexia. 
 
 
-Material: EVA, madeira, plástico macio — para segurança e adaptação tátil. *
+Material: EVA, madeira, plástico macio — para segurança e adaptação tátil. 
 
 
-Temática: personagens ou temas de interesse da criança. *
+Temática: personagens ou temas de interesse da criança. 
 
 
-Contraste de cores: alto contraste para melhor percepção visual. &Revisar
+Contraste de cores: alto contraste para melhor percepção visual. 
 
 
 
@@ -357,10 +357,10 @@ Organização da prancha: por temas, cores ou categorias.
 Tamanho dos quadros e botões: adaptado à coordenação motora. 
 
 
-Tipo de acionamento: toque, botão físico, sensor ocular. &Revisar (Cor e paleta talvez)
+Tipo de acionamento: toque, botão físico, sensor ocular. 
 
 
-Voz e idioma: grave masculino/feminino, português, Libras, etc. &Revisar
+Voz e idioma: grave masculino/feminino, português, Libras, etc. 
 
 
 
@@ -403,5 +403,5 @@ Tecido e textura externa: veludo, malha, algodão — conforto sensorial.
 Formato (colete, cobertor, pelúcia): adaptado à faixa etária.
 
 
-Design discreto ou lúdico: uso escolar, domiciliar ou em terapia. *
+Design discreto ou lúdico: uso escolar, domiciliar ou em terapia. 
 
