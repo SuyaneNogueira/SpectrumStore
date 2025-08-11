@@ -2,10 +2,14 @@
 
 Criada com propósito, acolhimento e ciência, a Spectrum Store é um espaço pensado para quem vive o espectro — diretamente ou ao lado de quem ama. Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de autoregulação que respeitam as necessidades únicas de cada pessoa. Cada detalhe foi escolhido com cuidado — e pode ser adaptado para refletir o que torna cada indivíduo único. Mais do que produtos, oferecemos possibilidades de conforto, autonomia e expressão.
 
-Nossas Categorias
+
+                                                                                         Nossas Categorias
+
 
 1. Brinquedos Sensoriais
+
 Exemplos:
+
 Cubos sensoriais
 
 
@@ -19,6 +23,7 @@ Massinhas terapêuticas
 
 
 Possíveis personalizações:
+
 Textura: áspero, liso, ondulado, escamoso — estimula o tato e discriminação sensorial. 
 
 
@@ -37,7 +42,9 @@ Tamanho: miniaturas ou versão grande — adequa-se a diferentes idades e capaci
 
 
  2. Brinquedos Educativos e Pedagógicos
+    
 Exemplos:
+
 Quebra-cabeças com letras e números
 
 
@@ -54,6 +61,7 @@ Dominós de sílabas
 
 
 Possíveis personalizações:
+
 Nível de dificuldade: por idade ou nível de desenvolvimento cognitivo. &Revisar
 
 
@@ -76,7 +84,9 @@ Contraste de cores: alto contraste para melhor percepção visual. &Revisar
 
 
 3. Rotina e Organização
+   
 Exemplos:
+
 Quadros de rotina com figuras
 
 
@@ -93,6 +103,7 @@ Agendas visuais imantadas
 
 
 Possíveis personalizações:
+
 Tipo de fixação: imã, velcro, cartolina — conforme ambiente e praticidade.
 
 
@@ -115,7 +126,9 @@ Organização em andares ou colunas: personalizável por turnos (manhã, tarde, 
 
 
 4. Moda e Acessórios Sensoriais
+   
 Exemplos:
+
 Camisetas com tecidos especiais
 
 
@@ -132,6 +145,7 @@ Pulseiras de texturas variadas
 
 
 Possíveis personalizações:
+
 Tipo de tecido: algodão, dry fit, lycra, plush — conforto tátil. 
 
 
@@ -154,7 +168,9 @@ Acessórios integrados: fones embutidos, mordedor fixo, etc.
 
 
  5. Ambiente e Relaxamento
+    
 Exemplos:
+
 Tendas sensoriais
 
 
@@ -166,6 +182,7 @@ Almofadas aromáticas
 
 
 Possíveis personalizações:
+
 Intensidade da luz: regulável para diferentes sensibilidades visuais.
 
 
@@ -188,7 +205,9 @@ Tamanho do espaço relaxante: adaptável para uso individual ou coletivo.
 
 
  6. Jogos Cognitivos e Educacionais
+    
 Exemplos:
+
 Jogos de memória com imagens reais
 
 
@@ -205,6 +224,7 @@ Bingo de profissões ou objetos
 
 
 Possíveis personalizações:
+
 Tipo de estímulo: visual, auditivo ou tátil — adaptação ao perfil sensorial.
 
 
@@ -227,7 +247,9 @@ Sistema de recompensa visual (adesivos, fichas): motivação extrínseca.
 
 
  7. Materiais Escolares Adaptados
+    
 Exemplos:
+
 Cadernos com pauta ampliada
 
 
@@ -241,6 +263,7 @@ Apontadores de manivela
 
 
 Possíveis personalizações:
+
 Formato ergonômico: adaptação para diferentes dificuldades motoras. 
 
 
@@ -263,7 +286,9 @@ Altura e dimensão do item: adaptado para pegada e conforto.
 
 
  8. Cuidados e Rotina Pessoal
+
 Exemplos:
+
 Escovas de dente com temporizador
 
 
@@ -280,6 +305,7 @@ Kits de banho passo a passo
 
 
 Possíveis personalizações:
+
 Textura dos itens: escovas mais ou menos firmes. 
 
 
@@ -302,7 +328,9 @@ Cheiros suaves ou neutros: para não gerar incômodo sensorial.
 
 
  9. Materiais de CAA (Comunicação Alternativa e Aumentativa)
+     
 Exemplos:
+
 Cartelas PECS
 
 
@@ -319,6 +347,7 @@ Livros com pictogramas
 
 
 Possíveis personalizações:
+
 Tipo de símbolo: pictograma, imagem real, escrita simples. 
 
 
@@ -342,7 +371,9 @@ Voz e idioma: grave masculino/feminino, português, Libras, etc. &Revisar
 
 
  10. Material Ponderado
+     
 Exemplos:
+
 Coletes com peso
 
 
@@ -359,6 +390,7 @@ Faixas de compressão com peso
 
 
 Possíveis personalizações:
+
 Distribuição do peso: conforme orientação profissional (ombros, costas, pernas). 
 
 
