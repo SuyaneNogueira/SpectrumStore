@@ -1,0 +1,41 @@
+.fundoCarrinho{
+     width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; 
+}
+
+.ibovespa{
+  border: solid;
+
+}
+
+.foto-de-fundo-carrinho{
+  border: solid #c5198c;
+  height:60% ;
+  width:100% ;
+
+}
+.NavbarCarrinho{
+   background-color: #A2C9CD;  
+     height: 9vh;  
+}
+
+.sssssss{
+    /* border: solid #6427b3; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.CoisaBrancaCarrinho{
+    background-color: #F8FFFD;
+      height: 88vh; 
+      width: 81%;
+      /* border: solid; */
+margin-top: 1%;
+      
+}
+
