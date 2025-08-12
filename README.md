@@ -123,19 +123,19 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ## 1.1 Cubos sensoriais
 
- **Textura:** ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] 
+- **Textura:** ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] 
  {paleta esquerda, 6 opções}
 
- **Nível de pressão:** ["Muito macio", "Macio", "Médio", "Rígido"]
+- **Nível de pressão:** ["Muito macio", "Macio", "Médio", "Rígido"]
  {cor da caixa, 3 opções}
  
- **Cor principal:** ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] 
+- **Cor principal:** ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] 
  {paleta frente, 6 opções}
  
- **Tamanho:** ["Pequeno (5cm)", "Médio (10cm)", "Grande (15cm)"] 
+- **Tamanho:** ["Pequeno (5cm)", "Médio (10cm)", "Grande (15cm)"] 
  {cor da caixa, 3 opções}
  
- **Detalhes adicionais:** ["Com sinos", "Com espelhos", "Com glitter", "Com luzes", "Com alça", "Com velcro"] 
+- **Detalhes adicionais:** ["Com sinos", "Com espelhos", "Com glitter", "Com luzes", "Com alça", "Com velcro"] 
  {paleta direita, 6 opções}
  
  
