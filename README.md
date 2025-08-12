@@ -124,6 +124,7 @@ Relação com caixa
 
 
 1. Brinquedos Sensoriais
+   
 1.1 Cubos sensoriais
  Textura: ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] {paleta esquerda, 6 opções}
  Nível de pressão: ["Muito macio", "Macio", "Médio", "Rígido"] {cor da caixa, 3 opções}
@@ -169,6 +170,7 @@ Relação com caixa
 
 
 2. Brinquedos Educativos e Pedagógicos
+   
 2.1 Quebra-cabeças com letras e números
  Nível de dificuldade: ["Fácil (até 10 peças)", "Médio (11 a 20 peças)", "Difícil (21 a 50 peças)"] {cor da caixa, 3 opções}
  Fonte das letras: ["Bastão simples", "Cursiva", "Fonte adaptada para dislexia", "Fonte grande"] {paleta esquerda, 6 opções}
@@ -210,6 +212,7 @@ Relação com caixa
 
 
 3. Rotina e Organização
+   
 3.1 Quadros de rotina com figuras
  Tipo de fixação: ["Ímã", "Velcro", "Cartolina rígida"] {cor da caixa, 3 opções}
  Estilo de imagem: ["Fotos reais", "Pictogramas", "Desenhos lúdicos"] {paleta esquerda, 6 opções}
@@ -250,6 +253,7 @@ Relação com caixa
 
 
 4. Moda e Acessórios Sensoriais
+   
 4.1 Camisetas com tecidos especiais
  Tipo de tecido: ["Algodão", "Dry fit", "Lycra", "Plush", "Viscose", "Malha fria"] {paleta esquerda, 6 opções}
  Cor principal: ["Branco", "Azul", "Preto", "Verde", "Roxo", "Amarelo"] {paleta frente, 6 opções}
@@ -291,6 +295,7 @@ Relação com caixa
 
 
 5. Ambiente e Relaxamento
+   
 5.1 Tendas sensoriais
  Formato: ["Pirâmide", "Casinha", "Circular", "Triangular", "Tipi", "Túnel"] {paleta esquerda, 6 opções}
  Cor principal: ["Azul", "Branco", "Verde", "Roxo", "Amarelo", "Rosa"] {paleta frente, 6 opções}
@@ -331,6 +336,7 @@ Relação com caixa
 
 
 6. Jogos Cognitivos e Educacionais
+   
 6.1 Jogos de memória com imagens reais
  Tema: ["Animais", "Frutas", "Profissões", "Objetos", "Natureza", "Transportes"] {paleta esquerda, 6 opções}
  Cor do verso: ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] {paleta frente, 6 opções}
@@ -372,6 +378,7 @@ Relação com caixa
 
 
 7. Materiais Escolares Adaptados
+   
 7.1 Cadernos com pauta ampliada
  Tipo de pauta: ["Linha simples", "Dupla linha", "Quadriculado", "Pontilhado", "Guia de cores", "Com margem destacada"] {paleta esquerda, 6 opções}
  Cor da capa: ["Azul", "Verde", "Vermelho", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
@@ -414,6 +421,7 @@ Relação com caixa
 
 
 8. Cuidados e Rotina Pessoal
+   
 8.1 Escovas de dente com temporizador
  Tipo de cerdas: ["Macias", "Médias", "Extra macias", "Duplas", "Onduladas", "Sensíveis"] {paleta esquerda, 6 opções}
  Cor: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
@@ -454,6 +462,7 @@ Relação com caixa
 
 
 9. Materiais de CAA (Comunicação Alternativa e Aumentativa)
+    
 9.1 Cartelas PECS
  Tipo de símbolo: ["Pictograma", "Imagem real", "Desenho infantil", "Escrita simples", "Braille", "Misto"] {paleta esquerda, 6 opções}
  Cor de fundo: ["Branco", "Amarelo", "Azul", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
@@ -494,6 +503,7 @@ Relação com caixa
 
 
 10. Material Ponderado
+    
 10.1 Coletes com peso
  Distribuição do peso: ["Ombros", "Costas", "Peito", "Uniforme", "Misto", "Personalizado"] {paleta esquerda, 6 opções}
  Cor principal: ["Azul", "Preto", "Cinza", "Verde", "Roxo", "Vermelho"] {paleta frente, 6 opções}
