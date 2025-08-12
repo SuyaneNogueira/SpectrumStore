@@ -117,153 +117,53 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ---
 
-# 🎮 Brinquedos Sensorais e Educativos
-
 ---
+#1. Brinquedos Sensoriais
 
-## 1️⃣ Brinquedos Sensoriais
 
-### 1.1 Cubos Sensoriais
-- **Texturas:** Áspero, Liso, Ondulado, Escamoso, Pontilhado, Acolchoado
-- **Pressão:** Muito macio, Macio, Médio, Rígido
-- **Cor principal:** Azul, Verde, Amarelo, Vermelho, Roxo, Laranja
-- **Tamanho:** 5cm, 10cm, 15cm
-- **Extras:** Com sinos, Espelhos, Glitter, Luzes, Alça, Velcro
+##1.1 Cubos sensoriais
 
-### 1.2 Tapetes Táteis
-- **Superfície:** Cerdas, Bolinhas, Ondas, Espinhos macios, Quadrados, Triângulos
-- **Cor base:** Azul, Verde, Amarelo, Rosa, Laranja, Roxo
-- **Espessura:** 1cm, 2cm, 3cm
-- **Tamanho:** 50x50cm, 100x50cm, 100x100cm
-- **Extras:** Cheiros suaves, Alto relevo, Antiderrapante, LED, Educativos, Bolso
+ **Textura:** ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] 
+ {paleta esquerda, 6 opções}
 
-### 1.3 Painéis Sensoriais
-- **Material:** Madeira, Plástico, EVA
-- **Cor principal:** Branco, Amarelo, Vermelho, Verde, Azul, Laranja
-- **Atividades:** Fechaduras, Botões e luzes, Puxadores, Engrenagens, Zíper, Cadeados
-- **Tamanho:** 30x40cm, 50x70cm, 80x100cm
-- **Extras:** Sons, Texturas, Espelho, Números, Alfabeto, Animais
+ **Nível de pressão:** ["Muito macio", "Macio", "Médio", "Rígido"]
+ {cor da caixa, 3 opções}
+ 
+ **Cor principal:** ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+ **Tamanho:** ["Pequeno (5cm)", "Médio (10cm)", "Grande (15cm)"] 
+ {cor da caixa, 3 opções}
+ 
+ **Detalhes adicionais:** ["Com sinos", "Com espelhos", "Com glitter", "Com luzes", "Com alça", "Com velcro"] 
+ {paleta direita, 6 opções}
+ 
+ 
+##1.2 Tapetes táteis
 
-### 1.4 Massinhas Terapêuticas
-- **Textura:** Macia, Densa, Grãos finos, Granulada, Glitter, Aroma
-- **Cor principal:** Amarelo, Verde, Vermelho, Azul, Roxo, Laranja
-- **Resistência:** Baixa, Média, Alta
-- **Peso:** 100g, 200g, 500g
-- **Extras:** Comestível, Brilha no escuro, Muda de cor, Aromatizada, Microfiguras, Holográfico
+ **Tipo de superfície:** ["Cerdas", "Bolinhas", "Ondas", "Espinhos macios", "Quadrados", "Triângulos"] 
+ {paleta esquerda, 6 opções}
+ 
+ **Cor de base:** ["Azul", "Verde", "Amarelo", "Rosa", "Laranja", "Roxo"] 
+ {paleta frente, 6 opções}
+ 
+ **Espessura:** ["1cm", "2cm", "3cm"] 
+ {cor da caixa, 3 opções}
+ 
+ **Tamanho:** ["50x50cm", "100x50cm", "100x100cm"] 
+ {cor da caixa, 3 opções}
+ 
+ **Extras:** ["Com cheiros suaves", "Com figuras em alto relevo", "Com borda antiderrapante", "Com luzes LED", "Com etiquetas educativas", "Com bolso para objetos"] 
+ {paleta direita, 6 opções}
 
-### 1.5 Slimes e Gelecas
-- **Textura:** Clássica, Fluffy, Butter, Clear, Crunchy, Cloud
-- **Cor:** Azul, Rosa, Verde, Roxo, Amarelo, Laranja
-- **Efeitos:** Brilha no escuro, Muda de cor, Glitter, Bolinhas, Aroma, Metálica
-- **Elasticidade:** Baixa, Média, Alta
-- **Peso:** 50g, 100g, 200g
-
-### 1.6 Bolas com Texturas
-- **Texturas:** Pontilhada, Cerdas, Ondulada, Espiral, Saliências, Felpuda
-- **Cor:** Vermelho, Azul, Verde, Roxo, Laranja, Amarelo
-- **Tamanho:** 5cm, 10cm, 20cm
-- **Peso:** Leve, Médio, Pesado
-- **Extras:** Luz, Som, Aroma, Glitter, Alça, Bolsos internos
-
----
-
-## 2️⃣ Brinquedos Educativos e Pedagógicos
-
-### 2.1 Quebra-cabeças com Letras e Números
-- **Dificuldade:** Fácil (10 peças), Médio (11–20), Difícil (21–50)
-- **Fonte:** Bastão, Cursiva, Dislexia, Fonte grande
-- **Material:** EVA, Madeira, Plástico
-- **Cor de fundo:** Azul, Amarelo, Verde, Vermelho, Roxo, Laranja
-- **Temas:** Animais, Natureza, Veículos, Formas, Personagens, Objetos
-
-### 2.2 Cubos de Lógica
-- **Formato:** Quadrado, Retangular, Hexagonal, Triangular, Circular, Personalizado
-- **Cor:** Azul, Verde, Amarelo, Vermelho, Roxo, Laranja
-- **Tamanho:** 5cm, 8cm, 12cm
-- **Complexidade:** Baixo, Médio, Alto
-- **Extras:** Números, Letras, Texturas, Figuras, Ímãs, Peças móveis
-
-### 2.3 Brinquedos de Montar com Letras (Tipo LEGO)
-- **Tamanho das peças:** Pequenas, Médias, Grandes
-- **Cor principal:** Vermelho, Azul, Amarelo, Verde, Roxo, Laranja
-- **Tipo de encaixe:** Clássico, Magnético, Pressão
-- **Tema:** Alfabeto, Números, Formas, Objetos, Animais, Profissões
-- **Extras:** Sons, Luzes, Texturas, Personalizados, Etiquetas, QR codes
-
-### 2.4 Jogos com Alfabeto Braille
-- **Peças:** Cartas, Cubos, Blocos, Fichas, Tabuleiros, Painéis
-- **Contraste:** Preto, Branco, Amarelo, Azul, Verde, Vermelho
-- **Material:** Plástico, Madeira, EVA
-- **Quantidade:** 10, 20, 50
-- **Extras:** Áudio, QR code, Alto relevo, Ilustrações, Ímãs, Suporte
-
-### 2.5 Dominós de Sílabas
-- **Material:** Madeira, Plástico, EVA
-- **Cor:** Branco, Azul, Amarelo, Verde, Roxo, Laranja
-- **Fonte:** Bastão, Cursiva, Adaptada, Alto relevo
-- **Tamanho:** Pequena, Média, Grande
-- **Extras:** Ilustrações, Braille, Texturas, QR áudio, Ímãs, Numeração
-
----
-
-## 3️⃣ Rotina e Organização
-
-### 3.1 Quadros de Rotina com Figuras
-- **Fixação:** Ímã, Velcro, Cartolina rígida
-- **Imagem:** Fotos reais, Pictogramas, Desenhos lúdicos
-- **Cor da moldura:** Azul, Branco, Amarelo, Verde, Vermelho, Roxo
-- **Tamanho:** 30x40cm, 50x70cm, 80x100cm
-- **Extras:** Ícones personalizáveis, Relógio, Anotações, Figuras móveis, Luzes, Sons
-
-### 3.2 Calendários Visuais
-- **Formato:** Parede, Mesa, Imantado
-- **Cor principal:** Azul, Amarelo, Roxo, Verde, Laranja, Vermelho
-- **Ilustração:** Pictogramas, Fotos reais, Temáticos
-- **Idioma:** Português, Libras, Bilingue PT-EN
-- **Extras:** Destacáveis, Etiquetas, Anotações, Ímã, QR codes, Texturas
-
-### 3.3 Relógios com Atividades
-- **Ponteiro:** Analógico, Digital
-- **Cor:** Azul, Branco, Vermelho, Verde, Amarelo, Laranja
-- **Tema:** Diárias, Escola, Casa, Esporte, Lazer, Higiene
-- **Tamanho:** Pequeno, Médio, Grande
-- **Extras:** Alerta sonoro, Luzes, Figuras removíveis, Temporizador, Tátil, Braille
-
-### 3.4 Tabelas de Reforço Positivo
-- **Formato:** Quadro fixo, Cartela, Imantado
-- **Cor principal:** Branco, Amarelo, Verde, Azul, Roxo, Laranja
-- **Ilustração:** Estrelas, Corações, Medalhas, Animais, Natureza, Personagens
-- **Tamanho:** Pequena, Média, Grande
-- **Extras:** Adesivos, Ímãs, QR mensagens, Metas, Prêmios, Braille
-
-### 3.5 Agendas Visuais Imantadas
-- **Página:** Liso, Quadriculado, Linhas
-- **Cor de fundo:** Branco, Azul, Amarelo, Verde, Roxo, Laranja
-- **Tamanho:** A4, A3, Personalizado
-- **Idioma:** Português, Libras, Bilingue PT-EN
-- **Extras:** Figuras removíveis, Etiquetas, Anotações, Textura, Ímã forte, QR code
-
----
-1. Brinquedos Sensoriais
-1.1 Cubos sensoriais
- Textura: ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] {paleta esquerda, 6 opções}
- Nível de pressão: ["Muito macio", "Macio", "Médio", "Rígido"] {cor da caixa, 3 opções}
- Cor principal: ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["Pequeno (5cm)", "Médio (10cm)", "Grande (15cm)"] {cor da caixa, 3 opções}
- Detalhes adicionais: ["Com sinos", "Com espelhos", "Com glitter", "Com luzes", "Com alça", "Com velcro"] {paleta direita, 6 opções}
-1.2 Tapetes táteis
- Tipo de superfície: ["Cerdas", "Bolinhas", "Ondas", "Espinhos macios", "Quadrados", "Triângulos"] {paleta esquerda, 6 opções}
- Cor de base: ["Azul", "Verde", "Amarelo", "Rosa", "Laranja", "Roxo"] {paleta frente, 6 opções}
- Espessura: ["1cm", "2cm", "3cm"] {cor da caixa, 3 opções}
- Tamanho: ["50x50cm", "100x50cm", "100x100cm"] {cor da caixa, 3 opções}
- Extras: ["Com cheiros suaves", "Com figuras em alto relevo", "Com borda antiderrapante", "Com luzes LED", "Com etiquetas educativas", "Com bolso para objetos"] {paleta direita, 6 opções}
-1.3 Painéis sensoriais
+ 
+##1.3 Painéis sensoriais
  Material base: ["Madeira", "Plástico", "EVA"] {cor da caixa, 3 opções}
  Cor principal: ["Branco", "Amarelo", "Vermelho", "Verde", "Azul", "Laranja"] {paleta frente, 6 opções}
  Tipo de atividades: ["Portas com fechaduras", "Botões e luzes", "Puxadores", "Engrenagens", "Velcro e zíper", "Chaves e cadeados"] {paleta esquerda, 6 opções}
  Tamanho: ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] {cor da caixa, 3 opções}
  Extras: ["Com sons", "Com texturas variadas", "Com espelho", "Com números", "Com alfabeto", "Com figuras de animais"] {paleta direita, 6 opções}
-1.4 Massinhas terapêuticas
+##1.4 Massinhas terapêuticas
  Textura: ["Macia", "Densa", "Grãos finos", "Granulada", "Com glitter", "Com aroma"] {paleta esquerda, 6 opções}
  Cor principal: ["Amarelo", "Verde", "Vermelho", "Azul", "Roxo", "Laranja"] {paleta frente, 6 opções}
  Nível de resistência: ["Baixa", "Média", "Alta"] {cor da caixa, 3 opções}
@@ -284,7 +184,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 
 
-2. Brinquedos Educativos e Pedagógicos
+3. Brinquedos Educativos e Pedagógicos
 2.1 Quebra-cabeças com letras e números
  Nível de dificuldade: ["Fácil (até 10 peças)", "Médio (11 a 20 peças)", "Difícil (21 a 50 peças)"] {cor da caixa, 3 opções}
  Fonte das letras: ["Bastão simples", "Cursiva", "Fonte adaptada para dislexia", "Fonte grande"] {paleta esquerda, 6 opções}
@@ -324,7 +224,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 
 
-3. Rotina e Organização
+4. Rotina e Organização
 3.1 Quadros de rotina com figuras
  Tipo de fixação: ["Ímã", "Velcro", "Cartolina rígida"] {cor da caixa, 3 opções}
  Estilo de imagem: ["Fotos reais", "Pictogramas", "Desenhos lúdicos"] {paleta esquerda, 6 opções}
@@ -359,7 +259,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 
 
-4. Moda e Acessórios Sensoriais
+5. Moda e Acessórios Sensoriais
 
 
 
