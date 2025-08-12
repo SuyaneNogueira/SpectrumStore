@@ -1,4 +1,4 @@
-# SpectrumStore
+# SpectrumStore 🧸
 
 Criada com propósito, acolhimento e ciência, a **SpectrumStore** é um espaço pensado para quem vive o espectro — diretamente ou ao lado de quem ama.  
 Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de autoregulação que respeitam as necessidades únicas de cada pessoa.  
@@ -322,224 +322,359 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
    
 ## 3.1 Quadros de rotina com figuras
 
- Tipo de fixação: ["Ímã", "Velcro", "Cartolina rígida"] {cor da caixa, 3 opções}
+- **Tipo de fixação:** ["Ímã", "Velcro", "Cartolina rígida"] 
+ {cor da caixa, 3 opções}
  
- Estilo de imagem: ["Fotos reais", "Pictogramas", "Desenhos lúdicos"] {paleta esquerda, 6 opções}
+- **Estilo de imagem:** ["Fotos reais", "Pictogramas", "Desenhos lúdicos"] 
+ {paleta esquerda, 6 opções}
  
- Cor da moldura: ["Azul", "Branco", "Amarelo", "Verde", "Vermelho", "Roxo"] {paleta frente, 6 opções}
+- **Cor da moldura:** ["Azul", "Branco", "Amarelo", "Verde", "Vermelho", "Roxo"] 
+ {paleta frente, 6 opções}
  
- Tamanho: ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] {cor da caixa, 3 opções}
+- **Tamanho:** ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] 
+ {cor da caixa, 3 opções}
  
- Extras: ["Com ícones personalizáveis", "Com relógio integrado", "Com espaço para anotações", "Com figuras móveis", "Com luzes indicativas", "Com sons"] {paleta direita, 6 opções}
-
- 
-3.2 Calendários visuais
-
- Formato: ["Parede", "Mesa", "Imantado"] {cor da caixa, 3 opções}
- 
- Cor principal: ["Azul", "Amarelo", "Roxo", "Verde", "Laranja", "Vermelho"] {paleta frente, 6 opções}
- 
- Tipo de ilustração: ["Pictogramas", "Fotos reais", "Desenhos temáticos"] {paleta esquerda, 6 opções}
- 
- Idioma: ["Português", "Libras", "Bilingue PT-EN"] {cor da caixa, 3 opções}
- 
- Extras: ["Com figuras destacáveis", "Com etiquetas", "Com espaço para anotações", "Com ímã", "Com QR codes", "Com texturas"] {paleta direita, 6 opções}
+- **Extras:** ["Com ícones personalizáveis", "Com relógio integrado", "Com espaço para anotações", "Com figuras móveis", "Com luzes indicativas", "Com sons"] 
+ {paleta direita, 6 opções}
 
  
-3.3 Relógios com atividades ilustradas
+## 3.2 Calendários visuais
 
- Tipo de ponteiro: ["Analógico", "Digital"] {cor da caixa, 3 opções}
+- **Formato:** ["Parede", "Mesa", "Imantado"] 
+ {cor da caixa, 3 opções}
  
- Cor principal: ["Azul", "Branco", "Vermelho", "Verde", "Amarelo", "Laranja"] {paleta frente, 6 opções}
+- **Cor principal:** ["Azul", "Amarelo", "Roxo", "Verde", "Laranja", "Vermelho"] 
+ {paleta frente, 6 opções}
  
- Tema: ["Atividades diárias", "Escola", "Casa", "Esporte", "Lazer", "Higiene"] {paleta esquerda, 6 opções}
+- **Tipo de ilustração:** ["Pictogramas", "Fotos reais", "Desenhos temáticos"] 
+ {paleta esquerda, 6 opções}
  
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
+- **Idioma:** ["Português", "Libras", "Bilingue PT-EN"] 
+ {cor da caixa, 3 opções}
  
- Extras: ["Com som de alerta", "Com luzes", "Com figuras removíveis", "Com temporizador", "Com textura tátil", "Com braille"] {paleta direita, 6 opções}
-
- 
-3.4 Tabelas de reforço positivo
-
- Formato: ["Quadro fixo", "Cartela removível", "Imantado"] {cor da caixa, 3 opções}
- 
- Cor principal: ["Branco", "Amarelo", "Verde", "Azul", "Roxo", "Laranja"] {paleta frente, 6 opções}
- 
- Tema de ilustração: ["Estrelas", "Corações", "Medalhas", "Animais", "Natureza", "Personagens"] {paleta esquerda, 6 opções}
- 
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- 
- Extras: ["Com adesivos", "Com imãs", "Com QR code de mensagem", "Com espaço de metas", "Com prêmios visuais", "Com braille"] {paleta direita, 6 opções}
+- **Extras:** ["Com figuras destacáveis", "Com etiquetas", "Com espaço para anotações", "Com ímã", "Com QR codes", "Com texturas"] 
+ {paleta direita, 6 opções}
 
  
-3.5 Agendas visuais imantadas
+## 3.3 Relógios com atividades ilustradas
 
- Tipo de página: ["Liso", "Quadriculado", "Com linhas"] {paleta esquerda, 6 opções}
+- **Tipo de ponteiro:** ["Analógico", "Digital"] 
+ {cor da caixa, 3 opções}
  
- Cor de fundo: ["Branco", "Azul", "Amarelo", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
+- **Cor principal:** ["Azul", "Branco", "Vermelho", "Verde", "Amarelo", "Laranja"] 
+ {paleta frente, 6 opções}
  
- Tamanho: ["A4", "A3", "Personalizado"] {cor da caixa, 3 opções}
+- **Tema:** ["Atividades diárias", "Escola", "Casa", "Esporte", "Lazer", "Higiene"] 
+ {paleta esquerda, 6 opções}
  
- Idioma: ["Português", "Libras", "Bilingue PT-EN"] {cor da caixa, 3 opções}
+- **Tamanho:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
  
- Extras: ["Com figuras removíveis", "Com etiquetas", "Com espaço para anotações", "Com textura", "Com ímã forte", "Com QR code"] {paleta direita, 6 opções}
- 
-4. Moda e Acessórios Sensoriais
-
-4.1 Camisetas com tecidos especiais
- Tipo de tecido: ["Algodão", "Dry fit", "Lycra", "Plush", "Viscose", "Malha fria"] {paleta esquerda, 6 opções}
- Cor principal: ["Branco", "Azul", "Preto", "Verde", "Roxo", "Amarelo"] {paleta frente, 6 opções}
- Tamanho: ["PP", "P", "M", "G", "GG", "XG"] {cor da caixa, 3 opções}
- Estampa: ["Lisa", "Listrada", "Xadrez", "Com desenho", "Com frase", "Customizada"] {paleta direita, 6 opções}
- Extras: ["Com etiquetas removíveis", "Costura suave", "Sem etiquetas internas", "Com reforço interno", "Com bolsos", "Com QR code de identificação"] {paleta direita, 6 opções}
-
-
-
-
-4.2 Bonés com abafadores auriculares
- Tipo de aba: ["Curva", "Reta", "Flexível", "Longa", "Curta", "Personalizada"] {paleta esquerda, 6 opções}
- Cor principal: ["Preto", "Branco", "Azul", "Verde", "Vermelho", "Amarelo"] {paleta frente, 6 opções}
- Tamanho: ["Infantil", "Juvenil", "Adulto"] {cor da caixa, 3 opções}
- Material: ["Algodão", "Poliéster", "Jeans"] {cor da caixa, 3 opções}
- Extras: ["Com abafador fixo", "Com abafador removível", "Com fecho ajustável", "Com proteção UV", "Com ventilação extra", "Com bolso interno"] {paleta direita, 6 opções}
-
-
+- **Extras:** ["Com som de alerta", "Com luzes", "Com figuras removíveis", "Com temporizador", "Com textura tátil", "Com braille"] 
+ {paleta direita, 6 opções}
 
  
-4.3 Capas de compressão
- Nível de compressão: ["Leve", "Média", "Alta"] {cor da caixa, 3 opções}
- Cor: ["Azul", "Preto", "Cinza", "Roxo", "Verde", "Vermelho"] {paleta frente, 6 opções}
- Tamanho: ["PP", "P", "M", "G", "GG", "XG"] {cor da caixa, 3 opções}
- Material: ["Lycra", "Poliamida", "Algodão com elastano"] {cor da caixa, 3 opções}
- Extras: ["Com fecho frontal", "Com reforço nas laterais", "Com bolsos internos", "Com costura reforçada", "Com etiquetas removíveis", "Com tecido respirável"] {paleta direita, 6 opções}
+## 3.4 Tabelas de reforço positivo
+
+- **Formato:** ["Quadro fixo", "Cartela removível", "Imantado"]
+ {cor da caixa, 3 opções}
+ 
+- **Cor principal:** ["Branco", "Amarelo", "Verde", "Azul", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tema de ilustração:** ["Estrelas", "Corações", "Medalhas", "Animais", "Natureza", "Personagens"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Tamanho:** ["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com adesivos", "Com imãs", "Com QR code de mensagem", "Com espaço de metas", "Com prêmios visuais", "Com braille"] 
+ {paleta direita, 6 opções}
+
+ 
+## 3.5 Agendas visuais imantadas
+
+- **Tipo de página:** ["Liso", "Quadriculado", "Com linhas"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor de fundo:** ["Branco", "Azul", "Amarelo", "Verde", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["A4", "A3", "Personalizado"] 
+ {cor da caixa, 3 opções}
+ 
+- **Idioma:** ["Português", "Libras", "Bilingue PT-EN"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com figuras removíveis", "Com etiquetas", "Com espaço para anotações", "Com textura", "Com ímã forte", "Com QR code"] 
+ {paleta direita, 6 opções}
+
+ 
+#4. Moda e Acessórios Sensoriais
+
+
+##4.1 Camisetas com tecidos especiais
+
+- **Tipo de tecido:** ["Algodão", "Dry fit", "Lycra", "Plush", "Viscose", "Malha fria"]
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:**["Branco", "Azul", "Preto", "Verde", "Roxo", "Amarelo"]
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["PP", "P", "M", "G", "GG", "XG"] 
+ {cor da caixa, 3 opções}
+ 
+- **Estampa:** ["Lisa", "Listrada", "Xadrez", "Com desenho", "Com frase", "Customizada"] 
+ {paleta direita, 6 opções}
+ 
+- **Extras:** ["Com etiquetas removíveis", "Costura suave", "Sem etiquetas internas", "Com reforço interno", "Com bolsos", "Com QR code de identificação"] 
+ {paleta direita, 6 opções}
+
+
+## 4.2 Bonés com abafadores auriculares
+
+- **Tipo de aba:** ["Curva", "Reta", "Flexível", "Longa", "Curta", "Personalizada"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Preto", "Branco", "Azul", "Verde", "Vermelho", "Amarelo"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Infantil", "Juvenil", "Adulto"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Algodão", "Poliéster", "Jeans"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com abafador fixo", "Com abafador removível", "Com fecho ajustável", "Com proteção UV", "Com ventilação extra", "Com bolso interno"] 
+ {paleta direita, 6 opções}
+
+
+## 4.3 Capas de compressão
+
+- **Nível de compressão:** ["Leve", "Média", "Alta"] 
+ {cor da caixa, 3 opções}
+ 
+- **Cor:** ["Azul", "Preto", "Cinza", "Roxo", "Verde", "Vermelho"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["PP", "P", "M", "G", "GG", "XG"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Lycra", "Poliamida", "Algodão com elastano"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com fecho frontal", "Com reforço nas laterais", "Com bolsos internos", "Com costura reforçada", "Com etiquetas removíveis", "Com tecido respirável"] 
+ {paleta direita, 6 opções}
+
+
+## 4.4 Colares mordedores
+
+- **Formato:** ["Redondo", "Quadrado", "Coração", "Estrela", "Anel", "Animal"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Azul", "Verde", "Roxo", "Vermelho", "Amarelo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Material:** ["Silicone alimentício", "Borracha macia", "Resina atóxica"] 
+ {cor da caixa, 3 opções}
+ 
+- **Nível de firmeza:** ["Macio", "Médio", "Firme"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com cordão ajustável", "Com fecho de segurança", "Com textura dupla", "Com aroma suave", "Com glitter seguro", "Com efeito fosforescente"] 
+ {paleta direita, 6 opções}
+
+
+## 4.5 Pulseiras de texturas variadas
+
+- **Tipo de textura:**["Lisa", "Pontilhada", "Com ondas", "Com saliências", "Com desenhos", "Com franjas"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor:** ["Azul", "Verde", "Roxo", "Vermelho", "Amarelo", "Laranja"] 
+ {paleta frente, 6 opções}
+
+- **Tamanho:** ["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Silicone", "Tecido", "Couro sintético"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com aroma suave", "Com luz", "Com pingente", "Com fecho ajustável", "Com texturas mistas", "Com QR code"] 
+ {paleta direita, 6 opções}
+
+
+# 5. Ambiente e Relaxamento
+
+## 5.1 Tendas sensoriais
+
+ **Formato:** ["Pirâmide", "Casinha", "Circular", "Triangular", "Tipi", "Túnel"] 
+ {paleta esquerda, 6 opções}
+ 
+ **Cor principal:** ["Azul", "Branco", "Verde", "Roxo", "Amarelo", "Rosa"] 
+ {paleta frente, 6 opções}
+ 
+ **Tamanho:** ["Pequena (1 criança)", "Média (2 crianças)", "Grande (3+ crianças)"] 
+ {cor da caixa, 3 opções}
+ 
+ **Material:** ["Algodão", "Poliéster", "Plush"] 
+ {cor da caixa, 3 opções}
+ 
+ **Extras:** ["Com luzes LED", "Com janelas", "Com cortinas blackout", "Com bolso interno", "Com piso acolchoado", "Com entrada dupla"] 
+ {paleta direita, 6 opções}
 
 
 
 
-4.4 Colares mordedores
- Formato: ["Redondo", "Quadrado", "Coração", "Estrela", "Anel", "Animal"] {paleta esquerda, 6 opções}
- Cor principal: ["Azul", "Verde", "Roxo", "Vermelho", "Amarelo", "Laranja"] {paleta frente, 6 opções}
- Material: ["Silicone alimentício", "Borracha macia", "Resina atóxica"] {cor da caixa, 3 opções}
- Nível de firmeza: ["Macio", "Médio", "Firme"] {cor da caixa, 3 opções}
- Extras: ["Com cordão ajustável", "Com fecho de segurança", "Com textura dupla", "Com aroma suave", "Com glitter seguro", "Com efeito fosforescente"] {paleta direita, 6 opções}
+## 5.2 Luminárias com projeção suave
+
+- **Tipo de projeção:** ["Estrelas", "Planetas", "Formas geométricas", "Animais", "Natureza", "Aleatória"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor da luz:** ["Branco quente", "Azul", "Verde", "Amarelo", "Roxo", "Multicolorida"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Pequena", "Média", "Grande"]
+ {cor da caixa, 3 opções}
+ 
+- **Fonte de energia:** ["Pilha", "Bateria recarregável", "Tomada USB"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com temporizador", "Com controle remoto", "Com regulagem de brilho", "Com som ambiente", "Com base antiderrapante", "Com troca automática de imagens"] 
+ {paleta direita, 6 opções}
 
 
 
  
-4.5 Pulseiras de texturas variadas
- Tipo de textura: ["Lisa", "Pontilhada", "Com ondas", "Com saliências", "Com desenhos", "Com franjas"] {paleta esquerda, 6 opções}
- Cor: ["Azul", "Verde", "Roxo", "Vermelho", "Amarelo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Material: ["Silicone", "Tecido", "Couro sintético"] {cor da caixa, 3 opções}
- Extras: ["Com aroma suave", "Com luz", "Com pingente", "Com fecho ajustável", "Com texturas mistas", "Com QR code"] {paleta direita, 6 opções}
+## 5.3 Cortinas blackout
 
-
-
-
-
-
-5. Ambiente e Relaxamento
-
-
-
-
-5.1 Tendas sensoriais
- Formato: ["Pirâmide", "Casinha", "Circular", "Triangular", "Tipi", "Túnel"] {paleta esquerda, 6 opções}
- Cor principal: ["Azul", "Branco", "Verde", "Roxo", "Amarelo", "Rosa"] {paleta frente, 6 opções}
- Tamanho: ["Pequena (1 criança)", "Média (2 crianças)", "Grande (3+ crianças)"] {cor da caixa, 3 opções}
- Material: ["Algodão", "Poliéster", "Plush"] {cor da caixa, 3 opções}
- Extras: ["Com luzes LED", "Com janelas", "Com cortinas blackout", "Com bolso interno", "Com piso acolchoado", "Com entrada dupla"] {paleta direita, 6 opções}
-
-
-
-
-5.2 Luminárias com projeção suave
- Tipo de projeção: ["Estrelas", "Planetas", "Formas geométricas", "Animais", "Natureza", "Aleatória"] {paleta esquerda, 6 opções}
- Cor da luz: ["Branco quente", "Azul", "Verde", "Amarelo", "Roxo", "Multicolorida"] {paleta frente, 6 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Fonte de energia: ["Pilha", "Bateria recarregável", "Tomada USB"] {cor da caixa, 3 opções}
- Extras: ["Com temporizador", "Com controle remoto", "Com regulagem de brilho", "Com som ambiente", "Com base antiderrapante", "Com troca automática de imagens"] {paleta direita, 6 opções}
-
-
-
+- **Tipo de fixação:** ["Varão", "Trilho", "Velcro"] 
+ {cor da caixa, 3 opções}
  
-5.3 Cortinas blackout
- Tipo de fixação: ["Varão", "Trilho", "Velcro"] {cor da caixa, 3 opções}
- Cor: ["Preto", "Azul", "Bege", "Cinza", "Roxo", "Marrom"] {paleta frente, 6 opções}
- Material: ["Poliéster", "Algodão grosso", "Lona"] {cor da caixa, 3 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Extras: ["Com isolamento térmico", "Com camada acústica", "Com estampas", "Com bolso para aromatizador", "Com velcro lateral", "Com faixa de amarração"] {paleta direita, 6 opções}
-
-
-
-
-5.4 Almofadas aromáticas
- Formato: ["Quadrada", "Retangular", "Cilíndrica", "Coração", "Estrela", "Animal"] {paleta esquerda, 6 opções}
- Cor: ["Azul", "Verde", "Amarelo", "Roxo", "Rosa", "Branco"] {paleta frente, 6 opções}
- Aroma: ["Lavanda", "Camomila", "Hortelã", "Baunilha", "Capim-limão", "Sem aroma"] {cor da caixa, 3 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Extras: ["Capa removível", "Com textura dupla", "Com aquecimento", "Com peso leve", "Com estampa personalizada", "Com fecho invisível"] {paleta direita, 6 opções}
-
-
-
+- **Cor:** ["Preto", "Azul", "Bege", "Cinza", "Roxo", "Marrom"] 
+ {paleta frente, 6 opções}
  
-5.5 Difusores de óleos essenciais
- Tipo: ["Elétrico", "A pilha", "A vela", "Ultrassônico", "Nebulizador", "Portátil"] {paleta esquerda, 6 opções}
- Cor: ["Branco", "Preto", "Azul", "Verde", "Amarelo", "Marrom"] {paleta frente, 6 opções}
- Capacidade: ["50ml", "100ml", "200ml"] {cor da caixa, 3 opções}
- Material: ["Plástico", "Cerâmica", "Madeira"] {cor da caixa, 3 opções}
- Extras: ["Com luz LED", "Com desligamento automático", "Com temporizador", "Com ajuste de intensidade", "Com porta-essências", "Com controle remoto"] {paleta direita, 6 opções}
+- **Material:** ["Poliéster", "Algodão grosso", "Lona"] 
+ {cor da caixa, 3 opções}
+
+- **Tamanho:** ["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com isolamento térmico", "Com camada acústica", "Com estampas", "Com bolso para aromatizador", "Com velcro lateral", "Com faixa de amarração"] 
+ {paleta direita, 6 opções}
 
 
+## 5.4 Almofadas aromáticas
+
+- **Formato:** ["Quadrada", "Retangular", "Cilíndrica", "Coração", "Estrela", "Animal"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor:** ["Azul", "Verde", "Amarelo", "Roxo", "Rosa", "Branco"] 
+ {paleta frente, 6 opções}
+ 
+- **Aroma:** ["Lavanda", "Camomila", "Hortelã", "Baunilha", "Capim-limão", "Sem aroma"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tamanho:** ["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Capa removível", "Com textura dupla", "Com aquecimento", "Com peso leve", "Com estampa personalizada", "Com fecho invisível"] 
+ {paleta direita, 6 opções}
 
 
+## 5.5 Difusores de óleos essenciais
 
-6. Jogos Cognitivos e Educacionais
+- **Tipo:** ["Elétrico", "A pilha", "A vela", "Ultrassônico", "Nebulizador", "Portátil"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor:** ["Branco", "Preto", "Azul", "Verde", "Amarelo", "Marrom"] 
+ {paleta frente, 6 opções}
+ 
+- **Capacidade:** ["50ml", "100ml", "200ml"]
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Plástico", "Cerâmica", "Madeira"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com luz LED", "Com desligamento automático", "Com temporizador", "Com ajuste de intensidade", "Com porta-essências", "Com controle remoto"] 
+ {paleta direita, 6 opções}
 
 
-
+# 6. Jogos Cognitivos e Educacionais
    
-6.1 Jogos de memória com imagens reais
- Tema: ["Animais", "Frutas", "Profissões", "Objetos", "Natureza", "Transportes"] {paleta esquerda, 6 opções}
- Cor do verso: ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] {paleta frente, 6 opções}
- Quantidade de pares: ["10", "15", "20"] {cor da caixa, 3 opções}
- Material: ["Cartão rígido", "Plástico", "Madeira"] {cor da caixa, 3 opções}
- Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com borda reforçada", "Com figuras ampliadas", "Com aroma suave"] {paleta direita, 6 opções}
+## 6.1 Jogos de memória com imagens reais
+
+- **Tema:** ["Animais", "Frutas", "Profissões", "Objetos", "Natureza", "Transportes"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor do verso:** ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] 
+ {paleta frente, 6 opções}
+ 
+- **Quantidade de pares:** ["10", "15", "20"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Cartão rígido", "Plástico", "Madeira"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com braille", "Com textura", "Com QR code sonoro", "Com borda reforçada", "Com figuras ampliadas", "Com aroma suave"] 
+ {paleta direita, 6 opções}
 
 
+## 6.2 Sequências lógicas com blocos
+
+- **Formato:** ["Peças quadradas", "Peças redondas", "Peças triangulares", "Peças mistas", "Pinos e furos", "Padrões geométricos"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Vermelho", "Azul", "Verde", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Nível de dificuldade:** ["Fácil", "Médio", "Difícil"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Plástico", "Madeira", "EVA"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com figuras educativas", "Com guia ilustrado", "Com texturas", "Com sons", "Com peças magnéticas", "Com encaixes especiais"] 
+ {paleta direita, 6 opções}
 
 
-6.2 Sequências lógicas com blocos
- Formato: ["Peças quadradas", "Peças redondas", "Peças triangulares", "Peças mistas", "Pinos e furos", "Padrões geométricos"] {paleta esquerda, 6 opções}
- Cor principal: ["Vermelho", "Azul", "Verde", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Nível de dificuldade: ["Fácil", "Médio", "Difícil"] {cor da caixa, 3 opções}
- Material: ["Plástico", "Madeira", "EVA"] {cor da caixa, 3 opções}
- Extras: ["Com figuras educativas", "Com guia ilustrado", "Com texturas", "Com sons", "Com peças magnéticas", "Com encaixes especiais"] {paleta direita, 6 opções}
+## 6.3 Tabuleiros com comandos simples
+
+- **Tema:** ["Cores", "Formas", "Números", "Letras", "Sequências", "Animais"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor da base:** ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Madeira", "Plástico", "EVA"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com peças removíveis", "Com som", "Com luz", "Com textura", "Com braille", "Com figuras personalizadas"] 
+ {paleta direita, 6 opções}
 
 
+## 6.4 Dominó de emoções
 
-
-6.3 Tabuleiros com comandos simples
- Tema: ["Cores", "Formas", "Números", "Letras", "Sequências", "Animais"] {paleta esquerda, 6 opções}
- Cor da base: ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] {paleta frente, 6 opções}
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material: ["Madeira", "Plástico", "EVA"] {cor da caixa, 3 opções}
- Extras: ["Com peças removíveis", "Com som", "Com luz", "Com textura", "Com braille", "Com figuras personalizadas"] {paleta direita, 6 opções}
-
-
-
-
-6.4 Dominó de emoções
- Tipo de emoção: ["Básicas", "Complexas", "Mistas", "Com fotos reais", "Com ilustrações", "Com emojis"] {paleta esquerda, 6 opções}
- Cor do verso: ["Azul", "Verde", "Amarelo", "Roxo", "Vermelho", "Laranja"] {paleta frente, 6 opções}
- Quantidade de peças: ["20", "30", "40"] {cor da caixa, 3 opções}
- Material: ["Madeira", "Plástico", "Cartão"] {cor da caixa, 3 opções}
- Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras ampliadas", "Com borda reforçada", "Com guia de uso"] {paleta direita, 6 opções}
-
-
+ Tipo de emoção: ["Básicas", "Complexas", "Mistas", "Com fotos reais", "Com ilustrações", "Com emojis"] 
+ {paleta esquerda, 6 opções}
+ 
+ Cor do verso: ["Azul", "Verde", "Amarelo", "Roxo", "Vermelho", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+ Quantidade de peças: ["20", "30", "40"] 
+ {cor da caixa, 3 opções}
+ 
+ Material: ["Madeira", "Plástico", "Cartão"] 
+ {cor da caixa, 3 opções}
+ 
+ Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras ampliadas", "Com borda reforçada", "Com guia de uso"] 
+ {paleta direita, 6 opções}
 
  
 6.5 Bingo de profissões ou objetos
+
  Tema: ["Profissões", "Objetos", "Frutas", "Animais", "Transportes", "Natureza"] {paleta esquerda, 6 opções}
  Cor das cartelas: ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] {paleta frente, 6 opções}
  Quantidade de jogadores: ["2", "4", "6"] {cor da caixa, 3 opções}
