@@ -3,6 +3,8 @@ import Tela_inicial from "../Tela inicial/Tela_inicial";
 import Produtos from "../Adm/pages/Produtos";
 import Layout from "../Adm/components/Layout";
 import Dashboard from "../Adm/pages/Dashboard";
+import CarrnhoP1 from "../Cliente/Carrinho/CarrnhoP1";
+
 
 
 const Router = createBrowserRouter([

@@ -6,7 +6,7 @@ function CarrnhoP1() {
      <Navbar/>
      <div className='ibovespa'>
       <img src="CarrinhoFundooooo.png" alt="" className='foto-de-fundo-carrinho' />
-        <div className='sssssss'>
+        {/* <div className='sssssss'>
            <div className='CoisaBrancaCarrinho'>coisa branca
             <div>Comprar tudo</div>
             <div>card1</div>  
@@ -19,7 +19,7 @@ function CarrnhoP1() {
                 <div>botao2</div>
             </div>
         </div>  
-        </div>
+        </div> */}
 
       </div> 
 
