@@ -244,6 +244,117 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 - **Extras:** Figuras removíveis, Etiquetas, Anotações, Textura, Ímã forte, QR code
 
 ---
+1. Brinquedos Sensoriais
+1.1 Cubos sensoriais
+ Textura: ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] {paleta esquerda, 6 opções}
+ Nível de pressão: ["Muito macio", "Macio", "Médio", "Rígido"] {cor da caixa, 3 opções}
+ Cor principal: ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tamanho: ["Pequeno (5cm)", "Médio (10cm)", "Grande (15cm)"] {cor da caixa, 3 opções}
+ Detalhes adicionais: ["Com sinos", "Com espelhos", "Com glitter", "Com luzes", "Com alça", "Com velcro"] {paleta direita, 6 opções}
+1.2 Tapetes táteis
+ Tipo de superfície: ["Cerdas", "Bolinhas", "Ondas", "Espinhos macios", "Quadrados", "Triângulos"] {paleta esquerda, 6 opções}
+ Cor de base: ["Azul", "Verde", "Amarelo", "Rosa", "Laranja", "Roxo"] {paleta frente, 6 opções}
+ Espessura: ["1cm", "2cm", "3cm"] {cor da caixa, 3 opções}
+ Tamanho: ["50x50cm", "100x50cm", "100x100cm"] {cor da caixa, 3 opções}
+ Extras: ["Com cheiros suaves", "Com figuras em alto relevo", "Com borda antiderrapante", "Com luzes LED", "Com etiquetas educativas", "Com bolso para objetos"] {paleta direita, 6 opções}
+1.3 Painéis sensoriais
+ Material base: ["Madeira", "Plástico", "EVA"] {cor da caixa, 3 opções}
+ Cor principal: ["Branco", "Amarelo", "Vermelho", "Verde", "Azul", "Laranja"] {paleta frente, 6 opções}
+ Tipo de atividades: ["Portas com fechaduras", "Botões e luzes", "Puxadores", "Engrenagens", "Velcro e zíper", "Chaves e cadeados"] {paleta esquerda, 6 opções}
+ Tamanho: ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] {cor da caixa, 3 opções}
+ Extras: ["Com sons", "Com texturas variadas", "Com espelho", "Com números", "Com alfabeto", "Com figuras de animais"] {paleta direita, 6 opções}
+1.4 Massinhas terapêuticas
+ Textura: ["Macia", "Densa", "Grãos finos", "Granulada", "Com glitter", "Com aroma"] {paleta esquerda, 6 opções}
+ Cor principal: ["Amarelo", "Verde", "Vermelho", "Azul", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Nível de resistência: ["Baixa", "Média", "Alta"] {cor da caixa, 3 opções}
+ Peso da embalagem: ["100g", "200g", "500g"] {cor da caixa, 3 opções}
+ Extras: ["Comestível segura", "Brilha no escuro", "Muda de cor ao toque", "Aromatizada", "Com microfiguras", "Com glitter holográfico"] {paleta direita, 6 opções}
+1.5 Slimes e gelecas
+ Textura: ["Clássica", "Fluffy", "Butter", "Clear", "Crunchy", "Cloud"] {paleta esquerda, 6 opções}
+ Cor: ["Azul", "Rosa", "Verde", "Roxo", "Amarelo", "Laranja"] {paleta frente, 6 opções}
+ Efeito: ["Brilha no escuro", "Muda de cor", "Com glitter", "Com bolinhas", "Aromatizada", "Metálica"] {paleta direita, 6 opções}
+ Nível de elasticidade: ["Baixa", "Média", "Alta"] {cor da caixa, 3 opções}
+ Peso: ["50g", "100g", "200g"] {cor da caixa, 3 opções}
+1.6 Bolas com texturas variadas
+ Tipo de textura: ["Pontilhada", "Com cerdas", "Ondulada", "Em espiral", "Com saliências", "Felpuda"] {paleta esquerda, 6 opções}
+ Cor principal: ["Vermelho", "Azul", "Verde", "Roxo", "Laranja", "Amarelo"] {paleta frente, 6 opções}
+ Tamanho: ["Pequena (5cm)", "Média (10cm)", "Grande (20cm)"] {cor da caixa, 3 opções}
+ Peso: ["Leve", "Médio", "Pesado"] {cor da caixa, 3 opções}
+ Extras: ["Com luz", "Com som", "Com aroma", "Com glitter", "Com alça", "Com bolsos internos"] {paleta direita, 6 opções}
+
+
+
+2. Brinquedos Educativos e Pedagógicos
+2.1 Quebra-cabeças com letras e números
+ Nível de dificuldade: ["Fácil (até 10 peças)", "Médio (11 a 20 peças)", "Difícil (21 a 50 peças)"] {cor da caixa, 3 opções}
+ Fonte das letras: ["Bastão simples", "Cursiva", "Fonte adaptada para dislexia", "Fonte grande"] {paleta esquerda, 6 opções}
+ Material: ["EVA", "Madeira", "Plástico"] {cor da caixa, 3 opções}
+ Cor de fundo: ["Azul", "Amarelo", "Verde", "Vermelho", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tema visual: ["Animais", "Natureza", "Veículos", "Formas geométricas", "Personagens", "Objetos do dia a dia"] {paleta direita, 6 opções}
+2.2 Cubos de lógica
+ Formato: ["Quadrado", "Retangular", "Hexagonal", "Triangular", "Circular", "Personalizado"] {paleta esquerda, 6 opções}
+ Cor principal: ["Azul", "Verde", "Amarelo", "Vermelho", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tamanho: ["Pequeno (5cm)", "Médio (8cm)", "Grande (12cm)"] {cor da caixa, 3 opções}
+ Nível de complexidade: ["Baixo", "Médio", "Alto"] {cor da caixa, 3 opções}
+ Extras: ["Com números", "Com letras", "Com texturas", "Com figuras", "Com ímãs", "Com peças móveis"] {paleta direita, 6 opções}
+2.3 Brinquedos de montar com letras (tipo LEGO educativo)
+ Tamanho das peças: ["Pequenas", "Médias", "Grandes"] {cor da caixa, 3 opções}
+ Cor principal: ["Vermelho", "Azul", "Amarelo", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tipo de encaixe: ["Clássico", "Magnético", "De pressão"] {cor da caixa, 3 opções}
+ Tema: ["Alfabeto", "Números", "Formas", "Objetos", "Animais", "Profissões"] {paleta esquerda, 6 opções}
+ Extras: ["Com sons", "Com luzes", "Com texturas", "Com peças personalizadas", "Com etiquetas", "Com QR codes educativos"] {paleta direita, 6 opções}
+2.4 Jogos com alfabeto Braille
+ Tipo de peça: ["Cartas", "Cubos", "Blocos", "Fichas", "Tabuleiros", "Painéis"] {paleta esquerda, 6 opções}
+ Cor de contraste: ["Preto", "Branco", "Amarelo", "Azul", "Verde", "Vermelho"] {paleta frente, 6 opções}
+ Material: ["Plástico", "Madeira", "EVA"] {cor da caixa, 3 opções}
+ Quantidade de peças: ["10", "20", "50"] {cor da caixa, 3 opções}
+ Extras: ["Com áudio descritivo", "Com QR code explicativo", "Com letras em alto relevo", "Com ilustrações", "Com ímãs", "Com suporte vertical"] {paleta direita, 6 opções}
+2.5 Dominós de sílabas
+ Tipo de material: ["Madeira", "Plástico", "EVA"] {cor da caixa, 3 opções}
+ Cor principal: ["Branco", "Azul", "Amarelo", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Fonte: ["Bastão", "Cursiva", "Fonte adaptada", "Fonte em alto relevo"] {paleta esquerda, 6 opções}
+ Tamanho da peça: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
+ Extras: ["Com ilustrações", "Com braille", "Com texturas", "Com QR code de áudio", "Com ímãs", "Com numeração"] {paleta direita, 6 opções}
+
+
+
+
+
+
+
+
+
+3. Rotina e Organização
+3.1 Quadros de rotina com figuras
+ Tipo de fixação: ["Ímã", "Velcro", "Cartolina rígida"] {cor da caixa, 3 opções}
+ Estilo de imagem: ["Fotos reais", "Pictogramas", "Desenhos lúdicos"] {paleta esquerda, 6 opções}
+ Cor da moldura: ["Azul", "Branco", "Amarelo", "Verde", "Vermelho", "Roxo"] {paleta frente, 6 opções}
+ Tamanho: ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] {cor da caixa, 3 opções}
+ Extras: ["Com ícones personalizáveis", "Com relógio integrado", "Com espaço para anotações", "Com figuras móveis", "Com luzes indicativas", "Com sons"] {paleta direita, 6 opções}
+3.2 Calendários visuais
+ Formato: ["Parede", "Mesa", "Imantado"] {cor da caixa, 3 opções}
+ Cor principal: ["Azul", "Amarelo", "Roxo", "Verde", "Laranja", "Vermelho"] {paleta frente, 6 opções}
+ Tipo de ilustração: ["Pictogramas", "Fotos reais", "Desenhos temáticos"] {paleta esquerda, 6 opções}
+ Idioma: ["Português", "Libras", "Bilingue PT-EN"] {cor da caixa, 3 opções}
+ Extras: ["Com figuras destacáveis", "Com etiquetas", "Com espaço para anotações", "Com ímã", "Com QR codes", "Com texturas"] {paleta direita, 6 opções}
+3.3 Relógios com atividades ilustradas
+ Tipo de ponteiro: ["Analógico", "Digital"] {cor da caixa, 3 opções}
+ Cor principal: ["Azul", "Branco", "Vermelho", "Verde", "Amarelo", "Laranja"] {paleta frente, 6 opções}
+ Tema: ["Atividades diárias", "Escola", "Casa", "Esporte", "Lazer", "Higiene"] {paleta esquerda, 6 opções}
+ Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
+ Extras: ["Com som de alerta", "Com luzes", "Com figuras removíveis", "Com temporizador", "Com textura tátil", "Com braille"] {paleta direita, 6 opções}
+3.4 Tabelas de reforço positivo
+ Formato: ["Quadro fixo", "Cartela removível", "Imantado"] {cor da caixa, 3 opções}
+ Cor principal: ["Branco", "Amarelo", "Verde", "Azul", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tema de ilustração: ["Estrelas", "Corações", "Medalhas", "Animais", "Natureza", "Personagens"] {paleta esquerda, 6 opções}
+ Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
+ Extras: ["Com adesivos", "Com imãs", "Com QR code de mensagem", "Com espaço de metas", "Com prêmios visuais", "Com braille"] {paleta direita, 6 opções}
+3.5 Agendas visuais imantadas
+ Tipo de página: ["Liso", "Quadriculado", "Com linhas"] {paleta esquerda, 6 opções}
+ Cor de fundo: ["Branco", "Azul", "Amarelo", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ Tamanho: ["A4", "A3", "Personalizado"] {cor da caixa, 3 opções}
+ Idioma: ["Português", "Libras", "Bilingue PT-EN"] {cor da caixa, 3 opções}
+ Extras: ["Com figuras removíveis", "Com etiquetas", "Com espaço para anotações", "Com textura", "Com ímã forte", "Com QR code"] {paleta direita, 6 opções}
 
 
 
