@@ -118,10 +118,10 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ---
-#1. Brinquedos Sensoriais
+# 1. Brinquedos Sensoriais
 
 
-##1.1 Cubos sensoriais
+## 1.1 Cubos sensoriais
 
  **Textura:** ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"] 
  {paleta esquerda, 6 opções}
@@ -139,7 +139,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
  {paleta direita, 6 opções}
  
  
-##1.2 Tapetes táteis
+## 1.2 Tapetes táteis
 
  **Tipo de superfície:** ["Cerdas", "Bolinhas", "Ondas", "Espinhos macios", "Quadrados", "Triângulos"] 
  {paleta esquerda, 6 opções}
@@ -157,19 +157,24 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
  {paleta direita, 6 opções}
 
  
-##1.3 Painéis sensoriais
+## 1.3 Painéis sensoriais
  Material base: ["Madeira", "Plástico", "EVA"] {cor da caixa, 3 opções}
+ 
  Cor principal: ["Branco", "Amarelo", "Vermelho", "Verde", "Azul", "Laranja"] {paleta frente, 6 opções}
+ 
  Tipo de atividades: ["Portas com fechaduras", "Botões e luzes", "Puxadores", "Engrenagens", "Velcro e zíper", "Chaves e cadeados"] {paleta esquerda, 6 opções}
+ 
  Tamanho: ["Pequeno (30x40cm)", "Médio (50x70cm)", "Grande (80x100cm)"] {cor da caixa, 3 opções}
+ 
  Extras: ["Com sons", "Com texturas variadas", "Com espelho", "Com números", "Com alfabeto", "Com figuras de animais"] {paleta direita, 6 opções}
-##1.4 Massinhas terapêuticas
+ 
+## 1.4 Massinhas terapêuticas
  Textura: ["Macia", "Densa", "Grãos finos", "Granulada", "Com glitter", "Com aroma"] {paleta esquerda, 6 opções}
  Cor principal: ["Amarelo", "Verde", "Vermelho", "Azul", "Roxo", "Laranja"] {paleta frente, 6 opções}
  Nível de resistência: ["Baixa", "Média", "Alta"] {cor da caixa, 3 opções}
  Peso da embalagem: ["100g", "200g", "500g"] {cor da caixa, 3 opções}
  Extras: ["Comestível segura", "Brilha no escuro", "Muda de cor ao toque", "Aromatizada", "Com microfiguras", "Com glitter holográfico"] {paleta direita, 6 opções}
-1.5 Slimes e gelecas
+## 1.5 Slimes e gelecas
  Textura: ["Clássica", "Fluffy", "Butter", "Clear", "Crunchy", "Cloud"] {paleta esquerda, 6 opções}
  Cor: ["Azul", "Rosa", "Verde", "Roxo", "Amarelo", "Laranja"] {paleta frente, 6 opções}
  Efeito: ["Brilha no escuro", "Muda de cor", "Com glitter", "Com bolinhas", "Aromatizada", "Metálica"] {paleta direita, 6 opções}
