@@ -3,12 +3,32 @@ import Tela_inicial from "../Tela inicial/Tela_inicial";
 import Produtos from "../Adm/pages/Produtos";
 import Layout from "../Adm/components/Layout";
 import Dashboard from "../Adm/pages/Dashboard";
+import CarrnhoP1 from "../Cliente/Carrinho/CarrnhoP1";
+import BrinquedosSensoriais from "../Categorias/BrinquedosSensoriais";
+import BrinquedosEducativosEPedagogicos from "../Categorias/BrinquedosEducativosEPedagogicos";
+import RotinaEOrganizacao from "../Categorias/RotinaEOrganizacao";
+import ModaEAcessoriosSensoriais from "../Categorias/ModaEAcessoriosSensoriais";
+import AmbienteERelaxamento from "../Categorias/AmbienteERelaxamento";
+import JogosCognitivosEEducacionais from "../Categorias/JogosCognitivosEEducacionais";
+import MateriaisEscolaresAdaptados from "../Categorias/MateriaisEscolaresAdaptados";
+import CuidadosERotinaPessoal from "../Categorias/CuidadosERotinaPessoal";
+import MateriaisDeCAA from "../Categorias/MateriaisDeCAA";
+import MaterialPonderado from "../Categorias/MaterialPonderado";
 
 
 const Router = createBrowserRouter([
 {path: "/", element: <Tela_inicial/>},
 {path: "/Carrinho", element: <CarrnhoP1/>},
-
+{path: "/BrinquedosSensoriais", element: <BrinquedosSensoriais/>},
+{path: "/BrinquedosEducativosPedagogicos", element:<BrinquedosEducativosEPedagogicos/>},
+{path: "/RotinaOrganização", element:<RotinaEOrganizacao/>},
+{path:"/ModaAcessoriosSensorias", element:<ModaEAcessoriosSensoriais/>},
+{path:"/AmbienteRelaxamento", element:<AmbienteERelaxamento/>},
+{path:"/JogosCognitivosEducacionais", element:<JogosCognitivosEEducacionais/>},
+{path:"/MateriaisEscolares", element:<MateriaisEscolaresAdaptados/>},
+{path:"/CuidadosRotinaPessoal", element:<CuidadosERotinaPessoal/>},
+{path:"/MaterriaisCAA", element:<MateriaisDeCAA/>},
+{path:"/MateriaisPonderados", element:<MaterialPonderado/>},
   {
     path: "/LayoutAdm",
     element: <Layout/>, 
