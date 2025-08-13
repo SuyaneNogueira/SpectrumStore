@@ -1,0 +1,19 @@
+.pedidos-visao-adm{
+    /* border: solid orange; */
+    height: 90vh;
+}
+.titulo-pedidos-adm{
+    margin-top: 2%;
+    /* border: solid; */
+    margin-left: 1%;
+    display: flex;
+}
+.icones-geral-adm{
+    border: solid saddlebrown;
+    width: 30%;
+    margin-left: 50%;
+}
+.pedidos-encontrados-adm{
+    border: solid;
+    
+}

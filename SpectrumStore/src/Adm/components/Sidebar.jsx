@@ -6,20 +6,20 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar">
-      <h2 className="logo">
-        <img src="Spectrum Store.png" alt="" />
-      </h2>
+      <h1 className="logo-escrita-adm">
+         <span className='span-cor-logo-spectrum-adm'>Spectrum</span> Store
+      </h1>
 
      <div className="butons-sidebar">
       <Link to="dashboard" className={`menu-item ${location.pathname === "dashboard" ? "active" : ""}`}>
         Dashboard
       </Link>
 
-      <Link to="/pedido" className={`menu-item ${location.pathname === "/pedido" ? "active" : ""}`}>
+      <Link to="pedidos" className={`menu-item ${location.pathname === "pedidos" ? "active" : ""}`}>
         Pedido
       </Link>
 
-      <Link to="/estatisticas" className={`menu-item ${location.pathname === "/estatisticas" ? "active" : ""}`}>
+      <Link to="estatisticas" className={`menu-item ${location.pathname === "estatisticas" ? "active" : ""}`}>
         Estatísticas
       </Link>
 
@@ -27,7 +27,7 @@ export default function Sidebar() {
         Produtos
       </Link>
 
-      <Link to="/estoque" className={`menu-item ${location.pathname === "/estoque" ? "active" : ""}`}>
+      <Link to="estoque" className={`menu-item ${location.pathname === "estoque" ? "active" : ""}`}>
         Estoque
       </Link>
       </div>

@@ -7,13 +7,17 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.logo {
+.logo-escrita-adm {
  /* border: solid; */
  height: 16%;
  width: 99%;
  display:flex;
  justify-content:center;
  align-items: center;
+ color: #FFFF;
+    font-family: "Inknut Antiqua", serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 /* Links do menu */
@@ -26,6 +30,7 @@
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   font-size: 21px;
+    transition: all 0.2s;
 }
 
 .menu-item:hover {
@@ -33,13 +38,21 @@
 }
 
 /* Página ativa */
-.menu-item.active {
-  background-color: #d8f3f3;
+.menu-item:active {
+   background-color: #e0f7fa; /* botão ativo com fundo claro */
+  color: #0b3d91; /* texto permanece azul escuro */
 }
+
 .butons-sidebar{
   /* border: solid green; */
   display:flex ;
   justify-content:center;
   align-items: center;
   flex-direction: column;
+  
+}
+
+.span-cor-logo-spectrum-adm{
+    /* border: 2px solid; */
+    color: #034E61;
 }

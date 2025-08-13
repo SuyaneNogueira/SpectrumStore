@@ -1,5 +1,9 @@
 export default function Produtos() {
-  return <h1>Página de Produtos</h1>;
-
-  
+  return (
+    <>
+      <h1>Produtos</h1>
+      
+     bhfdbshfbhb
+    </>
+  )
 }
