@@ -99,7 +99,6 @@
     
 }
 
-/* Container do dropdown */
 .dropdown-categorias {
   position: relative;
   display: inline-block;
@@ -145,16 +144,6 @@
   margin: 0 15px;
 }
 
-.dropdown-conteudo {
-  position: absolute;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-  display: flex;
-  z-index: 10;
-}
-
 .dropdown-categorias {
   position: relative;
   display: inline-block;
@@ -168,7 +157,9 @@
 }
 
 .icone-seta {
-  transition: transform 0.3s ease;
+  font-size: 0.7rem;
+  font-weight: lighter;
+  transition: transform 0.2s ease;
 }
 
 .icone-seta.rotacionado {
@@ -183,7 +174,7 @@
   gap: 30px;
   background-color: white;
   border-radius: 10px;
-  padding: 20px 30px;
+  padding: 20px 60px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   animation: fadeIn 0.3s ease;
   z-index: 999;

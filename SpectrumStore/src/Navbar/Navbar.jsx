@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './Navbar.css'
 import { FaChevronDown } from 'react-icons/fa';
 
