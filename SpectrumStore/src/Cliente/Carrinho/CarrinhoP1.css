@@ -6,14 +6,14 @@
     overflow-x: hidden;
 }
 
-.ibovespa{
-  /* border: solid green; */
+/* .ibovespa{
+
 height: 100%;
 width: 100%;
  background-size: cover;
   overflow: hidden;
 
-}
+} */
 
 /*  */
 .NavbarCarrinho{
@@ -30,19 +30,106 @@ width: 100%;
 }
 
 .sssssss{
-    /* border: solid #6427b3;
+    /* border: solid #6427b3; */
     display: flex;
     justify-content: center;
     align-items: center;
-     */
+    width: 100%;
+    background-color: aqua;
+    height: 100%;
+    background-image: url('CarrinhoFundooooo.png');
+  
 }
 
 .CoisaBrancaCarrinho{
-    /* background-color: #F8FFFD;
-      height: 88vh; 
+ background-color: rgba(255, 255, 255, 0.5);
+ height: 88vh; 
       width: 81%;
       border: solid;
-margin-top: 1%; */
-      
+  margin-top: 1%;
+  border-radius: 12px;
+  padding: 1%;      
 }
+.Comprar-tudo{
+
+  border: solid #ff0037;
+  height: 6%;
+  width: 15%;
+    border-radius: 7px;
+    margin-bottom: 1%;
+}
+.div-checkbox-comprar-tudo{
+
+  border: solid #4523da;
+    width: 15%;
+}
+.checkbox-ajusts{
+  height: 25%;
+  width: 40%;
+}
+
+.Card1{
+
+  border: solid #00b4fc;
+  height: 17%;
+    border-radius: 12px;
+    margin-bottom: 1%;
+}
+
+.div-checkbox-card1{
+
+  border: solid #9425c7;
+    width: 12%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Card2{
+
+  border: solid #400ec9;
+  height: 17%;
+    border-radius: 12px;
+    margin-bottom: 1%;
+}
+
+.div-checkbox-card2{
+
+  border: solid #ff2600;
+    width: 15%;
+}
+
+.Card3{
+
+  border: solid #9425c7;
+  height: 17%;
+    border-radius: 12px;
+    margin-bottom: 1%;
+}
+
+.div-checkbox-card3{
+
+  border: solid #1c9fb6;
+    width: 15%;
+
+}
+
+.Card4{
+
+  border: solid #33ff00;
+  height: 17%;
+    border-radius: 12px;
+    margin-bottom: 1%;
+}
+
+.div-checkbox-card4{
+
+  border: solid #f17500;
+    width: 15%;
+
+}
+
+
 
