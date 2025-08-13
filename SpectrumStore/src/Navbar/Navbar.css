@@ -2,7 +2,7 @@
     /* border: 2px solid; */
     background-color: #A2C9CD;
     width: 100vw;
-    height: 8vh;
+    min-height: 8vh;
     display: flex;
 
 }
