@@ -1,4 +1,4 @@
-# SpectrumStore 🧸
+                        # SpectrumStore 🧸
 
 Criada com propósito, acolhimento e ciência, a **SpectrumStore** é um espaço pensado para quem vive o espectro — diretamente ou ao lado de quem ama.  
 Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de autoregulação que respeitam as necessidades únicas de cada pessoa.  
