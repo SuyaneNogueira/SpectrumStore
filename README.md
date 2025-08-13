@@ -1,4 +1,5 @@
-                                                          **SpectrumStore** 🧸
+ #                                                        🧸 SPECTRUMSTORE 🧸
+
 
 Criada com propósito, acolhimento e ciência, a **SpectrumStore** é um espaço pensado para quem vive o espectro — diretamente ou ao lado de quem ama.  
 Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de autoregulação que respeitam as necessidades únicas de cada pessoa.  
@@ -410,10 +411,10 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
  {paleta direita, 6 opções}
 
  
-#4. Moda e Acessórios Sensoriais
+# 4. Moda e Acessórios Sensoriais
 
 
-##4.1 Camisetas com tecidos especiais
+## 4.1 Camisetas com tecidos especiais
 
 - **Tipo de tecido:** ["Algodão", "Dry fit", "Lycra", "Plush", "Viscose", "Malha fria"]
  {paleta esquerda, 6 opções}
@@ -507,19 +508,19 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ## 5.1 Tendas sensoriais
 
- **Formato:** ["Pirâmide", "Casinha", "Circular", "Triangular", "Tipi", "Túnel"] 
+- **Formato:** ["Pirâmide", "Casinha", "Circular", "Triangular", "Tipi", "Túnel"] 
  {paleta esquerda, 6 opções}
  
- **Cor principal:** ["Azul", "Branco", "Verde", "Roxo", "Amarelo", "Rosa"] 
+- **Cor principal:** ["Azul", "Branco", "Verde", "Roxo", "Amarelo", "Rosa"] 
  {paleta frente, 6 opções}
  
- **Tamanho:** ["Pequena (1 criança)", "Média (2 crianças)", "Grande (3+ crianças)"] 
+- **Tamanho:** ["Pequena (1 criança)", "Média (2 crianças)", "Grande (3+ crianças)"] 
  {cor da caixa, 3 opções}
  
- **Material:** ["Algodão", "Poliéster", "Plush"] 
+- **Material:** ["Algodão", "Poliéster", "Plush"] 
  {cor da caixa, 3 opções}
  
- **Extras:** ["Com luzes LED", "Com janelas", "Com cortinas blackout", "Com bolso interno", "Com piso acolchoado", "Com entrada dupla"] 
+- **Extras:** ["Com luzes LED", "Com janelas", "Com cortinas blackout", "Com bolso interno", "Com piso acolchoado", "Com entrada dupla"] 
  {paleta direita, 6 opções}
 
 
@@ -657,256 +658,397 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ## 6.4 Dominó de emoções
 
- Tipo de emoção: ["Básicas", "Complexas", "Mistas", "Com fotos reais", "Com ilustrações", "Com emojis"] 
+- **Tipo de emoção:** ["Básicas", "Complexas", "Mistas", "Com fotos reais", "Com ilustrações", "Com emojis"] 
  {paleta esquerda, 6 opções}
  
- Cor do verso: ["Azul", "Verde", "Amarelo", "Roxo", "Vermelho", "Laranja"] 
+- **Cor do verso:** ["Azul", "Verde", "Amarelo", "Roxo", "Vermelho", "Laranja"] 
  {paleta frente, 6 opções}
  
- Quantidade de peças: ["20", "30", "40"] 
+- **Quantidade de peças:** ["20", "30", "40"] 
  {cor da caixa, 3 opções}
  
- Material: ["Madeira", "Plástico", "Cartão"] 
+- **Material:** ["Madeira", "Plástico", "Cartão"] 
  {cor da caixa, 3 opções}
  
- Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras ampliadas", "Com borda reforçada", "Com guia de uso"] 
+- **Extras:** ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras ampliadas", "Com borda reforçada", "Com guia de uso"] 
  {paleta direita, 6 opções}
 
  
 6.5 Bingo de profissões ou objetos
 
- Tema: ["Profissões", "Objetos", "Frutas", "Animais", "Transportes", "Natureza"] {paleta esquerda, 6 opções}
- Cor das cartelas: ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] {paleta frente, 6 opções}
- Quantidade de jogadores: ["2", "4", "6"] {cor da caixa, 3 opções}
- Material: ["Cartão", "Plástico", "Madeira"] {cor da caixa, 3 opções}
- Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com fichas grandes", "Com marcadores magnéticos", "Com guia ilustrado"] {paleta direita, 6 opções}
-
-
-
-
-
-
-7. Materiais Escolares Adaptados
-
-
-
-   
-7.1 Cadernos com pauta ampliada
- Tipo de pauta: ["Linha simples", "Dupla linha", "Quadriculado", "Pontilhado", "Guia de cores", "Com margem destacada"] {paleta esquerda, 6 opções}
- Cor da capa: ["Azul", "Verde", "Vermelho", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["A5", "A4", "Ofício"] {cor da caixa, 3 opções}
- Material da capa: ["Plástico", "Papelão rígido", "Capa dura laminada"] {cor da caixa, 3 opções}
- Extras: ["Com espiral", "Com divisórias", "Com régua acoplada", "Com bolsa interna", "Com pauta dupla face", "Com marcador de página"] {paleta direita, 6 opções}
-
-
-
-
-7.2 Tesouras adaptadas (com mola)
- Tipo de lâmina: ["Ponta redonda", "Ponta fina", "Serrilhada", "Lâmina lisa", "Microdentada", "Decorativa"] {paleta esquerda, 6 opções}
- Cor do cabo: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Material do cabo: ["Plástico rígido", "Borracha", "Silicone"] {cor da caixa, 3 opções}
- Extras: ["Com trava de segurança", "Com ajuste de força", "Com apoio anatômico", "Com mola removível", "Com lâmina inox", "Com indicador de uso"] {paleta direita, 6 opções}
-
-
-
+- **Tema:** ["Profissões", "Objetos", "Frutas", "Animais", "Transportes", "Natureza"] 
+ {paleta esquerda, 6 opções}
  
-7.3 Lápis triangulares ou com apoio de dedo
- Tipo: ["Triangular", "Sextavado", "Com grip anatômico", "Com apoio removível", "Com textura antiderrapante", "Com guia de posicionamento"] {paleta esquerda, 6 opções}
- Cor do corpo: ["Azul", "Amarelo", "Vermelho", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Dureza do grafite: ["HB", "2B", "4B"] {cor da caixa, 3 opções}
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Extras: ["Com ponta resistente", "Com borracha acoplada", "Com decoração temática", "Com aroma suave", "Com numeração", "Com estojo"] {paleta direita, 6 opções}
-
-
-
-
-7.4 Régua com lupa
- Tamanho: ["15cm", "20cm", "30cm"] {cor da caixa, 3 opções}
- Cor: ["Transparente", "Azul", "Verde", "Rosa", "Amarelo", "Roxo"] {paleta frente, 6 opções}
- Tipo de marcação: ["Centímetros", "Milímetros", "Polegadas"] {cor da caixa, 3 opções}
- Material: ["Acrílico", "Plástico rígido", "Policarbonato"] {cor da caixa, 3 opções}
- Extras: ["Com lupa removível", "Com aumento duplo", "Com marcação colorida", "Com figuras educativas", "Com base antiderrapante", "Com escala ampliada"] {paleta direita, 6 opções}
-
-
-
+- **Cor das cartelas:** ["Azul", "Verde", "Roxo", "Amarelo", "Laranja", "Vermelho"] 
+ {paleta frente, 6 opções}
  
-7.5 Apontadores de manivela
- Cor: ["Azul", "Vermelho", "Verde", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tipo de lâmina: ["Simples", "Dupla", "Regulável"] {cor da caixa, 3 opções}
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material: ["Plástico", "Metal", "Misto"] {cor da caixa, 3 opções}
- Extras: ["Com reservatório grande", "Com trava de segurança", "Com ajuste de espessura", "Com base antiderrapante", "Com alça para transporte", "Com design temático"] {paleta direita, 6 opções}
-
-
-
-
-
-
-
-8. Cuidados e Rotina Pessoal
-
-
-
-   
-8.1 Escovas de dente com temporizador
- Tipo de cerdas: ["Macias", "Médias", "Extra macias", "Duplas", "Onduladas", "Sensíveis"] {paleta esquerda, 6 opções}
- Cor: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tempo do temporizador: ["1 minuto", "2 minutos", "3 minutos"] {cor da caixa, 3 opções}
- Tipo de energia: ["Manual", "Pilhas", "Recarregável"] {cor da caixa, 3 opções}
- Extras: ["Com luz LED", "Com música", "Com cabo antiderrapante", "Com base de apoio", "Com capa protetora", "Com indicadores de troca"] {paleta direita, 6 opções}
-
-
-
-
-8.2 Frascos com etiquetas visuais
- Formato: ["Cilíndrico", "Quadrado", "Retangular", "Com spray", "Com pump", "Com conta-gotas"] {paleta esquerda, 6 opções}
- Cor do frasco: ["Transparente", "Azul", "Verde", "Rosa", "Amarelo", "Roxo"] {paleta frente, 6 opções}
- Capacidade: ["50ml", "100ml", "200ml"] {cor da caixa, 3 opções}
- Material: ["Plástico", "Vidro", "Aço inox"] {cor da caixa, 3 opções}
- Extras: ["Com etiquetas em braille", "Com código de cores", "Com pictogramas", "Com tampa de segurança", "Com regulagem de saída", "Com base antiderrapante"] {paleta direita, 6 opções}
-
-
-
+- **Quantidade de jogadores:** ["2", "4", "6"] 
+ {cor da caixa, 3 opções}
  
-8.3 Kits de autocuidado
- Itens inclusos: ["Escova + pente", "Escova + sabonete", "Pente + creme", "Kit completo", "Mini kit viagem", "Kit infantil"] {paleta esquerda, 6 opções}
- Cor principal: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho do kit: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material da bolsa: ["Tecido", "Plástico", "Silicone"] {cor da caixa, 3 opções}
- Extras: ["Com nome personalizado", "Com etiquetas visuais", "Com fragrância suave", "Com estojo rígido", "Com divisórias internas", "Com fecho seguro"] {paleta direita, 6 opções}
-
-
-
-
-8.4 Tapetes antiderrapantes com figuras
- Formato: ["Quadrado", "Retangular", "Circular", "Oval", "Estrela", "Animal"] {paleta esquerda, 6 opções}
- Cor de base: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["50x50cm", "70x70cm", "100x100cm"] {cor da caixa, 3 opções}
- Material: ["PVC", "Borracha", "EVA"] {cor da caixa, 3 opções}
- Extras: ["Com figuras educativas", "Com textura 3D", "Com borda elevada", "Com cores vivas", "Com aroma suave", "Com camadas extras de segurança"] {paleta direita, 6 opções}
-
-
-
+- **Material:** ["Cartão", "Plástico", "Madeira"] 
+ {cor da caixa, 3 opções}
  
-8.5 Kits de banho passo a passo
- Itens: ["Sabonete + shampoo", "Sabonete + toalha", "Kit completo com brinquedo", "Kit viagem", "Kit terapêutico", "Kit infantil"] {paleta esquerda, 6 opções}
- Cor principal: ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material da embalagem: ["Plástico", "Papelão", "Tecido"] {cor da caixa, 3 opções}
- Extras: ["Com instruções visuais", "Com etiquetas de cores", "Com fragrância suave", "Com bolsa organizadora", "Com tampa de segurança", "Com brinquedo educativo"] {paleta direita, 6 opções}
+- **Extras:** ["Com braille", "Com textura", "Com QR code sonoro", "Com fichas grandes", "Com marcadores magnéticos", "Com guia ilustrado"] 
+ {paleta direita, 6 opções}
 
 
+# 7. Materiais Escolares Adaptados
 
 
+## 7.1 Cadernos com pauta ampliada
 
-9. Materiais de CAA (Comunicação Alternativa e Aumentativa)
-
-
-
-    
-9.1 Cartelas PECS
- Tipo de símbolo: ["Pictograma", "Imagem real", "Desenho infantil", "Escrita simples", "Braille", "Misto"] {paleta esquerda, 6 opções}
- Cor de fundo: ["Branco", "Amarelo", "Azul", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho do cartão: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material: ["Plástico", "Cartão laminado", "PVC"] {cor da caixa, 3 opções}
- Extras: ["Com velcro", "Com código QR sonoro", "Com textura", "Com borda reforçada", "Com figuras em alto contraste", "Com legenda personalizada"] {paleta direita, 6 opções}
-
-
-
-
-9.2 Pranchas de comunicação
- Organização: ["Por cores", "Por temas", "Por categorias", "Por ordem alfabética", "Por imagens", "Por funções"] {paleta esquerda, 6 opções}
- Cor principal: ["Branco", "Amarelo", "Azul", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["A5", "A4", "A3"] {cor da caixa, 3 opções}
- Material: ["PVC", "Plástico", "Cartão laminado"] {cor da caixa, 3 opções}
- Extras: ["Com velcro", "Com suporte de mesa", "Com capa protetora", "Com símbolos táteis", "Com legenda em braille", "Com QR code sonoro"] {paleta direita, 6 opções}
-
-
-
+- **Tipo de pauta:** ["Linha simples", "Dupla linha", "Quadriculado", "Pontilhado", "Guia de cores", "Com margem destacada"] 
+ {paleta esquerda, 6 opções}
  
-9.3 Dispositivos com voz pré-gravada
- Formato: ["Portátil", "De mesa", "De parede", "Integrado em brinquedo", "Pulseira", "Cartão eletrônico"] {paleta esquerda, 6 opções}
- Cor principal: ["Branco", "Preto", "Azul", "Verde", "Roxo", "Amarelo"] {paleta frente, 6 opções}
- Capacidade de gravação: ["10 segundos", "30 segundos", "1 minuto"] {cor da caixa, 3 opções}
- Tipo de energia: ["Pilha", "Recarregável", "USB"] {cor da caixa, 3 opções}
- Extras: ["Com botões grandes", "Com luz indicadora", "Com capa protetora", "Com som ajustável", "Com sensor de toque", "Com etiqueta visual"] {paleta direita, 6 opções}
-
-
-
-
-9.4 Aplicativos interativos
- Plataforma: ["Android", "iOS", "Web", "Multiplataforma", "Windows", "Mac"] {paleta esquerda, 6 opções}
- Tema: ["Comunicação básica", "Educação", "Rotina", "Jogos", "Profissões", "Objetos"] {paleta frente, 6 opções}
- Nível de complexidade: ["Fácil", "Médio", "Avançado"] {cor da caixa, 3 opções}
- Idioma: ["Português", "Inglês", "Espanhol"] {cor da caixa, 3 opções}
- Extras: ["Com voz personalizável", "Com imagens importadas", "Com braille digital", "Com símbolos táteis virtuais", "Com integração em dispositivos físicos", "Com modo offline"] {paleta direita 6 opções}
-
-
-
+- **Cor da capa:** ["Azul", "Verde", "Vermelho", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
  
-9.5 Livros com pictogramas
- Tema: ["Animais", "Frutas", "Transportes", "Profissões", "Natureza", "Objetos"] {paleta esquerda, 6 opções}
- Cor da capa: ["Azul", "Verde", "Roxo", "Amarelo", "Vermelho", "Laranja"] {paleta frente, 6 opções}
- Tamanho: ["Pequeno", "Médio", "Grande"] {cor da caixa, 3 opções}
- Material: ["Papel", "Cartão laminado", "Plástico"] {cor da caixa, 3 opções}
- Extras: ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras destacáveis", "Com capa dura", "Com ilustrações ampliadas"] {paleta direita, 6 opções}
-
-
-
-
-
-10. Material Ponderado
-
-
-
-    
-10.1 Coletes com peso
- Distribuição do peso: ["Ombros", "Costas", "Peito", "Uniforme", "Misto", "Personalizado"] {paleta esquerda, 6 opções}
- Cor principal: ["Azul", "Preto", "Cinza", "Verde", "Roxo", "Vermelho"] {paleta frente, 6 opções}
- Nível de peso: ["1kg", "2kg", "3kg"] {cor da caixa, 3 opções}
- Tecido: ["Algodão", "Veludo", "Malha"] {cor da caixa, 3 opções}
- Extras: ["Com ajuste de velcro", "Com bolsos", "Com peso removível", "Com reforço interno", "Com estampa personalizada", "Com fecho frontal"] {paleta direita, 6 opções}
-
-
-
-
-10.2 Cobertores pesados
- Peso: ["2kg", "4kg", "6kg"] {cor da caixa, 3 opções}
- Cor: ["Azul", "Verde", "Cinza", "Roxo", "Rosa", "Bege"] {paleta frente, 6 opções}
- Tamanho: ["Solteiro", "Casal", "Queen"] {cor da caixa, 3 opções}
- Material: ["Algodão", "Veludo", "Plush"] {cor da caixa, 3 opções}
- Extras: ["Com capa removível", "Com textura dupla", "Com aroma suave", "Com bolsos", "Com reforço interno", "Com borda reforçada"] {paleta direita, 6 opções}
-
-
-
+- **Tamanho:** ["A5", "A4", "Ofício"] {cor da caixa, 3 opções}
  
-10.3 Bonecos ponderados
- Formato: ["Animal", "Humano", "Fantasia", "Geométrico", "Personalizado", "Temático"] {paleta esquerda, 6 opções}
- Cor: ["Azul", "Verde", "Amarelo", "Roxo", "Rosa", "Laranja"] {paleta frente, 6 opções}
- Peso: ["500g", "1kg", "2kg"] {cor da caixa, 3 opções}
- Tecido: ["Algodão", "Veludo", "Malha"] {cor da caixa, 3 opções}
- Extras: ["Com aroma", "Com textura dupla", "Com roupas removíveis", "Com bolsos", "Com nome bordado", "Com reforço interno"] {paleta direita, 6 opções}
-
-
-
-
-10.4 Mochilas com lastro
- Cor: ["Azul", "Preto", "Verde", "Roxo", "Vermelho", "Laranja"] {paleta frente, 6 opções}
- Peso: ["1kg", "2kg", "3kg"] {cor da caixa, 3 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Material: ["Poliéster", "Algodão", "Nylon"] {cor da caixa, 3 opções}
- Extras: ["Com bolsos laterais", "Com suporte para garrafa", "Com alças acolchoadas", "Com peso removível", "Com divisórias internas", "Com etiqueta personalizada"] {paleta direita, 6 opções}
-
-
-
+- **Material da capa:** ["Plástico", "Papelão rígido", "Capa dura laminada"] 
+ {cor da caixa, 3 opções}
  
-10.5 Faixas de compressão com peso
- Cor: ["Azul", "Preto", "Verde", "Roxo", "Vermelho", "Cinza"] {paleta frente, 6 opções}
- Peso: ["500g", "1kg", "2kg"] {cor da caixa, 3 opções}
- Tamanho: ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
- Material: ["Algodão", "Veludo", "Malha"] {cor da caixa, 3 opções}
- Extras: ["Com velcro ajustável", "Com textura dupla", "Com peso removível", "Com aroma suave", "Com etiqueta personalizada", "Com bolsos"] {paleta direita, 6 opções}
+- **Extras:** ["Com espiral", "Com divisórias", "Com régua acoplada", "Com bolsa interna", "Com pauta dupla face", "Com marcador de página"] 
+ {paleta direita, 6 opções}
+
+
+## 7.2 Tesouras adaptadas (com mola)
+
+- **Tipo de lâmina:** ["Ponta redonda", "Ponta fina", "Serrilhada", "Lâmina lisa", "Microdentada", "Decorativa"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor do cabo:** ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Pequena", "Média", "Grande"] {cor da caixa, 3 opções}
+ 
+- **Material do cabo:** ["Plástico rígido", "Borracha", "Silicone"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com trava de segurança", "Com ajuste de força", "Com apoio anatômico", "Com mola removível", "Com lâmina inox", "Com indicador de uso"] 
+ {paleta direita, 6 opções}
+
+
+## 7.3 Lápis triangulares ou com apoio de dedo
+
+- **Tipo:** ["Triangular", "Sextavado", "Com grip anatômico", "Com apoio removível", "Com textura antiderrapante", "Com guia de posicionamento"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor do corpo:** ["Azul", "Amarelo", "Vermelho", "Verde", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Dureza do grafite:** ["HB", "2B", "4B"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tamanho:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com ponta resistente", "Com borracha acoplada", "Com decoração temática", "Com aroma suave", "Com numeração", "Com estojo"] 
+ {paleta direita, 6 opções}
+
+
+## 7.4 Régua com lupa
+
+- **Tamanho:** ["15cm", "20cm", "30cm"] 
+ {cor da caixa, 3 opções}
+ 
+- **Cor:** ["Transparente", "Azul", "Verde", "Rosa", "Amarelo", "Roxo"] 
+ {paleta frente, 6 opções}
+ 
+- **Tipo de marcação:** ["Centímetros", "Milímetros", "Polegadas"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Acrílico", "Plástico rígido", "Policarbonato"] 
+ {cor da caixa, 3 opções}
+
+- **Extras:** ["Com lupa removível", "Com aumento duplo", "Com marcação colorida", "Com figuras educativas", "Com base antiderrapante", "Com escala ampliada"] 
+ {paleta direita, 6 opções}
+
+
+## 7.5 Apontadores de manivela
+
+- **Cor:** ["Azul", "Vermelho", "Verde", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tipo de lâmina:** ["Simples", "Dupla", "Regulável"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tamanho:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Plástico", "Metal", "Misto"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com reservatório grande", "Com trava de segurança", "Com ajuste de espessura", "Com base antiderrapante", "Com alça para transporte", "Com design temático"] 
+ {paleta direita, 6 opções}
+
+
+# 8. Cuidados e Rotina Pessoal
+
+## 8.1 Escovas de dente com temporizador
+
+- **Tipo de cerdas:** ["Macias", "Médias", "Extra macias", "Duplas", "Onduladas", "Sensíveis"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor:** ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tempo do temporizador:** ["1 minuto", "2 minutos", "3 minutos"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tipo de energia:** ["Manual", "Pilhas", "Recarregável"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com luz LED", "Com música", "Com cabo antiderrapante", "Com base de apoio", "Com capa protetora", "Com indicadores de troca"] 
+ {paleta direita, 6 opções}
+
+
+## 8.2 Frascos com etiquetas visuais
+
+- **Formato:** ["Cilíndrico", "Quadrado", "Retangular", "Com spray", "Com pump", "Com conta-gotas"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor do frasco:** ["Transparente", "Azul", "Verde", "Rosa", "Amarelo", "Roxo"] 
+ {paleta frente, 6 opções}
+ 
+- **Capacidade:** ["50ml", "100ml", "200ml"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Plástico", "Vidro", "Aço inox"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com etiquetas em braille", "Com código de cores", "Com pictogramas", "Com tampa de segurança", "Com regulagem de saída", "Com base antiderrapante"] 
+ {paleta direita, 6 opções}
+
+
+## 8.3 Kits de autocuidado
+
+- **Itens inclusos:** ["Escova + pente", "Escova + sabonete", "Pente + creme", "Kit completo", "Mini kit viagem", "Kit infantil"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho do kit:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material da bolsa:** ["Tecido", "Plástico", "Silicone"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com nome personalizado", "Com etiquetas visuais", "Com fragrância suave", "Com estojo rígido", "Com divisórias internas", "Com fecho seguro"] 
+ {paleta direita, 6 opções}
+
+
+## 8.4 Tapetes antiderrapantes com figuras
+
+- **Formato:** ["Quadrado", "Retangular", "Circular", "Oval", "Estrela", "Animal"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor de base:** ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["50x50cm", "70x70cm", "100x100cm"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["PVC", "Borracha", "EVA"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com figuras educativas", "Com textura 3D", "Com borda elevada", "Com cores vivas", "Com aroma suave", "Com camadas extras de segurança"] 
+ {paleta direita, 6 opções}
+
+
+## 8.5 Kits de banho passo a passo
+
+- **Itens:** ["Sabonete + shampoo", "Sabonete + toalha", "Kit completo com brinquedo", "Kit viagem", "Kit terapêutico", "Kit infantil"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Azul", "Verde", "Rosa", "Amarelo", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Pequeno", "Médio", "Grande"]
+ {cor da caixa, 3 opções}
+ 
+- **Material da embalagem:** ["Plástico", "Papelão", "Tecido"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com instruções visuais", "Com etiquetas de cores", "Com fragrância suave", "Com bolsa organizadora", "Com tampa de segurança", "Com brinquedo educativo"] 
+ {paleta direita, 6 opções}
+
+
+# 9. Materiais de CAA (Comunicação Alternativa e Aumentativa)
+
+## 9.1 Cartelas PECS
+
+- **Tipo de símbolo:** ["Pictograma", "Imagem real", "Desenho infantil", "Escrita simples", "Braille", "Misto"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor de fundo:** ["Branco", "Amarelo", "Azul", "Verde", "Roxo", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho do cartão:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Plástico", "Cartão laminado", "PVC"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com velcro", "Com código QR sonoro", "Com textura", "Com borda reforçada", "Com figuras em alto contraste", "Com legenda personalizada"] 
+ {paleta direita, 6 opções}
+
+
+## 9.2 Pranchas de comunicação
+
+- **Organização:** ["Por cores", "Por temas", "Por categorias", "Por ordem alfabética", "Por imagens", "Por funções"] {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Branco", "Amarelo", "Azul", "Verde", "Roxo", "Laranja"] {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["A5", "A4", "A3"] {cor da caixa, 3 opções}
+ 
+- **Material:** ["PVC", "Plástico", "Cartão laminado"] {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com velcro", "Com suporte de mesa", "Com capa protetora", "Com símbolos táteis", "Com legenda em braille", "Com QR code sonoro"] {paleta direita, 6 opções}
+
+
+## 9.3 Dispositivos com voz pré-gravada
+
+- **Formato:** ["Portátil", "De mesa", "De parede", "Integrado em brinquedo", "Pulseira", "Cartão eletrônico"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Branco", "Preto", "Azul", "Verde", "Roxo", "Amarelo"] 
+ {paleta frente, 6 opções}
+ 
+- **Capacidade de gravação:** ["10 segundos", "30 segundos", "1 minuto"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tipo de energia:** ["Pilha", "Recarregável", "USB"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com botões grandes", "Com luz indicadora", "Com capa protetora", "Com som ajustável", "Com sensor de toque", "Com etiqueta visual"] 
+ {paleta direita, 6 opções}
+
+
+## 9.4 Aplicativos interativos
+
+- **Plataforma:** ["Android", "iOS", "Web", "Multiplataforma", "Windows", "Mac"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Tema:** ["Comunicação básica", "Educação", "Rotina", "Jogos", "Profissões", "Objetos"] 
+ {paleta frente, 6 opções}
+ 
+- **Nível de complexidade:** ["Fácil", "Médio", "Avançado"] 
+ {cor da caixa, 3 opções}
+ 
+- **Idioma:** ["Português", "Inglês", "Espanhol"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com voz personalizável", "Com imagens importadas", "Com braille digital", "Com símbolos táteis virtuais", "Com integração em dispositivos físicos", "Com modo offline"] 
+ {paleta direita 6 opções}
+
+
+## 9.5 Livros com pictogramas
+
+- **Tema:** ["Animais", "Frutas", "Transportes", "Profissões", "Natureza", "Objetos"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor da capa:** ["Azul", "Verde", "Roxo", "Amarelo", "Vermelho", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Pequeno", "Médio", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Papel", "Cartão laminado", "Plástico"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com braille", "Com textura", "Com QR code sonoro", "Com figuras destacáveis", "Com capa dura", "Com ilustrações ampliadas"] 
+ {paleta direita, 6 opções}
+
+
+# 10. Material Ponderado
+
+
+## 10.1 Coletes com peso
+
+- **Distribuição do peso:** ["Ombros", "Costas", "Peito", "Uniforme", "Misto", "Personalizado"] {paleta esquerda, 6 opções}
+ 
+- **Cor principal:** ["Azul", "Preto", "Cinza", "Verde", "Roxo", "Vermelho"] {paleta frente, 6 opções}
+ 
+- **Nível de peso:** ["1kg", "2kg", "3kg"] {cor da caixa, 3 opções}
+ 
+- **Tecido:** ["Algodão", "Veludo", "Malha"] {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com ajuste de velcro", "Com bolsos", "Com peso removível", "Com reforço interno", "Com estampa personalizada", "Com fecho frontal"] 
+ {paleta direita, 6 opções}
+
+
+## 10.2 Cobertores pesados
+
+- **Peso:** ["2kg", "4kg", "6kg"] 
+ {cor da caixa, 3 opções}
+ 
+- **Cor:** ["Azul", "Verde", "Cinza", "Roxo", "Rosa", "Bege"] 
+ {paleta frente, 6 opções}
+ 
+- **Tamanho:** ["Solteiro", "Casal", "Queen"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Algodão", "Veludo", "Plush"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com capa removível", "Com textura dupla", "Com aroma suave", "Com bolsos", "Com reforço interno", "Com borda reforçada"] 
+ {paleta direita, 6 opções}
+
+
+## 10.3 Bonecos ponderados
+
+- **Formato:** ["Animal", "Humano", "Fantasia", "Geométrico", "Personalizado", "Temático"] 
+ {paleta esquerda, 6 opções}
+ 
+- **Cor:** ["Azul", "Verde", "Amarelo", "Roxo", "Rosa", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Peso:** ["500g", "1kg", "2kg"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tecido:** ["Algodão", "Veludo", "Malha"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com aroma", "Com textura dupla", "Com roupas removíveis", "Com bolsos", "Com nome bordado", "Com reforço interno"] 
+ {paleta direita, 6 opções}
+
+
+## 10.4 Mochilas com lastro
+
+- **Cor** ["Azul", "Preto", "Verde", "Roxo", "Vermelho", "Laranja"] 
+ {paleta frente, 6 opções}
+ 
+- **Peso:** ["1kg", "2kg", "3kg"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tamanho:**["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Poliéster", "Algodão", "Nylon"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com bolsos laterais", "Com suporte para garrafa", "Com alças acolchoadas", "Com peso removível", "Com divisórias internas", "Com etiqueta personalizada"] 
+ {paleta direita, 6 opções}
+
+
+## 10.5 Faixas de compressão com peso
+
+- **Cor:** ["Azul", "Preto", "Verde", "Roxo", "Vermelho", "Cinza"] 
+ {paleta frente, 6 opções}
+ 
+- **Peso:** ["500g", "1kg", "2kg"] 
+ {cor da caixa, 3 opções}
+ 
+- **Tamanho:** ["Pequena", "Média", "Grande"] 
+ {cor da caixa, 3 opções}
+ 
+- **Material:** ["Algodão", "Veludo", "Malha"] 
+ {cor da caixa, 3 opções}
+ 
+- **Extras:** ["Com velcro ajustável", "Com textura dupla", "Com peso removível", "Com aroma suave", "Com etiqueta personalizada", "Com bolsos"] 
+ {paleta direita, 6 opções}
 
 
 
