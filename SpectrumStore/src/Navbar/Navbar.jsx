@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css'
-// import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa'; 
 
 function Navbar() {
   
