@@ -51,6 +51,10 @@
   flex-direction: column;
   
 }
+.butons-sidebar.active{
+   background-color: #d9f3f3;
+  font-weight: bold;
+}
 
 .span-cor-logo-spectrum-adm{
     /* border: 2px solid; */

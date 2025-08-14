@@ -12,8 +12,17 @@
     border: solid saddlebrown;
     width: 30%;
     margin-left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
 }
 .pedidos-encontrados-adm{
     border: solid;
-    
+}
+/* Botôes icones */
+
+.icons-notification-adm{
+    border: solid 1px #03374C;
+    border-radius: 10px;
 }
