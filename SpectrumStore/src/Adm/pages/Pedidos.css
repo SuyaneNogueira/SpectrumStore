@@ -1,81 +1,112 @@
-.pedidos-visao-adm{
-    /* border: solid orange; */
-    height: 90vh;
+.pedidos-visao-adm {
+  /* border: solid orange; */
+  height: 90vh;
 }
-.titulo-pedidos-adm{
-    margin-top: 2%;
-    /* border: solid; */
-    margin-left: 1%;
-    display: flex;
+.titulo-pedidos-adm {
+  margin-top: 2%;
+  /* border: solid; */
+  margin-left: 1%;
+  display: flex;
 }
-.icones-geral-adm{
-    /* border: solid saddlebrown; */
-    width: 30%;
-    margin-left: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10%;
+.icones-geral-adm {
+  /* border: solid saddlebrown; */
+  width: 30%;
+  margin-left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
 }
-
 
 /*////////////////// Botôes icones ///////////////////////////*/
 
-.icons-notification-adm{
-    border: solid 1px #03374C;
-    border-radius: 10px;
-    width: 12%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75%;
+.icons-notification-adm {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
 }
-.icon-search-adm{
-    border: solid 1px #03374C;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12%;
-    height: 75%;
+.icon-search-adm {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 75%;
 }
-.icon-perfil-adm{
-    border: solid 1px #03374C;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12%;
-    height: 75%;
+.icon-perfil-adm {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 75%;
 }
 /* ///////////////////////////////////////////////// */
 
-
 /*///////////////// Area dos pedidos mesmo ADM ///////////////// */
 
-.area-dos-pedidos-adm{
-    border: solid orange;
-    height: 89%;
-    margin-top: 1%;
+.area-dos-pedidos-adm {
+  /* border: solid orange; */
+  height: 89%;
+  margin-top: 1%;
 }
-.titulo-dois-pedidos-adm{
-    border: solid blue;
-    height: 10%;
-    width: 40%;
-    gap: 5%;
-    display: flex;
-    align-items: center;
-margin-left: 1%;
+.titulo-dois-pedidos-adm {
+  /* border: solid blue; */
+  height: 10%;
+  width: 40%;
+  gap: 5%;
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
 }
 
 /*////////////////////teste/////////////////// */
 
-.area-processos-pedidos-adm{
-    border: solid;
-    height: 90%;
+.area-processos-pedidos-adm {
+  /* border: solid; */
+  height: 90%;
 }
-.status-pedidos-adm-um{
-    border: solid 1px #A2C9CD;
-    height: 15%;
-    border-radius: 10px;
+.status-pedidos-adm-um {
+  border: solid 2px #a2c9cd;
+  height: 10%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  width: 100%;
+  margin-left: 0.8%;
+}
+
+/* modal adm */
+
+.popup-box {
+  position: absolute;
+   /* desce um pouco abaixo do botão */
+  left: 0;     /* alinhado à esquerda do botão */
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+  width: 200px;
+}
+
+.button-adm-modal{
+   background-color: white;
+   border: none;
+   font-size: 30px;
+   cursor: pointer;
+   margin-right: 2%;
+}
+.link-adm-pedidos{
+    color: #03374c;
+    text-decoration: none;
 }

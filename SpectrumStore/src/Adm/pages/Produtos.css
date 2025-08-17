@@ -1,0 +1,14 @@
+.container-produtos-adm{
+    /* border: solid; */
+    height: 90vh;
+}
+.titulo-produtos-adm{
+    display: flex;
+    /* border: solid green; */
+      margin-top: 2%;
+      margin-left: 1%;
+}
+.cadastro-dos-produtos-adm{
+    border: solid red;
+    height: 90%;
+}
