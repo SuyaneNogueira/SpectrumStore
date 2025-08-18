@@ -12,6 +12,10 @@ export default function Produtos() {
         <div>
           <h1>Produtos</h1>
           <p>2 produtos cadastrados</p>
+          <div className="categorias-produto-adm">
+            <p>Categorias</p>
+            <img className="imagem-categorias-adm" src="down.png" alt="" />
+          </div>
         </div>
         <div className="icones-geral-adm">
           <div className="icons-notification-adm">
@@ -44,7 +48,9 @@ export default function Produtos() {
         
       </div>
       <div className="cadastro-dos-produtos-adm">
-
+            <div className="">
+              
+            </div>
       </div>
     </div>
   );

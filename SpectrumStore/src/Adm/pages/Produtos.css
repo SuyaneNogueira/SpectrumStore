@@ -10,5 +10,18 @@
 }
 .cadastro-dos-produtos-adm{
     border: solid red;
-    height: 90%;
+    height: 84%;
+    margin-top: 4%;
+}
+.categorias-produto-adm{
+    border: solid 2px #a2c9cd;
+    height: 50%;
+    margin-top: 4%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.imagem-categorias-adm{
+    height: 100%;
+    width: 100%;
 }

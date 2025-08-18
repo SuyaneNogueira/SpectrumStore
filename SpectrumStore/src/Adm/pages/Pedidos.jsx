@@ -80,7 +80,6 @@ export default function Pedidos() {
               {openPopup && (
                 <div className="popup-box">
                   <p>
-                   
                     Caso ocorra um desalinhamento das colunas elas ainda vão
                     seguir essa sequência à direita.
                   </p>
