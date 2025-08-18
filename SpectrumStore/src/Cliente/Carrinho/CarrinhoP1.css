@@ -6,14 +6,6 @@
     overflow-x: hidden;
 }
 
-/* .ibovespa{
-
-height: 100%;
-width: 100%;
- background-size: cover;
-  overflow: hidden;
-
-} */
 
 /*  */
 .NavbarCarrinho{
@@ -52,19 +44,33 @@ width: 100%;
 }
 .Comprar-tudo{
 
-  border: solid #ff0037;
+  /* border: solid #ff0037; */
   height: 6%;
   width: 15%;
     border-radius: 7px;
-    margin-bottom: 1%;
+    margin-bottom: 1%; 
+    background-color:#BDEBEB;
 }
 .div-checkbox-comprar-tudo{
 
-  border: solid #4523da;
-    width: 15%;
+  /* border: solid #4523da; */
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+
 }
-.checkbox-ajusts{
-  height: 25%;
+
+.Comprar-tudo-checkbox{
+
+  height: 90%;
+  width: 50%;
+
+}
+.checkbox-card{
+  height: 33%;
   width: 40%;
 }
 
@@ -79,7 +85,7 @@ width: 100%;
 .div-checkbox-card1{
 
   border: solid #9425c7;
-    width: 12%;
+    width: 10%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -98,7 +104,11 @@ width: 100%;
 .div-checkbox-card2{
 
   border: solid #ff2600;
-    width: 15%;
+  width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Card3{
@@ -112,7 +122,11 @@ width: 100%;
 .div-checkbox-card3{
 
   border: solid #1c9fb6;
-    width: 15%;
+  width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -127,7 +141,11 @@ width: 100%;
 .div-checkbox-card4{
 
   border: solid #f17500;
-    width: 15%;
+     width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
