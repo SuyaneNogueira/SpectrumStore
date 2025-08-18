@@ -14,6 +14,9 @@ import MateriaisEscolaresAdaptados from "../Categorias/MateriaisEscolaresAdaptad
 import CuidadosERotinaPessoal from "../Categorias/CuidadosERotinaPessoal";
 import MateriaisDeCAA from "../Categorias/MateriaisDeCAA";
 import MaterialPonderado from "../Categorias/MaterialPonderado";
+import Pedidos from "../Adm/pages/Pedidos";
+import Estatisticas from "../Adm/pages/Estatisticas";
+import Estoque from "../Adm/pages/Estoque";
 
 
 const Router = createBrowserRouter([
@@ -35,7 +38,10 @@ const Router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard/> },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "pedidos", element: <Pedidos/> },
+      { path: "estatisticas", element: <Estatisticas/> },
       { path: "produtos", element: <Produtos/> },
+      { path: "estoque", element: <Estoque/> },
     ],  
   }
 

@@ -3,19 +3,16 @@ import Button from './Button';
 import StarRating from './StarRating';
 import './Tela_inicial.css';
 
-function Tela_inicial() {
-  // Em uma aplicação real, esse valor viria de um banco de dados ou API.
-  // Para o nosso exemplo, vamos usar um valor fixo.
-  const abaco1Rating = 3.5;
-  const abaco2Rating = 4.5;
-  const abaco3Rating = 2.5;
-  const abaco4Rating = 1.5;
-  const abaco5Rating = 5.0;
-  const abaco6Rating = 3.0;
-  const abaco7Rating = 2.0;
-  const abaco8Rating = 4.0;
-  const abaco9Rating = 1.0;
+// 1. Array de produtos
+const produtosSpectrum = [
+  { id: 1, name: "Ábaco", price: 20.00, image: "Abaco.jpg", description: "O ábaco é uma ferramenta de cálculo milenar para desenvolver o raciocínio lógico.", rating: 3.5},
+  { id: 2, name: "Quebra-cabeça", price: 40.00, image: "Quebra-cabeça.avif", description: "Quebra-cabeça de madeira com 50 peças para estimular a coordenação motora. dsaajjjjjjjjjjjjj", rating: 4.5},
+  { id: 3, name: "Massinha de modelar", price: 8.00, image: "Massinha-modelar.webp", description: "Kit de massinhas coloridas para desenvolver a criatividade e a coordenação.", rating: 2.5},
+  { id: 4, name: "Jogo da memória", price: 15.00, image: "Jogo-memoria.jpg", description: "Jogo de memória com animais para exercitar a memória e a concentração. jjjjjjjjjjjj", rating: 1.5},
+  { id: 5, name: "Cubo Mágico", price: 10.00, image: "Cubo-magico.jpg", description: "Clássico cubo mágico para desafiar a lógica e a paciência.", rating: 5.0}
+];
 
+function Tela_inicial() {
   return (
     <div className='div-tela-inicial-principal'>
       <Navbar/>
@@ -29,179 +26,33 @@ function Tela_inicial() {
         </div>
         <div className="separacao-divs-produtos-fundo">
           <div className='container-produtos-store'>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
+            {/* 2. Mapeamento do array para criar os cards */}
+            {produtosSpectrum.map(produto => (
+              <div className="produtos-store" key={produto.id}>
+                <div className='produto-imagem-container'>
+                  <img className='foto-produtos' src={produto.image} alt={produto.name} />
+                  <div className="etiqueta-preco">
+                    <span className='cor-amarela-preco'>R$</span>{produto.price.toFixed(2)}
+                  </div>
+                  <div className="icone-favorito">
+                    <Button/>
+                  </div>
                 </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco1Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
+                <div className='produto-detalhes'>
+                  <h3 className='titulo-produto-store'>{produto.name}</h3>
+                  <p className='descricao-produto'>{produto.description}</p>
+                  <div className="produto-avaliacao">
+                    <StarRating rating={produto.rating} />
+                  </div>
                 </div>
               </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco2Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco3Rating} />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-          <div className='container-produtos-store'>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco4Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco5Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco6Rating} />
-                </div>
-              </div>
-            </div>
-          </div>
-           <div className='container-produtos-store'>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco7Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco8Rating} />
-                </div>
-              </div>
-            </div>
-            <div className="produtos-store">
-              <div className='produto-imagem-container'>
-                <img className='foto-abaco' src="Abaco.jpg" alt="Ábaco" />
-                <div className="etiqueta-preco">
-                  <span className='cor-amarela-preco'>R$</span>200
-                </div>
-                <div className="icone-favorito">
-                  <Button/>
-                </div>
-              </div>
-              <div className='produto-detalhes'>
-                <h3 className='titulo-produto-store'>Ábaco</h3>
-                <p className='descricao-produto'>aiodhsoaihfduadfhuosdhfuoahfuoheuoiafnoehfioehfo</p>
-                <div className="produto-avaliacao">
-                  <StarRating rating={abaco9Rating} />
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
         <div className="rodape-tela-inicial">
           <div className="logo-rodape-spectrum">
             <h1 className='logo-escrita-spectrum-store-rodape'><span className='span-cor-logo-spectrum-rodape'>Spectrum</span> Store</h1> 
           </div>
-          
-        </div>
         </div>
       </div>
     </div>
