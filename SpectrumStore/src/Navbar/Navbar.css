@@ -168,7 +168,7 @@
 
 .dropdown-conteudo {
   position: absolute;
-  top: 100%;
+  top: 185%;
   left: 0;
   display: flex;
   gap: 30px;
@@ -178,6 +178,8 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   animation: fadeIn 0.3s ease;
   z-index: 999;
+  width: 610px;
+  height: 270px;
 }
 
 .dropdown-coluna {
@@ -198,7 +200,8 @@
 }
 
 .linha-divisoria {
-  width: 2px;
+  width: 6px;
+  border-radius: 10px;
   background-color: #a3cfd4;
 }
 
