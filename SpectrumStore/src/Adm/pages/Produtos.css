@@ -4,7 +4,7 @@
 }
 .titulo-produtos-adm{
     display: flex;
-    /* border: solid green; */
+    /* border: solid green;  */
       margin-top: 2%;
       margin-left: 1%;
 }
@@ -24,4 +24,49 @@
 .imagem-categorias-adm{
     height: 100%;
     width: 100%;
+}
+/* selecionar categoria */
+
+
+
+
+/* Butuns icons */
+.icons-notification-adm-produtos {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55%;
+}
+.icon-search-adm-produtos {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 55%;
+}
+.icon-perfil-adm-produtos {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 55%;
+}
+
+/*  */
+.icones-geral-adm-produtos{
+    width: 30%;
+  margin-left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  /* border: solid; */
+  /* height: 100%; */
 }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Produtos() {
   const navigate = useNavigate();
+  
   return (
     <div className="container-produtos-adm">
       <div className="titulo-produtos-adm">
@@ -17,8 +18,8 @@ export default function Produtos() {
             <img className="imagem-categorias-adm" src="down.png" alt="" />
           </div>
         </div>
-        <div className="icones-geral-adm">
-          <div className="icons-notification-adm">
+        <div className="icones-geral-adm-produtos">
+          <div className="icons-notification-adm-produtos">
             <FaRegBell
               size={30}
               color="#03374C"
@@ -27,7 +28,7 @@ export default function Produtos() {
             />
           </div>
 
-          <div className="icon-search-adm">
+          <div className="icon-search-adm-produtos">
             <CiSearch
               size={30}
               color="#03374C"
@@ -36,7 +37,7 @@ export default function Produtos() {
             />
           </div>
 
-          <div className="icon-perfil-adm">
+          <div className="icon-perfil-adm-produtos">
             <CgProfile
               size={30}
               color="#03374C"
@@ -48,7 +49,7 @@ export default function Produtos() {
         
       </div>
       <div className="cadastro-dos-produtos-adm">
-            <div className="">
+            <div className="criar-produto-adm">
               
             </div>
       </div>
