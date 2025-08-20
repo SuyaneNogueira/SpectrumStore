@@ -5,7 +5,6 @@ function CarrnhoP1() {
     <div className='fundoCarrinho'>
      <Navbar/>
   
-  
         {/* <img src="CarrinhoFundooooo.png" alt="" className='foto-de-fundo-carrinho' /> */}
      
         <div className='sssssss'>
@@ -15,6 +14,7 @@ function CarrnhoP1() {
 
             <div className='Card1'>
               <div className='div-checkbox-card1'><input className='checkbox-card' type="checkbox"/></div>
+              <div className=' imagem-pro'></div>
               </div>  
 
             <div className='Card2'>
