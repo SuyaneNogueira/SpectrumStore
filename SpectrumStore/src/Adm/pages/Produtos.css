@@ -9,7 +9,7 @@
       margin-left: 1%;
 }
 .cadastro-dos-produtos-adm{
-    border: solid red;
+    /* border: solid red; */
     height: 84%;
     margin-top: 4%;
 }
@@ -69,4 +69,70 @@
   gap: 10%;
   /* border: solid; */
   /* height: 100%; */
+}
+
+/* ============================= */
+/* ========  MODAL CSS  ========= */
+/* ============================= */
+
+.criar-produto-adm{
+  height: 35%;
+  /* border: solid; */
+  gap: 5%;
+}
+
+.button-adicionar-produto-adm{
+  height: 100%;
+  background-color: #fff;
+  margin-left: 1%;
+  width: 18%;
+  border: solid 2px #a2c9cd;
+  cursor: pointer;
+
+}
+
+.modal-overlay-produtos-adm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* fica na frente de tudo */
+}
+
+.modal-content-produtos-adm {
+  background: #fff;
+  width: 40%;
+ height: 30%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content-produtos-adm img {
+  display: block;
+  margin: 0 auto 15px auto;
+  width: 150px;
+  border-radius: 12px;
+}
+
+.modal-content-produtos-adm h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #03374c;
+}
+
+.form-row-produtos-adm-um{
+  border: solid;
 }
