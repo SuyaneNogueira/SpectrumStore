@@ -97,7 +97,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 9. Comunicação Alternativa e Aumentativa (CAA)
-**Exemplos:** Cartelas PECS, pranchas de comunicação, dispositivos com voz, aplicativos interativos, livros com pictogramas.  
+**Exemplos:** Cartelas PECS, pranchas de comunicação, dispositivos com voz, livros com pictogramas.  
 **Personalizações:**
 - Tipo de símbolo.  
 - Organização por temas.  
