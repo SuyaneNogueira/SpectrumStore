@@ -84,7 +84,7 @@
     margin-top: 2%;
     width: 19%;
     /* Adicione uma altura fixa */
-    height: 380px; /* Exemplo, ajuste conforme a necessidade */
+    height: 340px; /* Exemplo, ajuste conforme a necessidade */
     /* ...outras propriedades... */
 }
 .produtos-store:hover{
