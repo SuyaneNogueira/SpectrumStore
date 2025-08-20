@@ -83,9 +83,8 @@
     border: 2px solid #dadada;
     margin-top: 2%;
     width: 19%;
-    /* Adicione uma altura fixa */
-    height: 380px; /* Exemplo, ajuste conforme a necessidade */
-    /* ...outras propriedades... */
+    height: 380px; 
+    text-decoration: none;
 }
 .produtos-store:hover{
     transform: scale(1.03);
