@@ -86,7 +86,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 8. Cuidados e Rotina Pessoal
-**Exemplos:** Escovas de dente com temporizador, frascos com etiquetas visuais, kits de autocuidado, tapetes antiderrapantes.  
+**Exemplos:** Escovas de dente com temporizador, frascos com etiquetas visuais, tapetes antiderrapantes.  
 **Personalizações:**
 - Textura dos itens.  
 - Formato anatômico.  
