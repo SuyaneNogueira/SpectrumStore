@@ -108,7 +108,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 10. Material Ponderado
-**Exemplos:** Coletes com peso, cobertores pesados, bonecos ponderados, mochilas com lastro.  
+**Exemplos:** Coletes com peso, cobertores pesados, bonecos ponderados.  
 **Personalizações:**
 - Distribuição do peso.  
 - Nível de peso.  
