@@ -83,9 +83,14 @@
     border: 2px solid #dadada;
     margin-top: 2%;
     width: 19%;
+<<<<<<< HEAD:SpectrumStore/src/Tela inicial/Tela_inicial.css
     /* Adicione uma altura fixa */
     height: 340px; /* Exemplo, ajuste conforme a necessidade */
     /* ...outras propriedades... */
+=======
+    height: 380px; 
+    text-decoration: none;
+>>>>>>> c2f373e2ab835f550e3d21900e2472e9cd4a3d5a:SpectrumStore/src/TelaInicial/Tela_inicial.css
 }
 .produtos-store:hover{
     transform: scale(1.03);

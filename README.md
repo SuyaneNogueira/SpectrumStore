@@ -86,7 +86,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 8. Cuidados e Rotina Pessoal
-**Exemplos:** Escovas de dente com temporizador, frascos com etiquetas visuais, kits de autocuidado, tapetes antiderrapantes.  
+**Exemplos:** Escovas de dente com temporizador, frascos com etiquetas visuais, tapetes antiderrapantes.  
 **Personalizações:**
 - Textura dos itens.  
 - Formato anatômico.  
@@ -97,7 +97,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 9. Comunicação Alternativa e Aumentativa (CAA)
-**Exemplos:** Cartelas PECS, pranchas de comunicação, dispositivos com voz, aplicativos interativos, livros com pictogramas.  
+**Exemplos:** Cartelas PECS, pranchas de comunicação, dispositivos com voz, livros com pictogramas.  
 **Personalizações:**
 - Tipo de símbolo.  
 - Organização por temas.  
@@ -108,7 +108,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 
 ### 10. Material Ponderado
-**Exemplos:** Coletes com peso, cobertores pesados, bonecos ponderados, mochilas com lastro.  
+**Exemplos:** Coletes com peso, cobertores pesados, bonecos ponderados.  
 **Personalizações:**
 - Distribuição do peso.  
 - Nível de peso.  
