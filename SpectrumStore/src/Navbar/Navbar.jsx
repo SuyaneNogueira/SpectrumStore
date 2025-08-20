@@ -18,7 +18,7 @@ function Navbar() {
         <h4 className='topicos-nav'>Informações</h4>
         <div className="dropdown-categorias">
           <h4 className="topicos-nav" onClick={() => setMenuAberto(!menuAberto)}>
-            {/* Categorias <FaChevronDown className={`icone-seta ${menuAberto ? 'rotacionado' : ''}`} /> */}
+            Categorias <FaChevronDown className={`icone-seta ${menuAberto ? 'rotacionado' : ''}`} />
           </h4>
 
           {menuAberto && (
