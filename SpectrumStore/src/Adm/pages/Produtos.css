@@ -105,9 +105,10 @@
 }
 
 .modal-content-produtos-adm {
+
   background: #fff;
   width: 40%;
- height: 30%;
+  height:80%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -117,6 +118,7 @@
   gap: 12px;
   align-items: center;
   justify-content: center;
+  /* border: solid green; */
 }
 
 .modal-content-produtos-adm img {
@@ -133,6 +135,133 @@
   color: #03374c;
 }
 
+/*//////////// Formularios modal produtos ////////////*/
+
 .form-row-produtos-adm-um{
-  border: solid;
+  border: solid purple;
+  gap: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:50px;
 }
+
+.form-row-produtos-adm-dois{
+border: solid red;   
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+gap: 2%;  
+height: 50px;
+}
+
+
+.form-row-produtos-adm-tres{
+border: solid peru;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 1px;
+}
+
+/*//////////////////// botão fechar modal ///////////////////////*/
+
+.close-btn-produtos-adm{
+  /* border: solid blue; */
+ font-size: 150%;
+ cursor: pointer;
+  
+}
+.botão-fechar-modal-adm{  
+ /* border: solid red; */
+ width: 90%;
+}
+
+/* /////////////////////////////////////////////// */
+
+
+.modal-body-produtos-adm{
+  border: solid violet;
+  width: 98%;
+  height: 55%;
+  /* display: flex;
+  justify-content:center ;
+  align-items: center ; */  
+ 
+}
+/* /////////////////////////Personalizar os inputs, label, etc do adm///////////////////////////// */
+
+
+/*//////////////// Nome produto////////////// */
+
+
+.div-nome-produto-adm input{
+  background-color: #A2C9CD;
+border-radius: 10px;
+display: flex;
+border: none;
+}
+
+
+.valor-modal-adm input{
+  background-color: #A2C9CD;
+display: flex;
+border: none;
+border-radius: 10px;
+
+}
+  .imagem-clicavel-trocar-adm{
+    border: solid lawngreen;
+    height: 34%;
+    width: 70%;
+    border-radius: 10px;
+  }
+
+  /* //////////////////////Categorias produtos adm ///////////////////////////// */
+
+  .div-categoria-produtos-adm input{
+    margin-left: 1%; 
+    background-color: #A2C9CD;
+    border: none;
+    border-radius: 10px;
+
+  }
+    .div-cor-produto-adm input{
+      background-color: #A2C9CD;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /*  /////////////////////////////////////////*/
+    .tamanho-produto-adm input{
+      background-color: #A2C9CD;
+      border: none;
+      border-radius: 10px;
+      margin-left: 1%;
+    }
+    .tamanho-produto-adm{
+      margin-left: 1%;
+    }
+
+    /* //////////////////////////// */
+
+    /* //////////////////////////Div para que ser adm//////////////////////////////// */
+
+    .form-row-produtos-adm-quatro{
+      border: solid gold;
+      flex-direction: column;
+      display: flex;
+
+    }
+
+    /*////////////////////////////// Botão de confirmar do modal Adm///////////////////// */
+
+    .modal-buttons-produto-adm{
+      border: solid magenta;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+    }

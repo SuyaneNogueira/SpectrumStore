@@ -131,15 +131,24 @@ export default function Produtos() {
       {isOpen && (
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
+            <div className="botão-fechar-modal-adm">
             <span
               className="close-btn-produtos-adm"
               onClick={() => setIsOpen(false)}
             >
               &times;
             </span>
+           </div>
+           <div className="imagem-clicavel-trocar-adm">
+            
+           </div>
             <div className="modal-body-produtos-adm">
               <form className="modal-form-produtos-adm" onSubmit={handleSubmit}>
+
                 <div className="form-row-produtos-adm-um">
+
+                  <div className="div-nome-produto-adm">
+
                   <label>Nome do produto:</label>
                   <input
                     type="text"
@@ -149,6 +158,10 @@ export default function Produtos() {
                     }
                     required
                   />
+                  </div>
+
+                  <div className="valor-modal-adm">
+
                   <label>Valor:</label>
                   <input
                     type="number"
@@ -158,9 +171,13 @@ export default function Produtos() {
                     }
                     required
                   />
+                  </div>
+
                 </div>
 
-                <div className="form-row-produtos-adm">
+              <div className="form-row-produtos-adm-dois">
+
+                  <div className="div-categoria-produtos-adm">
                   <label>Categoria:</label>
                   <input
                     type="text"
@@ -172,6 +189,9 @@ export default function Produtos() {
                       })
                     }
                   />
+                  </div> 
+
+                  <div className="div-cor-produto-adm">
                   <label>Cor:</label>
                   <input
                     type="text"
@@ -180,6 +200,9 @@ export default function Produtos() {
                       setNovoProduto({ ...novoProduto, cor: e.target.value })
                     }
                   />
+                  </div>
+
+                  <div className="tamanho-produto-adm">
                   <label>Tamanho:</label>
                   <input
                     type="text"
@@ -191,9 +214,10 @@ export default function Produtos() {
                       })
                     }
                   />
+                  </div>
                 </div>
 
-                <div className="form-row-produtos-adm">
+                <div className="form-row-produtos-adm-tres">
                   <label>Descrição do produto:</label>
                   <textarea
                     rows="2"
@@ -207,7 +231,8 @@ export default function Produtos() {
                   ></textarea>
                 </div>
 
-                <div className="form-row-produtos-adm">
+                <div className="form-row-produtos-adm-quatro">
+                 
                   <label>Descrição de para que serve:</label>
                   <textarea
                     rows="3"
@@ -219,6 +244,7 @@ export default function Produtos() {
                       })
                     }
                   ></textarea>
+                  
                 </div>
 
                 <div className="modal-buttons-produto-adm">
