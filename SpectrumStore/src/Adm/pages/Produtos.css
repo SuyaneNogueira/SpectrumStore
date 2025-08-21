@@ -108,7 +108,7 @@
 
   background: #fff;
   width: 40%;
-  height:80%;
+  height:88%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -137,33 +137,55 @@
 
 /*//////////// Formularios modal produtos ////////////*/
 
+
+/*  */
+
 .form-row-produtos-adm-um{
-  border: solid purple;
+  /* border: solid purple; */
   gap: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height:50px;
+  height:60px;
+}
+.form-row-produtos-adm-um input{
+  height: 20px;
+
 }
 
+/*  */
 .form-row-produtos-adm-dois{
-border: solid red;   
+/* border: solid red;      */
 display: flex;
 justify-content: center;
 align-items: center;
-width: 100%;
+width: 75%;
 gap: 2%;  
 height: 50px;
+margin-left: 15%;
+}
+.form-row-produtos-adm-dois input{
+height: 25px;
+width: 110px;
+}
+.div-cor-produto-adm{
+  margin-right: 4%;
 }
 
-
 .form-row-produtos-adm-tres{
-border: solid peru;
+/* border: solid peru; */
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 margin-top: 1px;
+height: 80px;
+}
+.form-row-produtos-adm-tres textarea{
+  background-color: #A2C9CD;
+  height: 50%;
+  width: 70%;
+  border-radius: 10px;
 }
 
 /*//////////////////// botão fechar modal ///////////////////////*/
@@ -183,7 +205,7 @@ margin-top: 1px;
 
 
 .modal-body-produtos-adm{
-  border: solid violet;
+  /* border: solid violet; */
   width: 98%;
   height: 55%;
   /* display: flex;
@@ -202,6 +224,7 @@ margin-top: 1px;
 border-radius: 10px;
 display: flex;
 border: none;
+width: 209px;
 }
 
 
@@ -250,18 +273,43 @@ border-radius: 10px;
     /* //////////////////////////Div para que ser adm//////////////////////////////// */
 
     .form-row-produtos-adm-quatro{
-      border: solid gold;
+      /* border: solid gold; */
       flex-direction: column;
       display: flex;
+      /* margin-top: 5%; */
+      height: 100px;
+    width: 70%;
+    margin-left: 15%;
 
+    }
+    .form-row-produtos-adm-quatro textarea{
+
+    background-color: #A2C9CD;
+    height: 100%;
+    border-radius: 10px;
     }
 
     /*////////////////////////////// Botão de confirmar do modal Adm///////////////////// */
 
     .modal-buttons-produto-adm{
-      border: solid magenta;
+      /* border: solid magenta; */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 40px;
+      height: 45px;
     }
+    .modal-buttons-produto-adm button{
+      height: 70%;
+      background-color: #A2C9CD;
+      border: none;
+      width: 30%;
+      border-radius: 10px;
+      margin-top: 5%
+    }
+
+    /* css card dos produtos */
+
+    .card-produtos-adm{
+      border: solid #A2C9CD;
+    }
+    
