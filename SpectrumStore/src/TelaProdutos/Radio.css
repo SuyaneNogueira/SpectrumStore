@@ -4,21 +4,39 @@
   justify-content: flex-end; 
 }
 
-.rating:not(:checked) > input {
+.rating input {
   position: absolute;
+  left: -9999px; 
   appearance: none;
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
 }
 
-.rating:not(:checked) > label {
+.rating input:focus,
+.rating label:focus,
+.rating label:hover {
+  outline: none;
+  box-shadow: none;
+}
+
+.rating label {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 20px; 
   color: #666;
 }
 
-.rating:not(:checked) > label:before {
+.rating label:before {
   content: '★';
 }
 
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ff9e0b; /* Cor amarela para o hover */
+}
+
+.rating > input:checked ~ label {
+  color: #ffa723;
+}
 
 .rating > input:checked + label:hover,
 .rating > input:checked + label:hover ~ label,
@@ -26,13 +44,4 @@
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
   color: #e58e09;
-}
-
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-  color: #ff9e0b;
-}
-
-.rating > input:checked ~ label {
-  color: #ffa723;
 }
