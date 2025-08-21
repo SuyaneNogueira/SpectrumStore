@@ -13,21 +13,20 @@ function CarrnhoP1() {
               <div className='div-checkbox-comprar-tudo'><input className='Comprar-tudo-checkbox' type="checkbox"/></div></div>
 
             <div className='Card1'>
-              <div className='div-checkbox-card1'><input className='checkbox-card' type="checkbox"/></div>
-              <div className=' imagem-pro'></div>
+              <div className='div-checkbox-e-imagem'>
+               <div className='div-checkbox-card1'><input className='checkbox-card' type="checkbox"/>
+              </div>
+                <div className='div-imagem-produto-carrinho'>
+                  <div className='imagem-carrinho-logo'>
+                    <img className='imagem-mesmo-produtos-carrinho' src="CarrinhoFundooooo.png" alt="" />
+                    </div>
+                  </div> 
+              </div>
+              <div className=''>
+
+              </div>
               </div>  
 
-            <div className='Card2'>
-              <div className='div-checkbox-card2'><input className='checkbox-card' type="checkbox"/></div>
-              </div>  
-
-            <div className='Card3'>
-              <div className='div-checkbox-card3'><input className='checkbox-card' type="checkbox"/></div>
-              </div> 
-
-            <div className='Card4'>
-              <div className='div-checkbox-card4'><input className='checkbox-card' type="checkbox"/></div>
-              </div>   
             {/* <div>
                 <div>botao1</div>
                 <div>botao2</div>

@@ -6,7 +6,6 @@
     overflow-x: hidden;
 }
 
-
 /*  */
 .NavbarCarrinho{
    background-color: #A2C9CD;  
@@ -40,7 +39,8 @@ width: 100%;
       border: solid;
   margin-top: 1%;
   border-radius: 12px;
-  padding: 1%;      
+  padding: 1%;
+        
 }
 .Comprar-tudo{
 
@@ -62,6 +62,8 @@ width: 100%;
    
 
 }
+
+
 
 .Comprar-tudo-checkbox{
 
@@ -112,6 +114,40 @@ width: 100%;
   user-select: none;
   display: flex;
   align-items: center;
+}
+
+.div-checkbox-e-imagem{
+  /* border: solid #d80b0b;   */
+    height: 100%;
+    width: 100%;
+     display: flex;
+
+}
+
+.div-imagem-produto-carrinho{
+
+  border: solid #da1111;
+   height: 100%;
+    width: 13%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-carrinho-logo{
+
+border: solid #2ed652;  
+background-color: #ffffff;
+ height: 84%;
+ width: 80%;
+ border-radius: 12%;
+
+}
+.imagem-mesmo-produtos-carrinho{
+  height: 100%;
+  overflow: hidden;
+  width: 100%;  
+  border-radius: 12%;
 }
 
 .checkbox-card{
@@ -167,7 +203,7 @@ width: 100%;
 
 .Card1{
 
-  /* border: solid #00b4fc; */
+  /* border: solid #3c21d3; */
   height: 17%;
     border-radius: 12px;
     margin-bottom: 1%;
