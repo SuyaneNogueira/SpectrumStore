@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import './Navbar.css'
+import './Navbar.css';
 import { FaChevronDown } from 'react-icons/fa'; 
 
-function Navbar() {
-  
+function Navbar({ onCategoriaClick, onPesquisaChange }) {
   const [menuAberto, setMenuAberto] = useState(false);
+  
+  const handleItemClick = (categoria) => {
+    onCategoriaClick(categoria);
+    setMenuAberto(false); 
+  };
+
+  const handleInputChange = (event) => {
+    onPesquisaChange(event.target.value);
+  };
   
   return (
     <nav className="nav-principal">
@@ -24,33 +32,38 @@ function Navbar() {
           {menuAberto && (
             <div className="dropdown-conteudo">
               <div className="dropdown-coluna">
-                <a href="BrinquedosSensoriais">Brinquedos sensoriais</a>
-                <a href="BrinquedosEducativosEPedagogicos">Brinquedos educativos e pedagógicos</a>
-                <a href="RotinaEOrganizacao">Rotina e organização</a>
-                <a href="ModaEAcessoriosSensoriais">Moda e acessórios sensoriais</a>
-                <a href="AmbienteERelaxamento">Ambiente e relaxamento</a>
+                <a onClick={() => handleItemClick("BrinquedosSensoriais")}>Brinquedos sensoriais</a>
+                <a onClick={() => handleItemClick("BrinquedosEducativosEPedagogicos")}>Brinquedos educativos e pedagógicos</a>
+                <a onClick={() => handleItemClick("RotinaEOrganizacao")}>Rotina e organização</a>
+                <a onClick={() => handleItemClick("ModaEAcessoriosSensoriais")}>Moda e acessórios sensoriais</a>
+                <a onClick={() => handleItemClick("AmbienteERelaxamento")}>Ambiente e relaxamento</a>
               </div>
 
               <div className="linha-divisoria"></div>
 
               <div className="dropdown-coluna">
-                <a href="JogosCognitivosEEducacionais">Jogos Cognitivos e Educacionais</a>
-                <a href="MateriaisEscolaresAdaptados">Materiais Escolares Adaptados</a>
-                <a href="CuidadosERotinaPessoal">Cuidados e Rotina Pessoal</a>
-                <a href="MateriaisDeCAA">Materiais de CAA</a>
-                <a href="MaterialPonderado">Material Ponderado</a>
+                <a onClick={() => handleItemClick("JogosCognitivosEEducacionais")}>Jogos Cognitivos e Educacionais</a>
+                <a onClick={() => handleItemClick("MateriaisEscolaresAdaptados")}>Materiais Escolares Adaptados</a>
+                {/* CORREÇÃO AQUI: Mude `handleCategoriaClick` para `handleItemClick` */}
+                <a onClick={() => handleItemClick("CuidadosERotinaPessoal")}>Cuidados e Rotina Pessoal</a>
+                <a onClick={() => handleItemClick("MateriaisDeCAA")}>Materiais de CAA</a>
+                <a onClick={() => handleItemClick("MaterialPonderado")}>Material Ponderado</a>
               </div>
             </div>
           )}
         </div>
       </div>
-
       <div className='div-barra-pesquisa'>
         <div className="group">
           <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
             <g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z" /></g>
           </svg>
-          <input placeholder="Pesquisa" type="search" className="input" />
+          <input 
+            placeholder="Pesquisa" 
+            type="search" 
+            className="input" 
+            onChange={handleInputChange} 
+          />
         </div>
       </div>
 
