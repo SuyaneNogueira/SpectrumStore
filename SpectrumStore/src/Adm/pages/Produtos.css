@@ -216,6 +216,15 @@ height: 80px;
 /* /////////////////////////Personalizar os inputs, label, etc do adm///////////////////////////// */
 
 
+/*/////////////////////////// label da imagem produto adm//////////////////////////// */
+.label-imagem-adm{
+  border: solid olive;
+}
+
+.preview-imagem-adm{
+  border: solid ;
+}
+
 /*//////////////// Nome produto////////////// */
 
 
@@ -270,7 +279,7 @@ border-radius: 10px;
 
     /* //////////////////////////// */
 
-    /* //////////////////////////Div para que ser adm//////////////////////////////// */
+    /* //////////////////////////Div para que serve adm//////////////////////////////// */
 
     .form-row-produtos-adm-quatro{
       /* border: solid gold; */

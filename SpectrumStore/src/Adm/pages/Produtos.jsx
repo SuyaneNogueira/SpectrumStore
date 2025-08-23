@@ -132,88 +132,105 @@ export default function Produtos() {
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
             <div className="botão-fechar-modal-adm">
-            <span
-              className="close-btn-produtos-adm"
-              onClick={() => setIsOpen(false)}
-            >
-              &times;
-            </span>
-           </div>
-           <div className="imagem-clicavel-trocar-adm">
-            
-           </div>
+              <span
+                className="close-btn-produtos-adm"
+                onClick={() => setIsOpen(false)}
+              >
+                &times;
+              </span>
+            </div>
+            <div className="imagem-clicavel-trocar-adm">
+              <label htmlFor="input-imagem" className="label-imagem-adm">
+                <img
+                  src={novoProduto.imagem}
+                  alt="Prévia do produto"
+                  className="preview-imagem-adm"
+                />
+                <p>Clique para trocar a imagem</p>
+              </label>
+              <input
+                id="input-imagem"
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageUrl = URL.createObjectURL(file);
+                    setNovoProduto({ ...novoProduto, imagem: imageUrl });
+                  }
+                }}
+              />
+            </div>
             <div className="modal-body-produtos-adm">
               <form className="modal-form-produtos-adm" onSubmit={handleSubmit}>
-
                 <div className="form-row-produtos-adm-um">
-
                   <div className="div-nome-produto-adm">
-
-                  <label>Nome do produto:</label>
-                  <input
-                    type="text"
-                    value={novoProduto.nome}
-                    onChange={(e) =>
-                      setNovoProduto({ ...novoProduto, nome: e.target.value })
-                    }
-                    required
-                  />
+                    <label>Nome do produto:</label>
+                    <input
+                      type="text"
+                      value={novoProduto.nome}
+                      onChange={(e) =>
+                        setNovoProduto({ ...novoProduto, nome: e.target.value })
+                      }
+                      required
+                    />
                   </div>
 
                   <div className="valor-modal-adm">
-
-                  <label>Valor:</label>
-                  <input
-                    type="number"
-                    value={novoProduto.valor}
-                    onChange={(e) =>
-                      setNovoProduto({ ...novoProduto, valor: e.target.value })
-                    }
-                    required
-                  />
+                    <label>Valor:</label>
+                    <input
+                      type="number"
+                      value={novoProduto.valor}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          valor: e.target.value,
+                        })
+                      }
+                      required
+                    />
                   </div>
-
                 </div>
 
-              <div className="form-row-produtos-adm-dois">
-
+                <div className="form-row-produtos-adm-dois">
                   <div className="div-categoria-produtos-adm">
-                  <label>Categoria:</label>
-                  <input
-                    type="text"
-                    value={novoProduto.categoria}
-                    onChange={(e) =>
-                      setNovoProduto({
-                        ...novoProduto,
-                        categoria: e.target.value,
-                      })
-                    }
-                  />
-                  </div> 
+                    <label>Categoria:</label>
+                    <input
+                      type="text"
+                      value={novoProduto.categoria}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          categoria: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
 
                   <div className="div-cor-produto-adm">
-                  <label>Cor:</label>
-                  <input
-                    type="text"
-                    value={novoProduto.cor}
-                    onChange={(e) =>
-                      setNovoProduto({ ...novoProduto, cor: e.target.value })
-                    }
-                  />
+                    <label>Cor:</label>
+                    <input
+                      type="text"
+                      value={novoProduto.cor}
+                      onChange={(e) =>
+                        setNovoProduto({ ...novoProduto, cor: e.target.value })
+                      }
+                    />
                   </div>
 
                   <div className="tamanho-produto-adm">
-                  <label>Tamanho:</label>
-                  <input
-                    type="text"
-                    value={novoProduto.tamanho}
-                    onChange={(e) =>
-                      setNovoProduto({
-                        ...novoProduto,
-                        tamanho: e.target.value,
-                      })
-                    }
-                  />
+                    <label>Tamanho:</label>
+                    <input
+                      type="text"
+                      value={novoProduto.tamanho}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          tamanho: e.target.value,
+                        })
+                      }
+                    />
                   </div>
                 </div>
 
@@ -232,7 +249,6 @@ export default function Produtos() {
                 </div>
 
                 <div className="form-row-produtos-adm-quatro">
-                 
                   <label>Descrição de para que serve:</label>
                   <textarea
                     rows="3"
@@ -244,7 +260,6 @@ export default function Produtos() {
                       })
                     }
                   ></textarea>
-                  
                 </div>
 
                 <div className="modal-buttons-produto-adm">
