@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 #root, body, html{
+    overflow-x: hidden;
     min-height: 100vh;
     background-color: #fdfdfd;
 }
