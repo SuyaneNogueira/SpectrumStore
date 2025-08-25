@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { FaChevronDown } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 import IconeUsuario from '../imagens/Usuario.png'; 
 import IconeCoracao from '../imagens/Heart.png';   
 import IconeCarrinho from '../imagens/Carrinho.png';
+
 
 function Navbar({ onCategoriaClick, onPesquisaChange }) {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -73,7 +74,7 @@ function Navbar({ onCategoriaClick, onPesquisaChange }) {
       <div className='div-icones-nav'>
         <img className='icones-nav' src={IconeUsuario} alt="Ícone de Usuário" />
         <img className='icones-nav' src={IconeCoracao} alt="Ícone de Coração" />
-        <img className='icones-nav' src={IconeCarrinho} alt="Ícone de Carrinho" />
+        <Link to='/Carrinho' className='icones-nav'><img src={IconeCarrinho} alt="Ícone de Coração" /></Link>
       </div>
     </nav>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './Tela_produtos.css';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Radio from './Radio';
 import Abaco from '../imagens/Abaco.jpg';
 import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
@@ -78,7 +78,7 @@ function Tela_produtos() {
               </div>
             ))}
            </div>
-           <button className="botao-adicionar-carrinho">Adicionar ao carrinho</button>
+           <Link to='/Carrinho' className="botao-adicionar-carrinho">Adicionar ao carrinho</Link>
          </div>
        </div>
        </div>
