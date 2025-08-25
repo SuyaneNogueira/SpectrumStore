@@ -16,7 +16,9 @@
     margin-top: 4%;
     display: flex;
     flex-wrap: wrap;
-    gap: 7%;
+    gap: 8%;
+    flex-direction: row;
+    flex-wrap: wrap ;
 }
 /*  */
 .categorias-produto-adm{
@@ -31,6 +33,23 @@
     height: 100%;
     width: 100%;
 }
+/* /////////////////////////botão selecionar categoria//////////////////////////////////////////// */
+
+.button-adm-modal-produtos{
+
+  background: white;
+  border: 1px solid #ccc;
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  /* z-index: 100; */
+  width: 55px;
+  height: 19px;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////// */
+
+
 /* selecionar categoria */
 
 
@@ -44,6 +63,7 @@
   align-items: center;
   height: 55%;
 }
+
 .icon-search-adm-produtos {
   border: solid 1px #03374c;
   border-radius: 10px;
@@ -86,10 +106,10 @@
 }
 
 .button-adicionar-produto-adm{
-  height: 100%;
+  height: 142%;
   background-color: #fff;
   margin-left: 1%;
-  width: 159%;
+  width: 170%;
   border: solid 2px #a2c9cd;
   cursor: pointer;
 
@@ -146,7 +166,7 @@
 
 .form-row-produtos-adm-um{
   /* border: solid purple; */
-  gap: 10%;
+  gap: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,7 +246,7 @@ height: 80px;
 }
 
 .preview-imagem-adm{
-  border: solid ;
+  /* border: solid ; */
 }
 
 /*//////////////// Nome produto////////////// */
@@ -324,12 +344,58 @@ border-radius: 10px;
     /* css card dos produtos */
 
     .card-produtos-adm{
-      border: solid #A2C9CD;
+      border: solid 2px #A2C9CD;
       gap: 10px;
+      height: 50%;
+      width: 30%;
+      display: flex;
+      /* flex-wrap: wrap; */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      /* position: static; */
     }
     
 /* estilização card dos produtos */
+
+
+.imagem-down-png-adm{
+  border: solid 2px #A2C9CD;
+  width: 40%;
+  margin-left: 5%;
+  border-radius: 10px;
+  overflow: hidden;
+} 
+
+.div-valor-do-produto-adm{
+  /* border: solid blue; */
+  width: 80%;
+  display: flex;
+}
+
+/* //////////////////////////Ajustes do card que mostra os produtos////////////////////////////// */
+
 .foto-card-adm{
   height: 100%;
+  /* border: solid yellow; */
+  /* border-radius: ; */
+  width: 130px;
+}
+
+
+.ajustes-card-foto-adm{
+  border: solid magenta;
+  height: 40%;
+  width: 80%;
+}
+
+.div-nome-produto-adm-card{
+  border: solid green;
+  width: 80%;
+}
+.lista-produtos-adm{
+  flex-wrap: wrap;
+  display: flex;
   border: solid;
+  width: 80%;
 }

@@ -60,7 +60,9 @@ export default function Produtos() {
           <p>{produtos.length} produtos cadastrados</p>
           <div className="categorias-produto-adm">
             <p>Categorias</p>
-            <img className="imagem-categorias-adm" src="down.png" alt="" />
+            <div className="imagem-down-png-adm">
+            <button className="button-adm-modal-produtos" onClick={() => setOpenPopup(!openPopup)}>{">"}</button>
+            </div>
           </div>
         </div>
         <div className="icones-geral-adm-produtos">
@@ -108,19 +110,25 @@ export default function Produtos() {
         <div className="lista-produtos-adm">
           {produtos.map((produto, index) => (
             <div key={index} className="card-produtos-adm">
+
+
+              <div className="ajustes-card-foto-adm">
               <img className="foto-card-adm" src={produto.imagem} alt={produto.nome} />
+              </div>
+
+            <div className="div-valor-do-produto-adm">
+              <p>R$ {produto.valor}</p>
+
+              <p>Categoria: {produto.categoria}</p>
+            </div>
+
+            <div className="div-nome-produto-adm-card">
               <p>
                 <strong>{produto.nome}</strong>
               </p>
-              <p>R$ {produto.valor}</p>
-              <p>Categoria: {produto.categoria}</p>
-              <p>
-                Cor: {produto.cor} | Tamanho: {produto.tamanho}
-              </p>
+              </div>
               <p>{produto.descricao}</p>
-              <p>
-                <em>{produto.paraQueServe}</em>
-              </p>
+
               <button onClick={() => handleDelete(index)}>Excluir</button>
             </div>
           ))}
