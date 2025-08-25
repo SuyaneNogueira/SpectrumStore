@@ -8,11 +8,17 @@
       margin-top: 2%;
       margin-left: 1%;
 }
+
+/*  */
 .cadastro-dos-produtos-adm{
     /* border: solid red; */
     height: 84%;
     margin-top: 4%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7%;
 }
+/*  */
 .categorias-produto-adm{
     border: solid 2px #a2c9cd;
     height: 50%;
@@ -26,8 +32,6 @@
     width: 100%;
 }
 /* selecionar categoria */
-
-
 
 
 /* Butuns icons */
@@ -85,7 +89,7 @@
   height: 100%;
   background-color: #fff;
   margin-left: 1%;
-  width: 18%;
+  width: 159%;
   border: solid 2px #a2c9cd;
   cursor: pointer;
 
@@ -258,6 +262,7 @@ border-radius: 10px;
     background-color: #A2C9CD;
     border: none;
     border-radius: 10px;
+    
 
   }
     .div-cor-produto-adm input{
@@ -320,5 +325,11 @@ border-radius: 10px;
 
     .card-produtos-adm{
       border: solid #A2C9CD;
+      gap: 10px;
     }
     
+/* estilização card dos produtos */
+.foto-card-adm{
+  height: 100%;
+  border: solid;
+}

@@ -108,7 +108,7 @@ export default function Produtos() {
         <div className="lista-produtos-adm">
           {produtos.map((produto, index) => (
             <div key={index} className="card-produtos-adm">
-              <img className="" src={produto.imagem} alt={produto.nome} />
+              <img className="foto-card-adm" src={produto.imagem} alt={produto.nome} />
               <p>
                 <strong>{produto.nome}</strong>
               </p>
