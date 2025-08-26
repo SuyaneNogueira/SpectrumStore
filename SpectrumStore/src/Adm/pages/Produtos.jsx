@@ -97,7 +97,19 @@ export default function Produtos() {
 
       <div className="cadastro-dos-produtos-adm">
         {/* Botão de adicionar novo produto */}
-        <div className="criar-produto-adm">
+        {/* <div className="criar-produto-adm">
+          <button
+            className="button-adicionar-produto-adm"
+            onClick={() => setIsOpen(true)}
+          >
+            Adicionar Produto
+          </button>
+        </div> */}
+
+        {/* Cards dos produtos */}
+        <div className="lista-produtos-adm">
+
+           <div className="criar-produto-adm">
           <button
             className="button-adicionar-produto-adm"
             onClick={() => setIsOpen(true)}
@@ -106,8 +118,6 @@ export default function Produtos() {
           </button>
         </div>
 
-        {/* Cards dos produtos */}
-        <div className="lista-produtos-adm">
           {produtos.map((produto, index) => (
             <div key={index} className="card-produtos-adm">
 
@@ -132,6 +142,7 @@ export default function Produtos() {
               <button onClick={() => handleDelete(index)}>Excluir</button>
             </div>
           ))}
+
         </div>
       </div>
 
@@ -148,13 +159,13 @@ export default function Produtos() {
               </span>
             </div>
             <div className="imagem-clicavel-trocar-adm">
-              <label htmlFor="input-imagem" className="label-imagem-adm">
+              <label htmlFor="input-imagem" className="label-imagem-adm-produtos">
                 <img
                   src={novoProduto.imagem}
-                  alt="Prévia do produto"
+                  alt="Selecione a imagem do produto"
                   className="preview-imagem-adm"
                 />
-                <p>Clique para trocar a imagem</p>
+          
               </label>
               <input
                 id="input-imagem"
