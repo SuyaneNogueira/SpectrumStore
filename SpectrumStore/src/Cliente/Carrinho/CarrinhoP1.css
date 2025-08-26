@@ -228,9 +228,9 @@ background-color: #ffffff;
 
 }
 
-.Card2{
+/* .Card2{
 
-  /* border: solid #400ec9; */
+  border: solid #400ec9;
   height: 17%;
     border-radius: 12px;
     margin-bottom: 1%;
@@ -239,7 +239,7 @@ background-color: #ffffff;
 
 .div-checkbox-card2{
 
-  /* border: solid #ff2600; */
+  border: solid #ff2600;
   width: 10%;
     height: 100%;
     display: flex;
@@ -251,7 +251,7 @@ background-color: #ffffff;
 
 .Card3{
 
-  /* border: solid #9425c7; */
+  border: solid #9425c7;
   height: 17%;
     border-radius: 12px;
     margin-bottom: 1%;
@@ -260,7 +260,7 @@ background-color: #ffffff;
 
 .div-checkbox-card3{
 
-  /* border: solid #1c9fb6; */
+  border: solid #1c9fb6;
   width: 10%;
     height: 100%;
     display: flex;
@@ -272,7 +272,7 @@ background-color: #ffffff;
 
 .Card4{
 
-  /* border: solid #33ff00; */
+  border: solid #33ff00;
   height: 17%;
     border-radius: 12px;
     margin-bottom: 1%;
@@ -281,7 +281,7 @@ background-color: #ffffff;
 
 .div-checkbox-card4{
 
-  /* border: solid #f17500; */
+  border: solid #f17500;
      width: 10%;
     height: 100%;
     display: flex;
@@ -290,7 +290,42 @@ background-color: #ffffff;
     background-color: #BDEBEB ;
     border-radius: 12px;
 
+} */
+.Descrição-estrela{
+
+  border: solid #6c0de9;
+  
+  
 }
 
+.estrela{
+  
+  border: solid rgba(248, 86, 248, 0.712);
+}
+
+.descrição{
+
+  border: solid #02ff0f;
+}
+.div-button-carrinho{
+border: solid #04ffff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+
+}
+.div-total{
+
+border: solid #da1111;
+  width: 10%;
+    height: 50%;
+
+}
+.input-total{
+  border: solid #30d03d;
+   width: 60%;
+    height: 10%;
+}
 
 

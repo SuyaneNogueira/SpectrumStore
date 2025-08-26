@@ -19,17 +19,22 @@ function CarrnhoP1() {
                     <img className='imagem-mesmo-produtos-carrinho' src="CarrinhoFundooooo.png" alt="" />
                     </div>
                   </div> 
-                    <div className='Descrição-estrela'>
-                      <StarRating/>
-                      <div>
-                        <p>gggggggggggggggggggggggggggggggggggggg</p>
+                    <div className='Descrição-estrela'> 
+                      <div className='estrela'>
+                          <StarRating/>
+                      </div>
+                      <div className='descrição'>
+                        <p>Descrição dos brinquedos hgyjkgbjg,mmjbmkgbjgjku</p>
+                      </div>
+                      <div className='div-valor-brinquedo-carrinho'>
+                        <p>R$:</p><input className='Valor' type="Number" />
                       </div>
                     </div>
               </div>
               </div> 
-            <div>
-             <div>
-              Total:<input type="Number" />
+            <div className='div-button-carrinho'>
+             <div className='div-total'>
+              Total:<input className='input-total' type="Number" />
               </div> 
               <div><button>Comprar itens</button></div>
             </div>
