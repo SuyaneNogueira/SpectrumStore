@@ -70,40 +70,47 @@
 
 .produtos-grid {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .produto-card {
   position: relative;
   border: 1px solid #ccc;
-  padding: 10px;
-  width: 200px;
+  padding: 25px;
+  width: 220px;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: -1.5%;
 }
 
 .imagem-produto {
   background: #e0e0e0;
   height: 150px;
   margin-bottom: 10px;
+  margin-top: -8%;
 }
 
 .preco {
   background: #034E61;
   color: white;
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: 4px;
   font-size: 14px;
+}
+
+.container-descricao, h4{
+  font-size: 101%;
+  margin-top: 2%;
 }
 
 .favorito {
   position: absolute;
   top: 3%;
-  right: 6%;
+  right: 13%;
   color: #034E61;
-  font-size: 19px;
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -115,3 +122,79 @@
   background-color: #a2c9cde0;
 
 }
+
+/* Menu de ajustes (três pontos) */
+.menu-container {
+  margin-left: auto;
+  position: relative;
+}
+
+.menu-icone {
+  background: none;
+  border: none;
+  font-size: 155%;
+  cursor: pointer;
+  color: #023b52;
+  margin-bottom: 1500%;
+}
+
+.menu-ajustes {
+  position: absolute;
+  top: 18%;
+  right: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 2700%;
+  z-index: 1000;
+}
+
+.menu-ajustes h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #023b52;
+}
+
+.ajuste-opcao-editar, 
+.ajuste-opcao-excluir, 
+.ajuste-opcao-suporte {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #86BEC4;
+  color: #023b52;
+  font-size: 15px;
+  font-family: inknut-antiqua
+}
+
+.ajuste-opcao:hover {
+  background: #7ab7be;
+  color: white;
+}
+
+.ajuste-opcao-excluir {
+  color: #b22222;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ajuste-opcao-suporte {
+  color: #ffffff;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ajuste-opcao-editar {
+  color: #034E61;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.2s;
+}
+

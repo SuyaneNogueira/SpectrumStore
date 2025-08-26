@@ -11,17 +11,6 @@
   z-index: 999;
 }
 
-.modal-conteudo {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 900px;
-  width: 90%;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  position: relative;
-  animation: aparecer 0.3s ease;
-}
-
 .modal-fechar {
   position: absolute;
   top: 12px;
@@ -56,3 +45,140 @@
 .etapa.concluida .icone { background: #067591; border-color: #067591; }
 .etapa.atual .icone { background: #7AB7BE; border-color: #067591; }
 .linha { height: 3px; background: #7AB7BE; flex: 1; margin: 0 10px; border-radius: 3px; }
+
+.modal-conteudo {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 56%;   /* aumentei a largura */
+  min-height: 66%;   /* aumentei altura mínima */
+  width: 95%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  position: relative;
+  animation: aparecer 0.3s ease;
+}
+
+.pedido-header { 
+  display: flex; 
+  gap: 5%; 
+  margin-bottom: 30px; 
+  align-items: flex-start;
+}
+
+.pedido-imagem { 
+  width: 25%; 
+  height: 220px; 
+  background: #7AB7BE; 
+  border-radius: 12px; 
+  flex-shrink: 0;
+  margin-top: 2%;
+}
+
+.pedido-info { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  font-size: 15px;
+  margin-top: 1.5%;
+}
+
+.pedido-nome { 
+  font-size: 22px; 
+  font-weight: bold; 
+  color: #067591; 
+  width: 200%;
+}
+
+.pedido-preco { 
+  background: #067591; 
+  color: #fff; 
+  padding: 6px 12px; 
+  border-radius: 10px; 
+  font-size: 16px; 
+  font-weight: bold;
+  display: inline-block;
+  width: 25%;
+}
+
+.pedido-quantidade { 
+  border: 1px solid #067591; 
+  padding: 6px 12px; 
+  border-radius: 10px; 
+  font-size: 15px; 
+  display: inline-block;
+  width: 12%;
+}
+
+.botao-recomprar { 
+  background: #067591; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  margin-top: 10px; 
+  font-size: 15px; 
+  transition: 0.3s; 
+  font-weight: bold;
+  width: 50%;
+}
+
+.botao-recomprar:hover { 
+  background: #055a6c; 
+}
+
+/* Status do pedido */
+.pedido-status { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  margin-top: 7%; 
+  padding: 20px 15px; 
+  background: #CFEBEE; 
+  border-radius: 15px; 
+}
+
+.etapa { 
+  text-align: center; 
+  flex: 1; 
+  position: relative;
+}
+
+.etapa .icone { 
+  width: 35px; 
+  height: 35px; 
+  margin: auto; 
+  border-radius: 50%; 
+  background: #ccc; 
+  border: 3px solid #ccc; 
+  position: relative; 
+  z-index: 2;
+}
+
+.etapa p { 
+  margin-top: 10px; 
+  font-size: 90%; 
+  font-weight: 500; 
+  color: #034E61; 
+}
+
+.etapa.concluida .icone { 
+  background: #067591; 
+  border-color: #067591; 
+}
+
+.etapa.atual .icone { 
+  background: #7AB7BE; 
+  border-color: #067591; 
+}
+
+.linha { 
+  height: 3px; 
+  background: #7AB7BE; 
+  flex: 1; 
+  margin: 0 15px; 
+  border-radius: 4px; 
+  position: relative; 
+  top: -17px; 
+  z-index: 1;
+}

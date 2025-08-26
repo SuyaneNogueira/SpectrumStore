@@ -17,7 +17,7 @@ function HistoricoDeCompraModal({ pedido, onClose }) {
             <p>{pedido.data}</p>
             <p>Número do Pedido: <strong>{pedido.numero}</strong></p>
             <p>Prazo de devolução: {pedido.devolucao}</p>
-            <button className="botao-recomprar">Recomprar</button>
+            <button className="botao-recomprar">Recompra</button>
           </div>
         </div>
 
