@@ -18,6 +18,7 @@ import Pedidos from "../Adm/pages/Pedidos";
 import Estatisticas from "../Adm/pages/Estatisticas";
 import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
+import TelaDePerfil from "../TelaDePefil/TelaDePerfil";
 
 
 const Router = createBrowserRouter([
@@ -34,6 +35,7 @@ const Router = createBrowserRouter([
     { path: "/CuidadosERotinaPessoal", element: <CuidadosERotinaPessoal/> },
     { path: "/MateriaisDeCAA", element: <MateriaisDeCAA/> },
     { path: "/MaterialPonderado", element: <MaterialPonderado/> },
+     { path: "/TelaDePerfil", element: <TelaDePerfil/> },
     {
         path: "/LayoutAdm",
         element: <Layout/>, 
