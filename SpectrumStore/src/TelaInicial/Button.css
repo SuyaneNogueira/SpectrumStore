@@ -1,86 +1,93 @@
+.heart-container {
+  --heart-color: #03374c; /* Cor principal do coração */
+  position: relative;
+  width: 28px; /* Ajuste o tamanho do container do coração */
+  height: 28px; /* Ajuste a altura */
+  cursor: pointer;
+  display: flex; /* Para centralizar o SVG */
+  justify-content: center;
+  align-items: center;
+}
 
-  .heart-container {
-    --heart-color: #03374C;
-    position: relative;
-    width: 25px;
-    height: 50px;
-    transition: .3s;
-  }
+.heart-container .svg-container {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Para posicionar os SVGs dentro */
+}
 
-  .heart-container .checkbox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+  fill: var(--heart-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease; /* Transição suave para aparecer/desaparecer */
+}
+
+/* O coração outline (vazio) fica escondido quando isFavorited é true */
+.heart-container .svg-outline.hidden {
+  opacity: 0;
+}
+
+/* O coração filled (preenchido) aparece e anima quando isFavorited é true */
+.heart-container .svg-filled {
+  opacity: 0; /* Começa escondido */
+  transform: scale(0); /* Começa pequeno para a animação */
+}
+
+.heart-container .svg-filled.active {
+  opacity: 1; /* Fica visível */
+  animation: keyframes-svg-filled 0.5s forwards; /* Animação ao ativar */
+}
+
+/* O SVG de celebração aparece e anima quando isFavorited é true */
+.heart-container .svg-celebrate {
+  position: absolute;
+  top: 50%; /* Centraliza o efeito */
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  stroke: var(--heart-color);
+  fill: none; /* Não queremos que ele seja preenchido */
+  stroke-width: 2px;
+  pointer-events: none; /* Para não interferir no clique do coração */
+}
+
+.heart-container .svg-celebrate.active {
+  animation: keyframes-svg-celebrate 0.7s forwards; /* Animação ao ativar */
+}
+
+/* Keyframes de animação */
+@keyframes keyframes-svg-filled {
+  0% {
+    transform: scale(0);
     opacity: 0;
-    z-index: 20;
-    cursor: pointer;
   }
-
-  .heart-container .svg-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: brightness(1.3);
   }
-
-  .heart-container .svg-outline,
-          .heart-container .svg-filled {
-    fill: var(--heart-color);
-    position: absolute;
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
+}
 
-  .heart-container .svg-filled {
-    animation: keyframes-svg-filled 1s;
-    display: none;
+@keyframes keyframes-svg-celebrate {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
   }
-
-  .heart-container .svg-celebrate {
-    position: absolute;
-    animation: keyframes-svg-celebrate .5s;
-    animation-fill-mode: forwards;
-    display: none;
-    stroke: var(--heart-color);
-    fill: var(--heart-color);
-    stroke-width: 2px;
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0.8;
+    filter: brightness(1.2);
   }
-
-  .heart-container .checkbox:checked~.svg-container .svg-filled {
-    display: block
+  100% {
+    transform: translate(-50%, -50%) scale(1.8); /* Aumenta um pouco mais no final */
+    opacity: 0;
   }
-
-  .heart-container .checkbox:checked~.svg-container .svg-celebrate {
-    display: block
-  }
-
-  @keyframes keyframes-svg-filled {
-    0% {
-      transform: scale(0);
-    }
-
-    25% {
-      transform: scale(1.2);
-    }
-
-    50% {
-      transform: scale(1);
-      filter: brightness(1.5);
-    }
-  }
-
-  @keyframes keyframes-svg-celebrate {
-    0% {
-      transform: scale(0);
-    }
-
-    50% {
-      opacity: 1;
-      filter: brightness(1.5);
-    }
-
-    100% {
-      transform: scale(1.4);
-      opacity: 0;
-      display: none;
-    }
-  }
+}

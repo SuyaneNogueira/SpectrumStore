@@ -34,6 +34,10 @@ function Tela_inicial() {
     setCategoriaSelecionada(null);
   };
 
+  const handleFavoriteClick = (productId) => {
+    console.log(`Produto ${productId} foi favoritado/desfavoritado!`);
+  }
+
   let produtosExibidos = produtosSpectrum;
 
   if (categoriaSelecionada) {
@@ -63,24 +67,26 @@ function Tela_inicial() {
         <div className="separacao-divs-produtos-fundo">
           <div className='container-produtos-store'>
             {produtosExibidos.map(produto => (
-              <Link to={`/produto/${produto.id}`} className="produtos-store" key={produto.id}>
-                <div className='produto-imagem-container'>
-                  <img className='foto-produtos' src={produto.image} alt={produto.name} />
-                  <div className="etiqueta-preco">
-                    <span className='cor-amarela-preco'>R$</span>{produto.price.toFixed(2)}
-                  </div>
-                  <div className="icone-favorito">
-                    <Button/>
-                  </div>
+              <div className="produtos-store" key={produto.id}>
+                <div className="icone-favorito">
+                  <Button onClick={() => handleFavoriteClick(produto.id)} />
                 </div>
-                <div className='produto-detalhes'>
-                  <h3 className='titulo-produto-store'>{produto.name}</h3>
-                  <p className='descricao-produto'>{produto.description}</p>
-                  <div className="produto-avaliacao">
-                    <StarRating rating={produto.rating} />
+                <Link to={`/produto/${produto.id}`} className="link-produto-card">
+                  <div className='produto-imagem-container'>
+                    <img className='foto-produtos' src={produto.image} alt={produto.name} />
+                    <div className="etiqueta-preco">
+                      <span className='cor-amarela-preco'>R$</span>{produto.price.toFixed(2)}
+                    </div>
                   </div>
-                </div>
-              </Link>
+                  <div className='produto-detalhes'>
+                    <h3 className='titulo-produto-store'>{produto.name}</h3>
+                    <p className='descricao-produto'>{produto.description}</p>
+                    <div className="produto-avaliacao">
+                      <StarRating rating={produto.rating} />
+                    </div>
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>

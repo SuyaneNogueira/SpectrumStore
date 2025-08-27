@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './Tela_produtos.css';
 import { Link, useParams } from 'react-router-dom';
-import Radio from './Radio';
+import StarRating from '../TelaInicial/StarRating';
+// import Radio from './Radio'
 import Abaco from '../imagens/Abaco.jpg';
 import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
 import MassinhaModelar from '../imagens/Massinha-modelar.webp';
@@ -22,11 +23,19 @@ function Tela_produtos() {
   const { id } = useParams();
   const produto = produtosSpectrum.find(p => p.id === parseInt(id));
 
-  const [currentRating, setCurrentRating] = useState(produto.rating);
+  // const [currentRating, setCurrentRating] = useState(produto.rating);
+  const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
 
-  const handleRatingChange = (newRating) => {
-   setCurrentRating(newRating);
-   console.log(`Nova avaliação para o produto ${produto.name}: ${newRating} estrelas`);
+  // const handleRatingChange = (newRating) => {
+  //  setCurrentRating(newRating);
+  //  console.log(`Nova avaliação para o produto ${produto.name}: ${newRating} estrelas`);
+  // };
+
+  const handlePersonalizacaoClick = (tipo, opcao) => {
+    setPersonalizacoesSelecionadas(prevState => ({
+      ...prevState,
+      [tipo]: opcao
+    }));
   };
 
   if (!produto) {
@@ -49,11 +58,14 @@ function Tela_produtos() {
                <h2 className="nome-produto">{produto.name}</h2>
                <p className="descricao-produto-completa">{produto.description}</p>
                <div className="avaliacao-produto">
+                <StarRating rating={produto.rating} />
+               </div>
+               {/* <div className="avaliacao-produto">
                  <Radio 
                     initialRating={currentRating} 
                     onRatingChange={handleRatingChange} 
                  />
-               </div>
+               </div> */}
                </div>
                </div>
             </div>
@@ -66,7 +78,11 @@ function Tela_produtos() {
                 <p className="titulo-opcao">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</p>
                 <div className="opcoes-container">
                   {personalizacoesDoProduto[key].map(opcao => (
-                    <div key={opcao} className="personalizacao-item">
+                    <div 
+                      key={opcao} 
+                      className={`personalizacao-item ${personalizacoesSelecionadas[key] === opcao ? 'selecionado' : ''}`}
+                      onClick={() => handlePersonalizacaoClick(key, opcao)}
+                    >
                       {key === 'cor' || key === 'corFundo' || key === 'corPrincipal' ? (
                         <div className="cor-quadrado" style={{ backgroundColor: opcao.toLowerCase().replace(/á/g, 'a').replace(/é/g, 'e') }}></div>
                       ) : (
@@ -86,4 +102,4 @@ function Tela_produtos() {
   );
 }
 
-export default Tela_produtos
+export default Tela_produtos;

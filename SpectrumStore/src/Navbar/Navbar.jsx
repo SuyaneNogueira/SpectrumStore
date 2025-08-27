@@ -28,7 +28,7 @@ function Navbar({ onCategoriaClick, onPesquisaChange }) {
       </div>
 
       <div className='separacao-topicos-nav'>
-        <h4 className='topicos-nav'>Informações</h4>
+        <Link className='topicos-nav'>Informações</Link>
         <div className="dropdown-categorias">
           <h4 className="topicos-nav" onClick={() => setMenuAberto(!menuAberto)}>
             Categorias <FaChevronDown className={`icone-seta ${menuAberto ? 'rotacionado' : ''}`} />

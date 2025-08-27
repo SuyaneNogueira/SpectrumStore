@@ -39,6 +39,8 @@
     font-family: "Inknut Antiqua", serif;
     font-weight: 300;
     font-style: normal;
+    color: #FFFF;
+    text-decoration: none;
 }
 .div-barra-pesquisa{
     /* border: 2px solid; */
@@ -96,7 +98,10 @@
     /* border: 2px solid; */
     width: 22%;
     height: 50%;
-    
+}
+
+.icones-nav:hover {
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
 }
 
 .dropdown-categorias {

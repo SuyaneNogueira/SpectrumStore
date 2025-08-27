@@ -85,9 +85,19 @@
     width: 19%;
     height: 380px; 
     text-decoration: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .produtos-store:hover{
     transform: scale(1.03);
+}
+.link-produto-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .produto-imagem-container{
     position: relative; 
@@ -118,9 +128,9 @@
 }
 .icone-favorito{
     position: absolute;
-    top: -1.7%;
-    right: 10px;
-    z-index: 10;
+    top: 14px; 
+    right: 29px; 
+    z-index: 100;
 }
 .produto-detalhes{
     padding: 10px;
@@ -132,6 +142,7 @@
     width: auto; 
     margin-left: 10px;
     white-space: normal;
+    text-decoration: none;
 }
 .descricao-produto {
     font-size: 14px;
@@ -140,6 +151,7 @@
     height: auto;
     white-space: normal;
     word-break: break-word;
+    text-decoration: none;
 }
 .produto-avaliacao{
     color: #FFD500;
