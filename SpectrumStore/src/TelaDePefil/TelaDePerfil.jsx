@@ -47,7 +47,7 @@ function TelaDePerfil() {
               className="menu-icone"
               onClick={() => setMenuAberto(!menuAberto)}
             >
-              ⋮
+            <img className="container-ajustes" src="ajustes.png" alt="" />
             </button>
 
             {menuAberto && (

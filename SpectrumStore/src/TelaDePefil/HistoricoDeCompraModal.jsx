@@ -24,7 +24,7 @@ function HistoricoDeCompraModal({ pedido, onClose }) {
         <div className="pedido-status">
           <div className="etapa concluida">
             <div className="icone"></div>
-            <p>Pedido Realizado</p>
+            <p>Pedido Confirmado</p>
           </div>
           <div className="linha"></div>
           <div className="etapa concluida">
