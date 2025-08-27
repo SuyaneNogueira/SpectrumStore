@@ -54,19 +54,27 @@ export default function Pedidos() {
         <div className="titulo-dois-pedidos-adm">
           <div>
             {" "}
-            <Link className="link-adm-pedidos" to="">Todos os Pedidos</Link>{" "}
+            <Link className="link-adm-pedidos" to="">
+              Todos os Pedidos
+            </Link>{" "}
           </div>
           <div>
             {" "}
-            <Link className="link-adm-pedidos" to="">Processo</Link>{" "}
+            <Link className="link-adm-pedidos" to="">
+              Processo
+            </Link>{" "}
           </div>
           <div>
             {" "}
-            <Link className="link-adm-pedidos" to="">Despacho</Link>{" "}
+            <Link className="link-adm-pedidos" to="">
+              Despacho
+            </Link>{" "}
           </div>
           <div>
             {" "}
-            <Link className="link-adm-pedidos" to="">Completo</Link>{" "}
+            <Link className="link-adm-pedidos" to="">
+              Completo
+            </Link>{" "}
           </div>
         </div>
 
@@ -74,7 +82,12 @@ export default function Pedidos() {
           <div className="status-pedidos-adm-um">
             <div className="adm-modal-sete" style={{ position: "relative" }}>
               {/* Botão */}
-              <button className="button-adm-modal" onClick={() => setOpenPopup(!openPopup)}>{">"}</button>
+              <button
+                className="button-adm-modal"
+                onClick={() => setOpenPopup(!openPopup)}
+              >
+                {">"}
+              </button>
 
               {/* Popup */}
               {openPopup && (

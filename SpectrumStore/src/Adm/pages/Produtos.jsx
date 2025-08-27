@@ -2,6 +2,8 @@ import "./Produtos.css";
 import { CgProfile } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { FaRegBell } from "react-icons/fa";
+import { ImArrowLeft } from "react-icons/im";
+import { ImArrowRight } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -9,6 +11,9 @@ export default function Produtos() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const itensPorPagina = 7; // <-- define quantos cards por página
+
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
     valor: "",
@@ -50,7 +55,18 @@ export default function Produtos() {
     const novosProdutos = produtos.filter((_, i) => i !== index);
     setProdutos(novosProdutos);
     localStorage.setItem("produtos", JSON.stringify(novosProdutos));
+
+    // se apagar o último da página e ficar vazio, volta uma página
+    const totalPaginas = Math.ceil(novosProdutos.length / itensPorPagina);
+    if (paginaAtual > totalPaginas) {
+      setPaginaAtual(totalPaginas);
+    }
   };
+
+  const indexUltimoItem = paginaAtual * itensPorPagina;
+  const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
+  const itensVisiveis = produtos.slice(indexPrimeiroItem, indexUltimoItem);
+  const totalPaginas = Math.ceil(produtos.length / itensPorPagina);
 
   return (
     <div className="container-produtos-adm">
@@ -61,7 +77,12 @@ export default function Produtos() {
           <div className="categorias-produto-adm">
             <p>Categorias</p>
             <div className="imagem-down-png-adm">
-            <button className="button-adm-modal-produtos" onClick={() => setOpenPopup(!openPopup)}>{">"}</button>
+              <button
+                className="button-adm-modal-produtos"
+                onClick={() => setOpenPopup(!openPopup)}
+              >
+                {">"}
+              </button>
             </div>
           </div>
         </div>
@@ -108,41 +129,63 @@ export default function Produtos() {
 
         {/* Cards dos produtos */}
         <div className="lista-produtos-adm">
+          <div className="criar-produto-adm">
+            <button
+              className="button-adicionar-produto-adm"
+              onClick={() => setIsOpen(true)}
+            >
+              Adicionar Produto
+            </button>
+          </div>
 
-           <div className="criar-produto-adm">
-          <button
-            className="button-adicionar-produto-adm"
-            onClick={() => setIsOpen(true)}
-          >
-            Adicionar Produto
-          </button>
-        </div>
-
-          {produtos.map((produto, index) => (
-            <div key={index} className="card-produtos-adm">
-
-
+          {itensVisiveis.map((produto, index) => (
+            <div key={indexPrimeiroItem + index} className="card-produtos-adm">
               <div className="ajustes-card-foto-adm">
-              <img className="foto-card-adm" src={produto.imagem} alt={produto.nome} />
+                <img
+                  className="foto-card-adm"
+                  src={produto.imagem}
+                  alt={produto.nome}
+                />
               </div>
 
-            <div className="div-valor-do-produto-adm">
-              <p>R$ {produto.valor}</p>
-
-              <p>Categoria: {produto.categoria}</p>
-            </div>
-
-            <div className="div-nome-produto-adm-card">
-              <p>
-                <strong>{produto.nome}</strong>
-              </p>
+              <div className="div-valor-do-produto-adm">
+                <p>R$ {produto.valor}</p>
+                <p>Categoria: {produto.categoria}</p>
               </div>
+
+              <div className="div-nome-produto-adm-card">
+                <p>
+                  <strong>{produto.nome}</strong>
+                </p>
+              </div>
+
               <p>{produto.descricao}</p>
 
-              <button onClick={() => handleDelete(index)}>Excluir</button>
+              <button onClick={() => handleDelete(indexPrimeiroItem + index)}>
+                Excluir
+              </button>
             </div>
           ))}
+        </div>
+        <div></div>
+        <div className="div-botão-proximo-produtos-adm">
+          <div className="botão-proximo-adm-produtos">
+            <ImArrowLeft
+              onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))}
+              disabled={paginaAtual === 1}
+            />
 
+            <span>
+              Página {paginaAtual} de {totalPaginas}
+            </span>
+
+            <ImArrowRight
+              onClick={() =>
+                setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
+              }
+              disabled={paginaAtual === totalPaginas}
+            />
+          </div>
         </div>
       </div>
 
@@ -159,13 +202,15 @@ export default function Produtos() {
               </span>
             </div>
             <div className="imagem-clicavel-trocar-adm">
-              <label htmlFor="input-imagem" className="label-imagem-adm-produtos">
+              <label
+                htmlFor="input-imagem"
+                className="label-imagem-adm-produtos"
+              >
                 <img
                   src={novoProduto.imagem}
                   alt="Selecione a imagem do produto"
                   className="preview-imagem-adm"
                 />
-          
               </label>
               <input
                 id="input-imagem"

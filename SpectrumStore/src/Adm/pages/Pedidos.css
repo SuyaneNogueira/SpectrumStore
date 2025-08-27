@@ -88,25 +88,25 @@
 
 .popup-box {
   position: absolute;
-   /* desce um pouco abaixo do botão */
-  left: 0;     /* alinhado à esquerda do botão */
+  /* desce um pouco abaixo do botão */
+  left: 0; /* alinhado à esquerda do botão */
   background: white;
   border: 1px solid #ccc;
   padding: 10px 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   z-index: 100;
   width: 200px;
 }
 
-.button-adm-modal{
-   background-color: white;
-   border: none;
-   font-size: 30px;
-   cursor: pointer;
-   margin-right: 2%;
+.button-adm-modal {
+  background-color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 2%;
 }
-.link-adm-pedidos{
-    color: #03374c;
-    text-decoration: none;
+.link-adm-pedidos {
+  color: #03374c;
+  text-decoration: none;
 }

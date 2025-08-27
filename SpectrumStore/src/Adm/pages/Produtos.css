@@ -1,57 +1,53 @@
-.container-produtos-adm{
-    /* border: solid; */
-    height: 90vh;
+.container-produtos-adm {
+  /* border: solid; */
+  height: 90vh;
 }
-.titulo-produtos-adm{
-    display: flex;
-    /* border: solid green;  */
-      margin-top: 2%;
-      margin-left: 1%;
+.titulo-produtos-adm {
+  display: flex;
+  /* border: solid green;  */
+  margin-top: 2%;
+  margin-left: 1%;
 }
 
 /*  */
-.cadastro-dos-produtos-adm{
-    /* border: solid red; */
-    height: 84%;
-    margin-top: 4%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.6%;
-    flex-direction: row;
-    /* flex-wrap: wrap ; */
+.cadastro-dos-produtos-adm {
+  /* border: solid red; */
+  height: 84%;
+  margin-top: 4%;
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 2.6%; */
+  flex-direction: row;
+  /* flex-wrap: wrap ; */
 }
 /*  */
-.categorias-produto-adm{
-    border: solid 2px #a2c9cd;
-    height: 50%;
-    margin-top: 4%;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+.categorias-produto-adm {
+  border: solid 2px #a2c9cd;
+  height: 50%;
+  margin-top: 4%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
-.imagem-categorias-adm{
-    height: 100%;
-    width: 100%;
+.imagem-categorias-adm {
+  height: 100%;
+  width: 100%;
 }
 /* /////////////////////////botão selecionar categoria//////////////////////////////////////////// */
 
-.button-adm-modal-produtos{
-
+.button-adm-modal-produtos {
   background: white;
   border: 1px solid #ccc;
   /* border-radius: 10px; */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   /* z-index: 100; */
   width: 55px;
   height: 19px;
 }
 
-
 /* /////////////////////////////////////////////////////////////////////////////////////////// */
 
-
 /* selecionar categoria */
-
 
 /* Butuns icons */
 .icons-notification-adm-produtos {
@@ -84,8 +80,8 @@
 }
 
 /*  */
-.icones-geral-adm-produtos{
-    width: 30%;
+.icones-geral-adm-produtos {
+  width: 30%;
   margin-left: 50%;
   display: flex;
   align-items: center;
@@ -99,15 +95,15 @@
 /* ========  MODAL CSS  ========= */
 /* ============================= */
 
-.criar-produto-adm{
-  height: 40%;
-  border: solid;
+.criar-produto-adm {
+  height: 60%;
+  border: solid 2px #a2c9cd;
   /* gap: 5%; */
-  width: 19%;
-  margin-left: 1%;
+  width: 18%;
+  /* margin-left: 1%; */
 }
 
-.button-adicionar-produto-adm{
+.button-adicionar-produto-adm {
   /* height: 142%; */
   background-color: #fff;
   margin-left: 1%;
@@ -130,10 +126,9 @@
 }
 
 .modal-content-produtos-adm {
-
   background: #fff;
   width: 35%;
-  height:76%;
+  height: 76%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -146,7 +141,6 @@
   /* border: solid green; */
 }
 
-
 .modal-content-produtos-adm h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
@@ -156,52 +150,50 @@
 
 /*//////////// Formularios modal produtos ////////////*/
 
-
 /*  */
 
-.form-row-produtos-adm-um{
+.form-row-produtos-adm-um {
   /* border: solid purple; */
   gap: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height:60px;
+  height: 60px;
 }
-.form-row-produtos-adm-um input{
+.form-row-produtos-adm-um input {
   height: 20px;
-
 }
 
 /*  */
-.form-row-produtos-adm-dois{
-/* border: solid red;      */
-display: flex;
-justify-content: center;
-align-items: center;
-width: 75%;
-gap: 2%;  
-height: 50px;
-margin-left: 15%;
+.form-row-produtos-adm-dois {
+  /* border: solid red;      */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  gap: 2%;
+  height: 50px;
+  margin-left: 15%;
 }
-.form-row-produtos-adm-dois input{
-height: 25px;
-width: 110px;
+.form-row-produtos-adm-dois input {
+  height: 25px;
+  width: 110px;
 }
-.div-cor-produto-adm{
+.div-cor-produto-adm {
   margin-right: 4%;
 }
 
-.form-row-produtos-adm-tres{
-/* border: solid peru; */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 1px;
-height: 80px;
+.form-row-produtos-adm-tres {
+  /* border: solid peru; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  height: 80px;
 }
-.form-row-produtos-adm-tres textarea{
-  background-color: #A2C9CD;
+.form-row-produtos-adm-tres textarea {
+  background-color: #a2c9cd;
   height: 50%;
   width: 70%;
   border-radius: 10px;
@@ -209,173 +201,161 @@ height: 80px;
 
 /*//////////////////// botão fechar modal ///////////////////////*/
 
-.close-btn-produtos-adm{
+.close-btn-produtos-adm {
   /* border: solid blue; */
- font-size: 150%;
- cursor: pointer;
-  
+  font-size: 150%;
+  cursor: pointer;
 }
-.botão-fechar-modal-adm{  
- /* border: solid red; */
- width: 90%;
+.botão-fechar-modal-adm {
+  /* border: solid red; */
+  width: 90%;
 }
 
 /* /////////////////////////////////////////////// */
 
-
-.modal-body-produtos-adm{
+.modal-body-produtos-adm {
   /* border: solid violet; */
   width: 98%;
   height: 55%;
   /* display: flex;
   justify-content:center ;
-  align-items: center ; */  
- 
+  align-items: center ; */
 }
 /* /////////////////////////Personalizar os inputs, label, etc do adm///////////////////////////// */
 
-
 /*/////////////////////////// label da imagem produto adm//////////////////////////// */
-.label-imagem-adm-produtos{
+.label-imagem-adm-produtos {
   /* border: solid olive; */
   width: 100%;
- height: 100%;
- display: block;
-border-radius: 6px;
+  height: 100%;
+  display: flex;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
 }
 
-.preview-imagem-adm{ 
-   /* border: solid; */
-   max-height: 100%;
-   max-width: 100%; 
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   cursor: pointer;
-   object-fit: cover;
+.preview-imagem-adm {
+  /* border: solid; */
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  object-fit: cover;
 }
 
 /*//////////////// Nome produto////////////// */
 
-
-.div-nome-produto-adm input{
-  background-color: #A2C9CD;
-border-radius: 10px;
-display: flex;
-border: none;
-width: 209px;
+.div-nome-produto-adm input {
+  background-color: #a2c9cd;
+  border-radius: 10px;
+  display: flex;
+  border: none;
+  width: 209px;
 }
 
-
-.valor-modal-adm input{
-  background-color: #A2C9CD;
-display: flex;
-border: none;
-border-radius: 10px;
-
+.valor-modal-adm input {
+  background-color: #a2c9cd;
+  display: flex;
+  border: none;
+  border-radius: 10px;
 }
-  .imagem-clicavel-trocar-adm{
-    border: solid #A2C9CD;
-    height: 34%;
-    width: 70%;
-    border-radius: 10px;
-  }
+.imagem-clicavel-trocar-adm {
+  border: solid #a2c9cd;
+  height: 34%;
+  width: 70%;
+  border-radius: 10px;
+}
 
-  /* //////////////////////Categorias produtos adm ///////////////////////////// */
+/* //////////////////////Categorias produtos adm ///////////////////////////// */
 
-  .div-categoria-produtos-adm input{
-    margin-left: 1%; 
-    background-color: #A2C9CD;
-    border: none;
-    border-radius: 10px;
-    
+.div-categoria-produtos-adm input {
+  margin-left: 1%;
+  background-color: #a2c9cd;
+  border: none;
+  border-radius: 10px;
+}
+.div-cor-produto-adm input {
+  background-color: #a2c9cd;
+  border: none;
+  border-radius: 10px;
+}
 
-  }
-    .div-cor-produto-adm input{
-      background-color: #A2C9CD;
-      border: none;
-      border-radius: 10px;
-    }
+/*  /////////////////////////////////////////*/
+.tamanho-produto-adm input {
+  background-color: #a2c9cd;
+  border: none;
+  border-radius: 10px;
+  margin-left: 1%;
+}
+.tamanho-produto-adm {
+  margin-left: 1%;
+}
 
-    /*  /////////////////////////////////////////*/
-    .tamanho-produto-adm input{
-      background-color: #A2C9CD;
-      border: none;
-      border-radius: 10px;
-      margin-left: 1%;
-    }
-    .tamanho-produto-adm{
-      margin-left: 1%;
-    }
+/* //////////////////////////// */
 
-    /* //////////////////////////// */
+/* //////////////////////////Div para que serve adm//////////////////////////////// */
 
-    /* //////////////////////////Div para que serve adm//////////////////////////////// */
+.form-row-produtos-adm-quatro {
+  /* border: solid gold; */
+  flex-direction: column;
+  display: flex;
+  /* margin-top: 5%; */
+  height: 100px;
+  width: 70%;
+  margin-left: 15%;
+}
+.form-row-produtos-adm-quatro textarea {
+  background-color: #a2c9cd;
+  height: 100%;
+  border-radius: 10px;
+}
 
-    .form-row-produtos-adm-quatro{
-      /* border: solid gold; */
-      flex-direction: column;
-      display: flex;
-      /* margin-top: 5%; */
-      height: 100px;
-    width: 70%;
-    margin-left: 15%;
+/*////////////////////////////// Botão de confirmar do modal Adm///////////////////// */
 
-    }
-    .form-row-produtos-adm-quatro textarea{
+.modal-buttons-produto-adm {
+  /* border: solid magenta; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+.modal-buttons-produto-adm button {
+  height: 70%;
+  background-color: #a2c9cd;
+  border: none;
+  width: 30%;
+  border-radius: 10px;
+  margin-top: 5%;
+}
 
-    background-color: #A2C9CD;
-    height: 100%;
-    border-radius: 10px;
-    }
+/* ///////////////////////////css card dos produtos ///////////////////////////*/
 
-    /*////////////////////////////// Botão de confirmar do modal Adm///////////////////// */
+.card-produtos-adm {
+  border: solid 2px #a2c9cd;
+  gap: 10px;
+  height: 60%;
+  width: 20%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* position: static; */
+}
 
-    .modal-buttons-produto-adm{
-      /* border: solid magenta; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 45px;
-    }
-    .modal-buttons-produto-adm button{
-      height: 70%;
-      background-color: #A2C9CD;
-      border: none;
-      width: 30%;
-      border-radius: 10px;
-      margin-top: 5%
-    }
-
-
-    /* ///////////////////////////css card dos produtos ///////////////////////////*/
-
-
-    .card-produtos-adm{
-      border: solid 2px #A2C9CD;
-      gap: 10px;
-      height: 40%;
-      width: 19%;
-      display: flex;
-      /* flex-wrap: wrap; */
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      /* position: static; */
-    }
-    
 /* estilização card dos produtos */
 
-
-.imagem-down-png-adm{
-  border: solid 2px #A2C9CD;
+.imagem-down-png-adm {
+  border: solid 2px #a2c9cd;
   width: 40%;
   margin-left: 5%;
   border-radius: 10px;
   overflow: hidden;
-} 
+}
 
-.div-valor-do-produto-adm{
+.div-valor-do-produto-adm {
   /* border: solid blue; */
   width: 80%;
   display: flex;
@@ -383,29 +363,61 @@ border-radius: 10px;
 
 /* //////////////////////////Ajustes do card que mostra os produtos////////////////////////////// */
 
-.foto-card-adm{
+.foto-card-adm {
   height: 100%;
   /* border: solid yellow; */
   /* border-radius: ; */
-  width: 130px;
+  /* width: 130px; */
 }
 
-
-.ajustes-card-foto-adm{
+.ajustes-card-foto-adm {
   border: solid magenta;
   height: 40%;
   width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  overflow: hidden;
 }
 
-.div-nome-produto-adm-card{
+.div-nome-produto-adm-card {
   border: solid green;
   width: 80%;
 }
-.lista-produtos-adm{
+.lista-produtos-adm {
   flex-wrap: wrap;
   display: flex;
-  border: solid;
-  width: 100%;
+  /* border: solid; */
+  width: 95%;
   gap: 5%;
- height: 100%;  
+  height: 85%;
+  margin-left: 1%;
+}
+.div-botão-proximo-produtos-adm {
+  /* border: solid khaki; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+}
+.botão-proximo-adm-produtos {
+  /* border: solid ; */
+  width: 50%;
+  height: 50%;
+  background-color: #03374c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* /////////////////////////////////////teste/////////////////////////////// */
+.teste-ajuste-adm {
+  border: solid;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
 }
