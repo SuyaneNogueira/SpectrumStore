@@ -11,9 +11,7 @@
   padding: 3%;
   display: flex;
   align-items: center;
-  gap: 5%;
-  
-  border: #034E61 solid 1px;
+  gap: 4%;
 }
 
 .foto-perfil {
@@ -24,22 +22,17 @@
   object-fit: cover;
   margin-left: 5%;
   margin-top: -8%;
-  border: #034E61 solid 1px;
 }
 
 .perfil-info {
   margin: 1% 0%;
-  margin-top: -3%;
-  border: #034E61 solid 1px;
-  
+  margin-top: -4%;
 }
 
 .perfil-info p{
   margin: 1% 0%;
   font-size: 114%;
   margin-top: 4%;
-  border: #034E61 solid 1px;
-  
 }
 
 /* Abas (histórico, avaliações, pesquisa) */
@@ -49,7 +42,6 @@
   gap: 2%;
   background: #A2C9CD; /* navbar */
   padding: 10px;
-  /* margin-top: -4%; */
 
 }
 
@@ -92,13 +84,14 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  /* width: 100%; */
 }
 
 .produto-card {
   position: relative;
   border: 1px solid #ccc;
-  padding: 28px;
-  width: 260px;
+  padding: 2%;
+  width: 15%;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -107,10 +100,10 @@
 
 .imagem-produto {
   background: #e0e0e0;
-  height: 180px;
-  width: 200px;
-  margin-bottom: 10px;
-  margin-top: -8%;
+  width: 100%;
+  height: 120%;
+  margin-bottom: 8%;
+  margin-top: -11%;
 }
 
 .preco {
@@ -128,8 +121,8 @@
 
 .favorito {
   position: absolute;
-  top: 4%;
-  right: 15%;
+  top: 9%;
+  right: 16%;
   color: #034E61;
   font-size: 20px;
   cursor: pointer;
@@ -154,36 +147,29 @@
 .menu-icone {
   background: none;
   border: none;
-  /* font-size: 155%; */
   cursor: pointer;
   color: #68A7AE;
-  /* margin-bottom: 90%; */
-  border: #034E61 solid 1px;
-  width: 60%;
-  /* padding-top: 40%; */
+  width: 65%;
   height: 2%;
   display: flex;
-  /* justify-content: start; */
   align-items: start;
-  /* position: absolute; */
   top: 10%;
+  margin-left: 90%;
 }
 
 .container-ajustes{
-  border: #034E61 solid 1px;
   width: 100%;
   height: 100%;
 }
 
 .menu-ajustes {
   position: absolute;
-  top: 18%;
-  right: 0;
+  right: -20%;
   background: #ffffff;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  width: 2700%;
+  width: 410%;
   z-index: 1000;
 }
 

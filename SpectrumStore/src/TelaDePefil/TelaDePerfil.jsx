@@ -36,7 +36,6 @@ function TelaDePerfil() {
           />
           <div className="perfil-info">
             <p><strong>Nome:</strong> Maria Knupp</p>
-            <p><strong>CPF:</strong> 110.***.***-10</p>
             <p><strong>Idade:</strong> 23</p>
             <p><strong>Pontos:</strong> 10</p>
           </div>
