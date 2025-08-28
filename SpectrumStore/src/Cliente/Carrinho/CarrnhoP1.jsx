@@ -1,7 +1,7 @@
 import './CarrinhoP1.css'
 import Navbar from '../../Navbar/Navbar'
-import Radio from '../../TelaProdutos/Radio'
 import StarRating from '../../TelaInicial/StarRating'
+
 function CarrnhoP1() {
   return (
     <div className='fundoCarrinho'>
@@ -27,7 +27,7 @@ function CarrnhoP1() {
                         <p>Descrição dos brinquedos hgyjkgbjg,mmjbmkgbjgjku</p>
                       </div>
                       <div className='div-valor-brinquedo-carrinho'>
-                        <p>R$:</p><input className='Valor' type="Number" />
+                          R$:<input className='Valor' type="Number" />
                       </div>
                     </div>
               </div>
