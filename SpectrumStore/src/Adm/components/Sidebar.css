@@ -1,36 +1,37 @@
 /* Estilos do menu lateral */
 .sidebar {
-  background-color: #A2C9CD;
+  background-color: #a2c9cd;
   min-height: 100vh;
   width: 18%;
   border-radius: 0 20px 20px 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
+  
 }
 
 .logo-escrita-adm {
- /* border: solid; */
- height: 16%;
- width: 99%;
- display:flex;
- justify-content:center;
- align-items: center;
- color: #FFFF;
-    font-family: "Inknut Antiqua", serif;
-    font-weight: 600;
-    font-style: normal;
+  /* border: solid; */
+  height: 16%;
+  width: 99%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffff;
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* Links do menu */
-.menu-item {
+.menu-item {  
   display: block;
   padding: 10%;
   margin-bottom: 11%;
   border-radius: 8%;
-  color: #03374C;
+  color: #03374c;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   font-size: 21px;
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .menu-item:hover {
@@ -39,24 +40,24 @@
 
 /* Página ativa */
 .menu-item:active {
-   background-color: #e0f7fa; /* botão ativo com fundo claro */
+  background-color: #e0f7fa; /* botão ativo com fundo claro */
   color: #0b3d91; /* texto permanece azul escuro */
 }
 
-.butons-sidebar{
+.butons-sidebar {
   /* border: solid green; */
-  display:flex ;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+  margin-top: 7%;
 }
-.butons-sidebar.active{
-   background-color: #d9f3f3;
+.butons-sidebar.active {
+  background-color: #d9f3f3;
   font-weight: bold;
 }
 
-.span-cor-logo-spectrum-adm{
-    /* border: 2px solid; */
-    color: #034E61;
+.span-cor-logo-spectrum-adm {
+  /* border: 2px solid; */
+  color: #034e61;
 }

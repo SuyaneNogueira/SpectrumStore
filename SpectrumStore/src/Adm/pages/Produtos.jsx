@@ -12,7 +12,7 @@ export default function Produtos() {
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const itensPorPagina = 7; // <-- define quantos cards por página
+  const itensPorPagina = 14; // <-- define quantos cards por página
 
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
@@ -135,6 +135,8 @@ export default function Produtos() {
               onClick={() => setIsOpen(true)}
             >
               Adicionar Produto
+              <img className="plus-png-adm" src="plus.png" alt="" />
+
             </button>
           </div>
 
@@ -159,7 +161,9 @@ export default function Produtos() {
                 </p>
               </div>
 
-              <p>{produto.descricao}</p>
+              <div className="div-descrição-produto-adm">
+                <p>{produto.descricao}</p>
+              </div>
 
               <button onClick={() => handleDelete(indexPrimeiroItem + index)}>
                 Excluir
