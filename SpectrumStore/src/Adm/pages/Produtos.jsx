@@ -12,7 +12,9 @@ export default function Produtos() {
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const itensPorPagina = 14; // <-- define quantos cards por página
+  const itensPorPagina = 14;
+
+  const [editIndex, setEditIndex] = useState(null); // <<< NOVO
 
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
@@ -31,13 +33,26 @@ export default function Produtos() {
     setProdutos(produtosSalvos);
   }, []);
 
-  // Salvar produto novo
+  // Criar ou editar produto
   const handleSubmit = (e) => {
     e.preventDefault();
-    const novosProdutos = [...produtos, novoProduto];
+
+    let novosProdutos;
+    if (editIndex !== null) {
+      // edição
+      novosProdutos = [...produtos];
+      novosProdutos[editIndex] = novoProduto;
+    } else {
+      // criação
+      novosProdutos = [...produtos, novoProduto];
+    }
+
     setProdutos(novosProdutos);
     localStorage.setItem("produtos", JSON.stringify(novosProdutos));
+
+    // resetar modal
     setIsOpen(false);
+    setEditIndex(null);
     setNovoProduto({
       nome: "",
       valor: "",
@@ -56,11 +71,17 @@ export default function Produtos() {
     setProdutos(novosProdutos);
     localStorage.setItem("produtos", JSON.stringify(novosProdutos));
 
-    // se apagar o último da página e ficar vazio, volta uma página
     const totalPaginas = Math.ceil(novosProdutos.length / itensPorPagina);
     if (paginaAtual > totalPaginas) {
       setPaginaAtual(totalPaginas);
     }
+  };
+
+  // Editar produto
+  const handleEdit = (index) => {
+    setEditIndex(index);
+    setNovoProduto(produtos[index]);
+    setIsOpen(true);
   };
 
   const indexUltimoItem = paginaAtual * itensPorPagina;
@@ -74,69 +95,50 @@ export default function Produtos() {
         <div>
           <h1>Produtos</h1>
           <p>{produtos.length} produtos cadastrados</p>
-          <div className="categorias-produto-adm">
-            <p>Categorias</p>
-            <div className="imagem-down-png-adm">
-              <button
-                className="button-adm-modal-produtos"
-                onClick={() => setOpenPopup(!openPopup)}
-              >
-                {">"}
-              </button>
-            </div>
-          </div>
         </div>
         <div className="icones-geral-adm-produtos">
+
           <div className="icons-notification-adm-produtos">
-            <FaRegBell
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            />
+          <FaRegBell
+            size={30}
+            color="#03374C"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
           </div>
 
           <div className="icon-search-adm-produtos">
-            <CiSearch
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            />
+          <CiSearch
+            size={30}
+            color="#03374C"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
           </div>
 
           <div className="icon-perfil-adm-produtos">
-            <CgProfile
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            />
+          <CgProfile
+            size={30}
+            color="#03374C"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          /> 
           </div>
         </div>
       </div>
 
       <div className="cadastro-dos-produtos-adm">
-        {/* Botão de adicionar novo produto */}
-        {/* <div className="criar-produto-adm">
-          <button
-            className="button-adicionar-produto-adm"
-            onClick={() => setIsOpen(true)}
-          >
-            Adicionar Produto
-          </button>
-        </div> */}
-
-        {/* Cards dos produtos */}
         <div className="lista-produtos-adm">
           <div className="criar-produto-adm">
             <button
               className="button-adicionar-produto-adm"
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true);
+                setEditIndex(null); // garantir que será criação
+              }}
             >
               Adicionar Produto
               <img className="plus-png-adm" src="plus.png" alt="" />
-
             </button>
           </div>
 
@@ -165,24 +167,31 @@ export default function Produtos() {
                 <p>{produto.descricao}</p>
               </div>
 
-              <button onClick={() => handleDelete(indexPrimeiroItem + index)}>
-                Excluir
-              </button>
+              <div className="div-botoes-card-edita-ex-adm">
+                <button
+                  onClick={() => handleEdit(indexPrimeiroItem + index)}
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(indexPrimeiroItem + index)}
+                >
+                  Excluir
+                </button>
+              </div>
             </div>
           ))}
         </div>
-        <div></div>
+
         <div className="div-botão-proximo-produtos-adm">
           <div className="botão-proximo-adm-produtos">
             <ImArrowLeft
               onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))}
               disabled={paginaAtual === 1}
             />
-
             <span>
               Página {paginaAtual} de {totalPaginas}
             </span>
-
             <ImArrowRight
               onClick={() =>
                 setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
@@ -205,6 +214,7 @@ export default function Produtos() {
                 &times;
               </span>
             </div>
+
             <div className="imagem-clicavel-trocar-adm">
               <label
                 htmlFor="input-imagem"
@@ -230,6 +240,7 @@ export default function Produtos() {
                 }}
               />
             </div>
+
             <div className="modal-body-produtos-adm">
               <form className="modal-form-produtos-adm" onSubmit={handleSubmit}>
                 <div className="form-row-produtos-adm-um">
@@ -332,7 +343,7 @@ export default function Produtos() {
 
                 <div className="modal-buttons-produto-adm">
                   <button type="submit" className="btn-confirmar">
-                    Confirmar
+                    {editIndex !== null ? "Salvar Alterações" : "Confirmar"}
                   </button>
                 </div>
               </form>
