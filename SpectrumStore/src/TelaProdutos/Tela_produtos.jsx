@@ -69,7 +69,9 @@ function Tela_produtos() {
                </div>
                </div>
             </div>
-
+             <div className="wrapper-linha"> {/* Adicione este wrapper */}
+               <div className="linha-divisora"></div>
+             </div>
           <div className="secao-personalizacao">
            <h3 className="titulo-personalizacao">Personalizações</h3>
            <div className="opcoes-personalizacao">
