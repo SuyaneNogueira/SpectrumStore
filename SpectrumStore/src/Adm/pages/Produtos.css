@@ -190,17 +190,24 @@ height: 100%;
 .form-row-produtos-adm-tres {
   /* border: solid peru; */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column; 
+  /* justify-content: center; */
   align-items: center;
-  margin-top: 1px;
+  /* margin-top: 3px; */
   height: 80px;
+  /* margin-left: 15%; */
+  width: 100%;
+  margin-top: 2%;
 }
 .form-row-produtos-adm-tres textarea {
   background-color: #a2c9cd;
   height: 50%;
   width: 70%;
   border-radius: 10px;
+}
+.form-row-produtos-adm-tres label{
+margin-right: 47%;
+
 }
 
 /*//////////////////// botão fechar modal ///////////////////////*/
@@ -274,11 +281,13 @@ height: 100%;
 
 /* //////////////////////Categorias produtos adm ///////////////////////////// */
 
-.div-categoria-produtos-adm input {
+.div-categoria-produtos-adm select {
   margin-left: 1%;
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
+  height: 30px;
+  width: 110px;
 }
 .div-cor-produto-adm input {
   background-color: #a2c9cd;
