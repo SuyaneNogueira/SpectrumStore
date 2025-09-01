@@ -1,7 +1,9 @@
+
 .container-produtos-adm {
   /* border: solid; */
   height: 90vh;
 }
+
 .titulo-produtos-adm {
   display: flex;
   /* border: solid green;  */
@@ -9,18 +11,6 @@
   margin-left: 1%;
 }
 
-/*  */
-.cadastro-dos-produtos-adm {
-  /* border: solid red; */
-  height: 84%;
-  margin-top: 4%;
-  display: flex;
-  flex-wrap: wrap;
-  /* gap: 2.6%; */
-  flex-direction: row;
-  /* flex-wrap: wrap ; */
-}
-/*  */
 .categorias-produto-adm {
   border: solid 2px #a2c9cd;
   height: 50%;
@@ -29,27 +19,25 @@
   display: flex;
   align-items: center;
 }
-.imagem-categorias-adm {
-  height: 100%;
-  width: 100%;
-}
-/* /////////////////////////botão selecionar categoria//////////////////////////////////////////// */
 
-.button-adm-modal-produtos {
-  background: white;
-  border: 1px solid #ccc;
-  /* border-radius: 10px; */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  /* z-index: 100; */
-  width: 55px;
-  height: 19px;
+.imagem-down-png-adm {
+  border: solid 2px #a2c9cd;
+  width: 40%;
+  margin-left: 5%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////// */
+.icones-geral-adm-produtos {
+  width: 30%;
+  margin-left: 59%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  /* border: solid; */
+}
 
-/* selecionar categoria */
-
-/* Butuns icons */
 .icons-notification-adm-produtos {
   border: solid 1px #03374c;
   border-radius: 10px;
@@ -69,6 +57,7 @@
   width: 12%;
   height: 55%;
 }
+
 .icon-perfil-adm-produtos {
   border: solid 1px #03374c;
   border-radius: 10px;
@@ -79,42 +68,155 @@
   height: 55%;
 }
 
-/*  */
-.icones-geral-adm-produtos {
-  width: 30%;
-  margin-left: 59%;
+.cadastro-dos-produtos-adm {
+  /* border: solid red; */
+  height: 84%;
+  margin-top: 4%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
-  /* border: solid; */
-  /* height: 100%; */
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
-/* ============================= */
-/* ========  MODAL CSS  ========= */
-/* ============================= */
+.lista-produtos-adm {
+  flex-wrap: wrap;
+  display: flex;
+  /* border: solid; */
+  width: 98%;
+  gap: 4%;
+  height: 85%;
+  margin-left: 1%;
+  overflow-x: auto;
+}
 
 .criar-produto-adm {
-  height: 60%;
+  height: 65%;
   border: solid 2px #a2c9cd;
-  /* gap: 5%; */
-  width: 22%;
-  /* margin-left: 1%; */
+  width: 30%;
 }
 
 .button-adicionar-produto-adm {
   height: 100%;
   background-color: #fff;
-  /* margin-left: 1%; */
   width: 100%;
-  /* border: solid 2px #a2c9cd; */
   cursor: pointer;
 }
 
-.plus-png-adm{
-height: 100%;
+.plus-png-adm {
+  height: 100%;
 }
+
+.card-produtos-adm {
+  border: solid 2px #a2c9cd;
+  gap: 8px;
+  height: 65%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ajustes-card-foto-adm {
+  border: solid magenta;
+  height: 40%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.foto-card-adm {
+  height: 100%;
+}
+
+.div-valor-do-produto-adm {
+  /* border: solid blue; */
+  width: 80%;
+}
+
+.preco-categota-produto-adm {
+  display: flex;
+  align-items: center;
+}
+
+.style-valor-produto {
+  background-color: #03374c;
+  border-radius: 2px;
+  height: 26px;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.style-valor-produto span {
+  color: #fff0a6;
+}
+.style-valor-produto p {
+  color: #ffffff;
+  border: seagreen;
+}
+
+.style-categorias-adm {
+  /* border: solid goldenrod; */
+  width: 68%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.ajust-categoria-adm {
+  /* margin-left: 16%; */
+}
+
+.div-nome-produto-adm-card {
+  /* border: solid green; */
+  width: 80%;
+  color: #021c41;
+  font-size: 20px;
+}
+
+.div-descrição-produto-adm {
+  width: 80%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  height: 7%;
+}
+.div-descrição-produto-adm p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.div-botoes-card-edita-ex-adm {
+  border: solid;
+  margin-top: 11%;
+}
+
+.div-botão-proximo-produtos-adm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+}
+
+.botão-proximo-adm-produtos {
+  width: 50%;
+  height: 50%;
+  background-color: #03374c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* ============================= */
+/* ========== MODAL ============ */
+/* ============================= */
 
 .modal-overlay-produtos-adm {
   position: fixed;
@@ -126,25 +228,23 @@ height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999; /* fica na frente de tudo */
+  z-index: 999;
 }
 
 .modal-content-produtos-adm {
   background: #fff;
-  width: 35%;
-  height: 76%;
+  width: 33%;
+  height: 77%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 1%;
   align-items: center;
   justify-content: center;
-  /* border: solid green; */
 }
-
 .modal-content-produtos-adm h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
@@ -152,91 +252,23 @@ height: 100%;
   color: #03374c;
 }
 
-/*//////////// Formularios modal produtos ////////////*/
-
-/*  */
-
-.form-row-produtos-adm-um {
-  /* border: solid purple; */
-  gap: 8%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-}
-.form-row-produtos-adm-um input {
-  height: 20px;
-}
-
-/*  */
-.form-row-produtos-adm-dois {
-  /* border: solid red;      */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 75%;
-  gap: 2%;
-  height: 50px;
-  margin-left: 15%;
-}
-.form-row-produtos-adm-dois input {
-  height: 25px;
-  width: 110px;
-}
-.div-cor-produto-adm {
-  margin-right: 4%;
-}
-
-.form-row-produtos-adm-tres {
-  /* border: solid peru; */
-  display: flex;
-  flex-direction: column; 
-  /* justify-content: center; */
-  align-items: center;
-  /* margin-top: 3px; */
-  height: 80px;
-  /* margin-left: 15%; */
-  width: 100%;
-  margin-top: 2%;
-}
-.form-row-produtos-adm-tres textarea {
-  background-color: #a2c9cd;
-  height: 50%;
-  width: 70%;
-  border-radius: 10px;
-}
-.form-row-produtos-adm-tres label{
-margin-right: 47%;
-
-}
-
-/*//////////////////// botão fechar modal ///////////////////////*/
-
-.close-btn-produtos-adm {
-  /* border: solid blue; */
-  font-size: 150%;
-  cursor: pointer;
-}
 .botão-fechar-modal-adm {
-  /* border: solid red; */
   width: 90%;
 }
 
-/* /////////////////////////////////////////////// */
-
-.modal-body-produtos-adm {
-  /* border: solid violet; */
-  width: 98%;
-  height: 55%;
-  /* display: flex;
-  justify-content:center ;
-  align-items: center ; */
+.close-btn-produtos-adm {
+  font-size: 150%;
+  cursor: pointer;
 }
-/* /////////////////////////Personalizar os inputs, label, etc do adm///////////////////////////// */
 
-/*/////////////////////////// label da imagem produto adm//////////////////////////// */
+.imagem-clicavel-trocar-adm {
+  border: solid #a2c9cd;
+  height: 34%;
+  width: 70%;
+  border-radius: 10px;
+}
+
 .label-imagem-adm-produtos {
-  /* border: solid olive; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -246,7 +278,6 @@ margin-right: 47%;
 }
 
 .preview-imagem-adm {
-  /* border: solid; */
   max-height: 100%;
   max-width: 100%;
   display: flex;
@@ -256,14 +287,32 @@ margin-right: 47%;
   object-fit: cover;
 }
 
-/*//////////////// Nome produto////////////// */
+.modal-body-produtos-adm {
+  width: 98%;
+  height: 55%;
+}
+
+.modal-form-produtos-adm {
+  /* sem estilos definidos */
+}
+
+.form-row-produtos-adm-um {
+  gap: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+.form-row-produtos-adm-um input {
+  height: 20px;
+}
 
 .div-nome-produto-adm input {
   background-color: #a2c9cd;
   border-radius: 6px;
   display: flex;
   border: none;
-  width: 209px;
+  width: 100%;
 }
 
 .valor-modal-adm input {
@@ -272,14 +321,19 @@ margin-right: 47%;
   border: none;
   border-radius: 10px;
 }
-.imagem-clicavel-trocar-adm {
-  border: solid #a2c9cd;
-  height: 34%;
-  width: 70%;
-  border-radius: 10px;
-}
 
-/* //////////////////////Categorias produtos adm ///////////////////////////// */
+.form-row-produtos-adm-dois {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  gap: 2%;
+  margin-left: 15%;
+}
+.form-row-produtos-adm-dois input {
+  height: 25px;
+  width: 110px;
+}
 
 .div-categoria-produtos-adm select {
   margin-left: 1%;
@@ -289,32 +343,47 @@ margin-right: 47%;
   height: 30px;
   width: 110px;
 }
+
+.div-cor-produto-adm {
+  margin-right: 4%;
+}
 .div-cor-produto-adm input {
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
 }
 
-/*  /////////////////////////////////////////*/
+.tamanho-produto-adm {
+  margin-left: 1%;
+}
 .tamanho-produto-adm input {
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
   margin-left: 1%;
 }
-.tamanho-produto-adm {
-  margin-left: 1%;
+
+.form-row-produtos-adm-tres {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  margin-top: 2%;
+}
+.form-row-produtos-adm-tres textarea {
+  background-color: #a2c9cd;
+  height: 50%;
+  width: 70%;
+  border-radius: 10px;
+}
+.form-row-produtos-adm-tres label {
+  margin-right: 47%;
 }
 
-/* //////////////////////////// */
-
-/* //////////////////////////Div para que serve adm//////////////////////////////// */
-
 .form-row-produtos-adm-quatro {
-  /* border: solid gold; */
   flex-direction: column;
   display: flex;
-  /* margin-top: 5%; */
   height: 100px;
   width: 70%;
   margin-left: 15%;
@@ -325,10 +394,7 @@ margin-right: 47%;
   border-radius: 10px;
 }
 
-/*////////////////////////////// Botão de confirmar do modal Adm///////////////////// */
-
 .modal-buttons-produto-adm {
-  /* border: solid magenta; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -343,117 +409,32 @@ margin-right: 47%;
   margin-top: 5%;
 }
 
-/* ///////////////////////////css card dos produtos ///////////////////////////*/
-
-.card-produtos-adm {
-  border: solid 2px #a2c9cd;
-  gap: 10px;
-  height: 60%;
-  width: 22%;
-  display: flex;
-  /* flex-wrap: wrap; */
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* position: static; */
+/* botão dentro do modal */
+.btn-confirmar {
+  /* estilo herdado do button acima */
 }
 
-/* estilização card dos produtos */
+/* ============================= */
+/* === NÃO UTILIZADAS (CSS) ==== */
+/* ============================= */
 
-.imagem-down-png-adm {
-  border: solid 2px #a2c9cd;
-  width: 40%;
-  margin-left: 5%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.div-valor-do-produto-adm {
-  /* border: solid blue; */
-  width: 80%;
-  display: flex;
-}
-
-/* //////////////////////////Ajustes do card que mostra os produtos////////////////////////////// */
-
-.foto-card-adm {
+.imagem-categorias-adm {
   height: 100%;
-  /* border: solid yellow; */
-  /* border-radius: ; */
-  /* width: 130px; */
-}
-
-.ajustes-card-foto-adm {
-  border: solid magenta;
-  height: 40%;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  object-fit: contain;
-  overflow: hidden;
-}
-
-.div-nome-produto-adm-card {
-  border: solid green;
-  width: 80%;
-}
-
-.div-descrição-produto-adm{
-   /* border: solid yellow; */
-   width: 80%;
-   display: -webkit-box;        /* necessário para o line-clamp */
-  -webkit-box-orient: vertical; /* define orientação */
-  height: 7%;
-}
-.div-descrição-produto-adm p{
- display: -webkit-box;          /* necessário pro line-clamp funcionar */
-  -webkit-box-orient: vertical;  /* define orientação vertical */
-  -webkit-line-clamp: 2;         /* limita a 3 linhas */
-  overflow: hidden;              /* esconde o restante */
-  text-overflow: ellipsis;       /* adiciona "..." no final */
-  word-break: break-word;        /* evita palavras gigantes sem quebra */
-}
-.lista-produtos-adm {
-  flex-wrap: wrap;
-  display: flex;
-  /* border: solid; */
-  width: 95%;
-  gap: 4%;
-  height: 85%;
-  margin-left: 1%;
-  /* overflow: scroll; */
-  overflow-x: auto;
-}
-.div-botão-proximo-produtos-adm {
-  /* border: solid khaki; */
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 15%;
-}
-.botão-proximo-adm-produtos {
-  /* border: solid ; */
-  width: 50%;
-  height: 50%;
-  background-color: #03374c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
 }
 
-/* /////////////////////////////////////teste/////////////////////////////// */
+.button-adm-modal-produtos {
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 55px;
+  height: 19px;
+}
+
 .teste-ajuste-adm {
   border: solid;
   height: 100%;
   width: 100%;
   overflow: hidden;
   object-fit: cover;
-}
-
-.div-botoes-card-edita-ex-adm{
-  border: solid;
- margin-top: 11%;
 }
