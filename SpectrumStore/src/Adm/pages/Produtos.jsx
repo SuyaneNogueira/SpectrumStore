@@ -27,6 +27,9 @@ export default function Produtos() {
     imagem: "https://via.placeholder.com/150",
   });
 
+  // 🔹 NOVO: estado para categoria selecionada (filtro)
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
   // Carregar produtos do localStorage
   useEffect(() => {
     const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
@@ -84,10 +87,23 @@ export default function Produtos() {
     setIsOpen(true);
   };
 
+  // 🔹 Lista de categorias dinâmica (com "Todos")
+  const categorias = [
+    "Todos",
+    ...Array.from(new Set(produtos.map((p) => p.categoria || "Sem categoria"))),
+  ];
+
+  // 🔹 Filtragem dos produtos conforme categoria selecionada
+  const produtosFiltrados =
+    categoriaSelecionada === "Todos"
+      ? produtos
+      : produtos.filter((p) => p.categoria === categoriaSelecionada);
+
+  // 🔹 Paginação agora aplicada sobre produtosFiltrados
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  const itensVisiveis = produtos.slice(indexPrimeiroItem, indexUltimoItem);
-  const totalPaginas = Math.ceil(produtos.length / itensPorPagina);
+  const itensVisiveis = produtosFiltrados.slice(indexPrimeiroItem, indexUltimoItem);
+  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / itensPorPagina));
 
   return (
     <div className="container-produtos-adm">
@@ -95,7 +111,30 @@ export default function Produtos() {
         <div>
           <h1>Produtos</h1>
           <p>{produtos.length} produtos cadastrados</p>
+
+          <div className="categorias-produto-adm">
+            <p>Categorias</p>
+            <div className="imagem-down-png-adm">
+              {/* botão que você já tinha - mantive igual */}
+
+              {/* 🔹 SELECT INSERIDO DENTRO DESSA DIV (ao lado do botão) */}
+              <select
+                value={categoriaSelecionada}
+                onChange={(e) => {
+                  setCategoriaSelecionada(e.target.value);
+                  setPaginaAtual(1); // resetar para página 1 ao trocar filtro
+                }}
+              >
+                {categorias.map((cat, idx) => (
+                  <option key={idx} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+           </div>
         </div>
+        
         <div className="icones-geral-adm-produtos">
 
           <div className="icons-notification-adm-produtos">
@@ -125,6 +164,7 @@ export default function Produtos() {
           /> 
           </div>
         </div>
+
       </div>
 
       <div className="cadastro-dos-produtos-adm">
@@ -142,45 +182,52 @@ export default function Produtos() {
             </button>
           </div>
 
-          {itensVisiveis.map((produto, index) => (
-            <div key={indexPrimeiroItem + index} className="card-produtos-adm">
-              <div className="ajustes-card-foto-adm">
-                <img
-                  className="foto-card-adm"
-                  src={produto.imagem}
-                  alt={produto.nome}
-                />
-              </div>
+          {itensVisiveis.map((produto, index) => {
+            // 🔹 precisamos do índice ORIGINAL no array `produtos` para editar/excluir corretamente
+            const originalIndex = produtos.findIndex((p) => p === produto);
+            const idParaAcoes = originalIndex !== -1 ? originalIndex : indexPrimeiroItem + index;
+            const key = originalIndex !== -1 ? originalIndex : `${indexPrimeiroItem}-${index}`;
 
-              <div className="div-valor-do-produto-adm">
-                <p>R$ {produto.valor}</p>
-                <p>Categoria: {produto.categoria}</p>
-              </div>
+            return (
+              <div key={key} className="card-produtos-adm">
+                <div className="ajustes-card-foto-adm">
+                  <img
+                    className="foto-card-adm"
+                    src={produto.imagem}
+                    alt={produto.nome}
+                  />
+                </div>
 
-              <div className="div-nome-produto-adm-card">
-                <p>
-                  <strong>{produto.nome}</strong>
-                </p>
-              </div>
+                <div className="div-valor-do-produto-adm">
+                  <p>R$ {produto.valor}</p>
+                  <p>Categoria: {produto.categoria}</p>
+                </div>
 
-              <div className="div-descrição-produto-adm">
-                <p>{produto.descricao}</p>
-              </div>
+                <div className="div-nome-produto-adm-card">
+                  <p>
+                    <strong>{produto.nome}</strong>
+                  </p>
+                </div>
 
-              <div className="div-botoes-card-edita-ex-adm">
-                <button
-                  onClick={() => handleEdit(indexPrimeiroItem + index)}
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleDelete(indexPrimeiroItem + index)}
-                >
-                  Excluir
-                </button>
+                <div className="div-descrição-produto-adm">
+                  <p>{produto.descricao}</p>
+                </div>
+
+                <div className="div-botoes-card-edita-ex-adm">
+                  <button
+                    onClick={() => handleEdit(idParaAcoes)}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => handleDelete(idParaAcoes)}
+                  >
+                    Excluir
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="div-botão-proximo-produtos-adm">
