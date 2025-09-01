@@ -19,12 +19,14 @@ import Estatisticas from "../Adm/pages/Estatisticas";
 import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
 import TelaDePerfil from "../TelaDePefil/TelaDePerfil";
+import CarrinhoP2 from "../Cliente/Carrinho/CarrinhoP2";
 
 
 const Router = createBrowserRouter([
     { path: "/", element: <Tela_inicial/> },
     { path: "/produto/:id", element: <Tela_produtos/> }, 
     { path: "/Carrinho", element: <CarrnhoP1/> },
+    {path: "/pagamento", element: <CarrinhoP2/>},
     { path: "/BrinquedosSensoriais", element: <BrinquedosSensoriais/> },
     { path: "/BrinquedosEducativosEPedagogicos", element: <BrinquedosEducativosEPedagogicos/> },
     { path: "/RotinaEOrganização", element: <RotinaEOrganizacao/> },
