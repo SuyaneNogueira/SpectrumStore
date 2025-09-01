@@ -57,8 +57,8 @@
 .imagem-produto {
   /* border: 2px solid; */
   min-width: 100%;
-  display: block;
-  min-height: 90%;
+  max-height: 90%;
+  display: flex;
 }
 .detalhes-texto-container {
   /* border: 2px solid; */
