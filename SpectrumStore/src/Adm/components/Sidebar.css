@@ -30,7 +30,7 @@
   color: #03374c;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
-  font-size: 21px;
+  font-size: auto;
   transition: all 0.2s;
 }
 
@@ -50,7 +50,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 5%;
+  /* margin-top: 5%; */
 }
 .butons-sidebar.active {
   background-color: #d9f3f3;

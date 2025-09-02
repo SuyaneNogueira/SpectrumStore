@@ -1,7 +1,7 @@
 
 .container-produtos-adm {
   /* border: solid; */
-  height: 90vh;
+  height: 95%;
 }
 
 .titulo-produtos-adm {
@@ -29,8 +29,8 @@
 }
 
 .icones-geral-adm-produtos {
-  width: 30%;
-  margin-left: 59%;
+  width: 35%;
+  margin-left: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@
 
 .cadastro-dos-produtos-adm {
   /* border: solid red; */
-  height: 84%;
+  height: 79%;
   margin-top: 4%;
   display: flex;
   flex-wrap: wrap;
@@ -83,15 +83,15 @@
   /* border: solid; */
   width: 98%;
   gap: 4%;
-  height: 85%;
+  height: 80%;
   margin-left: 1%;
   overflow-x: auto;
 }
 
 .criar-produto-adm {
-  height: 65%;
+  height: 70%;
   border: solid 2px #a2c9cd;
-  width: 30%;
+  width: 24%;
 }
 
 .button-adicionar-produto-adm {
@@ -108,8 +108,8 @@
 .card-produtos-adm {
   border: solid 2px #a2c9cd;
   gap: 8px;
-  height: 65%;
-  width: 30%;
+  height: 70%;
+  width: 24%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,14 +166,14 @@
 }
 
 .ajust-categoria-adm {
-  /* margin-left: 16%; */
+  font-size: 14px;
 }
 
 .div-nome-produto-adm-card {
   /* border: solid green; */
   width: 80%;
   color: #021c41;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .div-descrição-produto-adm {
@@ -189,6 +189,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
+  font-size: 14px;
 }
 
 .div-botoes-card-edita-ex-adm {
