@@ -20,7 +20,10 @@ import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
 import TelaDePerfil from "../TelaDePefil/Perfil/TelaDePerfil";
 import CarrinhoP2 from "../Cliente/Carrinho/CarrinhoP2";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c3c307f2f57aa80d72ae0b009f3ee3498db9c32
 
 const Router = createBrowserRouter([
     { path: "/", element: <Tela_inicial/> },

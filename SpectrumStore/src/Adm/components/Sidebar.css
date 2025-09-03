@@ -30,11 +30,7 @@
   color: #03374c;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
-<<<<<<< HEAD
-  font-size: 17px;
-=======
   font-size: auto;
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
   transition: all 0.2s;
 }
 
@@ -54,12 +50,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-<<<<<<< HEAD
-  margin-top: 3%;
-  
-=======
   /* margin-top: 5%; */
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
 }
 .butons-sidebar.active {
   background-color: #d9f3f3;

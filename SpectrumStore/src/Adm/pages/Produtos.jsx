@@ -126,6 +126,7 @@ export default function Produtos() {
             <div className="imagem-down-png-adm">
               {/* 🔹 SELECT PARA FILTRO */}
               <select
+              className="select-image-down-produtos-adm"
                 value={categoriaSelecionada}
                 onChange={(e) => {
                   setCategoriaSelecionada(e.target.value);
