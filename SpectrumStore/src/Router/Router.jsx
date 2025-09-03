@@ -18,7 +18,7 @@ import Pedidos from "../Adm/pages/Pedidos";
 import Estatisticas from "../Adm/pages/Estatisticas";
 import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
-import TelaDePerfil from "../TelaDePefil/TelaDePerfil";
+import TelaDePerfil from "../TelaDePefil/Perfil/TelaDePerfil";
 
 
 const Router = createBrowserRouter([

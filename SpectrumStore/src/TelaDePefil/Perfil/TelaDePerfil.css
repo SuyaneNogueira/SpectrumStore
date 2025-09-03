@@ -11,72 +11,77 @@
   padding: 3%;
   display: flex;
   align-items: center;
-  gap: 4%;
+  gap: 3%;
 }
 
 .foto-perfil {
-  width: 225px;
-  height: 225px;
+  width: 180px !important;
+  height: 180px !important;
   border-radius: 50%;
   background: #6AB3BC;
-  object-fit: cover;
-  margin-left: 5%;
-  margin-top: -8%;
+  /* object-fit: cover; */
+  margin-left: 4.5%;
+  margin-top: -7.7%;
 }
 
 .perfil-info {
   margin: 1% 0%;
-  margin-top: -4%;
+  margin-top: -4.5%;
 }
 
 .perfil-info p{
   margin: 1% 0%;
-  font-size: 114%;
+  font-size: 112%;
   margin-top: 4%;
 }
 
 /* Abas (histórico, avaliações, pesquisa) */
 .perfil-abas {
   display: flex;
+  width: 100%;
+  height: 60px;
   align-items: center;
-  gap: 2%;
+  gap: 1.1%;
   background: #A2C9CD; /* navbar */
-  padding: 10px;
+  padding: 11px;
 
 }
 
 .aba {
   background: transparent;
   border: none;
-  padding: 10px 20px;
+  padding: 9px 18px;
   cursor: pointer;
   font-weight: bold;
   color: #023B52;
   transition: 0.2s;
+  font-size: 79%;
 }
 
 .aba.ativa {
   background: #067591; 
   color: white;
+  width: 18%;
   border-radius: 8px;
   text-decoration: none;
   margin-left: 2%;
 }
 
 .perfil-pesquisa {
-  margin-left: 48%;
-  padding: 6px 15px;
+  margin-left: 590px;
+  padding: 6px 20px;
   border: none;
   border-radius: 6px;
   color: #034E61;
+  width: 16%;
 }
 
 
 .perfil-conteudo {
-  padding: 20px;
+  padding: 18px;
   background: #ffffff; 
   border-radius: 8px;
-  margin-top: 15px;
+  margin-top: 11px;
 }
 
 
@@ -91,7 +96,7 @@
   position: relative;
   border: 1px solid #ccc;
   padding: 2%;
-  width: 15%;
+  width: 15.5%;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -115,7 +120,7 @@
 }
 
 .container-descricao, h4{
-  font-size: 101%;
+  font-size: 90%;
   margin-top: 2%;
 }
 
@@ -130,7 +135,7 @@
 
 .perfil-topo {
   width: 100%;
-  height: 140px; 
+  height: 120px; 
   background: url('/Fundo-brinquedos.png') center;
   background-size: 100%;
   background-color: #a2c9cde0;
@@ -141,7 +146,7 @@
 .menu-container {
   margin-left: auto;
   position: relative;
-  top: -70px;
+  top: -65px;
 }
 
 .menu-icone {
@@ -149,12 +154,12 @@
   border: none;
   cursor: pointer;
   color: #68A7AE;
-  width: 65%;
+  width: 62%;
   height: 2%;
   display: flex;
   align-items: start;
-  top: 10%;
-  margin-left: 90%;
+  margin-top: 15%;
+  margin-left: 96%;
 }
 
 .container-ajustes{

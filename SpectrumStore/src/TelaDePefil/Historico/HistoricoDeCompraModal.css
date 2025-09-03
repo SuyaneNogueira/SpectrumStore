@@ -66,7 +66,7 @@
 }
 
 .pedido-imagem { 
-  width: 25%; 
+  width: 30%; 
   height: 220px; 
   background: #7AB7BE; 
   border-radius: 12px; 
@@ -77,9 +77,9 @@
 .pedido-info { 
   display: flex; 
   flex-direction: column; 
-  gap: 10px; 
+  gap: 12px; 
   font-size: 15px;
-  margin-top: 1.5%;
+  margin-top: 2.5%;
 }
 
 .pedido-nome { 
@@ -92,22 +92,26 @@
 .pedido-preco { 
   background: #067591; 
   color: #fff; 
-  padding: 6px 12px; 
+  padding: 2.5% 5%; 
   border-radius: 10px; 
-  font-size: 16px; 
-  font-weight: bold;
-  display: inline-block;
+  font-size: 110%; 
   width: 25%;
+  /* border: #034E61 1px solid; */
 }
 
 .pedido-quantidade { 
   border: 1px solid #067591; 
-  padding: 6px 12px; 
+  padding: 2% 4.5%; 
   border-radius: 10px; 
   font-size: 15px; 
-  display: inline-block;
   width: 12%;
 }
+
+.span-pedido-preco{
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
 
 .botao-recomprar { 
   background: #067591; 
@@ -117,9 +121,8 @@
   border-radius: 8px; 
   cursor: pointer; 
   margin-top: 10px; 
-  font-size: 15px; 
+  font-size: 100%; 
   transition: 0.3s; 
-  font-weight: bold;
   width: 50%;
 }
 

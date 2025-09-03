@@ -12,8 +12,10 @@ function HistoricoDeCompraModal({ pedido, onClose }) {
           <div className="pedido-imagem"></div>
           <div className="pedido-info">
             <h3 className="pedido-nome">{pedido.nome}</h3>
+            <div className="span-pedido-preco">
             <span className="pedido-preco">R$ {pedido.preco}</span>
             <span className="pedido-quantidade">{pedido.qtd}</span>
+            </div>
             <p>{pedido.data}</p>
             <p>Número do Pedido: <strong>{pedido.numero}</strong></p>
             <p>Prazo de devolução: {pedido.devolucao}</p>

@@ -1,6 +1,6 @@
 .container-produtos-adm {
   /* border: solid; */
-  height: 90vh;
+  height: 89vh;
 }
 .titulo-produtos-adm {
   display: flex;
@@ -347,8 +347,8 @@ margin-right: 47%;
 
 .card-produtos-adm {
   border: solid 2px #a2c9cd;
-  gap: 10px;
-  height: 60%;
+  gap: 1px;
+  height: 65%;
   width: 22%;
   display: flex;
   /* flex-wrap: wrap; */
@@ -420,7 +420,7 @@ margin-right: 47%;
   /* border: solid; */
   width: 95%;
   gap: 4%;
-  height: 85%;
+  height: 75%;
   margin-left: 1%;
   /* overflow: scroll; */
   overflow-x: auto;
@@ -431,7 +431,7 @@ margin-right: 47%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15%;
+  height: 10%;
 }
 .botão-proximo-adm-produtos {
   /* border: solid ; */
