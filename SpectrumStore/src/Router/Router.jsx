@@ -18,12 +18,8 @@ import Pedidos from "../Adm/pages/Pedidos";
 import Estatisticas from "../Adm/pages/Estatisticas";
 import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
-<<<<<<< HEAD
 import TelaDePerfil from "../TelaDePefil/Perfil/TelaDePerfil";
-=======
-import TelaDePerfil from "../TelaDePefil/TelaDePerfil";
 import CarrinhoP2 from "../Cliente/Carrinho/CarrinhoP2";
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
 
 
 const Router = createBrowserRouter([

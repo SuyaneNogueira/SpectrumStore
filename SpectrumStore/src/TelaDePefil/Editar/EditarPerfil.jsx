@@ -6,27 +6,31 @@ function EditarPerfil({ onClose }) {
     <div className="modal-overlay">
       <div className="modal-conteudo">
         <button className="modal-fechar" onClick={onClose}>✕</button>
-        <h2>Editar Informações</h2>
+        <h2 className="modal-titulo">Editar Informações</h2>
 
-        <div className="editar-info">
-          <div className="editar-foto"></div>
-          <button className="alterar-foto">Alterar Foto</button>
+        <div className="editar-conteudo">
+          {/* Foto + botão alterar */}
+          <div className="editar-foto-container">
+            <div className="editar-foto"></div>
+            <button className="botao-alterar-foto">Alterar Foto</button>
+          </div>
+
+          {/* Campos de edição */}
+          <div className="editar-form">
+            <label><strong>Nome:</strong></label>
+            <input type="text" defaultValue="Maria Knupp" />
+
+            <label><strong>CPF:</strong></label>
+            <input type="text" defaultValue="110.597.338-40" />
+
+            <label><strong>Data de Nascimento:</strong></label>
+            <input type="date" defaultValue="2007-02-16" />
+          </div>
         </div>
 
-        <form className="editar-form">
-          <label>Nome:</label>
-          <input type="text" defaultValue="Maria Knupp" />
-
-          <label>CPF:</label>
-          <input type="text" defaultValue="110.597.338-40" />
-
-          <label>Data de Nascimento:</label>
-          <input type="date" defaultValue="2007-02-16" />
-
-          <button type="submit" className="botao-salvar">
-            Salvar Informações
-          </button>
-        </form>
+        <div className="editar-footer">
+          <button className="botao-salvar">Salvar Informações</button>
+        </div>
       </div>
     </div>
   );
