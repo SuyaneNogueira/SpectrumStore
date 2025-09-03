@@ -28,7 +28,14 @@ export default function Produtos() {
   });
 
   // 🔹 CATEGORIAS FIXAS
-  const categoriasFixas = ["Eletrônicos", "Roupas", "Brinquedos", "Esportes", "Casa", "Outros"];
+  const categoriasFixas = [
+    "Eletrônicos",
+    "Roupas",
+    "Brinquedos",
+    "Esportes",
+    "Casa",
+    "Outros",
+  ];
 
   // 🔹 estado para categoria selecionada (filtro)
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
@@ -98,8 +105,14 @@ export default function Produtos() {
 
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  const itensVisiveis = produtosFiltrados.slice(indexPrimeiroItem, indexUltimoItem);
-  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / itensPorPagina));
+  const itensVisiveis = produtosFiltrados.slice(
+    indexPrimeiroItem,
+    indexUltimoItem
+  );
+  const totalPaginas = Math.max(
+    1,
+    Math.ceil(produtosFiltrados.length / itensPorPagina)
+  );
 
   return (
     <div className="container-produtos-adm">
@@ -131,13 +144,28 @@ export default function Produtos() {
 
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
-            <FaRegBell size={30} color="#03374C" style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
+            <FaRegBell
+              size={30}
+              color="#03374C"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/")}
+            />
           </div>
           <div className="icon-search-adm-produtos">
-            <CiSearch size={30} color="#03374C" style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
+            <CiSearch
+              size={30}
+              color="#03374C"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/")}
+            />
           </div>
           <div className="icon-perfil-adm-produtos">
-            <CgProfile size={30} color="#03374C" style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
+            <CgProfile
+              size={30}
+              color="#03374C"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/")}
+            />
           </div>
         </div>
       </div>
@@ -159,18 +187,32 @@ export default function Produtos() {
 
           {itensVisiveis.map((produto, index) => {
             const originalIndex = produtos.findIndex((p) => p === produto);
-            const idParaAcoes = originalIndex !== -1 ? originalIndex : indexPrimeiroItem + index;
-            const key = originalIndex !== -1 ? originalIndex : `${indexPrimeiroItem}-${index}`;
+            const idParaAcoes =
+              originalIndex !== -1 ? originalIndex : indexPrimeiroItem + index;
+            const key =
+              originalIndex !== -1
+                ? originalIndex
+                : `${indexPrimeiroItem}-${index}`;
 
             return (
               <div key={key} className="card-produtos-adm">
                 <div className="ajustes-card-foto-adm">
-                  <img className="foto-card-adm" src={produto.imagem} alt={produto.nome} />
+                  <img
+                    className="foto-card-adm"
+                    src={produto.imagem}
+                    alt={produto.nome}
+                  />
                 </div>
 
                 <div className="div-valor-do-produto-adm">
-                  <p>R$ {produto.valor}</p>
-                  <p>Categoria: {produto.categoria}</p>
+                  <div className="preco-categota-produto-adm">
+                    <div className="style-valor-produto">
+                      <p><span>R$</span> {produto.valor}</p>
+                    </div>
+                    <div className="style-categorias-adm">
+                    <p className="ajust-categoria-adm">Categoria: {produto.categoria}</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="div-nome-produto-adm-card">
@@ -184,8 +226,12 @@ export default function Produtos() {
                 </div>
 
                 <div className="div-botoes-card-edita-ex-adm">
-                  <button onClick={() => handleEdit(idParaAcoes)}>Editar</button>
-                  <button onClick={() => handleDelete(idParaAcoes)}>Excluir</button>
+                  <button onClick={() => handleEdit(idParaAcoes)}>
+                    Editar
+                  </button>
+                  <button onClick={() => handleDelete(idParaAcoes)}>
+                    Excluir
+                  </button>
                 </div>
               </div>
             );
@@ -194,12 +240,17 @@ export default function Produtos() {
 
         <div className="div-botão-proximo-produtos-adm">
           <div className="botão-proximo-adm-produtos">
-            <ImArrowLeft onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))} disabled={paginaAtual === 1} />
+            <ImArrowLeft
+              onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))}
+              disabled={paginaAtual === 1}
+            />
             <span>
               Página {paginaAtual} de {totalPaginas}
             </span>
             <ImArrowRight
-              onClick={() => setPaginaAtual((p) => Math.min(p + 1, totalPaginas))}
+              onClick={() =>
+                setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
+              }
               disabled={paginaAtual === totalPaginas}
             />
           </div>
@@ -211,14 +262,24 @@ export default function Produtos() {
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
             <div className="botão-fechar-modal-adm">
-              <span className="close-btn-produtos-adm" onClick={() => setIsOpen(false)}>
+              <span
+                className="close-btn-produtos-adm"
+                onClick={() => setIsOpen(false)}
+              >
                 &times;
               </span>
             </div>
 
             <div className="imagem-clicavel-trocar-adm">
-              <label htmlFor="input-imagem" className="label-imagem-adm-produtos">
-                <img src={novoProduto.imagem} alt="Selecione a imagem do produto" className="preview-imagem-adm" />
+              <label
+                htmlFor="input-imagem"
+                className="label-imagem-adm-produtos"
+              >
+                <img
+                  src={novoProduto.imagem}
+                  alt="Selecione a imagem do produto"
+                  className="preview-imagem-adm"
+                />
               </label>
               <input
                 id="input-imagem"
@@ -243,7 +304,9 @@ export default function Produtos() {
                     <input
                       type="text"
                       value={novoProduto.nome}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, nome: e.target.value })}
+                      onChange={(e) =>
+                        setNovoProduto({ ...novoProduto, nome: e.target.value })
+                      }
                       required
                     />
                   </div>
@@ -253,7 +316,12 @@ export default function Produtos() {
                     <input
                       type="number"
                       value={novoProduto.valor}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, valor: e.target.value })}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          valor: e.target.value,
+                        })
+                      }
                       required
                     />
                   </div>
@@ -265,7 +333,12 @@ export default function Produtos() {
                     {/* 🔹 SELECT DE CATEGORIAS FIXAS NO MODAL */}
                     <select
                       value={novoProduto.categoria}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, categoria: e.target.value })}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          categoria: e.target.value,
+                        })
+                      }
                     >
                       <option value="">Selecione</option>
                       {categoriasFixas.map((cat, idx) => (
@@ -281,7 +354,9 @@ export default function Produtos() {
                     <input
                       type="text"
                       value={novoProduto.cor}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, cor: e.target.value })}
+                      onChange={(e) =>
+                        setNovoProduto({ ...novoProduto, cor: e.target.value })
+                      }
                     />
                   </div>
 
@@ -290,19 +365,28 @@ export default function Produtos() {
                     <input
                       type="text"
                       value={novoProduto.tamanho}
-                      onChange={(e) => setNovoProduto({ ...novoProduto, tamanho: e.target.value })}
+                      onChange={(e) =>
+                        setNovoProduto({
+                          ...novoProduto,
+                          tamanho: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
 
                 <div className="form-row-produtos-adm-tres">
-                 
                   <label>Descrição do produto:</label>
-                
+
                   <textarea
                     rows="2"
                     value={novoProduto.descricao}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, descricao: e.target.value })}
+                    onChange={(e) =>
+                      setNovoProduto({
+                        ...novoProduto,
+                        descricao: e.target.value,
+                      })
+                    }
                   ></textarea>
                 </div>
 
@@ -311,7 +395,12 @@ export default function Produtos() {
                   <textarea
                     rows="3"
                     value={novoProduto.paraQueServe}
-                    onChange={(e) => setNovoProduto({ ...novoProduto, paraQueServe: e.target.value })}
+                    onChange={(e) =>
+                      setNovoProduto({
+                        ...novoProduto,
+                        paraQueServe: e.target.value,
+                      })
+                    }
                   ></textarea>
                 </div>
 
