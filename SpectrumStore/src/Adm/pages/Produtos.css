@@ -1,11 +1,7 @@
 
 .container-produtos-adm {
   /* border: solid; */
-<<<<<<< HEAD
-  height: 89vh;
-=======
-  height: 95%;
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
+  height: 93%;
 }
 
 .titulo-produtos-adm {
@@ -17,19 +13,28 @@
 
 .categorias-produto-adm {
   border: solid 2px #a2c9cd;
-  height: 50%;
+  /* height: 50%; */
   margin-top: 4%;
   border-radius: 10px;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .imagem-down-png-adm {
   border: solid 2px #a2c9cd;
-  width: 40%;
+  width: 50%;
   margin-left: 5%;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  margin-right: 1%;
+}
+.select-image-down-produtos-adm{
+/* border: solid cadetblue; */
+border-radius: 8px;
+border: none;
+width: 99%;
+/* font-size: 14px; */
 }
 
 .icones-geral-adm-produtos {
@@ -87,7 +92,7 @@
   /* border: solid; */
   width: 98%;
   gap: 4%;
-  height: 80%;
+  height: 79%;
   margin-left: 1%;
   overflow-x: auto;
 }
@@ -111,9 +116,9 @@
 
 .card-produtos-adm {
   border: solid 2px #a2c9cd;
-  gap: 8px;
-  height: 70%;
-  width: 24%;
+  gap: 1px;
+  height: 77%;
+  width: 23%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,21 +175,22 @@
 }
 
 .ajust-categoria-adm {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .div-nome-produto-adm-card {
   /* border: solid green; */
   width: 80%;
   color: #021c41;
-  font-size: 16px;
+  font-size: 15px;
+  height: 10%;
 }
 
 .div-descrição-produto-adm {
   width: 80%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  height: 7%;
+  /* height: 7%; */
 }
 .div-descrição-produto-adm p {
   display: -webkit-box;
@@ -197,8 +203,13 @@
 }
 
 .div-botoes-card-edita-ex-adm {
-  border: solid;
-  margin-top: 11%;
+  /* border: solid; */
+  margin-top: 2%;
+  width: 60%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 15%
 }
 
 .div-botão-proximo-produtos-adm {
@@ -238,8 +249,8 @@
 
 .modal-content-produtos-adm {
   background: #fff;
-  width: 33%;
-  height: 77%;
+  width: 34%;
+  height: 80%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -258,7 +269,10 @@
 }
 
 .botão-fechar-modal-adm {
-  width: 90%;
+  width: 10%;
+  position: absolute;
+  top: 10px;
+  left: 30px;
 }
 
 .close-btn-produtos-adm {
@@ -271,6 +285,8 @@
   height: 34%;
   width: 70%;
   border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .label-imagem-adm-produtos {
@@ -297,16 +313,14 @@
   height: 55%;
 }
 
-.modal-form-produtos-adm {
-  /* sem estilos definidos */
-}
 
 .form-row-produtos-adm-um {
   gap: 6%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  /* height: 60px; */
+  font-size: 14px;
 }
 .form-row-produtos-adm-um input {
   height: 20px;
@@ -334,6 +348,7 @@
   width: 75%;
   gap: 2%;
   margin-left: 15%;
+  font-size: 14px;
 }
 .form-row-produtos-adm-dois input {
   height: 25px;
@@ -372,7 +387,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80px;
+  /* height: 80px; */
   width: 100%;
   margin-top: 2%;
 }
@@ -384,6 +399,7 @@
 }
 .form-row-produtos-adm-tres label {
   margin-right: 47%;
+  font-size: 14px;
 }
 
 .form-row-produtos-adm-quatro {
@@ -392,6 +408,7 @@
   height: 100px;
   width: 70%;
   margin-left: 15%;
+  font-size: 14px;
 }
 .form-row-produtos-adm-quatro textarea {
   background-color: #a2c9cd;
@@ -403,7 +420,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45px;
+  /* height: 45px; */
+  margin-top: 5%;
 }
 .modal-buttons-produto-adm button {
   height: 70%;
@@ -414,26 +432,7 @@
   margin-top: 5%;
 }
 
-<<<<<<< HEAD
-/* ///////////////////////////css card dos produtos ///////////////////////////*/
 
-.card-produtos-adm {
-  border: solid 2px #a2c9cd;
-  gap: 1px;
-  height: 65%;
-  width: 22%;
-  display: flex;
-  /* flex-wrap: wrap; */
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* position: static; */
-=======
-/* botão dentro do modal */
-.btn-confirmar {
-  /* estilo herdado do button acima */
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
-}
 
 /* ============================= */
 /* === NÃO UTILIZADAS (CSS) ==== */
@@ -441,74 +440,7 @@
 
 .imagem-categorias-adm {
   height: 100%;
-<<<<<<< HEAD
-  /* border: solid yellow; */
-  /* border-radius: ; */
-  /* width: 130px; */
-}
-
-.ajustes-card-foto-adm {
-  border: solid magenta;
-  height: 40%;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  object-fit: contain;
-  overflow: hidden;
-}
-
-.div-nome-produto-adm-card {
-  border: solid green;
-  width: 80%;
-}
-
-.div-descrição-produto-adm{
-   /* border: solid yellow; */
-   width: 80%;
-   display: -webkit-box;        /* necessário para o line-clamp */
-  -webkit-box-orient: vertical; /* define orientação */
-  height: 7%;
-}
-.div-descrição-produto-adm p{
- display: -webkit-box;          /* necessário pro line-clamp funcionar */
-  -webkit-box-orient: vertical;  /* define orientação vertical */
-  -webkit-line-clamp: 2;         /* limita a 3 linhas */
-  overflow: hidden;              /* esconde o restante */
-  text-overflow: ellipsis;       /* adiciona "..." no final */
-  word-break: break-word;        /* evita palavras gigantes sem quebra */
-}
-.lista-produtos-adm {
-  flex-wrap: wrap;
-  display: flex;
-  /* border: solid; */
-  width: 95%;
-  gap: 4%;
-  height: 75%;
-  margin-left: 1%;
-  /* overflow: scroll; */
-  overflow-x: auto;
-}
-.div-botão-proximo-produtos-adm {
-  /* border: solid khaki; */
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10%;
-}
-.botão-proximo-adm-produtos {
-  /* border: solid ; */
-  width: 50%;
-  height: 50%;
-  background-color: #03374c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-=======
-  width: 100%;
->>>>>>> 572e69f91aff393880ac819962e9b8948d2a0e30
 }
 
 .button-adm-modal-produtos {
