@@ -9,16 +9,18 @@
   /* border: solid green;  */
   margin-top: 2%;
   margin-left: 1%;
+  /* height: 20%; */
 }
 
 .categorias-produto-adm {
   border: solid 2px #a2c9cd;
-  /* height: 50%; */
+  height: 40%;
   margin-top: 4%;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 110%;
+  /* margin-left: 1%; */
 }
 
 .imagem-down-png-adm {
@@ -115,7 +117,7 @@ width: 99%;
 }
 
 .card-produtos-adm {
-  border: solid 2px #a2c9cd;
+  border: solid 2px #E8E8E8;
   gap: 1px;
   height: 77%;
   width: 23%;
@@ -126,7 +128,7 @@ width: 99%;
 }
 
 .ajustes-card-foto-adm {
-  border: solid magenta;
+  border: solid #000000;
   height: 40%;
   width: 80%;
   display: flex;
@@ -138,6 +140,7 @@ width: 99%;
 
 .foto-card-adm {
   height: 100%;
+  width: 80%;
 }
 
 .div-valor-do-produto-adm {
@@ -158,6 +161,8 @@ width: 99%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  
 }
 .style-valor-produto span {
   color: #fff0a6;
@@ -175,9 +180,10 @@ width: 99%;
 }
 
 .ajust-categoria-adm {
-  font-size: 12px;
+  font-size: 10px;
+  border: solid;
+  /* width: 100%; */
 }
-
 .div-nome-produto-adm-card {
   /* border: solid green; */
   width: 80%;
@@ -203,13 +209,14 @@ width: 99%;
 }
 
 .div-botoes-card-edita-ex-adm {
-  /* border: solid; */
-  margin-top: 2%;
-  width: 60%;
+  /* border: solid brown; */
+  /* margin-top: 2%; */
+  width: 100%;
  display: flex;
  justify-content: center;
  align-items: center;
- gap: 15%
+ gap: 15%;
+ height: 20%;
 }
 
 .div-botão-proximo-produtos-adm {
@@ -250,17 +257,25 @@ width: 99%;
 .modal-content-produtos-adm {
   background: #fff;
   width: 34%;
-  height: 80%;
+  height: 85%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1%;
+  gap: 2%;
   align-items: center;
   justify-content: center;
 }
+.modal-form-produtos-adm{
+  /* gap: 6%; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* border: solid lawngreen; */
+  height: 20%;
+}
+
 .modal-content-produtos-adm h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
@@ -287,6 +302,7 @@ width: 99%;
   border-radius: 10px;
   object-fit: cover;
   overflow: hidden;
+  /* margin-top: 1%; */
 }
 
 .label-imagem-adm-produtos {
@@ -308,10 +324,10 @@ width: 99%;
   object-fit: cover;
 }
 
-.modal-body-produtos-adm {
+/* .modal-body-produtos-adm {
   width: 98%;
   height: 55%;
-}
+} */
 
 
 .form-row-produtos-adm-um {
@@ -324,6 +340,14 @@ width: 99%;
 }
 .form-row-produtos-adm-um input {
   height: 20px;
+}
+.div-nome-produto-adm{
+/* border: solid; */
+width: 34%;
+}
+.valor-modal-adm{
+/* border: solid; */
+width: 28%;
 }
 
 .div-nome-produto-adm input {
@@ -338,17 +362,19 @@ width: 99%;
   background-color: #a2c9cd;
   display: flex;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
+  width: 100%;
 }
 
 .form-row-produtos-adm-dois {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75%;
+  width: 70%;
   gap: 2%;
   margin-left: 15%;
   font-size: 14px;
+  /* border: solid orange; */
 }
 .form-row-produtos-adm-dois input {
   height: 25px;
@@ -356,31 +382,37 @@ width: 99%;
 }
 
 .div-categoria-produtos-adm select {
-  margin-left: 1%;
+  /* margin-left: 1%; */
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
   height: 30px;
-  width: 110px;
+  width: 100px;
 }
 
 .div-cor-produto-adm {
-  margin-right: 4%;
+  /* margin-right: 4%; */
+  /* border: solid goldenrod; */
+  width: 45%;
 }
 .div-cor-produto-adm input {
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
+  /* height: 100%; */
+  width: 100%;
 }
 
 .tamanho-produto-adm {
   margin-left: 1%;
+  /* border: solid rebeccapurple; */
 }
 .tamanho-produto-adm input {
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
   margin-left: 1%;
+  width: 100%;
 }
 
 .form-row-produtos-adm-tres {
@@ -420,16 +452,18 @@ width: 99%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 45px; */
-  margin-top: 5%;
+  height: 100%;
+  /* margin-top: 5%; */
+  /* border: solid hotpink; */
 }
 .modal-buttons-produto-adm button {
-  height: 70%;
+  /* height: 100%; */
   background-color: #a2c9cd;
   border: none;
-  width: 30%;
+  width: 25%;
   border-radius: 10px;
-  margin-top: 5%;
+  /* margin-top: 5%; */
+  height: 50%;
 }
 
 
@@ -457,4 +491,83 @@ width: 99%;
   width: 100%;
   overflow: hidden;
   object-fit: cover;
+}
+
+/* Estilo padrão (desktop) */
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Tablet */
+@media (max-width: 1366px) {
+  .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+/* modal do botão excluir */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* fundo escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* garante que fique na frente */
+}
+
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 280px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.botoes-modal {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.botoes-modal button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.botoes-modal button:first-child {
+  background: #d9534f; /* vermelho */
+  color: white;
+}
+
+.botoes-modal button:first-child:hover {
+  background: #c9302c;
+}
+
+.botoes-modal button:last-child {
+  background: #6c757d; /* cinza */
+  color: white;
+}
+
+.botoes-modal button:last-child:hover {
+  background: #5a6268;
 }

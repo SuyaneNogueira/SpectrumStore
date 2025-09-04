@@ -12,8 +12,20 @@ export default function Produtos() {
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const itensPorPagina = 14;
 
+  // 🔹 estados do modal de exclusão
+  const [showModal, setShowModal] = useState(false);
+  const [indexParaExcluir, setIndexParaExcluir] = useState(null);
+
+  const confirmarExclusao = () => {
+    if (indexParaExcluir !== null) {
+      handleDelete(indexParaExcluir); // executa a exclusão
+      setShowModal(false); // fecha modal
+      setIndexParaExcluir(null); // limpa
+    }
+  };
+
+  const itensPorPagina = 14;
   const [editIndex, setEditIndex] = useState(null);
 
   const [novoProduto, setNovoProduto] = useState({
@@ -29,7 +41,7 @@ export default function Produtos() {
 
   // 🔹 CATEGORIAS FIXAS
   const categoriasFixas = [
-    "Eletrônicos",
+    "Brinquedos sensoriais",
     "Roupas",
     "Brinquedos",
     "Esportes",
@@ -126,7 +138,7 @@ export default function Produtos() {
             <div className="imagem-down-png-adm">
               {/* 🔹 SELECT PARA FILTRO */}
               <select
-              className="select-image-down-produtos-adm"
+                className="select-image-down-produtos-adm"
                 value={categoriaSelecionada}
                 onChange={(e) => {
                   setCategoriaSelecionada(e.target.value);
@@ -208,10 +220,14 @@ export default function Produtos() {
                 <div className="div-valor-do-produto-adm">
                   <div className="preco-categota-produto-adm">
                     <div className="style-valor-produto">
-                      <p><span>R$</span> {produto.valor}</p>
+                      <p>
+                        <span>R$</span> {produto.valor}
+                      </p>
                     </div>
                     <div className="style-categorias-adm">
-                    <p className="ajust-categoria-adm">Categoria: {produto.categoria}</p>
+                      <p className="ajust-categoria-adm">
+                        Categoria: {produto.categoria}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -230,7 +246,12 @@ export default function Produtos() {
                   <button onClick={() => handleEdit(idParaAcoes)}>
                     Editar
                   </button>
-                  <button onClick={() => handleDelete(idParaAcoes)}>
+                  <button
+                    onClick={() => {
+                      setIndexParaExcluir(idParaAcoes);
+                      setShowModal(true);
+                    }}
+                  >
                     Excluir
                   </button>
                 </div>
@@ -258,7 +279,20 @@ export default function Produtos() {
         </div>
       </div>
 
-      {/* MODAL */}
+      {/* Modal de confirmação */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>⚠️ Você quer mesmo excluir?</p>
+            <div className="botoes-modal">
+              <button onClick={confirmarExclusao}>Sim</button>
+              <button onClick={() => setShowModal(false)}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DE CADASTRO/EDIÇÃO */}
       {isOpen && (
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
