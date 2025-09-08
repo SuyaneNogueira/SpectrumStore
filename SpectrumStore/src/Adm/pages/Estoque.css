@@ -1,21 +1,99 @@
 .container-geral-estoque-adm {
-  border: solid orange;
-  height: 100%;
+  /* border: solid orange; */
+  height: 99%;
 }
 
 .titulo-estoque-adm {
   margin-top: 2%;
-  border: solid;
+  /* border: solid blue; */
   margin-left: 1%;
   display: flex;
-  /* height: 15%; */
+  height: 15%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.titulo-definitivo-estoque {
+  /* border: solid forestgreen; */
+  width: 100%;
+  display: flex;
+  height: 52%;
 }
 
 .icones-estoque-adm {
   width: 30%;
-  margin-left: 50%;
+  margin-left: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10%;
+  /* border: solid purple; */
+}
+
+.icons-notification-adm-estoque {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+}
+.icon-search-adm-estoque {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 75%;
+}
+.icon-perfil-adm-estoque {
+  border: solid 1px #03374c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 75%;
+}
+
+.div-info-estoque-res {
+  /* border: solid red; */
+  height: 50%;
+  display: flex;
+}
+.div-info-produtos-estoque {
+  /* border: solid; */
+  width: 18%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.div-enfeite-produtos-em-estoque {
+  border: solid #a2c9cd;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-info-produtos-fora-estoque {
+  /* border: solid khaki; */
+  width: 18%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.div-enfeite-produtos-fora-estoque{
+  border: solid #a2c9cd;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
