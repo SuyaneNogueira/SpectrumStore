@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'; 
 import Navbar from '../Navbar/Navbar';
 import './Tela_produtos.css';
 import { Link, useParams } from 'react-router-dom';
 import StarRating from '../TelaInicial/StarRating';
-// import Radio from './Radio'
 import Abaco from '../imagens/Abaco.jpg';
 import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
 import MassinhaModelar from '../imagens/Massinha-modelar.webp';
 import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import personalizacoesPorCategoria from './PersonalizacoesData'; 
+import { CartContext } from '../Carrinho/CartContext';
 
 const produtosSpectrum = [
   { id: 1, name: "Ábaco", price: 20.00, image: Abaco, description: "O ábaco é uma ferramenta de cálculo milenar para desenvolver o raciocínio lógico.", rating: 3.5, category: "JogosCognitivosEEducacionais"},
@@ -19,23 +19,40 @@ const produtosSpectrum = [
   { id: 5, name: "Cubo Mágico", price: 10.00, image: CuboMagico, description: "Clássico cubo mágico para desafiar a lógica e a paciência.", rating: 5.0, category: "BrinquedosEducativosEPedagogicos"}
 ];
 
-function Tela_produtos() {
+function Tela_produtos() { 
   const { id } = useParams();
   const produto = produtosSpectrum.find(p => p.id === parseInt(id));
-
-  // const [currentRating, setCurrentRating] = useState(produto.rating);
   const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
+  const { addToCart } = useContext(CartContext); 
+  const [quantidade, setQuantidade] = useState(1);
 
-  // const handleRatingChange = (newRating) => {
-  //  setCurrentRating(newRating);
-  //  console.log(`Nova avaliação para o produto ${produto.name}: ${newRating} estrelas`);
-  // };
-
-  const handlePersonalizacaoClick = (tipo, opcao) => {
-    setPersonalizacoesSelecionadas(prevState => ({
-      ...prevState,
-      [tipo]: opcao
+  const handlePersonalizacaoClick = (key, opcao) => {
+  // Verifica se a opção clicada já está selecionada
+  if (personalizacoesSelecionadas[key] === opcao) {
+    // Se estiver, remove a personalização daquele tipo
+    setPersonalizacoesSelecionadas(prev => {
+      const newSelections = { ...prev };
+      delete newSelections[key];
+      return newSelections;
+    });
+  } else {
+    // Se não estiver, seleciona a nova opção
+    setPersonalizacoesSelecionadas(prev => ({
+      ...prev,
+      [key]: opcao
     }));
+  }
+};
+
+  const handleAddToCart = () => {
+    if (produto) {
+        addToCart({ 
+            ...produto, 
+            personalizacoes: personalizacoesSelecionadas,
+            quantidade: quantidade 
+        });
+        alert('Produto adicionado ao carrinho!');
+    }
   };
 
   if (!produto) {
@@ -55,23 +72,18 @@ function Tela_produtos() {
            </div>
            <div className="detalhes-produto">
             <div className="detalhes-texto-container">
-               <h2 className="nome-produto">{produto.name}</h2>
-               <p className="descricao-produto-completa">{produto.description}</p>
-               <div className="avaliacao-produto">
-                <StarRating rating={produto.rating} />
-               </div>
-               {/* <div className="avaliacao-produto">
-                 <Radio 
-                    initialRating={currentRating} 
-                    onRatingChange={handleRatingChange} 
-                 />
-               </div> */}
-               </div>
-               </div>
+              <h2 className="nome-produto">{produto.name}</h2>
+              <p className="descricao-produto-completa">{produto.description}</p>
+              <div className="avaliacao-produto">
+               <StarRating rating={produto.rating} />
+              </div>
+              <p className="preco-produto"> <span className='cor-amarelo-preco-3'>R$:</span> {produto.price.toFixed(2)}</p>
             </div>
-             <div className="wrapper-linha"> {/* Adicione este wrapper */}
-               <div className="linha-divisora"></div>
-             </div>
+           </div>
+         </div>
+          <div className="wrapper-linha">
+            <div className="linha-divisora"></div>
+          </div>
           <div className="secao-personalizacao">
            <h3 className="titulo-personalizacao">Personalizações</h3>
            <div className="opcoes-personalizacao">
@@ -95,8 +107,21 @@ function Tela_produtos() {
                 </div>
               </div>
             ))}
+            
+            <div className="quantidade-e-botao">
+            <div className="seletor-quantidade">
+              <button onClick={() => setQuantidade(Math.max(1, quantidade - 1))}>-</button>
+              <input 
+                type="number" 
+                value={quantidade} 
+                readOnly 
+                min="1"
+              />
+              <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
+            </div>
+            <button onClick={handleAddToCart} className="botao-adicionar-carrinho">Adicionar ao carrinho</button>
+            </div>
            </div>
-           <Link to='/Carrinho' className="botao-adicionar-carrinho">Adicionar ao carrinho</Link>
          </div>
        </div>
        </div>

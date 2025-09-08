@@ -3,7 +3,7 @@ import Tela_inicial from "../TelaInicial/Tela_inicial";
 import Produtos from "../Adm/pages/Produtos";
 import Layout from "../Adm/components/Layout";
 import Dashboard from "../Adm/pages/Dashboard";
-import CarrnhoP1 from "../Cliente/Carrinho/CarrnhoP1";
+import CarrnhoP1 from "../Carrinho/CarrnhoP1";
 import BrinquedosSensoriais from "../Categorias/BrinquedosSensoriais";
 import BrinquedosEducativosEPedagogicos from "../Categorias/BrinquedosEducativosEPedagogicos";
 import RotinaEOrganizacao from "../Categorias/RotinaEOrganizacao";
@@ -19,7 +19,7 @@ import Estatisticas from "../Adm/pages/Estatisticas";
 import Estoque from "../Adm/pages/Estoque";
 import Tela_produtos from "../TelaProdutos/Tela_produtos";
 import TelaDePerfil from "../TelaDePefil/Perfil/TelaDePerfil";
-import CarrinhoP2 from "../Cliente/Carrinho/CarrinhoP2";
+import CarrinhoP2 from "../Carrinho/CarrinhoP2";
 
 const Router = createBrowserRouter([
     { path: "/", element: <Tela_inicial/> },

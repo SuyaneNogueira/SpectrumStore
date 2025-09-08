@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 import './CarrinhoP2.css'
 
 function CarrinhoP2() {
