@@ -42,11 +42,11 @@ export default function Produtos() {
   // 🔹 CATEGORIAS FIXAS
   const categoriasFixas = [
     "Brinquedos sensoriais",
-    "Roupas",
-    "Brinquedos",
-    "Esportes",
-    "Casa",
-    "Outros",
+    "Brinquedos educativos e pedagógicos  ",
+    "Rotina e organização",
+    "Moda e acessórios sensoriais",
+    "Ambiente e relaxamento",
+    "Jogos Cognitivos e Educacionais",
   ];
 
   // 🔹 estado para categoria selecionada (filtro)
@@ -226,7 +226,7 @@ export default function Produtos() {
                     </div>
                     <div className="style-categorias-adm">
                       <p className="ajust-categoria-adm">
-                        Categoria: {produto.categoria}
+                         {produto.categoria}
                       </p>
                     </div>
                   </div>
