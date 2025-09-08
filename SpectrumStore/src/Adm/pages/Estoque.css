@@ -88,12 +88,24 @@
   align-items: center;
 }
 
-.div-enfeite-produtos-fora-estoque{
+.div-enfeite-produtos-fora-estoque {
   border: solid #a2c9cd;
   width: 80%;
   height: 80%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+}
+.lista-produtos-estoque {
+  border: solid red;
+  height: 100%;
+}
+
+.receber-produtos-estoque-adm {
+  border: solid;
+  height: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
 }
