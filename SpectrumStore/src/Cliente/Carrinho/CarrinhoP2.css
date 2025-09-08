@@ -9,18 +9,21 @@
 /*  */
 
 .imagenfundoCarinho{
-    /* border: 2px solid #6427b3; */
-    display: flex;
-    
+     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 92%;
+    /* background-color: aqua; */
+    height: 100%;
+    background-image: url('CarrinhoFundooooo.png');
+     background-repeat: no-repeat;
 }
 
-.imagem-carrinho{
-    /* border: 2px solid #d314c3; */
+/* .imagem-carrinho{
+    border: 2px solid #d314c3;
     height: 100%;
     width: 100%;
-}
+} */
 
 .div-fundo-branco{
  background-color: rgba(255, 255, 255, 0.5);

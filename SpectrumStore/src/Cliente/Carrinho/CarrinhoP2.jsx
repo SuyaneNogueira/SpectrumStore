@@ -7,8 +7,8 @@ function CarrinhoP2() {
     <div className='Carrinho-pagamento'>
         <Navbar/>
       <div className='imagenfundoCarinho'>
-        <img className='imagem-carrinho' src="CarrinhoFundooooo.png" alt="" />
-      </div>
+        {/* <img className='imagem-carrinho' src="CarrinhoFundooooo.png" alt="" /> */}
+      
       <div className='div-fundo-branco'>
        <div className='div-conteiner1' >
         <div className='card1-de-protudo'>
@@ -24,6 +24,7 @@ function CarrinhoP2() {
        <div className='div-conteiner2'>
         
        </div>
+      </div>
       </div>
     </div>
   )
