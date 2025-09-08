@@ -1,9 +1,8 @@
-// src/components/CarrinhoP1/CarrinhoP1.jsx
 import React, { useContext } from 'react';
 import './CarrinhoP1.css';
 import Navbar from '../Navbar/Navbar';
 import StarRating from '../TelaInicial/StarRating';
-import { CartContext } from './CartContext'; 
+import { CartContext } from './CartContext';
 import TrashIcon from '../imagens/trash-icon.png'; 
 import { Link } from 'react-router-dom';
 
@@ -31,7 +30,7 @@ function CarrnhoP1() {
           </div>
           <div className="lista-produtos-scroll">
           {cartItems && cartItems.map((item, index) => (
-            <div className='Card1' key={item.cartItemId || index}>
+            <div className='Card1' key={item.cartItemId || `item-${index}`}>
               <div className='div-checkbox-e-imagem'>
                 <div className="content">
                   <label className="checkBox">
@@ -55,11 +54,24 @@ function CarrnhoP1() {
                   </div>
                   <div className='descrição'>
                     <p>{item.name}</p>
-                    {item.personalizacoes && Object.entries(item.personalizacoes).map(([key, value]) => (
-                      <p key={key}>
-                        {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
-                      </p>
-                    ))}
+                    {item.personalizacoes && Object.entries(item.personalizacoes).length > 0 && (
+                      <div className="personalizacoes-carrinho">
+                        {Object.entries(item.personalizacoes).map(([key, value]) => (
+                          <div key={key} className="personalizacao-item-carrinho">
+                            <span className="personalizacao-chave">{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                            {key === 'cor' || key === 'corFundo' || key === 'corPrincipal' ? (
+                              <div 
+                                className="cor-carrinho" 
+                                style={{ backgroundColor: value.toLowerCase().replace(/á/g, 'a').replace(/é/g, 'e') }}
+                                title={value}
+                              />
+                            ) : (
+                              <span className="personalizacao-valor">{value}</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className='div-valor-brinquedo-carrinho'>
                       <span className='cor-amarelo-preco-2'>R$:</span> {item.price.toFixed(2)}

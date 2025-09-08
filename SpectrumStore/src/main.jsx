@@ -3,7 +3,7 @@ import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './Router/Router.jsx';
 import { GlobalContextProvider } from './Global Context/GlobalContext.jsx';
-import { CartProvider } from '../src/Carrinho/CartContext.jsx'; 
+import { CartProvider } from '../src/Carrinho/CartProvider.jsx'; 
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

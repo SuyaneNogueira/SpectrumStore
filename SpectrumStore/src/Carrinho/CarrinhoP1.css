@@ -52,7 +52,6 @@
     padding: 15px;
     display: flex;
     align-items: center;
-   
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
     padding-right: 25px;
     
@@ -131,14 +130,60 @@
     flex-grow: 1;
 }
 
+/* Estilos para as personalizações no carrinho */
+.personalizacoes-carrinho {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0;
+}
+
+.personalizacao-item-carrinho {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.personalizacao-item-carrinho:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.personalizacao-chave {
+  font-weight: 600;
+  color: #495057;
+}
+
+.personalizacao-valor {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.cor-carrinho {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #dee2e6;
+  cursor: pointer;
+}
+
 .div-valor-brinquedo-carrinho {
     font-weight: bold;
     color: #03374C;
+    
 }
 
 .div-button-carrinho {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     width: 100%;
     padding: 10px;
@@ -153,7 +198,7 @@
 }
 
 .cor-amarelo-preco-2 {
-  color: #9e8d39; 
+  color: #ed9b20; 
 }
 
 .Descrição-estrela .descrição p {
@@ -209,3 +254,4 @@
   flex-direction: column;
   gap: 15px; 
 }
+

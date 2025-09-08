@@ -9,18 +9,37 @@ export default function Estoque() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState([]);
 
+  // 🔹 estado para categoria selecionada
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
+  // 🔹 categorias fixas + "Todos"
+  const categoriasFixas = [
+    "Brinquedos sensoriais",
+    "Brinquedos educativos e pedagógicos",
+    "Rotina e organização",
+    "Moda e acessórios sensoriais",
+    "Ambiente e relaxamento",
+    "Jogos Cognitivos e Educacionais",
+  ];
+  const categorias = ["Todos", ...categoriasFixas];
+
   // carregar produtos do localStorage (os mesmos do Produtos.jsx)
   useEffect(() => {
     const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
     setProdutos(produtosSalvos);
   }, []);
 
+  // 🔹 aplicar filtro por categoria
+  const produtosFiltrados =
+    categoriaSelecionada === "Todos"
+      ? produtos
+      : produtos.filter((p) => p.categoria === categoriaSelecionada);
+
   return (
     <div className="container-geral-estoque-adm">
       <div className="titulo-estoque-adm">
         <div className="titulo-definitivo-estoque">
           <h1>Estoque</h1>
-          {/* {} */}
           <div className="icones-estoque-adm">
             <div className="icons-notification-adm-estoque">
               <FaRegBell
@@ -64,8 +83,29 @@ export default function Estoque() {
           <div className="div-info-produtos-fora-estoque">
             <div className="div-enfeite-produtos-fora-estoque">
               <p>
-                Fora estoque: {produtos.filter((p) => p.quantidade === 0).length}
+                Fora estoque:{" "}
+                {produtos.filter((p) => p.quantidade === 0).length}
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 🔹 Select de categorias */}
+        <div className="categorias-estoque-adm">
+          <div className="aba-categorias-estoque-produto">
+            <p>Categorias</p>
+            <div className="imagem-down-png-adm-estoque">
+              <select
+                className="select-image-down-estoque-adm"
+                value={categoriaSelecionada}
+                onChange={(e) => setCategoriaSelecionada(e.target.value)}
+              >
+                {categorias.map((cat, idx) => (
+                  <option key={idx} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
@@ -73,11 +113,14 @@ export default function Estoque() {
 
       {/* 🔹 Área para receber os produtos do Produtos.jsx */}
       <div className="receber-produtos-estoque-adm">
-        {produtos.map((produto, index) => (
+        {produtosFiltrados.map((produto, index) => (
           <div key={index} className="produto-card-estoque">
-            <h3>{produto.nome}</h3>
-            <p>Categoria: {produto.categoria}</p>
+            
+            <div className="preco-categoria-produtos-estoque">
             <p>Preço: R$ {produto.valor}</p>
+            <p>Categoria: {produto.categoria}</p> 
+            </div>          
+            <h3>{produto.nome}</h3>
             <p>Quantidade: {produto.quantidade ?? 0}</p>
           </div>
         ))}

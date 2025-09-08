@@ -6,11 +6,11 @@
 .titulo-estoque-adm {
   margin-top: 2%;
   /* border: solid blue; */
-  margin-left: 1%;
   display: flex;
-  height: 15%;
+  height: 20%;
   flex-wrap: nowrap;
   flex-direction: column;
+  gap: 5%;
 }
 
 .titulo-definitivo-estoque {
@@ -33,11 +33,11 @@
 .icons-notification-adm-estoque {
   border: solid 1px #03374c;
   border-radius: 10px;
-  width: 12%;
+  width: 16%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75%;
+  height: 80%;
 }
 .icon-search-adm-estoque {
   border: solid 1px #03374c;
@@ -45,8 +45,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12%;
-  height: 75%;
+  width: 16%;
+  height: 80%;
 }
 .icon-perfil-adm-estoque {
   border: solid 1px #03374c;
@@ -54,14 +54,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12%;
-  height: 75%;
+  width: 16%;
+  height: 80%;
 }
 
 .div-info-estoque-res {
-  /* border: solid red; */
-  height: 50%;
+  /* border: solid red;  */
   display: flex;
+  height: 50%;
 }
 .div-info-produtos-estoque {
   /* border: solid; */
@@ -73,11 +73,12 @@
 .div-enfeite-produtos-em-estoque {
   border: solid #a2c9cd;
   width: 80%;
-  height: 80%;
+  height: 75%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 13px;
 }
 
 .div-info-produtos-fora-estoque {
@@ -86,26 +87,66 @@
   display: flex;
   /* justify-content: center; */
   align-items: center;
+  /* height: 100%; */
 }
 
 .div-enfeite-produtos-fora-estoque {
   border: solid #a2c9cd;
   width: 80%;
-  height: 80%;
+  height: 75%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
 }
 .lista-produtos-estoque {
-  border: solid red;
+  /* border: solid red; */
   height: 100%;
 }
 
 .receber-produtos-estoque-adm {
-  border: solid;
+  border: solid rebeccapurple;
   height: 65%;
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
+  margin-top: 1%;
+}
+.produto-card-estoque{
+  border: solid blue;
+  height: 60%;
+  width: 30%;
+}
+.categorias-estoque-adm{
+  /* border: solid navy; */
+  height: 30%;
+  /* margin-top: 1%; */
+
+  
+}
+.aba-categorias-estoque-produto{
+  /* border: solid pink; */
+  display: flex;
+  /* margin-top: 1%; */
+}
+.imagem-down-png-adm-estoque{
+    border: solid 2px #a2c9cd;
+  width: 17%;
+  margin-left: 1%;
+  border-radius: 10px;
+  /* overflow: hidden; */
+  /* margin-right: 1%; */
+}
+.select-image-down-estoque-adm{
+
+/* border: solid cadetblue; */
+border-radius: 8px;
+border: none;
+width: 99%;
+font-size: 11px;
+}
+.preco-categoria-produtos-estoque{
+  border: solid gold;
+  display: flex;
 }

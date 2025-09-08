@@ -9,7 +9,7 @@ import MassinhaModelar from '../imagens/Massinha-modelar.webp';
 import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import personalizacoesPorCategoria from './PersonalizacoesData'; 
-import { CartContext } from '../Carrinho/CartContext';
+import { CartContext } from '../Carrinho/CartContext.jsx';
 
 const produtosSpectrum = [
   { id: 1, name: "Ábaco", price: 20.00, image: Abaco, description: "O ábaco é uma ferramenta de cálculo milenar para desenvolver o raciocínio lógico.", rating: 3.5, category: "JogosCognitivosEEducacionais"},
