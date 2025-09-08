@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import StarRating from '../TelaInicial/StarRating';
 import { CartContext } from './CartContext'; 
 import TrashIcon from '../imagens/trash-icon.png'; 
+import { Link } from 'react-router-dom';
 
 function CarrnhoP1() {
   const { cartItems, removeFromCart, toggleAllItems, toggleItem, selectAll, totalSelected } = useContext(CartContext);
@@ -78,7 +79,7 @@ function CarrnhoP1() {
                   Total: {totalSelected.toFixed(2)}
               </div>
             <div>
-              <button>Comprar itens</button>
+              <Link to='/pagamento'><button>Comprar itens</button></Link>
             </div>
           </div>
         </div>
