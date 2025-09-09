@@ -113,40 +113,65 @@
   overflow-x: auto;
   margin-top: 1%;
 }
-.produto-card-estoque{
+.produto-card-estoque {
   border: solid blue;
-  height: 60%;
+  height: 75%;
   width: 30%;
 }
-.categorias-estoque-adm{
+.categorias-estoque-adm {
   /* border: solid navy; */
   height: 30%;
   /* margin-top: 1%; */
-
-  
 }
-.aba-categorias-estoque-produto{
+.aba-categorias-estoque-produto {
   /* border: solid pink; */
   display: flex;
   /* margin-top: 1%; */
 }
-.imagem-down-png-adm-estoque{
-    border: solid 2px #a2c9cd;
+.imagem-down-png-adm-estoque {
+  border: solid 2px #a2c9cd;
   width: 17%;
   margin-left: 1%;
   border-radius: 10px;
   /* overflow: hidden; */
   /* margin-right: 1%; */
 }
-.select-image-down-estoque-adm{
-
-/* border: solid cadetblue; */
-border-radius: 8px;
-border: none;
-width: 99%;
-font-size: 11px;
+.select-image-down-estoque-adm {
+  /* border: solid cadetblue; */
+  border-radius: 8px;
+  border: none;
+  width: 99%;
+  font-size: 11px;
 }
-.preco-categoria-produtos-estoque{
+.preco-categoria-produtos-estoque {
   border: solid gold;
   display: flex;
+}
+.img-card-produto-estoque {
+  border: solid aqua;
+  height: 60%;
+}
+
+.preco-indivi-estoque-adm {
+  /* border: solid; */
+  width: 50%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.categoria-indivi-estoque-adm {
+  width: 50%;
+  font-size: 72%;
+  border: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preco-indivi-estoque-adm span {
+  color: #fff0a6;
+}
+.preco-indivi-estoque-adm p {
+  color: #ffffff;
+  border: seagreen;
 }
