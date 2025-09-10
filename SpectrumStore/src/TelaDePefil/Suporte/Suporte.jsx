@@ -1,44 +1,36 @@
 import React, { useEffect, useState } from "react";
-// import emailjs from "emailjs-com";
+import { useForm, ValidationError } from "@formspree/react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
-  const [from, setFrom] = useState("seuemail@gmail.com");
-  const [message, setMessage] = useState("");
+  const [state, handleSubmit] = useForm("mpwjbkbk"); // seu endpoint do Formspree
+  const [showPopup, setShowPopup] = useState(false);
 
-    useEffect(() => {
-      if (isOpen) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "";
-      }
-      return () => {
-        document.body.style.overflow = "";
-      };
-    }, [isOpen]);
-  
-    const handleSend = (e) => {
-    e.preventDefault();
-  
-    emailjs.send(
-      "spectrum",   
-      "template_b5s5hfk",   
-      {
-        from_email: from,
-        to_email: "spectrum.tea0204@gmail.com",
-        message: message,
-      },
-      "nx6hmLI3fMGC-7-w7"      
-    )
-    .then(() => {
-      alert("Mensagem enviada com sucesso!");
-      onClose();
-    })
-    .catch((error) => {
-      alert("Erro ao enviar: " + error.text);
-    });
-  };
-  
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      setShowPopup(true);
+
+
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+        onClose();
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [state.succeeded, onClose]);
+
   return (
     <div
       className="suporte-overlay"
@@ -55,38 +47,53 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
 
         <h2 className="suporte-titulo">Suporte</h2>
 
-        {/* De */}
-        <div className="suporte-campo">
-          <label className="suporte-label">De:</label>
-          <input
-            type="email"
-            className="suporte-input"
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
 
-        {/* Para */}
-        <div className="suporte-campo">
-          <label className="suporte-label">Para:</label>
-          <span className="suporte-texto">spectrum.tea0204@gmail.com</span>
-        </div>
+          <div className="suporte-campo">
+            <label className="suporte-label" htmlFor="email">De:</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              className="suporte-input"
+              placeholder="seuemail@gmail.com"
+              required
+            />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
+          </div>
 
-        <label className="suporte-label">Assunto:</label>
-        <textarea
-          placeholder="Digite sua mensagem..."
-          className="suporte-textarea"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
+          <div className="suporte-campo">
+            <label className="suporte-label">Para:</label>
+            <span className="suporte-texto">spectrum.tea0204@gmail.com</span>
+          </div>
 
-        <div className="suporte-actions">
-          <button className="suporte-btn" type="button" onClick={handleSend}>
-            Enviar
-          </button>
-          
-        </div>
+          <label className="suporte-label" htmlFor="message">Assunto:</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Digite sua mensagem..."
+            className="suporte-textarea"
+            required
+          ></textarea>
+          <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+          <div className="suporte-actions">
+            <button
+              className="suporte-btn"
+              type="submit"
+              disabled={state.submitting}
+            >
+              {state.submitting ? "Enviando..." : "Enviar"}
+            </button>
+          </div>
+        </form>
       </div>
+
+      {showPopup && (
+        <div className="suporte-popup-central">
+          <p>Email enviado com sucesso!</p>
+        </div>
+      )}
     </div>
   );
 }
