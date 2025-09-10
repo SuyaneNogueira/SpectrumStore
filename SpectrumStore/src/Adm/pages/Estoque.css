@@ -146,6 +146,7 @@
 .preco-categoria-produtos-estoque {
   border: solid gold;
   display: flex;
+  height: 10%;
 }
 .img-card-produto-estoque {
   border: solid aqua;
@@ -154,16 +155,16 @@
 
 .preco-indivi-estoque-adm {
   /* border: solid; */
-  width: 50%;
+  width: 30%;
   font-size: 15px;
   display: flex;
   align-items: center;
 }
 
 .categoria-indivi-estoque-adm {
-  width: 50%;
+  width: 70%;
   font-size: 72%;
-  border: solid;
+  /* border: solid; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,4 +175,29 @@
 .preco-indivi-estoque-adm p {
   color: #ffffff;
   border: seagreen;
+}
+
+.preco-indivi-estoque-adm{
+  background-color: #03374c;
+  /* border-radius: 2px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.container-identificao-produtos-estoque{
+  /* border: solid violet; */
+  height: 30%;
+}
+.nome-produto-estoque-adm{
+  border: solid saddlebrown;
+  color: #03374c;
+}
+.quantidade-produto-estoque-adm{
+  border: solid slateblue;
+  height: 30%;
+  display: flex;
+  color: #03374c;
+    
+  align-items: center;
 }

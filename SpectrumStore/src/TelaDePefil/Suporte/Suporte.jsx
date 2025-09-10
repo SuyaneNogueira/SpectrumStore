@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
