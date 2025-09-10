@@ -1,75 +1,89 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { CartContext } from './CartContext'; // Importa o contexto do arquivo separado
+// import React, { createContext, useState } from 'react';
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(() => {
-    const savedCart = localStorage.getItem('cartItems');
-    return savedCart ? JSON.parse(savedCart).map(item => ({ 
-      ...item, 
-      cartItemId: item.cartItemId || Date.now() + Math.random(),
-      isSelected: false 
-    })) : [];
-  });
+// export const CartContext = createContext();
 
-  const [selectAll, setSelectAll] = useState(false);
+// export const CartProvider = ({ children }) => {
+//     const [cartItems, setCartItems] = useState([]);
 
-  // Funções devem ser declaradas antes dos effects que as usam
-  const toggleAllItems = (checked) => {
-    setCartItems(prevItems => prevItems.map(item => ({ ...item, isSelected: checked })));
-  };
+//     const addToCart = (product) => {
+//         // Encontra se o item já existe
+//         const existingItem = cartItems.find(item => 
+//             item.id === product.id && 
+//             JSON.stringify(item.personalizacoes) === JSON.stringify(product.personalizacoes)
+//         );
 
-  const toggleItem = (cartItemId) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.cartItemId === cartItemId ? { ...item, isSelected: !item.isSelected } : item
-      )
-    );
-  };
+//         if (existingItem) {
+//             // Se o item já existe, atualiza a quantidade
+//             setCartItems(prevItems => 
+//                 prevItems.map(item =>
+//                     item.cartItemId === existingItem.cartItemId 
+//                         ? { ...item, quantidade: item.quantidade + product.quantidade, isSelected: true }
+//                         : item
+//                 )
+//             );
+//         } else {
+//             // Se não, adiciona como um novo item
+//             const newItem = {
+//                 ...product,
+//                 cartItemId: Date.now(),
+//                 isSelected: true,
+//             };
+//             setCartItems(prevItems => [...prevItems, newItem]);
+//         }
+//     };
 
-  const addToCart = (item) => {
-    const newItem = {
-      ...item,
-      cartItemId: Date.now() + Math.random(), // ID único
-      isSelected: false
-    };
-    setCartItems(prevItems => [...prevItems, newItem]);
-  };
+//     const updateQuantity = (cartItemId, newQuantity) => {
+//         setCartItems(prevItems => 
+//             prevItems.map(item =>
+//                 item.cartItemId === cartItemId 
+//                     ? { ...item, quantidade: newQuantity } 
+//                     : item
+//             )
+//         );
+//     };
 
-  const removeFromCart = (cartItemId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.cartItemId !== cartItemId));
-  };
+//     const removeFromCart = (cartItemId) => {
+//         setCartItems(prevItems => prevItems.filter(item => item.cartItemId !== cartItemId));
+//     };
 
-  // Effect para sincronizar selectAll
-  useEffect(() => {
-    const allSelected = cartItems.length > 0 && cartItems.every(item => item.isSelected);
-    setSelectAll(allSelected);
-  }, [cartItems]);
+//     const toggleItem = (cartItemId) => {
+//         setCartItems(prevItems => 
+//             prevItems.map(item =>
+//                 item.cartItemId === cartItemId 
+//                     ? { ...item, isSelected: !item.isSelected } 
+//                     : item
+//             )
+//         );
+//     };
 
-  // Effect para salvar no localStorage
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+//     const toggleAllItems = (select) => {
+//         setCartItems(prevItems => 
+//             prevItems.map(item => ({ ...item, isSelected: select }))
+//         );
+//     };
+    
+//     // Calcula o total com base na quantidade
+//     const totalSelected = cartItems.reduce((total, item) => {
+//         if (item.isSelected) {
+//             return total + (item.price * (item.quantidade || 1));
+//         }
+//         return total;
+//     }, 0);
 
-  const selectedItems = cartItems.filter(item => item.isSelected);
-  const totalSelected = selectedItems.reduce((sum, item) => sum + item.price, 0);
+//     const selectAll = cartItems.length > 0 && cartItems.every(item => item.isSelected);
 
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        toggleAllItems,
-        toggleItem,
-        selectAll,
-        totalSelected,
-        selectedItems
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
-};
-
-// Exporte também como padrão se preferir
-export default CartProvider;
+//     return (
+//         <CartContext.Provider value={{ 
+//             cartItems, 
+//             addToCart, 
+//             removeFromCart,
+//             updateQuantity,
+//             toggleItem,
+//             toggleAllItems,
+//             selectAll,
+//             totalSelected
+//         }}>
+//             {children}
+//         </CartContext.Provider>
+//     );
+// };

@@ -10,6 +10,7 @@ import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import personalizacoesPorCategoria from './PersonalizacoesData'; 
 import { CartContext } from '../Carrinho/CartContext.jsx';
+import Popup from './Popup'; // Importe o componente Pop-up aqui
 
 const produtosSpectrum = [
   { id: 1, name: "Ábaco", price: 20.00, image: Abaco, description: "O ábaco é uma ferramenta de cálculo milenar para desenvolver o raciocínio lógico.", rating: 3.5, category: "JogosCognitivosEEducacionais"},
@@ -25,34 +26,37 @@ function Tela_produtos() {
   const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
   const { addToCart } = useContext(CartContext); 
   const [quantidade, setQuantidade] = useState(1);
+  const [showPopup, setShowPopup] = useState(false); // Novo estado para o pop-up
 
   const handlePersonalizacaoClick = (key, opcao) => {
-  // Verifica se a opção clicada já está selecionada
-  if (personalizacoesSelecionadas[key] === opcao) {
-    // Se estiver, remove a personalização daquele tipo
-    setPersonalizacoesSelecionadas(prev => {
-      const newSelections = { ...prev };
-      delete newSelections[key];
-      return newSelections;
-    });
-  } else {
-    // Se não estiver, seleciona a nova opção
-    setPersonalizacoesSelecionadas(prev => ({
-      ...prev,
-      [key]: opcao
-    }));
-  }
-};
+    if (personalizacoesSelecionadas[key] === opcao) {
+      setPersonalizacoesSelecionadas(prev => {
+        
+        const newSelections = { ...prev };
+        delete newSelections[key];
+        return newSelections;
+      });
+    } else {
+      setPersonalizacoesSelecionadas(prev => ({
+        ...prev,
+        [key]: opcao
+      }));
+    }
+  };
 
   const handleAddToCart = () => {
     if (produto) {
-        addToCart({ 
-            ...produto, 
-            personalizacoes: personalizacoesSelecionadas,
-            quantidade: quantidade 
-        });
-        alert('Produto adicionado ao carrinho!');
+      addToCart({ 
+        ...produto, 
+        personalizacoes: personalizacoesSelecionadas,
+        quantidade: quantidade 
+      });
+      setShowPopup(true); 
     }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false); 
   };
 
   if (!produto) {
@@ -65,67 +69,74 @@ function Tela_produtos() {
     <div className='div-principal-produtos'>
       <Navbar/>
       <div className="alinhamento-produtos">
-       <div className="conteudo-principal">
-         <div className="secao-produto">
-           <div className="imagem-produto-container">
-             <img className="imagem-produto" src={produto.image} alt={produto.name} />
-           </div>
-           <div className="detalhes-produto">
-            <div className="detalhes-texto-container">
-              <h2 className="nome-produto">{produto.name}</h2>
-              <p className="descricao-produto-completa">{produto.description}</p>
-              <div className="avaliacao-produto">
-               <StarRating rating={produto.rating} />
-              </div>
-              <p className="preco-produto"> <span className='cor-amarelo-preco-3'>R$:</span> {produto.price.toFixed(2)}</p>
+        <div className="conteudo-principal">
+          <div className="secao-produto">
+            <div className="imagem-produto-container">
+              <img className="imagem-produto" src={produto.image} alt={produto.name} />
             </div>
-           </div>
-         </div>
+            <div className="detalhes-produto">
+              <div className="detalhes-texto-container">
+                <h2 className="nome-produto">{produto.name}</h2>
+                <p className="descricao-produto-completa">{produto.description}</p>
+                <div className="avaliacao-produto">
+                  <StarRating rating={produto.rating} />
+                </div>
+                <p className="preco-produto"> <span className='cor-amarelo-preco-3'>R$:</span> {produto.price.toFixed(2)}</p>
+              </div>
+            </div>
+          </div>
           <div className="wrapper-linha">
             <div className="linha-divisora"></div>
           </div>
           <div className="secao-personalizacao">
-           <h3 className="titulo-personalizacao">Personalizações</h3>
-           <div className="opcoes-personalizacao">
-            {Object.keys(personalizacoesDoProduto).map(key => (
-              <div key={key} className="grupo-opcao">
-                <p className="titulo-opcao">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</p>
-                <div className="opcoes-container">
-                  {personalizacoesDoProduto[key].map(opcao => (
-                    <div 
-                      key={opcao} 
-                      className={`personalizacao-item ${personalizacoesSelecionadas[key] === opcao ? 'selecionado' : ''}`}
-                      onClick={() => handlePersonalizacaoClick(key, opcao)}
-                    >
-                      {key === 'cor' || key === 'corFundo' || key === 'corPrincipal' ? (
-                        <div className="cor-quadrado" style={{ backgroundColor: opcao.toLowerCase().replace(/á/g, 'a').replace(/é/g, 'e') }}></div>
-                      ) : (
-                        <div className="textura-caixa">{opcao}</div>
-                      )}
-                    </div>
-                  ))}
+            <h3 className="titulo-personalizacao">Personalizações</h3>
+            <div className="opcoes-personalizacao">
+              {Object.keys(personalizacoesDoProduto).map(key => (
+                <div key={key} className="grupo-opcao">
+                  <p className="titulo-opcao">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</p>
+                  <div className="opcoes-container">
+                    {personalizacoesDoProduto[key].map(opcao => (
+                      <div 
+                        key={opcao} 
+                        className={`personalizacao-item ${personalizacoesSelecionadas[key] === opcao ? 'selecionado' : ''}`}
+                        onClick={() => handlePersonalizacaoClick(key, opcao)}
+                      >
+                        {key === 'cor' || key === 'corFundo' || key === 'corPrincipal' ? (
+                          <div className="cor-quadrado" style={{ backgroundColor: opcao.toLowerCase().replace(/á/g, 'a').replace(/é/g, 'e') }}></div>
+                        ) : (
+                          <div className="textura-caixa">{opcao}</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              ))}
+              
+              <div className="quantidade-e-botao">
+                <div className="seletor-quantidade">
+                  <button onClick={() => setQuantidade(Math.max(1, quantidade - 1))}>-</button>
+                  <input 
+                    type="number" 
+                    value={quantidade} 
+                    readOnly 
+                    min="1"
+                  />
+                  <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
+                </div>
+                <button onClick={handleAddToCart} className="botao-adicionar-carrinho">Adicionar ao carrinho</button>
               </div>
-            ))}
-            
-            <div className="quantidade-e-botao">
-            <div className="seletor-quantidade">
-              <button onClick={() => setQuantidade(Math.max(1, quantidade - 1))}>-</button>
-              <input 
-                type="number" 
-                value={quantidade} 
-                readOnly 
-                min="1"
-              />
-              <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
             </div>
-            <button onClick={handleAddToCart} className="botao-adicionar-carrinho">Adicionar ao carrinho</button>
-            </div>
-           </div>
-         </div>
-       </div>
-       </div>
-     </div>
+          </div>
+        </div>
+      </div>
+      
+      {showPopup && (
+        <Popup 
+          message="Produto adicionado ao carrinho!" 
+          onClose={handleClosePopup} 
+        />
+      )}
+    </div>
   );
 }
 

@@ -47,7 +47,7 @@ const Router = createBrowserRouter([
             { path: "estatisticas", element: <Estatisticas/> },
             { path: "produtos", element: <Produtos/> },
             { path: "estoque", element: <Estoque/> },
-        ],  
+        ], 
     }
 ]);
 
