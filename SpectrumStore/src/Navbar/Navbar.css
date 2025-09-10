@@ -6,6 +6,9 @@
     display: flex;
 
 }
+.link-telaInicial{
+  text-decoration: none;
+}
 .logo-spectrum-store{
     /* border: 2px solid; */
     width: 25%;

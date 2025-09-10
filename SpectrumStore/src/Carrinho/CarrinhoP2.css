@@ -16,10 +16,10 @@
 }
 
 .FundoBanco {
-    background-color: #fff; 
+    background-color: #ffffff85; 
     height: 88vh; 
     width: 70%;
-    border: 1px solid #ccc; 
+    /* border: 1px solid #ccc;  */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     margin-top: 1%;
     border-radius: 12px;
@@ -30,47 +30,157 @@
 }
 .div-conteinerDosProtudos{
  /* border: solid 2px ; */
-    background-color: #BDEBEB ; 
-    height: 40%; 
+    background-color: #A2C9CD ; 
+    height: 42%; 
     width: 100%;
     border-radius: 12px;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 4px; */
 }
 
 .div-protudos{
-    border: solid 2px ;
+    /* border: solid 2px pink; */
     /* background-color: #ebcabd ;  */
-    height: 98%; 
-    width: 24%;
-    border-radius: 12px;
-}
-.Protudos{
-     background-color: #1ad123;
-    border-radius: 3%;
-    padding: 4%;
+    height: 85%; 
+    width: 95%;
+    border-radius: 12px;  
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+}
+.Protudos{
+    background-color: #ffffff;
+    /* border: 2px solid #3a4c5a; */
+    width: 23%;
+    height: 100%;
+    border-radius: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.178); 
    
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
-    padding-right: 25px;
 }
 
-.imagem-protudo{
-   width:12% ; 
-   height:10% ;
+.imagem-protudo-pagamento{
+    /* border: solid 2px #e70909 ; */
+       display: flex;
+       justify-content: center;
+   width:65% ; 
+   height:60% ;
 }
 
+.imagem-pagamento{
+   /* border: solid 2px ; */
+  width:100% ; 
+   height:100% ;  
+}
 
+.infomações-protudo-pagamento{
+    /* border: solid 2px #4409e7;  */
+    height:35% ;
+    width: 78%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.nome-pagamento{
+    font-size: 78%;
+    color: #03374C;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
 
+.cor-amarelo-preco-2-pagamento{
+  color: #ed9b20; 
+  font-size: 80%;
+  font-weight: bold;    
+}
 
+.preço-pagamento-protudos{
+    font-size: 80%; 
+    font-weight: bold;
+    color: #054964;
+}
 
-
-
-
-
-
-
-
+.Card2-pagamento{
+    /* border: 2px solid; */
+    height: 50%;
+    background-color: #A2C9CD;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+.forma-pagamento-desistir{
+    /* border: 2px solid; */
+    width: 40%;
+    height: 90%;
+}
+.forma-pagamento{
+    /* border: 2px solid; */
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    height: 85%;
+}
+.botao-cancelar-compra{
+    /* border: 2px solid; */
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: end;
+}
+.botao-cancelar{
+    /* border: 2px solid; */
+    width: 50%;
+    height: 80%;
+    border-radius: 5px;
+    background-color: #03374C;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.total-geral-desconto-pagar{
+    /* border: 2px solid; */
+    width: 50%;
+    height: 90%;
+}
+.total-geral{
+    /* border: 2px solid; */
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    height: 85%;
+}
+.botao-pagar-compra{
+    /* border: 2px solid; */
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+.botao-pagar{
+    /* border: 2px solid; */
+    width: 40%;
+    height: 80%;
+    border-radius: 5px;
+    background-color: #085D72;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
 
 
 

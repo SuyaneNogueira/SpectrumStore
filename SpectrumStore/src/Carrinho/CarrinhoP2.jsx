@@ -18,19 +18,43 @@ function CarrinhoP2() {
      <div className='div-protudos'>
       {cartItems && cartItems.map((item, index)=> 
       <div className='Protudos' key={item.cartItemId || index}>
-      <div classname='imagem-protudo'>
-      <img classname='imagem' src={item.image} alt={item.name} />
+      <div className='imagem-protudo-pagamento'>
+      <img className='imagem-pagamento' src={item.image} alt={item.name} />
       </div>
-         <div classname='Nome-Protudo-pagamento'>
-          <p>{item.name}</p>
+      <div className='infomações-protudo-pagamento'>
+         <div className='Nome-Protudo-pagamento'>
+          <p className='nome-pagamento'>{item.name}</p>
         </div>
-        <div classname='valor-briquedo-pagamento'>
-          <span className='cor-amarelo-preco-2'>R$:</span> {item.price.toFixed(2)}
+        <div className='valor-briquedo-pagamento'>
+          <span className='cor-amarelo-preco-2-pagamento'>R$:</span> <span className='preço-pagamento-protudos'>{item.price.toFixed(2)}</span>
         </div>
+        <div className='quantidade-pagamento'>
+          ggggg
+        </div>
+      </div>
+        
       </div>
         )}
      </div>
       </div>
+    <div className="Card2-pagamento">
+      <div className="forma-pagamento-desistir">
+        <div className="forma-pagamento"></div>
+        <div className="botao-cancelar-compra">
+        <button className='botao-cancelar'>Cancelar Compra</button>
+        </div>
+
+      </div>
+
+      <div className="total-geral-desconto-pagar">
+        <div className="total-geral"></div>
+        <div className="botao-pagar-compra">
+         <button className='botao-pagar'>Pagar Compra</button> 
+        </div>
+        
+      </div>
+
+    </div>
 
     </div>
 

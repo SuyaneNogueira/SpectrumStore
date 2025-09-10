@@ -22,9 +22,9 @@ function Navbar({ onCategoriaClick, onPesquisaChange }) {
   return (
     <nav className="nav-principal">
       <div className='logo-spectrum-store'>
-        <h1 className='logo-escrita-spectrum-store'>
+        <Link to='/' className='link-telaInicial'><h1 className='logo-escrita-spectrum-store'>
           <span className='span-cor-logo-spectrum'>Spectrum</span> Store
-        </h1>
+        </h1></Link>
       </div>
 
       <div className='separacao-topicos-nav'>
