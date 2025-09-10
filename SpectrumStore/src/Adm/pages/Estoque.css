@@ -7,10 +7,10 @@
   margin-top: 2%;
   /* border: solid blue; */
   display: flex;
-  height: 20%;
+  height: 25%;
   flex-wrap: nowrap;
   flex-direction: column;
-  gap: 5%;
+  gap: 6%;
 }
 
 .titulo-definitivo-estoque {
@@ -21,7 +21,7 @@
 }
 
 .icones-estoque-adm {
-  width: 30%;
+  width: 40%;
   margin-left: 60%;
   display: flex;
   align-items: center;
@@ -62,6 +62,7 @@
   /* border: solid red;  */
   display: flex;
   height: 50%;
+  /* margin-top: 1%; */
 }
 .div-info-produtos-estoque {
   /* border: solid; */
@@ -71,7 +72,7 @@
   align-items: center;
 }
 .div-enfeite-produtos-em-estoque {
-  border: solid #a2c9cd;
+  border: solid 2px #a2c9cd;
   width: 80%;
   height: 75%;
   border-radius: 10px;
@@ -91,7 +92,7 @@
 }
 
 .div-enfeite-produtos-fora-estoque {
-  border: solid #a2c9cd;
+  border: solid 2px #a2c9cd;
   width: 80%;
   height: 75%;
   border-radius: 10px;
@@ -106,35 +107,46 @@
 }
 
 .receber-produtos-estoque-adm {
-  border: solid rebeccapurple;
+  /* border: solid rebeccapurple; */
   height: 65%;
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
-  margin-top: 1%;
+  margin-top: 2%;
+  gap: 3%;
 }
 .produto-card-estoque {
-  border: solid blue;
+  border: solid #E8E8E8;
   height: 75%;
-  width: 30%;
+  width: 28%;
 }
 .categorias-estoque-adm {
   /* border: solid navy; */
-  height: 30%;
+  height: 50%;
   /* margin-top: 1%; */
+  display: flex;
+  align-items: center;
+
 }
 .aba-categorias-estoque-produto {
-  /* border: solid pink; */
+  border: solid 2px #a2c9cd;
   display: flex;
   /* margin-top: 1%; */
+  margin-left: 0.0%;
+  width: 22%;
+  border-radius: 9px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 .imagem-down-png-adm-estoque {
   border: solid 2px #a2c9cd;
-  width: 17%;
-  margin-left: 1%;
+  width: 50%;
+  margin-left: 2%;
   border-radius: 10px;
   /* overflow: hidden; */
   /* margin-right: 1%; */
+
 }
 .select-image-down-estoque-adm {
   /* border: solid cadetblue; */
@@ -144,60 +156,113 @@
   font-size: 11px;
 }
 .preco-categoria-produtos-estoque {
-  border: solid gold;
+  /* border: solid gold; */
   display: flex;
-  height: 10%;
+  height: 9%;
+
 }
 .img-card-produto-estoque {
-  border: solid aqua;
+  /* border: solid aqua; */
   height: 60%;
+  display: flex;
+  align-items:center ;
+  justify-content:center ;
+
 }
 
 .preco-indivi-estoque-adm {
   /* border: solid; */
-  width: 30%;
   font-size: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.categoria-indivi-estoque-adm {
-  width: 70%;
-  font-size: 72%;
-  /* border: solid; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.categoria-indivi-estoque-adm {
+  border: solid navajowhite;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.categoria-indivi-estoque-adm p{
+font-size: 2vh;
+font-weight: 300;
+}
+
 .preco-indivi-estoque-adm span {
   color: #fff0a6;
 }
 .preco-indivi-estoque-adm p {
   color: #ffffff;
   border: seagreen;
+
 }
 
-.preco-indivi-estoque-adm{
+.preco-indivi-estoque-adm {
   background-color: #03374c;
   /* border-radius: 2px; */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  width: 28%;
+  border-radius: 9px;
+  margin-left: 4%;
+
 }
-.container-identificao-produtos-estoque{
+.container-identificao-produtos-estoque {
   /* border: solid violet; */
   height: 30%;
+  padding: 3%;
+  margin-left: 2%;
 }
-.nome-produto-estoque-adm{
-  border: solid saddlebrown;
+.nome-produto-estoque-adm {
+  /* border: solid saddlebrown; */
   color: #03374c;
 }
-.quantidade-produto-estoque-adm{
-  border: solid slateblue;
+.quantidade-produto-estoque-adm {
+  /* border: solid slateblue; */
   height: 30%;
   display: flex;
   color: #03374c;
-    
   align-items: center;
+  margin-top: 4%;
+}
+
+.style-estoque-produtos-adm {
+  /* border: solid firebrick; */
+  width: 50%;
+  font-size: 15px;
+}
+.style-botao-repor-estoque {
+  /* border: solid teal; */
+  width: 50%;
+  display: flex;
+  justify-content:center;
+  font-size: 15px;
+
+}
+
+.botão-repor-estoque{
+  background-color: #fff;              /* fundo branco */
+  color: #0f3c4c;                      /* cor do texto */
+  font-weight: 450;  
+  border: none;                        /* tira a borda padrão */
+  /* padding: 10px 20px; */
+  border-radius: 25px;                 /* deixa arredondado */
+  cursor: pointer;                     /* cursor de mãozinha */
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.15); /* sombra suave */
+  transition: all 0.3s ease;
+  height: 25px;
+  width: 85%;
+}
+.botão-repor-estoque:hover{
+background-color: #f5f5f5;           /* leve cinza no hover */
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* aumenta sombra */
+}
+.style-img-estoque-adm{
+  border: solid #E8E8E8;
+  width: 89%;
+  height: 85%;
 }

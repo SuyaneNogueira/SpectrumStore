@@ -116,7 +116,9 @@ export default function Estoque() {
         {produtosFiltrados.map((produto, index) => (
           <div key={index} className="produto-card-estoque">
             <div className="img-card-produto-estoque">
-              <div className="style-img-estoque-adm"></div>
+              <div className="style-img-estoque-adm">
+                
+              </div>
             </div>
             <div className="preco-categoria-produtos-estoque">
               <div className="preco-indivi-estoque-adm">
@@ -135,15 +137,14 @@ export default function Estoque() {
               </div>
 
               <div className="quantidade-produto-estoque-adm">
-                <div>
+                <div className="style-estoque-produtos-adm">
                   <p> Em Estoque: {produto.quantidade ?? 0}</p>
                 </div>
-                <div>
-                  <button>Repor Estoque</button>
+                <div className="style-botao-repor-estoque">
+                  <button className="botão-repor-estoque">Repor Estoque</button>
                 </div>
               </div>
 
-              
             </div>
           </div>
         ))}
