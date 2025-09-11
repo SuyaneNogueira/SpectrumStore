@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
+import EmojiPicker from "emoji-picker-react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
-  const [state, handleSubmit] = useForm("mpwjbkbk"); // seu endpoint do Formspree
+  const [state, handleSubmit] = useForm("mpwjbkbk"); // endpoint Formspree
   const [showPopup, setShowPopup] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (isOpen) {
@@ -21,15 +24,25 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
     if (state.succeeded) {
       setShowPopup(true);
 
-
       const timer = setTimeout(() => {
         setShowPopup(false);
         onClose();
-      }, 3000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
   }, [state.succeeded, onClose]);
+
+  const handleEmojiClick = (emojiData) => {
+    setMessage((prev) => prev + emojiData.emoji);
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      console.log("Arquivo selecionado:", file.name);
+    }
+  };
 
   return (
     <div
@@ -47,8 +60,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
 
         <h2 className="suporte-titulo">Suporte</h2>
 
-        <form onSubmit={handleSubmit}>
-
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="suporte-campo">
             <label className="suporte-label" htmlFor="email">De:</label>
             <input
@@ -74,6 +86,8 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
             placeholder="Digite sua mensagem..."
             className="suporte-textarea"
             required
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
           <ValidationError prefix="Message" field="message" errors={state.errors} />
 
@@ -85,7 +99,32 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
             >
               {state.submitting ? "Enviando..." : "Enviar"}
             </button>
+
+            {/* Ícone de anexo */}
+            <label htmlFor="suporte-file-upload" className="suporte-icone">
+              <img src="/clipsuporte.png" alt="Anexar arquivo" />
+            </label>
+            <input
+              id="suporte-file-upload"
+              type="file"
+              name="attachment"   // 👈 aqui é essencial para enviar ao Formspree
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
+            />
+
+
+            {/* Ícone de emoji */}
+            <div className="suporte-icone" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+              <img src="/emojisuporte.png" alt="Emoji" />
+            </div>
           </div>
+
+          {/* Emoji Picker */}
+          {showEmojiPicker && (
+            <div className="suporte-emoji-picker">
+              <EmojiPicker onEmojiClick={handleEmojiClick} />
+            </div>
+          )}
         </form>
       </div>
 
