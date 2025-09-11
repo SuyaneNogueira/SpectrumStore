@@ -69,7 +69,24 @@ export default function Estoque() {
             </div>
           </div>
         </div>
-
+ <div className="categorias-estoque-adm">
+          <div className="aba-categorias-estoque-produto">
+            <p>Categorias</p>
+            <div className="imagem-down-png-adm-estoque">
+              <select
+                className="select-image-down-estoque-adm"
+                value={categoriaSelecionada}
+                onChange={(e) => setCategoriaSelecionada(e.target.value)}
+              >
+                {categorias.map((cat, idx) => (
+                  <option key={idx} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
         <div className="div-info-estoque-res">
           <div className="div-info-produtos-estoque">
             <div className="div-enfeite-produtos-em-estoque">
@@ -91,24 +108,7 @@ export default function Estoque() {
         </div>
 
         {/* 🔹 Select de categorias */}
-        <div className="categorias-estoque-adm">
-          <div className="aba-categorias-estoque-produto">
-            <p>Categorias</p>
-            <div className="imagem-down-png-adm-estoque">
-              <select
-                className="select-image-down-estoque-adm"
-                value={categoriaSelecionada}
-                onChange={(e) => setCategoriaSelecionada(e.target.value)}
-              >
-                {categorias.map((cat, idx) => (
-                  <option key={idx} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
+       
       </div>
 
       {/* 🔹 Área para receber os produtos do Produtos.jsx */}
@@ -128,7 +128,9 @@ export default function Estoque() {
               </div>
 
               <div className="categoria-indivi-estoque-adm">
+                <div className="style-categoria-produtos">
                 <p>{produto.categoria}</p>
+                </div>
               </div>
             </div>
             <div className="container-identificao-produtos-estoque">

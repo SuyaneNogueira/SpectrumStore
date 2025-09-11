@@ -146,7 +146,7 @@ export default function Produtos() {
                 }}
               >
                 {categorias.map((cat, idx) => (
-                  <option key={idx} value={cat}>
+                  <option key={idx} value={cat} title={cat}>
                     {cat}
                   </option>
                 ))}
@@ -377,7 +377,7 @@ export default function Produtos() {
                     >
                       <option value="">Selecione</option>
                       {categoriasFixas.map((cat, idx) => (
-                        <option key={idx} value={cat}>
+                        <option key={idx} value={cat} title={cat}>
                           {cat}
                         </option>
                       ))}

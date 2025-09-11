@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm, ValidationError } from "@formspree/react";
+// import { useForm, ValidationError } from "@formspree/react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
