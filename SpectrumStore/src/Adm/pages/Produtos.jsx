@@ -42,7 +42,7 @@ export default function Produtos() {
   // 🔹 CATEGORIAS FIXAS
   const categoriasFixas = [
     "Brinquedos sensoriais",
-    "Brinquedos educativos e pedagógicos  ",
+    "Brinquedos educativos e pedagógicos",
     "Rotina e organização",
     "Moda e acessórios sensoriais",
     "Ambiente e relaxamento",
@@ -158,6 +158,7 @@ export default function Produtos() {
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
             <FaRegBell
+             className="notification-produtos-adm"
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
@@ -225,7 +226,7 @@ export default function Produtos() {
                       </p>
                     </div>
                     <div className="style-categorias-adm">
-                      <p className="ajust-categoria-adm">
+                      <p className="ajust-categoria-adm" title={produto.categoria}>
                          {produto.categoria}
                       </p>
                     </div>

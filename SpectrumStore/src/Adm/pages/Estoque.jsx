@@ -129,7 +129,7 @@ export default function Estoque() {
 
               <div className="categoria-indivi-estoque-adm">
                 <div className="style-categoria-produtos">
-                <p>{produto.categoria}</p>
+                <p title={produto.categoria}>{produto.categoria}</p>
                 </div>
               </div>
             </div>

@@ -116,9 +116,14 @@
   gap: 3%;
 }
 .produto-card-estoque {
-  border: solid #E8E8E8;
-  height: 75%;
-  width: 23%;
+  border: solid #e8e8e8;
+  border: 2px solid #dadada;
+  width: 19%;
+  height: 380px;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .categorias-estoque-adm {
   /* border: solid navy; */
@@ -126,13 +131,12 @@
   /* margin-top: 1%; */
   display: flex;
   align-items: center;
-
 }
 .aba-categorias-estoque-produto {
   border: solid 2px #a2c9cd;
   display: flex;
   /* margin-top: 1%; */
-  margin-left: 0.0%;
+  margin-left: 0%;
   width: 23%;
   border-radius: 9px;
   justify-content: center;
@@ -146,7 +150,6 @@
   border-radius: 10px;
   /* overflow: hidden; */
   /* margin-right: 1%; */
-
 }
 .select-image-down-estoque-adm {
   /* border: solid cadetblue; */
@@ -156,18 +159,16 @@
   font-size: 11px;
 }
 .preco-categoria-produtos-estoque {
-  /* border: solid gold; */
-  display: flex;
+  /* border: solid gold; */ 
+  /* display: flex; */
   height: 9%;
-
 }
 .img-card-produto-estoque {
   /* border: solid aqua; */
   height: 60%;
   display: flex;
-  align-items:center ;
-  justify-content:center ;
-
+  align-items: center;
+  justify-content: center;
 }
 
 .preco-indivi-estoque-adm {
@@ -176,19 +177,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  background-color: #03374c;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
+  top: 170px;
+  left: 10px;
 }
 
 .categoria-indivi-estoque-adm {
   /* border: solid navajowhite; */
-  width: 70%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
-.categoria-indivi-estoque-adm p{
-font-size: 2vh;
-font-weight: 300;
+  flex-direction: row;
+} 
+.categoria-indivi-estoque-adm p {
+  font-size: 2vh;
+  font-weight: 300;
+   white-space: nowrap; /* impede quebra de linha */
+  overflow: hidden;   /* esconde o texto extra */
+  text-overflow: ellipsis; /* adiciona os "..." */
+  cursor: default;    /* cursor normal */
+  max-width: 80px; 
 }
 
 .preco-indivi-estoque-adm span {
@@ -197,7 +210,6 @@ font-weight: 300;
 .preco-indivi-estoque-adm p {
   color: #ffffff;
   border: seagreen;
-
 }
 
 .preco-indivi-estoque-adm {
@@ -210,7 +222,6 @@ font-weight: 300;
   width: 28%;
   border-radius: 9px;
   margin-left: 4%;
-
 }
 .container-identificao-produtos-estoque {
   /* border: solid violet; */
@@ -240,49 +251,46 @@ font-weight: 300;
   /* border: solid teal; */
   width: 50%;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   font-size: 15px;
-
 }
 
-.botão-repor-estoque{
-  background-color: #A2C9CD;              /* fundo branco */
-  color: #03374C;                      /* cor do texto */
-  font-weight: 450;  
-  border: none;                        /* tira a borda padrão */
+.botão-repor-estoque {
+  background-color: #a2c9cd; /* fundo branco */
+  color: #03374c; /* cor do texto */
+  font-weight: 450;
+  border: none; /* tira a borda padrão */
   /* padding: 10px 20px; */
-  border-radius: 25px;                 /* deixa arredondado */
-  cursor: pointer;                     /* cursor de mãozinha */
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.15); /* sombra suave */
+  border-radius: 25px; /* deixa arredondado */
+  cursor: pointer; /* cursor de mãozinha */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); /* sombra suave */
   transition: all 0.3s ease;
   height: 25px;
   width: 85%;
   font-size: 11px;
-  
 }
-.botão-repor-estoque:hover{
-background-color: #f5f5f5;           /* leve cinza no hover */
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* aumenta sombra */
+.botão-repor-estoque:hover {
+  background-color: #f5f5f5; /* leve cinza no hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* aumenta sombra */
 }
-.style-img-estoque-adm{
-  border: solid #E8E8E8;
+.style-img-estoque-adm {
+  border: solid #e8e8e8;
   width: 89%;
   height: 85%;
 }
 
-.style-categoria-produtos{
-  background-color: #fff;              /* fundo branco */
-  color: #0f3c4c;                      /* cor do texto */
-  font-weight: 450;  
-  border: none;                        /* tira a borda padrão */
-  /* padding: 10px 20px; */
-  border-radius: 25px;                 /* deixa arredondado */
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.15); /* sombra suave */
+.style-categoria-produtos {
+  background-color: #fff; 
+  color: #0f3c4c; 
+  font-weight: 450;
+  border: none; 
+  border-radius: 25px; 
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); 
   transition: all 0.3s ease;
   height: 26px;
-  width: 77%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 11%;
+  margin-left: 4.5%;
+  width: 50%;
 }
