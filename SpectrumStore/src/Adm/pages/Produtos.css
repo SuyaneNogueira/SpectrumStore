@@ -93,7 +93,7 @@
 
 .cadastro-dos-produtos-adm {
   /* border: solid red; */
-  height: 79%;
+  height: 80%;
   margin-top: 3%;
   display: flex;
   flex-wrap: wrap;
@@ -106,17 +106,17 @@
   /* border: solid; */
   width: 100%;
   gap: 4%;
-  height: 78%;
+  height: 79%;
   margin-left: 1%;
   overflow-x: auto;
-  max-height: 410px; /* altura máxima que a lista pode ocupar */
+  max-height: 370px; /* altura máxima que a lista pode ocupar */
   overflow-y: auto; /* scroll vertical quando passar do limite */
 }
 
 .criar-produto-adm {
-  height: 380px;
+  height: 336px;
   border: solid 2px #a2c9cd;
-  width: 23%;
+  width: 25%;
 }
 
 .button-adicionar-produto-adm {
@@ -136,8 +136,8 @@
 
 .card-produtos-adm {
   border: 2px solid #dadada;
-  width: 19%;
-  height: 380px;
+  width: 25%;
+  height: 336px;
   text-decoration: none;
   position: relative;
   display: flex;
@@ -270,7 +270,7 @@
   color: #03374c;
   border: none;
   width: 30%;
-  height: 25%;
+  height: 27%;
   border-radius: 7px;
   align-items: center;
   justify-content: center;
@@ -295,7 +295,7 @@
   color: #03374c;
   border: none;
   width: 30%;
-  height: 25%;
+  height: 27%;
   border-radius: 7px;
   cursor: pointer;
   font-size: 12px;
@@ -311,7 +311,7 @@
   justify-content: center;
   align-items: center;
   height: 15%;
-  margin-top: 6%;
+  margin-top: 5%;
 }
 
 .botão-proximo-adm-produtos {

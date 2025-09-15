@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useForm, ValidationError } from "@formspree/react";
-import EmojiPicker from "emoji-picker-react";
+// import { useForm, ValidationError } from "@formspree/react";
+// import EmojiPicker from "emoji-picker-react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
