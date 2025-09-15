@@ -167,6 +167,7 @@ export default function Produtos() {
           </div>
           <div className="icon-search-adm-produtos">
             <CiSearch
+              className="search-adm-produto"
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
@@ -175,6 +176,7 @@ export default function Produtos() {
           </div>
           <div className="icon-perfil-adm-produtos">
             <CgProfile
+              className="perfil-adm-produtos"
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
@@ -195,7 +197,9 @@ export default function Produtos() {
               }}
             >
               Adicionar Produto
-              <img className="plus-png-adm" src="plus.png" alt="" />
+              <div>
+              <img className="plus-png-adm" src="/plus.png" alt="" />
+              </div>
             </button>
           </div>
 
@@ -244,10 +248,13 @@ export default function Produtos() {
                 </div>
 
                 <div className="div-botoes-card-edita-ex-adm">
-                  <button onClick={() => handleEdit(idParaAcoes)}>
+
+                  <button onClick={() => handleEdit(idParaAcoes)} className="button-editar-produtos-adm">
                     Editar
                   </button>
-                  <button
+
+                  <button 
+                    className="button-excluir-produtos-adm"
                     onClick={() => {
                       setIndexParaExcluir(idParaAcoes);
                       setShowModal(true);
