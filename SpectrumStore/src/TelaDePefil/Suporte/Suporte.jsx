@@ -1,135 +1,184 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import EmojiPicker from "emoji-picker-react";
+import Picker from "emoji-picker-react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
-  const [state, handleSubmit] = useForm("mpwjbkbk"); // endpoint Formspree
-  const [showPopup, setShowPopup] = useState(false);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [state, handleSubmit] = useForm("mpwjbkbk");
+  const [fromEmail, setFromEmail] = useState("seuemail@gmail.com");
   const [message, setMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [filePreview, setFilePreview] = useState(null);
+  const fileRef = useRef(null);
+  const emojiButtonRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    if (isOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
   useEffect(() => {
     if (state.succeeded) {
       setShowPopup(true);
-
-      const timer = setTimeout(() => {
+      const t = setTimeout(() => {
         setShowPopup(false);
         onClose();
+        setMessage("");
+        setFilePreview(null);
       }, 5000);
-
-      return () => clearTimeout(timer);
+      return () => clearTimeout(t);
     }
   }, [state.succeeded, onClose]);
 
-  const handleEmojiClick = (emojiData) => {
-    setMessage((prev) => prev + emojiData.emoji);
+  useEffect(() => {
+    function handleDocClick(e) {
+      if (showEmoji && emojiButtonRef.current && !emojiButtonRef.current.contains(e.target)) {
+        setShowEmoji(false);
+      }
+    }
+    document.addEventListener("mousedown", handleDocClick);
+    return () => document.removeEventListener("mousedown", handleDocClick);
+  }, [showEmoji]);
+
+  const onEmojiClick = (emojiData) => {
+    setMessage((prev) => prev + (emojiData.emoji || ""));
+    setShowEmoji(false);
   };
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      console.log("Arquivo selecionado:", file.name);
+  const handleFileChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+      setFilePreview(null);
+      return;
     }
+    if (file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = () => setFilePreview({ url: reader.result, name: file.name });
+      reader.readAsDataURL(file);
+    } else {
+      setFilePreview({ url: null, name: file.name });
+    }
+  };
+
+  const removeFile = () => {
+    if (fileRef.current) fileRef.current.value = "";
+    setFilePreview(null);
   };
 
   return (
     <div
-      className="suporte-overlay"
+      className={`suporte-overlay ${isOpen ? "open" : ""}`}
       role="dialog"
       aria-modal="true"
       onClick={(e) => {
         if (e.target.classList.contains("suporte-overlay")) onClose();
       }}
     >
-      <div className="suporte-modal">
-        <button className="suporte-fechar" onClick={onClose}>
+      <div className="suporte-modal" role="document">
+        <button className="suporte-fechar" onClick={onClose} aria-label="Fechar">
           ×
         </button>
 
         <h2 className="suporte-titulo">Suporte</h2>
 
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div className="suporte-campo">
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="suporte-form"
+        >
+          <div className="suporte-campo linha-horizontal">
             <label className="suporte-label" htmlFor="email">De:</label>
             <input
               id="email"
-              type="email"
               name="email"
+              type="email"
               className="suporte-input"
-              placeholder="seuemail@gmail.com"
+              value={fromEmail}
+              onChange={(e) => setFromEmail(e.target.value)}
               required
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
 
-          <div className="suporte-campo">
+          <div className="suporte-campo linha-horizontal">
             <label className="suporte-label">Para:</label>
             <span className="suporte-texto">spectrum.tea0204@gmail.com</span>
           </div>
 
           <label className="suporte-label" htmlFor="message">Assunto:</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Digite sua mensagem..."
-            className="suporte-textarea"
-            required
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-          <ValidationError prefix="Message" field="message" errors={state.errors} />
+          <div className="suporte-textarea-wrapper">
+            <textarea
+              id="message"
+              name="message"
+              className="suporte-textarea"
+              placeholder="Digite sua mensagem..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+            />
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+            {filePreview && (
+              <div className="suporte-file-preview">
+                {filePreview.url ? (
+                  <img src={filePreview.url} alt={filePreview.name} className="suporte-file-img" />
+                ) : (
+                  <span className="suporte-file-name">{filePreview.name}</span>
+                )}
+                <button type="button" className="suporte-file-remove" onClick={removeFile}>×</button>
+              </div>
+            )}
+          </div>
+
+          <input
+            ref={fileRef}
+            type="file"
+            name="attachment"
+            accept="image/*,application/pdf"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
 
           <div className="suporte-actions">
-            <button
-              className="suporte-btn"
-              type="submit"
-              disabled={state.submitting}
-            >
+            <button className="suporte-btn" type="submit" disabled={state.submitting}>
               {state.submitting ? "Enviando..." : "Enviar"}
             </button>
 
-            {/* Ícone de anexo */}
-            <label htmlFor="suporte-file-upload" className="suporte-icone">
-              <img src="/clipsuporte.png" alt="Anexar arquivo" />
-            </label>
-            <input
-              id="suporte-file-upload"
-              type="file"
-              name="attachment"   // 👈 aqui é essencial para enviar ao Formspree
-              style={{ display: "none" }}
-              onChange={handleFileUpload}
-            />
+            <div className="suporte-icones">
+              <button
+                type="button"
+                className="suporte-clip-btn"
+                onClick={() => fileRef.current && fileRef.current.click()}
+                title="Anexar arquivo"
+              >
+                <img src="/clipsuporte.png" alt="anexar" />
+              </button>
 
+              <div ref={emojiButtonRef} className="emoji-wrap">
+                <button
+                  type="button"
+                  className="suporte-emoji-btn"
+                  onClick={() => setShowEmoji((s) => !s)}
+                  title="Inserir emoji"
+                >
+                  <img src="/emojisuporte.png" alt="emoji" />
+                </button>
 
-            {/* Ícone de emoji */}
-            <div className="suporte-icone" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-              <img src="/emojisuporte.png" alt="Emoji" />
+                {showEmoji && (
+                  <div className="emoji-picker-container" role="dialog" aria-label="Emoji picker">
+                    <Picker onEmojiClick={onEmojiClick} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-
-          {/* Emoji Picker */}
-          {showEmojiPicker && (
-            <div className="suporte-emoji-picker">
-              <EmojiPicker onEmojiClick={handleEmojiClick} />
-            </div>
-          )}
         </form>
       </div>
 
       {showPopup && (
-        <div className="suporte-popup-central">
+        <div className="suporte-popup-central" role="status" aria-live="polite">
           <p>Email enviado com sucesso!</p>
         </div>
       )}

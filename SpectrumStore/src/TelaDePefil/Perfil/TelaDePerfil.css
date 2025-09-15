@@ -176,6 +176,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   width: 410%;
   z-index: 1000;
+  margin-top: -15%;
 }
 
 .menu-ajustes h4 {

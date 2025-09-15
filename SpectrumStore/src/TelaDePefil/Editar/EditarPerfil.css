@@ -44,6 +44,7 @@
   display: flex;
   gap: 35px;
   align-items: flex-start;
+  margin-top: -5%;
 }
 
 .editar-foto-container {
@@ -79,7 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 9%;
+  margin-top: 7%;
 }
 
 .editar-form input {
@@ -91,7 +92,7 @@
 
 /* Footer */
 .editar-footer {
-  margin-top: 20px;
+  margin-top: -5px;
   text-align: center;
 }
 
@@ -104,7 +105,6 @@
   cursor: pointer;
   font-family: 'Inknut Antiqua', serif;
   font-size: 120%;
-  margin-top: 4%;
 }
 .botao-salvar:hover {
   background: #055a6c;
