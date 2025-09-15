@@ -291,7 +291,7 @@ export default function Produtos() {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
-            <p>⚠️ Você quer mesmo excluir?</p>
+            <p>⚠️ Você quer mesmo excluir? </p>
             <div className="botoes-modal">
               <button onClick={confirmarExclusao}>Sim</button>
               <button onClick={() => setShowModal(false)}>Cancelar</button>

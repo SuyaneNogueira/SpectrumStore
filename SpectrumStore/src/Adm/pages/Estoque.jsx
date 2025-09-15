@@ -43,6 +43,7 @@ export default function Estoque() {
           <div className="icones-estoque-adm">
             <div className="icons-notification-adm-estoque">
               <FaRegBell
+                className="notification-estoque-adm"
                 size={30}
                 color="#03374C"
                 style={{ cursor: "pointer" }}
@@ -52,6 +53,7 @@ export default function Estoque() {
 
             <div className="icon-search-adm-estoque">
               <CiSearch
+              className="search-estoque-adm"
                 size={30}
                 color="#03374C"
                 style={{ cursor: "pointer" }}
@@ -61,6 +63,7 @@ export default function Estoque() {
 
             <div className="icon-perfil-adm-estoque">
               <CgProfile
+              className="icon-estoque-adm"
                 size={30}
                 color="#03374C"
                 style={{ cursor: "pointer" }}

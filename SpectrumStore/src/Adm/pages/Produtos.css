@@ -9,6 +9,7 @@
   margin-top: 1%;
   margin-left: 1%;
   /* height: 20%; */
+  color: #021c41;
 }
 
 .categorias-produto-adm {
@@ -37,6 +38,7 @@
   border: none;
   width: 99%;
   /* font-size: 14px; */
+  color: #03374c;
 }
 
 .icones-geral-adm-produtos {
@@ -125,7 +127,7 @@
   width: 100%;
   cursor: pointer;
   border: none;
- 
+ color: #021c41;
 }
 
 .plus-png-adm {
@@ -228,6 +230,7 @@
   font-size: 15px;
   height: 10%;
   margin-top: 5%;
+  color: #021c41;
 }
 
 .div-descrição-produto-adm {
@@ -244,6 +247,7 @@
   text-overflow: ellipsis;
   word-break: break-word;
   font-size: 14px;
+  color: #021c41;
 }
 
 .div-botoes-card-edita-ex-adm {
@@ -312,6 +316,7 @@
   align-items: center;
   height: 15%;
   margin-top: 5%;
+
 }
 
 .botão-proximo-adm-produtos {
@@ -322,6 +327,8 @@
   justify-content: center;
   align-items: center;
   color: #ffffff;
+  gap: 5%;
+   border-radius: 7px;
 }
 
 /* ============================= */
@@ -615,10 +622,10 @@
 
 .modal {
   background: #fff;
-  padding: 20px;
+  padding: 23px;
   border-radius: 12px;
   text-align: center;
-  min-width: 280px;
+  min-width: 300px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -633,24 +640,24 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  /* font-weight: bold; */
   transition: 0.2s;
 }
 
 .botoes-modal button:first-child {
-  background: #d9534f; /* vermelho */
+  background: #03374c; /* vermelho */
   color: white;
 }
 
 .botoes-modal button:first-child:hover {
-  background: #c9302c;
+  background: #021c41;
 }
 
 .botoes-modal button:last-child {
-  background: #6c757d; /* cinza */
-  color: white;
+  background: #a2c9cd; /* cinza */
+  color: #021c41;
 }
 
 .botoes-modal button:last-child:hover {
-  background: #5a6268;
+  background: #8dcdd4;
 }
