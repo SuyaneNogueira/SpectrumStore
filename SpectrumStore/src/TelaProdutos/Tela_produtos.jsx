@@ -10,6 +10,7 @@ import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import personalizacoesPorCategoria from './PersonalizacoesData'; 
 import { CartContext } from '../Carrinho/CartContext.jsx';
+import { useCart } from '../Carrinho/CartContext';
 import Popup from './Popup'; // Importe o componente Pop-up aqui
 
 const produtosSpectrum = [
@@ -24,7 +25,7 @@ function Tela_produtos() {
   const { id } = useParams();
   const produto = produtosSpectrum.find(p => p.id === parseInt(id));
   const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
-  const { addToCart } = useContext(CartContext); 
+  const { addToCart } = useCart();
   const [quantidade, setQuantidade] = useState(1);
   const [showPopup, setShowPopup] = useState(false); // Novo estado para o pop-up
 

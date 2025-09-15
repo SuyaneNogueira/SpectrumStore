@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import './CarrinhoP1.css';
 import Navbar from '../Navbar/Navbar';
 import StarRating from '../TelaInicial/StarRating';
-import { CartContext } from './CartContext';
+import { useCart } from './CartContext';
 import TrashIcon from '../imagens/trash-icon.png'; 
 import { Link } from 'react-router-dom';
 
 function CarrnhoP1() {
-  const { cartItems, removeFromCart, toggleAllItems, toggleItem, selectAll, totalSelected, updateQuantity } = useContext(CartContext);
+  const { cartItems, removeFromCart, toggleAllItems, toggleItem, selectAll, totalSelected, updateQuantity } = useCart();
 
   return (
   <div className='fundoCarrinho'>
