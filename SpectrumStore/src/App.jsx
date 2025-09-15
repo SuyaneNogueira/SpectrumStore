@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CartProvider } from './Carrinho/CartProvider';
 import TelaProdutos from './TelaProdutos/Tela_produtos';
 import CarrinhoP1 from './CarrinhoP1/CarrinhoP1';
 import Tela_inicial from './TelaInicial/Tela_inicial.jsx';

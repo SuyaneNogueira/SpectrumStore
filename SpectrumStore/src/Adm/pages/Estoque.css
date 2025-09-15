@@ -118,8 +118,8 @@
 .produto-card-estoque {
   border: solid #e8e8e8;
   border: 2px solid #dadada;
-  width: 19%;
-  height: 380px;
+  width: 25%;
+  height: 360px;
   text-decoration: none;
   position: relative;
   display: flex;
@@ -185,8 +185,8 @@
   font-size: 14px;
   font-weight: bold;
   z-index: 10;
-  top: 170px;
-  left: 10px;
+  top: 162px;
+  left: 22px;
 }
 
 .categoria-indivi-estoque-adm {
@@ -212,17 +212,6 @@
   border: seagreen;
 }
 
-.preco-indivi-estoque-adm {
-  background-color: #03374c;
-  /* border-radius: 2px; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  width: 28%;
-  border-radius: 9px;
-  margin-left: 4%;
-}
 .container-identificao-produtos-estoque {
   /* border: solid violet; */
   height: 30%;
