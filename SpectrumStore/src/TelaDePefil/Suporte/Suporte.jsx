@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Picker from "emoji-picker-react";
-=======
-import React, { useEffect, useState } from "react";
-// import { useForm, ValidationError } from "@formspree/react";
-// import EmojiPicker from "emoji-picker-react";
->>>>>>> 0be2783541b62d931751cbbb175e880285e04b6a
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
   const [state, handleSubmit] = useForm("mpwjbkbk");
-  const [fromEmail, setFromEmail] = useState("seuemail@gmail.com");
+  const [fromEmail, setFromEmail] = useState("");
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
@@ -93,6 +87,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="suporte-form"
+          noValidate={false}  
         >
           <div className="suporte-campo linha-horizontal">
             <label className="suporte-label" htmlFor="email">De:</label>
@@ -103,6 +98,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
               className="suporte-input"
               value={fromEmail}
               onChange={(e) => setFromEmail(e.target.value)}
+              placeholder="seuemail@gmail.com"
               required
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} />

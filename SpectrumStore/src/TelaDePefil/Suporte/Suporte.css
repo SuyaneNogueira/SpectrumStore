@@ -221,7 +221,7 @@
 }
 
 .suporte-popup-central {
-  position: fixed; /* fica fixo na tela */
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -229,22 +229,20 @@
   padding: 20px 30px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 9999; /* garante que aparece acima do modal */
+  z-index: 9999; 
   font-size: 16px;
   font-weight: 500;
   color: #0D293F;
   text-align: center;
-  animation: fadeInOut 3s forwards;
+  animation: fadeInOut 2s forwards;
 }
 
-/* animação de aparecer e sumir */
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translate(-50%, -60%); }
   10%, 90% { opacity: 1; transform: translate(-50%, -50%); }
   100% { opacity: 0; transform: translate(-50%, -40%); }
 }
 
-/* pequenas adequações responsivas */
 @media (max-width: 480px) {
   .suporte-modal { padding: 16px; }
   .suporte-textarea { min-height: 120px; }
