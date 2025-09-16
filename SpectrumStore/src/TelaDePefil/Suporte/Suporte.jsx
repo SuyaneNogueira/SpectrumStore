@@ -5,7 +5,7 @@ import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
   const [state, handleSubmit] = useForm("mpwjbkbk");
-  const [fromEmail, setFromEmail] = useState("seuemail@gmail.com");
+  const [fromEmail, setFromEmail] = useState("");
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
@@ -87,6 +87,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="suporte-form"
+          noValidate={false}  
         >
           <div className="suporte-campo linha-horizontal">
             <label className="suporte-label" htmlFor="email">De:</label>
@@ -97,6 +98,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
               className="suporte-input"
               value={fromEmail}
               onChange={(e) => setFromEmail(e.target.value)}
+              placeholder="seuemail@gmail.com"
               required
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} />
