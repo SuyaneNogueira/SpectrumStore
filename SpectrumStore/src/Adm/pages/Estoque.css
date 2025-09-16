@@ -141,6 +141,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  border-radius: 7px;
 }
 .categorias-estoque-adm {
   /* border: solid navy; */
@@ -233,7 +234,7 @@
   /* border: solid violet; */
   height: 30%;
   padding: 3%;
-  margin-left: 2%;
+  margin-left: 4%;
 }
 .nome-produto-estoque-adm {
   /* border: solid saddlebrown; */
@@ -283,7 +284,17 @@
   border: solid #e8e8e8;
   width: 89%;
   height: 85%;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.imagemzinha-do-estoque{
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+}
+
 
 .style-categoria-produtos {
   background-color: #fff; 

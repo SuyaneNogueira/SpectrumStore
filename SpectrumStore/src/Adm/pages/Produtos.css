@@ -119,6 +119,7 @@
   height: 336px;
   border: solid 2px #a2c9cd;
   width: 25%;
+  border-radius: 7px;
 }
 
 .button-adicionar-produto-adm {
@@ -127,7 +128,8 @@
   width: 100%;
   cursor: pointer;
   border: none;
- color: #021c41;
+  color: #021c41;
+  border-radius: 7px;
 }
 
 .plus-png-adm {
@@ -145,11 +147,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 7px;
 }
 
 .ajustes-card-foto-adm {
   border: solid #dadada;
-  height: 40%;
+  height: 50%;
   width: 80%;
   display: flex;
   justify-content: center;
@@ -157,6 +160,7 @@
   object-fit: contain;
   overflow: hidden;
   margin-top: 10%;
+  border-radius: 7px;
 }
 
 .foto-card-adm {
@@ -184,6 +188,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: absolute;
+   top: 130px;
+  left: 33px;
 }
 .style-valor-produto span {
   color: #fff0a6;
@@ -197,7 +204,7 @@
   /* border: solid goldenrod; */
   width: 50%;
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   background-color: #fff;
   color: #0f3c4c;
   font-weight: 450;
@@ -209,7 +216,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 18%;
+  /* margin-left: 18%; */
+  margin-top: 1%;
 }
 
 .ajust-categoria-adm {
@@ -274,14 +282,14 @@
   color: #03374c;
   border: none;
   width: 30%;
-  height: 27%;
+  height: 31%;
   border-radius: 7px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 12px;
 }
-.button-editar-produtos-adm:hover{
+.button-editar-produtos-adm:hover {
   background-color: #f5f5f5; /* leve cinza no hover */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* aumenta sombra */
 }
@@ -299,7 +307,7 @@
   color: #03374c;
   border: none;
   width: 30%;
-  height: 27%;
+  height: 31%;
   border-radius: 7px;
   cursor: pointer;
   font-size: 12px;
@@ -316,7 +324,6 @@
   align-items: center;
   height: 15%;
   margin-top: 5%;
-
 }
 
 .botão-proximo-adm-produtos {
@@ -328,7 +335,7 @@
   align-items: center;
   color: #ffffff;
   gap: 5%;
-   border-radius: 7px;
+  border-radius: 7px;
 }
 
 /* ============================= */
@@ -350,15 +357,15 @@
 
 .modal-content-produtos-adm {
   background: #fff;
-  width: 34%;
-  height: 85%;
+  width: 33%;
+  height: 95%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2%;
+  /* gap: 3%; */
   align-items: center;
   justify-content: center;
 }
@@ -378,7 +385,7 @@
 }
 
 .botão-fechar-modal-adm {
-  width: 10%;
+  /* width: 9%; */
   position: absolute;
   top: 10px;
   left: 30px;
@@ -430,9 +437,12 @@
   justify-content: center;
   /* height: 60px; */
   font-size: 14px;
+  color: #021c41;
+  margin-top: 4%;
 }
 .form-row-produtos-adm-um input {
   height: 20px;
+  color: #021c41;
 }
 .div-nome-produto-adm {
   /* border: solid; */
@@ -441,6 +451,7 @@
 .valor-modal-adm {
   /* border: solid; */
   width: 28%;
+  color: #021c41;
 }
 
 .div-nome-produto-adm input {
@@ -468,10 +479,13 @@
   margin-left: 15%;
   font-size: 14px;
   /* border: solid orange; */
+  margin-top: 2%;
+  color: #021c41;
 }
 .form-row-produtos-adm-dois input {
   height: 25px;
   width: 110px;
+  color: #021c41;
 }
 
 .div-categoria-produtos-adm select {
@@ -479,13 +493,15 @@
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
-  height: 30px;
+  height: 25px;
   width: 100px;
+  color: #021c41;
+  font-size: 13px;
 }
 
 .div-cor-produto-adm {
-  /* margin-right: 4%; */
   /* border: solid goldenrod; */
+  margin-left: 2%;
   width: 45%;
 }
 .div-cor-produto-adm input {
@@ -494,6 +510,7 @@
   border-radius: 10px;
   /* height: 100%; */
   width: 100%;
+  font-size: 13px;
 }
 
 .tamanho-produto-adm {
@@ -504,8 +521,9 @@
   background-color: #a2c9cd;
   border: none;
   border-radius: 10px;
-  margin-left: 1%;
-  width: 100%;
+  margin-left: 6%;
+  width: 90%;
+  font-size: 13px;
 }
 
 .form-row-produtos-adm-tres {
@@ -514,16 +532,18 @@
   align-items: center;
   /* height: 80px; */
   width: 100%;
-  margin-top: 2%;
+  margin-top: 3%;
+  color: #021c41;
 }
 .form-row-produtos-adm-tres textarea {
   background-color: #a2c9cd;
   height: 50%;
   width: 70%;
   border-radius: 10px;
+  color: #021c41;
 }
 .form-row-produtos-adm-tres label {
-  margin-right: 47%;
+  margin-right: 41%;
   font-size: 14px;
 }
 
@@ -534,11 +554,14 @@
   width: 70%;
   margin-left: 15%;
   font-size: 14px;
+  margin-top: 2%;
+  color: #021c41;
 }
 .form-row-produtos-adm-quatro textarea {
   background-color: #a2c9cd;
   height: 100%;
   border-radius: 10px;
+  color: #021c41;
 }
 
 .modal-buttons-produto-adm {
@@ -557,6 +580,7 @@
   border-radius: 10px;
   /* margin-top: 5%; */
   height: 50%;
+  color: #021c41;
 }
 
 /* ============================= */

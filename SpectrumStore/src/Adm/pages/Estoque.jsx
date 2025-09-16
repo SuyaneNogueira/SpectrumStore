@@ -20,6 +20,10 @@ export default function Estoque() {
     "Moda e acessórios sensoriais",
     "Ambiente e relaxamento",
     "Jogos Cognitivos e Educacionais",
+    "Materiais Escolares Adaptados",
+    "Cuidados e Rotina Pessoal",
+    "Materiais de CAA",
+    "Material Ponderado",
   ];
   const categorias = ["Todos", ...categoriasFixas];
 
@@ -120,7 +124,7 @@ export default function Estoque() {
           <div key={index} className="produto-card-estoque">
             <div className="img-card-produto-estoque">
               <div className="style-img-estoque-adm">
-                
+                <img className="imagemzinha-do-estoque" src={produto.imagem} alt={produto.nome} />
               </div>
             </div>
             <div className="preco-categoria-produtos-estoque">

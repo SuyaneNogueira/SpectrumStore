@@ -25,7 +25,7 @@ export default function Produtos() {
     }
   };
 
-  const itensPorPagina = 14;
+  const itensPorPagina = 9;
   const [editIndex, setEditIndex] = useState(null);
 
   const [novoProduto, setNovoProduto] = useState({
@@ -47,6 +47,10 @@ export default function Produtos() {
     "Moda e acessórios sensoriais",
     "Ambiente e relaxamento",
     "Jogos Cognitivos e Educacionais",
+    "Materiais Escolares Adaptados",
+    "Cuidados e Rotina Pessoal",
+    "Materiais de CAA",
+    "Material Ponderado",
   ];
 
   // 🔹 estado para categoria selecionada (filtro)
@@ -158,7 +162,7 @@ export default function Produtos() {
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
             <FaRegBell
-             className="notification-produtos-adm"
+              className="notification-produtos-adm"
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
@@ -198,7 +202,7 @@ export default function Produtos() {
             >
               Adicionar Produto
               <div>
-              <img className="plus-png-adm" src="/plus.png" alt="" />
+                <img className="plus-png-adm" src="/plus.png" alt="" />
               </div>
             </button>
           </div>
@@ -230,8 +234,11 @@ export default function Produtos() {
                       </p>
                     </div>
                     <div className="style-categorias-adm">
-                      <p className="ajust-categoria-adm" title={produto.categoria}>
-                         {produto.categoria}
+                      <p
+                        className="ajust-categoria-adm"
+                        title={produto.categoria}
+                      >
+                        {produto.categoria}
                       </p>
                     </div>
                   </div>
@@ -248,12 +255,14 @@ export default function Produtos() {
                 </div>
 
                 <div className="div-botoes-card-edita-ex-adm">
-
-                  <button onClick={() => handleEdit(idParaAcoes)} className="button-editar-produtos-adm">
+                  <button
+                    onClick={() => handleEdit(idParaAcoes)}
+                    className="button-editar-produtos-adm"
+                  >
                     Editar
                   </button>
 
-                  <button 
+                  <button
                     className="button-excluir-produtos-adm"
                     onClick={() => {
                       setIndexParaExcluir(idParaAcoes);
@@ -335,6 +344,11 @@ export default function Produtos() {
                     const imageUrl = URL.createObjectURL(file);
                     setNovoProduto({ ...novoProduto, imagem: imageUrl });
                   }
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setNovoProduto({ ...novoProduto, imagem: reader.result }); // salva base64
+                  };
+                  reader.readAsDataURL(file);
                 }}
               />
             </div>
