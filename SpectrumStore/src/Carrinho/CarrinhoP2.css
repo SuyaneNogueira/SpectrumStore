@@ -1,10 +1,10 @@
-.fundoPagamento{
+.fundoPagamento {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background-color: #e0f0f0; 
+    background-color: #e0f0f0;
 }
 
 .div-conteinerDeFora {
@@ -16,45 +16,40 @@
 }
 
 .FundoBanco {
-    background-color: #ffffff85; 
-    height: 88vh; 
+    background-color: #ffffff85;
+    height: 88vh;
     width: 70%;
-    /* border: 1px solid #ccc;  */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 1%;
     border-radius: 12px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 15px;
 }
-.div-conteinerDosProtudos{
- /* border: solid 2px ; */
-    background-color: #A2C9CD ; 
-    height: 42%; 
+
+.div-conteinerDosProtudos {
+    background-color: #A2C9CD;
+    height: 42%;
     width: 100%;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 4px; */
 }
 
-.div-protudos{
-    /* border: solid 2px pink; */
-    /* background-color: #ebcabd ;  */
-    height: 85%; 
+.div-protudos {
+    height: 85%;
     width: 95%;
-    border-radius: 12px;  
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-
 }
-.Protudos{
+
+.Protudos {
     background-color: #ffffff;
-    /* border: 2px solid #3a4c5a; */
     width: 23%;
     height: 100%;
     border-radius: 3%;
@@ -62,33 +57,42 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.178); 
-   
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.178);
 }
 
-.imagem-protudo-pagamento{
-    /* border: solid 2px #e70909 ; */
-       display: flex;
-       justify-content: center;
-   width:65% ; 
-   height:60% ;
+.imagem-protudo-pagamento {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    height: 60%;
 }
 
-.imagem-pagamento{
-   /* border: solid 2px ; */
-  width:100% ; 
-   height:100% ;  
+.imagem-pagamento {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.infomações-protudo-pagamento{
-    /* border: solid 2px #4409e7;  */
-    height:35% ;
+.infomações-protudo-pagamento {
+    height: 35%;
     width: 78%;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.nome-pagamento{
+
+/* Tamanhos dos ícones de pagamento */
+.img-cartao-credito, .img-cartao-debito {
+    width: 60px;
+    height: auto;
+}
+
+.img-pix {
+    width: 40px;
+    height: auto;
+}
+
+.nome-pagamento {
     font-size: 78%;
     color: #03374C;
     font-family: "Poppins", sans-serif;
@@ -96,157 +100,196 @@
     font-style: normal;
 }
 
-.cor-amarelo-preco-2-pagamento{
-  color: #ed9b20; 
-  font-size: 80%;
-  font-weight: bold;    
+.cor-amarelo-preco-2-pagamento {
+    color: #ed9b20;
+    font-size: 80%;
+    font-weight: bold;
 }
 
-.preço-pagamento-protudos{
-    font-size: 80%; 
+.preço-pagamento-protudos {
+    font-size: 80%;
     font-weight: bold;
     color: #054964;
 }
 
-.Card2-pagamento{
-    /* border: 2px solid; */
+/* Container principal para as duas seções inferiores (formas de pagamento e resumo) */
+.resumo-e-botoes-compra {
     height: 50%;
-    background-color: #A2C9CD;
-    border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
+    gap: 20px;
 }
-.forma-pagamento-desistir{
-    /* border: 2px solid; */
-    width: 40%;
-    height: 90%;
-}
-.forma-pagamento{
-    /* border: 2px solid; */
+
+/* Div para as formas de pagamento */
+.forma-pagamento {
     background-color: #ffffff;
     border-radius: 10px;
-    width: 100%;
-    height: 85%;
-}
-.botao-cancelar-compra{
-    /* border: 2px solid; */
-    width: 100%;
-    height: 15%;
+    width: 50%; /* Ajustado para ocupar 40% do container pai */
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     display: flex;
-    align-items: end;
+    flex-direction: column;
 }
-.botao-cancelar{
-    /* border: 2px solid; */
-    width: 50%;
-    height: 80%;
-    border-radius: 5px;
+
+.forma-pagamento h2 {
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: 100%;
+    color: #03374C;
+}
+
+.opcoes-pagamento {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.opcao-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f7fcfc; 
+    padding: 5px;
+    border-radius: 12px;
+    border: 2px solid #e0f0f0;
+    transition: all 0.2s ease-in-out;
+}
+
+.opcao-item:has(input:checked) {
+    border-color: #03374C; 
+    /* background-color: #e0f0f0; */
+}
+
+.opcao-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #03374C;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.opcao-item input[type="radio"]:checked::after {
+    content: '';
+    width: 10px;
+    height: 10px;
     background-color: #03374C;
-    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.info-pagamento {
     display: flex;
-    justify-content: center;
     align-items: center;
-    border: none;
+    gap: 5px;
+    flex-grow: 1;
 }
-.total-geral-desconto-pagar{
-    /* border: 2px solid; */
-    width: 50%;
-    height: 90%;
+
+.icone-pagamento {
+    width: 70px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
-.total-geral{
-    /* border: 2px solid; */
+
+.texto-pagamento h4 {
+    margin: 0;
+    font-size: 90%;
+    color: #03374C;
+}
+
+.bandeiras {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.bandeiras img {
+    height: 14px;
+    width: auto;
+}
+
+/* Seção de Resumo e Botões */
+.resumo-e-botoes-acoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 100%;
+}
+
+.total-geral {
     background-color: #ffffff;
     border-radius: 10px;
     width: 100%;
-    height: 85%;
-}
-.botao-pagar-compra{
-    /* border: 2px solid; */
-    width: 100%;
-    height: 15%;
+    height: 75%;
+    padding: 20px;
     display: flex;
-    justify-content: end;
-    align-items: end;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-.botao-pagar{
-    /* border: 2px solid; */
-    width: 40%;
-    height: 80%;
+
+.resumo-valores p {
+    font-size: 1rem;
+    color: #03374C;
+    margin: 10px 0;
+}
+
+.total-final {
+    text-align: right;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+.total-final p {
+    font-size: 100%;
+    font-weight: bold;
+    color: #03374C;
+    margin: 0;
+}
+
+.botao-pagar-cancelar-compra {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.botao-cancelar {
+    padding: 12px 24px;
+    border-radius: 5px;
+    background-color: #A2C9CD;
+    color: #03374C;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.botao-cancelar:hover {
+    background-color: #92b9bd;
+}
+
+.botao-pagar {
+    padding: 12px 24px;
     border-radius: 5px;
     background-color: #085D72;
     color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-.Carrinho-pagamento{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+.botao-pagar:hover {
+    background-color: #054c68;
 }
-
-.imagenfundoCarinho{
-     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: aqua;
-    height: 100%;
-    background-image: url('CarrinhoFundooooo.png');
-     background-repeat: no-repeat;
-}
-
-.imagem-carrinho{
-    border: 2px solid #d314c3;
-    height: 100%;
-    width: 100%;
-}
-
-.div-fundo-branco{
- background-color: rgba(255, 255, 255, 0.5);
- height: 88%; 
-      width: 81%;
-      border: solid;
-  margin-top: 1%;
-  border-radius: 12px;
-  padding: 1%;
-        
-} */
-
