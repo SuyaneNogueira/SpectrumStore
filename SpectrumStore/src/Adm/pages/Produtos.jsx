@@ -133,7 +133,7 @@ export default function Produtos() {
   return (
     <div className="container-produtos-adm">
       <div className="titulo-produtos-adm">
-        <div>
+        <div className="div-geral-titulo-categoria-estoque">
           <h1>Produtos</h1>
           <p>{produtos.length} produtos cadastrados</p>
 
@@ -158,7 +158,22 @@ export default function Produtos() {
             </div>
           </div>
         </div>
-
+        <div className="div-botao-adicionar-estoque">
+          <div className="criar-produto-adm">
+            <button
+              className="button-adicionar-produto-adm"
+              onClick={() => {
+                setIsOpen(true);
+                setEditIndex(null);
+              }}
+            >
+              <div>
+                <img className="plus-png-adm" src="/plus.png" alt="" />
+              </div>
+              Adicionar Produto
+            </button>
+          </div>
+        </div>
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
             <FaRegBell
@@ -192,21 +207,6 @@ export default function Produtos() {
 
       <div className="cadastro-dos-produtos-adm">
         <div className="lista-produtos-adm">
-          <div className="criar-produto-adm">
-            <button
-              className="button-adicionar-produto-adm"
-              onClick={() => {
-                setIsOpen(true);
-                setEditIndex(null);
-              }}
-            >
-              Adicionar Produto
-              <div>
-                <img className="plus-png-adm" src="/plus.png" alt="" />
-              </div>
-            </button>
-          </div>
-
           {itensVisiveis.map((produto, index) => {
             const originalIndex = produtos.findIndex((p) => p === produto);
             const idParaAcoes =
