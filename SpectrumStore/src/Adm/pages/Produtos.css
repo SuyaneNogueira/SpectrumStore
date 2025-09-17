@@ -13,10 +13,11 @@
 }
 .div-botao-adicionar-estoque {
   /* border: solid aqua; */
-  width: 11%;
-  position: absolute;
-  right: 810px;
-  top: 97px;
+  width: 13%;
+  position: fixed;
+  right: 48%;
+  top: 15.5%;
+  height: 35%;
 }
 
 .categorias-produto-adm {

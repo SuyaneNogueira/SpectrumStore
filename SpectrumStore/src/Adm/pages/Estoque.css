@@ -125,18 +125,20 @@
 
 .receber-produtos-estoque-adm {
   /* border: solid rebeccapurple; */
-  height: 65%;
+  height: 60%;
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
   margin-top: 2%;
   gap: 3%;
+  max-height: 400px;
+
 }
 .produto-card-estoque {
   border: solid #e8e8e8;
   border: 2px solid #dadada;
   width: 25%;
-  height: 360px;
+  height: 340px;
   text-decoration: none;
   position: relative;
   display: flex;
