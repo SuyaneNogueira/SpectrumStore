@@ -57,7 +57,7 @@ export default function Estoque() {
 
             <div className="icon-search-adm-estoque">
               <CiSearch
-              className="search-estoque-adm"
+                className="search-estoque-adm"
                 size={30}
                 color="#03374C"
                 style={{ cursor: "pointer" }}
@@ -67,7 +67,7 @@ export default function Estoque() {
 
             <div className="icon-perfil-adm-estoque">
               <CgProfile
-              className="icon-estoque-adm"
+                className="icon-estoque-adm"
                 size={30}
                 color="#03374C"
                 style={{ cursor: "pointer" }}
@@ -76,7 +76,7 @@ export default function Estoque() {
             </div>
           </div>
         </div>
- <div className="categorias-estoque-adm">
+        <div className="categorias-estoque-adm">
           <div className="aba-categorias-estoque-produto">
             <p>Categorias</p>
             <div className="imagem-down-png-adm-estoque">
@@ -115,7 +115,6 @@ export default function Estoque() {
         </div>
 
         {/* 🔹 Select de categorias */}
-       
       </div>
 
       {/* 🔹 Área para receber os produtos do Produtos.jsx */}
@@ -124,19 +123,22 @@ export default function Estoque() {
           <div key={index} className="produto-card-estoque">
             <div className="img-card-produto-estoque">
               <div className="style-img-estoque-adm">
-                <img className="imagemzinha-do-estoque" src={produto.imagem} alt={produto.nome} />
+                <img
+                  className="imagemzinha-do-estoque"
+                  src={produto.imagem}
+                  alt={produto.nome}
+                />
+                <div className="preco-indivi-estoque-adm">
+                  <p>
+                    <span>R$</span> {produto.valor}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="preco-categoria-produtos-estoque">
-              <div className="preco-indivi-estoque-adm">
-                <p>
-                  <span>R$</span> {produto.valor}
-                </p>
-              </div>
-
               <div className="categoria-indivi-estoque-adm">
                 <div className="style-categoria-produtos">
-                <p title={produto.categoria}>{produto.categoria}</p>
+                  <p title={produto.categoria}>{produto.categoria}</p>
                 </div>
               </div>
             </div>
@@ -153,7 +155,6 @@ export default function Estoque() {
                   <button className="botão-repor-estoque">Repor Estoque</button>
                 </div>
               </div>
-
             </div>
           </div>
         ))}

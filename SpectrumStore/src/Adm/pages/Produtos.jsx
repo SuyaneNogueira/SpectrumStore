@@ -224,15 +224,16 @@ export default function Produtos() {
                     src={produto.imagem}
                     alt={produto.nome}
                   />
-                </div>
-
-                <div className="div-valor-do-produto-adm">
-                  <div className="preco-categota-produto-adm">
-                    <div className="style-valor-produto">
+                  <div className="style-valor-produto">
                       <p>
                         <span>R$</span> {produto.valor}
                       </p>
                     </div>
+                </div>
+
+                <div className="div-valor-do-produto-adm">
+                  <div className="preco-categoria-produto-adm">
+                    
                     <div className="style-categorias-adm">
                       <p
                         className="ajust-categoria-adm"
@@ -446,21 +447,6 @@ export default function Produtos() {
                     }
                   ></textarea>
                 </div>
-
-                <div className="form-row-produtos-adm-quatro">
-                  <label>Descrição de para que serve:</label>
-                  <textarea
-                    rows="3"
-                    value={novoProduto.paraQueServe}
-                    onChange={(e) =>
-                      setNovoProduto({
-                        ...novoProduto,
-                        paraQueServe: e.target.value,
-                      })
-                    }
-                  ></textarea>
-                </div>
-
                 <div className="modal-buttons-produto-adm">
                   <button type="submit" className="btn-confirmar">
                     {editIndex !== null ? "Salvar Alterações" : "Confirmar"}

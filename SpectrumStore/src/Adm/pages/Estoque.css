@@ -41,9 +41,9 @@
   height: 78%;
 }
 
-.notification-estoque-adm{
-   width: 50%;
-   height: 70%;
+.notification-estoque-adm {
+  width: 50%;
+  height: 70%;
 }
 
 .icon-search-adm-estoque {
@@ -55,7 +55,7 @@
   width: 16%;
   height: 80%;
 }
-.search-estoque-adm{
+.search-estoque-adm {
   width: 60%;
   height: 80%;
 }
@@ -69,7 +69,7 @@
   width: 16%;
   height: 80%;
 }
-.icon-estoque-adm{
+.icon-estoque-adm {
   width: 50%;
   height: 70%;
 }
@@ -130,9 +130,8 @@
   flex-wrap: wrap;
   overflow-x: auto;
   margin-top: 2%;
-  gap: 3%;
+  gap: 5%;
   max-height: 400px;
-
 }
 .produto-card-estoque {
   border: solid #e8e8e8;
@@ -179,7 +178,7 @@
   color: #03374c;
 }
 .preco-categoria-produtos-estoque {
-  /* border: solid gold; */ 
+  /* border: solid gold; */
   /* display: flex; */
   height: 9%;
 }
@@ -189,6 +188,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .preco-indivi-estoque-adm {
@@ -199,29 +199,30 @@
   justify-content: center;
   position: absolute;
   background-color: #03374c;
-    color: #fff;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
-  z-index: 10;
-  top: 162px;
-  left: 22px;
+  /* z-index: 10; */
+  /* top: 160px; */
+  left: 23px;
+  bottom: 28px;
 }
 
 .categoria-indivi-estoque-adm {
   /* border: solid navajowhite; */
   display: flex;
   flex-direction: row;
-} 
+}
 .categoria-indivi-estoque-adm p {
   font-size: 2vh;
   font-weight: 300;
-   white-space: nowrap; /* impede quebra de linha */
-  overflow: hidden;   /* esconde o texto extra */
+  white-space: nowrap; /* impede quebra de linha */
+  overflow: hidden; /* esconde o texto extra */
   text-overflow: ellipsis; /* adiciona os "..." */
-  cursor: default;    /* cursor normal */
-  max-width: 80px; 
+  cursor: default; /* cursor normal */
+  max-width: 80px;
 }
 
 .preco-indivi-estoque-adm span {
@@ -237,6 +238,7 @@
   height: 30%;
   padding: 3%;
   margin-left: 4%;
+  margin-top: 1%;
 }
 .nome-produto-estoque-adm {
   /* border: solid saddlebrown; */
@@ -291,20 +293,19 @@
   justify-content: center;
   align-items: center;
 }
-.imagemzinha-do-estoque{
+.imagemzinha-do-estoque {
   width: 80%;
   height: 80%;
   overflow: hidden;
 }
 
-
 .style-categoria-produtos {
-  background-color: #fff; 
-  color: #0f3c4c; 
+  background-color: #fff;
+  color: #0f3c4c;
   font-weight: 450;
-  border: none; 
-  border-radius: 25px; 
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); 
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   height: 26px;
   display: flex;
