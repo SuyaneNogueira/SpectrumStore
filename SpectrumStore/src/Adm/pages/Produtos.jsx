@@ -67,12 +67,12 @@ export default function Produtos() {
     e.preventDefault();
 
     let novosProdutos;
-    if (editIndex !== null) {
-      novosProdutos = [...produtos];
-      novosProdutos[editIndex] = novoProduto;
-    } else {
-      novosProdutos = [...produtos, novoProduto];
-    }
+  if (editIndex !== null) {
+    novosProdutos = [...produtos];
+    novosProdutos[editIndex] = { ...novoProduto }; // garante cópia independente
+  } else {
+    novosProdutos = [...produtos, { ...novoProduto }]; // nova cópia
+  }
 
     setProdutos(novosProdutos);
     localStorage.setItem("produtos", JSON.stringify(novosProdutos));

@@ -4,15 +4,18 @@ import { CgProfile } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { FaRegBell } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { ImArrowLeft } from "react-icons/im";
+import { ImArrowRight } from "react-icons/im";
 
 export default function Estoque() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState([]);
-
-  // 🔹 estado para categoria selecionada
+  const [paginaAtual, setPaginaAtual] = useState(1);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
 
-  // 🔹 categorias fixas + "Todos"
+  const itensPorPagina = 6; // 🔹 quantidade de produtos por página
+
+  // categorias fixas
   const categoriasFixas = [
     "Brinquedos sensoriais",
     "Brinquedos educativos e pedagógicos",
@@ -27,17 +30,23 @@ export default function Estoque() {
   ];
   const categorias = ["Todos", ...categoriasFixas];
 
-  // carregar produtos do localStorage (os mesmos do Produtos.jsx)
+  // carregar produtos do localStorage
   useEffect(() => {
     const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
     setProdutos(produtosSalvos);
   }, []);
 
-  // 🔹 aplicar filtro por categoria
+  // aplicar filtro por categoria
   const produtosFiltrados =
     categoriaSelecionada === "Todos"
       ? produtos
       : produtos.filter((p) => p.categoria === categoriaSelecionada);
+
+  // paginação
+  const totalPaginas = Math.ceil(produtosFiltrados.length / itensPorPagina) || 1;
+  const indexInicial = (paginaAtual - 1) * itensPorPagina;
+  const indexFinal = indexInicial + itensPorPagina;
+  const produtosPaginados = produtosFiltrados.slice(indexInicial, indexFinal);
 
   return (
     <div className="container-geral-estoque-adm">
@@ -83,7 +92,10 @@ export default function Estoque() {
               <select
                 className="select-image-down-estoque-adm"
                 value={categoriaSelecionada}
-                onChange={(e) => setCategoriaSelecionada(e.target.value)}
+                onChange={(e) => {
+                  setCategoriaSelecionada(e.target.value);
+                  setPaginaAtual(1); // resetar para a primeira página ao trocar categoria
+                }}
               >
                 {categorias.map((cat, idx) => (
                   <option key={idx} value={cat}>
@@ -93,33 +105,31 @@ export default function Estoque() {
               </select>
             </div>
           </div>
-        </div>
-        <div className="div-info-estoque-res">
-          <div className="div-info-produtos-estoque">
-            <div className="div-enfeite-produtos-em-estoque">
-              <p>
-                Produtos em estoque:{" "}
-                {produtos.filter((p) => p.quantidade > 0).length}
-              </p>
+          <div className="div-info-estoque-res">
+            <div className="div-info-produtos-estoque">
+              <div className="div-enfeite-produtos-em-estoque">
+                <p>
+                  Produtos em estoque:{" "}
+                  {produtos.filter((p) => p.quantidade > 0).length}
+                </p>
+              </div>
+            </div>
+
+            <div className="div-info-produtos-fora-estoque">
+              <div className="div-enfeite-produtos-fora-estoque">
+                <p>
+                  Fora estoque:{" "}
+                  {produtos.filter((p) => p.quantidade === 0).length}
+                </p>
+              </div>
             </div>
           </div>
-
-          <div className="div-info-produtos-fora-estoque">
-            <div className="div-enfeite-produtos-fora-estoque">
-              <p>
-                Fora estoque:{" "}
-                {produtos.filter((p) => p.quantidade === 0).length}
-              </p>
-            </div>
-          </div>
         </div>
-
-        {/* 🔹 Select de categorias */}
       </div>
 
-      {/* 🔹 Área para receber os produtos do Produtos.jsx */}
+      {/* 🔹 Produtos da página atual */}
       <div className="receber-produtos-estoque-adm">
-        {produtosFiltrados.map((produto, index) => (
+        {produtosPaginados.map((produto, index) => (
           <div key={index} className="produto-card-estoque">
             <div className="img-card-produto-estoque">
               <div className="style-img-estoque-adm">
@@ -158,6 +168,31 @@ export default function Estoque() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* 🔹 Navegação entre páginas */}
+      <div className="div-botão-proximo-estoque-adm">
+        <div className="botão-proximo-adm-estoque">
+          <ImArrowLeft
+            onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))}
+            style={{
+              cursor: paginaAtual === 1 ? "not-allowed" : "pointer",
+              opacity: paginaAtual === 1 ? 0.5 : 1,
+            }}
+          />
+          <span>
+            Página {paginaAtual} de {totalPaginas}
+          </span>
+          <ImArrowRight
+            onClick={() =>
+              setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
+            }
+            style={{
+              cursor: paginaAtual === totalPaginas ? "not-allowed" : "pointer",
+              opacity: paginaAtual === totalPaginas ? 0.5 : 1,
+            }}
+          />
+        </div>
       </div>
     </div>
   );
