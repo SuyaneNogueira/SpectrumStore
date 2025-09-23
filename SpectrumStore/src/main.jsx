@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
-import router from './Router/Router.jsx';
-import { CartContext } from './GlobalContext/GlobalContext.jsx';
-import { CartProvider } from './Carrinho/CartContext.jsx';
+import router from './Front-end/Router/Router.jsx';
+// import { CartContext } from '../GlobalContext/GlobalContext.jsx'; 
+import { CartProvider } from './Front-end/Carrinho/CartContext.jsx';
 
 
 const rootElement = document.getElementById('root');
