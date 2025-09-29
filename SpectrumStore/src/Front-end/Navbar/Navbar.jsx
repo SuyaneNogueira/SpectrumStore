@@ -73,7 +73,7 @@ function Navbar({ onCategoriaClick, onPesquisaChange }) {
 
       <div className='div-icones-nav'>
         <Link to='/TelaDePerfil' className='icones-nav'><img src={IconeUsuario} alt="Ícone de Usuário" /></Link>
-        <img className='icones-nav' src={IconeCoracao} alt="Ícone de Coração" />
+        <Link to='/TelaFavoritos' className='icones-nav'><img src={IconeCoracao} alt="Ícone de Coração" /></Link>
         <Link to='/Carrinho' className='icones-nav'><img src={IconeCarrinho} alt="Ícone de Coração" /></Link>
       </div>
     </nav>

@@ -1,0 +1,72 @@
+.container-favoritos {
+    border: 2px solid;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.lista-favoritos {
+    /* border: 2px solid; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.produto-favorito {
+    border: 2px solid #dadada;
+    width: 16%; /* Ajuste o tamanho */
+    height: auto;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.produto-favorito:hover {
+    transform: scale(1.05);
+}
+
+.produto-favorito .link-produto-card {
+    /* border: 2px solid; */
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.produto-favorito .icone-favorito {
+    /* border: 2px solid; */
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    z-index: 100;
+}
+
+.produto-favorito .foto-produtos {
+    /* border: 2px solid; */
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+}
+
+.produto-favorito .produto-detalhes {
+    /* border: 2px solid; */
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.preco-produto-favorito{
+    /* border: 2px solid; */
+    width: 50%;
+    padding: 2px;
+    padding-left: 10px;
+}
+.cor-amarela-preco-favorito{
+    color: #ffa723;
+}

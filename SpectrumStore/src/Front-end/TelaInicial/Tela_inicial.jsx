@@ -9,6 +9,7 @@ import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
 import MassinhaModelar from '../imagens/Massinha-modelar.webp';
 import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
+import { useFavorites } from '../TelaFavoritos/FavoriteContext';
 
 
 const produtosSpectrum = [
@@ -22,6 +23,7 @@ const produtosSpectrum = [
 function Tela_inicial() {
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+  const { toggleFavorite, isFavorited } = useFavorites();
   const [termoPesquisa, setTermoPesquisa] = useState('');
 
   const handleCategoriaClick = (categoria) => {
@@ -69,7 +71,8 @@ function Tela_inicial() {
             {produtosExibidos.map(produto => (
               <div className="produtos-store" key={produto.id}>
                 <div className="icone-favorito">
-                  <Button onClick={() => handleFavoriteClick(produto.id)} />
+                  <Button isFavorited={isFavorited(produto.id)} 
+                    onClick={() => toggleFavorite(produto)}/>
                 </div>
                 <Link to={`/produto/${produto.id}`} className="link-produto-card">
                   <div className='produto-imagem-container'>

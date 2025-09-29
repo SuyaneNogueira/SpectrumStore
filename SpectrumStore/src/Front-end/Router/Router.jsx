@@ -20,6 +20,7 @@ import Dashboard from "../../Adm/pages/Dashboard";
 import Pedidos from "../../Adm/pages/Pedidos";
 import Estatisticas from "../../Adm/pages/Estatisticas";
 import Estoque from "../../Adm/pages/Estoque";
+import TelaFavoritos from "../TelaFavoritos/TelaFavoritos";
 
 const Router = createBrowserRouter([
     { path: "/", element: <Tela_inicial/> },
@@ -36,7 +37,8 @@ const Router = createBrowserRouter([
     { path: "/CuidadosERotinaPessoal", element: <CuidadosERotinaPessoal/> },
     { path: "/MateriaisDeCAA", element: <MateriaisDeCAA/> },
     { path: "/MaterialPonderado", element: <MaterialPonderado/> },
-     { path: "/TelaDePerfil", element: <TelaDePerfil/> },
+    { path: "/TelaDePerfil", element: <TelaDePerfil/> },
+    { path: "/TelaFavoritos", element: <TelaFavoritos/> },
     {
         path: "/LayoutAdm",
         element: <Layout/>, 
