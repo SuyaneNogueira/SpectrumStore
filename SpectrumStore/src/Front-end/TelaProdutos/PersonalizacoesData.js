@@ -1,6 +1,6 @@
 const personalizacoesPorCategoria = {
   // 1. Brinquedos Sensoriais
-  "BrinquedosSensoriais": {
+  "Brinquedos Sensoriais": {
     "textura": ["Áspero", "Liso", "Ondulado", "Escamoso", "Pontilhado", "Acolchoado"],
     "nivelPressao": ["Muito macio", "Macio", "Médio", "Rígido"],
     "cor": ["Yellow", "Blue", "Red", "Green", "Purple", "Orange"],
