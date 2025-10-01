@@ -19,7 +19,7 @@ function Cadastro({ isOpen = false, onClose = () => {} }) {
     }
     setErro("");
     console.log("Cadastro enviado:", { nome, dataNascimento, senha });
-    // Aqui futuramente você pode salvar no Firestore
+
     onClose();
   };
 

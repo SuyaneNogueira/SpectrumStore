@@ -32,8 +32,8 @@ export default function Estoque() {
 
   // carregar produtos do localStorage
   useEffect(() => {
-    const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
-    setProdutos(produtosSalvos);
+    const produtosSalvos = JSON.parse(localStorage.getItem("produtosLoja")) || [];
+  setProdutos(produtosSalvos);
   }, []);
 
   // aplicar filtro por categoria

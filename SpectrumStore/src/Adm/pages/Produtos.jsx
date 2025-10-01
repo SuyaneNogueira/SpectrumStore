@@ -13,15 +13,13 @@ export default function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
 
-  // 🔹 estados do modal de exclusão
   const [showModal, setShowModal] = useState(false);
   const [indexParaExcluir, setIndexParaExcluir] = useState(null);
-
   const confirmarExclusao = () => {
     if (indexParaExcluir !== null) {
-      handleDelete(indexParaExcluir); // executa a exclusão
-      setShowModal(false); // fecha modal
-      setIndexParaExcluir(null); // limpa
+      handleDelete(indexParaExcluir);
+      setShowModal(false);
+      setIndexParaExcluir(null);
     }
   };
 
@@ -39,7 +37,6 @@ export default function Produtos() {
     imagem: "https://via.placeholder.com/150",
   });
 
-  // 🔹 CATEGORIAS FIXAS
   const categoriasFixas = [
     "Brinquedos sensoriais",
     "Brinquedos educativos e pedagógicos",
@@ -53,67 +50,66 @@ export default function Produtos() {
     "Material Ponderado",
   ];
 
-  // 🔹 estado para categoria selecionada (filtro)
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
 
-  // Carregar produtos do localStorage
+  // 🔹 Carrega os produtos do localStorage "produtosLoja"
   useEffect(() => {
-    const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
+    const produtosSalvos = JSON.parse(localStorage.getItem("produtosLoja")) || [];
     setProdutos(produtosSalvos);
   }, []);
 
-  // Criar ou editar produto
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let novosProdutos;
-  if (editIndex !== null) {
-    novosProdutos = [...produtos];
-    novosProdutos[editIndex] = { ...novoProduto }; // garante cópia independente
-  } else {
-    novosProdutos = [...produtos, { ...novoProduto }]; // nova cópia
-  }
-
-    setProdutos(novosProdutos);
-    localStorage.setItem("produtos", JSON.stringify(novosProdutos));
-
-    setIsOpen(false);
-    setEditIndex(null);
-    setNovoProduto({
-      nome: "",
-      valor: "",
-      categoria: "",
-      cor: "",
-      tamanho: "",
-      descricao: "",
-      paraQueServe: "",
-      imagem: "https://via.placeholder.com/150",
-    });
+  // 🔹 Gera ID aleatório se não houver (novo produto)
+  const produtoADM = { 
+    ...novoProduto, 
+    id: editIndex !== null ? produtos[editIndex].id : Date.now() + Math.floor(Math.random() * 1000)
   };
 
-  // Excluir produto
+  let novosProdutos;
+  if (editIndex !== null) {
+    novosProdutos = [...produtos];
+    novosProdutos[editIndex] = produtoADM;
+  } else {
+    novosProdutos = [...produtos, produtoADM];
+  }
+
+  setProdutos(novosProdutos);
+
+  // 🔹 Salva no localStorage "produtosLoja"
+  localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
+
+  setIsOpen(false);
+  setEditIndex(null);
+  setNovoProduto({
+    nome: "",
+    valor: "",
+    categoria: "",
+    cor: "",
+    tamanho: "",
+    descricao: "",
+    paraQueServe: "",
+    imagem: "https://via.placeholder.com/150",
+  });
+};
+
   const handleDelete = (index) => {
     const novosProdutos = produtos.filter((_, i) => i !== index);
     setProdutos(novosProdutos);
-    localStorage.setItem("produtos", JSON.stringify(novosProdutos));
+    localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
 
     const totalPaginas = Math.ceil(novosProdutos.length / itensPorPagina);
-    if (paginaAtual > totalPaginas) {
-      setPaginaAtual(totalPaginas);
-    }
+    if (paginaAtual > totalPaginas) setPaginaAtual(totalPaginas);
   };
 
-  // Editar produto
   const handleEdit = (index) => {
     setEditIndex(index);
     setNovoProduto(produtos[index]);
     setIsOpen(true);
   };
 
-  // 🔹 categorias dinâmicas (produtos) + fixas
   const categorias = ["Todos", ...categoriasFixas];
-
-  // 🔹 filtragem conforme categoria selecionada
   const produtosFiltrados =
     categoriaSelecionada === "Todos"
       ? produtos
@@ -121,14 +117,8 @@ export default function Produtos() {
 
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  const itensVisiveis = produtosFiltrados.slice(
-    indexPrimeiroItem,
-    indexUltimoItem
-  );
-  const totalPaginas = Math.max(
-    1,
-    Math.ceil(produtosFiltrados.length / itensPorPagina)
-  );
+  const itensVisiveis = produtosFiltrados.slice(indexPrimeiroItem, indexUltimoItem);
+  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / itensPorPagina));
 
   return (
     <div className="container-produtos-adm">
@@ -136,11 +126,9 @@ export default function Produtos() {
         <div className="div-geral-titulo-categoria-estoque">
           <h1>Produtos</h1>
           <p>{produtos.length} produtos cadastrados</p>
-
           <div className="categorias-produto-adm">
             <p>Categorias</p>
             <div className="imagem-down-png-adm">
-              {/* 🔹 SELECT PARA FILTRO */}
               <select
                 className="select-image-down-produtos-adm"
                 value={categoriaSelecionada}
@@ -158,6 +146,7 @@ export default function Produtos() {
             </div>
           </div>
         </div>
+
         <div className="div-botao-adicionar-estoque">
           <div className="criar-produto-adm">
             <button
@@ -174,6 +163,7 @@ export default function Produtos() {
             </button>
           </div>
         </div>
+
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
             <FaRegBell
@@ -225,20 +215,16 @@ export default function Produtos() {
                     alt={produto.nome}
                   />
                   <div className="style-valor-produto">
-                      <p>
-                        <span>R$</span> {produto.valor}
-                      </p>
-                    </div>
+                    <p>
+                      <span>R$</span> {produto.valor}
+                    </p>
+                  </div>  
                 </div>
 
                 <div className="div-valor-do-produto-adm">
                   <div className="preco-categoria-produto-adm">
-                    
                     <div className="style-categorias-adm">
-                      <p
-                        className="ajust-categoria-adm"
-                        title={produto.categoria}
-                      >
+                      <p className="ajust-categoria-adm" title={produto.categoria}>
                         {produto.categoria}
                       </p>
                     </div>
@@ -262,7 +248,6 @@ export default function Produtos() {
                   >
                     Editar
                   </button>
-
                   <button
                     className="button-excluir-produtos-adm"
                     onClick={() => {
@@ -288,16 +273,13 @@ export default function Produtos() {
               Página {paginaAtual} de {totalPaginas}
             </span>
             <ImArrowRight
-              onClick={() =>
-                setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
-              }
+              onClick={() => setPaginaAtual((p) => Math.min(p + 1, totalPaginas))}
               disabled={paginaAtual === totalPaginas}
             />
           </div>
         </div>
       </div>
 
-      {/* Modal de confirmação */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -310,7 +292,6 @@ export default function Produtos() {
         </div>
       )}
 
-      {/* MODAL DE CADASTRO/EDIÇÃO */}
       {isOpen && (
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
@@ -324,10 +305,7 @@ export default function Produtos() {
             </div>
 
             <div className="imagem-clicavel-trocar-adm">
-              <label
-                htmlFor="input-imagem"
-                className="label-imagem-adm-produtos"
-              >
+              <label htmlFor="input-imagem" className="label-imagem-adm-produtos">
                 <img
                   src={novoProduto.imagem}
                   alt="Selecione a imagem do produto"
@@ -347,7 +325,7 @@ export default function Produtos() {
                   }
                   const reader = new FileReader();
                   reader.onloadend = () => {
-                    setNovoProduto({ ...novoProduto, imagem: reader.result }); // salva base64
+                    setNovoProduto({ ...novoProduto, imagem: reader.result });
                   };
                   reader.readAsDataURL(file);
                 }}
@@ -375,10 +353,7 @@ export default function Produtos() {
                       type="number"
                       value={novoProduto.valor}
                       onChange={(e) =>
-                        setNovoProduto({
-                          ...novoProduto,
-                          valor: e.target.value,
-                        })
+                        setNovoProduto({ ...novoProduto, valor: e.target.value })
                       }
                       required
                     />
@@ -388,14 +363,10 @@ export default function Produtos() {
                 <div className="form-row-produtos-adm-dois">
                   <div className="div-categoria-produtos-adm">
                     <label>Categoria:</label>
-                    {/* 🔹 SELECT DE CATEGORIAS FIXAS NO MODAL */}
                     <select
                       value={novoProduto.categoria}
                       onChange={(e) =>
-                        setNovoProduto({
-                          ...novoProduto,
-                          categoria: e.target.value,
-                        })
+                        setNovoProduto({ ...novoProduto, categoria: e.target.value })
                       }
                     >
                       <option value="">Selecione</option>
@@ -424,10 +395,7 @@ export default function Produtos() {
                       type="text"
                       value={novoProduto.tamanho}
                       onChange={(e) =>
-                        setNovoProduto({
-                          ...novoProduto,
-                          tamanho: e.target.value,
-                        })
+                        setNovoProduto({ ...novoProduto, tamanho: e.target.value })
                       }
                     />
                   </div>
@@ -435,18 +403,15 @@ export default function Produtos() {
 
                 <div className="form-row-produtos-adm-tres">
                   <label>Descrição do produto:</label>
-
                   <textarea
                     rows="2"
                     value={novoProduto.descricao}
                     onChange={(e) =>
-                      setNovoProduto({
-                        ...novoProduto,
-                        descricao: e.target.value,
-                      })
+                      setNovoProduto({ ...novoProduto, descricao: e.target.value })
                     }
                   ></textarea>
                 </div>
+
                 <div className="modal-buttons-produto-adm">
                   <button type="submit" className="btn-confirmar">
                     {editIndex !== null ? "Salvar Alterações" : "Confirmar"}

@@ -121,7 +121,7 @@
   overflow-x: auto;
   max-height: 370px; /* altura máxima que a lista pode ocupar */
   overflow-y: auto; /* scroll vertical quando passar do limite */
-  /* margin-top: 1%; */
+  margin-top: 1%;
 }
 
 .criar-produto-adm {
@@ -341,12 +341,12 @@
   justify-content: center;
   align-items: center;
   height: 15%;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .botão-proximo-adm-produtos {
   width: 50%;
-  height: 50%;
+  height: 67%;
   background-color: #03374c;
   display: flex;
   justify-content: center;

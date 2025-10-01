@@ -7,7 +7,7 @@
   margin-top: 2%;
   /* border: solid blue; */
   display: flex;
-  height: 25%;
+  height: 22%;
   flex-wrap: nowrap;
   flex-direction: column;
   /* gap: 6%; */
@@ -91,8 +91,8 @@
 }
 .div-enfeite-produtos-em-estoque {
   border: solid 2px #a2c9cd;
-  width: 80%;
-  height: 75%;
+  width: 85%;
+  height: 76%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -159,7 +159,7 @@
   /* margin-top: 1%; */
   margin-left: 0%;
   width: 17%;
-  border-radius: 9px; 
+  border-radius: 9px;
   justify-content: center;
   align-items: center;
   height: 50%;
@@ -322,7 +322,7 @@
   justify-content: center;
   align-items: center;
   height: 15%;
-  /* margin-top: 5%; */
+  margin-top: 2%;
 }
 
 .botão-proximo-adm-estoque {

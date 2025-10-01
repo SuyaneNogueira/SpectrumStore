@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Button from './Button';
 import StarRating from './StarRating';
 import './Tela_inicial.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Abaco from '../imagens/Abaco.jpg';
 import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
 import MassinhaModelar from '../imagens/Massinha-modelar.webp';
@@ -11,8 +11,7 @@ import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import { useFavorites } from '../TelaFavoritos/FavoriteContext';
 
-
-const produtosSpectrum = [
+const produtosFixos = [
   { id: 1, name: "Ábaco", price: 20.00, image: Abaco, description: "O ábaco é uma ferramenta de cálculo milenar para desenvolver o raciocínio lógico.", rating: 3.5, category: "JogosCognitivosEEducacionais"},
   { id: 2, name: "Quebra-cabeça", price: 40.00, image: QuebraCabeca, description: "Quebra-cabeça de madeira com 50 peças para estimular a coordenação motora.", rating: 4.5, category: "BrinquedosEducativosEPedagogicos"},
   { id: 3, name: "Massinha de modelar", price: 8.00, image: MassinhaModelar, description: "Kit de massinhas coloridas para desenvolver a criatividade e a coordenação.", rating: 2.5, category: "BrinquedosSensoriais"},
@@ -21,10 +20,16 @@ const produtosSpectrum = [
 ];
 
 function Tela_inicial() {
-
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const { toggleFavorite, isFavorited } = useFavorites();
   const [termoPesquisa, setTermoPesquisa] = useState('');
+  const [produtosCombinados, setProdutosCombinados] = useState([]);
+
+  // 🔹 Carregar produtos cadastrados no ADM + fixos
+  useEffect(() => {
+    const produtosSalvos = JSON.parse(localStorage.getItem("produtosLoja")) || [];
+    setProdutosCombinados([...produtosFixos, ...produtosSalvos]);
+  }, []);
 
   const handleCategoriaClick = (categoria) => {
     setCategoriaSelecionada(categoria);
@@ -38,20 +43,20 @@ function Tela_inicial() {
 
   const handleFavoriteClick = (productId) => {
     console.log(`Produto ${productId} foi favoritado/desfavoritado!`);
-  }
+  };
 
-  let produtosExibidos = produtosSpectrum;
+  let produtosExibidos = produtosCombinados;
 
   if (categoriaSelecionada) {
-    produtosExibidos = produtosSpectrum.filter(produto => 
-      produto.category === categoriaSelecionada
+    produtosExibidos = produtosExibidos.filter(produto => 
+      (produto.category || produto.categoria) === categoriaSelecionada
     );
   }
 
   if (termoPesquisa) {
     produtosExibidos = produtosExibidos.filter(produto =>
-      produto.name.toLowerCase().includes(termoPesquisa.toLowerCase()) ||
-      produto.description.toLowerCase().includes(termoPesquisa.toLowerCase())
+      (produto.name || produto.nome).toLowerCase().includes(termoPesquisa.toLowerCase()) ||
+      (produto.description || produto.descricao).toLowerCase().includes(termoPesquisa.toLowerCase())
     );
   }
 
@@ -68,24 +73,32 @@ function Tela_inicial() {
         </div>
         <div className="separacao-divs-produtos-fundo">
           <div className='container-produtos-store'>
-            {produtosExibidos.map(produto => (
-              <div className="produtos-store" key={produto.id}>
+            {produtosExibidos.map((produto, idx) => (
+              <div className="produtos-store" key={idx}>
                 <div className="icone-favorito">
+<<<<<<< HEAD
                   <Button isFavorited={isFavorited(produto.id)} 
                     onClick={() => toggleFavorite(produto)}/>
+=======
+                  <Button onClick={() => handleFavoriteClick(produto.id || idx)} />
+>>>>>>> 1b2726e5dd03571e8b28f353aef2053fddd7266b
                 </div>
-                <Link to={`/produto/${produto.id}`} className="link-produto-card">
+                <Link to={`/produto/${produto.id || idx}`} className="link-produto-card">
                   <div className='produto-imagem-container'>
-                    <img className='foto-produtos' src={produto.image} alt={produto.name} />
+                    <img
+                      className='foto-produtos'
+                      src={produto.image || produto.imagem}
+                      alt={produto.name || produto.nome}
+                    />
                     <div className="etiqueta-preco">
-                      <span className='cor-amarela-preco'>R$</span>{produto.price.toFixed(2)}
+                      <span className='cor-amarela-preco'>R$</span>{(produto.price || produto.valor).toFixed ? (produto.price || produto.valor).toFixed(2) : produto.price || produto.valor}
                     </div>
                   </div>
                   <div className='produto-detalhes'>
-                    <h3 className='titulo-produto-store'>{produto.name}</h3>
-                    <p className='descricao-produto'>{produto.description}</p>
+                    <h3 className='titulo-produto-store'>{produto.name || produto.nome}</h3>
+                    <p className='descricao-produto'>{produto.description || produto.descricao}</p>
                     <div className="produto-avaliacao">
-                      <StarRating rating={produto.rating} />
+                      <StarRating rating={produto.rating || 0} />
                     </div>
                   </div>
                 </Link>
