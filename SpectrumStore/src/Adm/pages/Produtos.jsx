@@ -26,6 +26,16 @@ export default function Produtos() {
   const itensPorPagina = 9;
   const [editIndex, setEditIndex] = useState(null);
 
+  const normalizarCategoria = (cat) => {
+  if (!cat) return "";
+  return cat
+    .toLowerCase()
+    .normalize("NFD") // remove acentos
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, ""); // remove espaços
+};
+
+
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
     valor: "",
@@ -64,7 +74,8 @@ export default function Produtos() {
   // 🔹 Gera ID aleatório se não houver (novo produto)
   const produtoADM = { 
     ...novoProduto, 
-    id: editIndex !== null ? produtos[editIndex].id : Date.now() + Math.floor(Math.random() * 1000)
+  id: editIndex !== null ? produtos[editIndex].id : Date.now() + Math.floor(Math.random() * 1000),
+  categoria: normalizarCategoria(novoProduto.categoria) // 🔹 padroniza antes de salvar
   };
 
   let novosProdutos;
