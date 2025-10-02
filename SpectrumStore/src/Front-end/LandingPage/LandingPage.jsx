@@ -1,20 +1,58 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Certifique-se de que o Router está configurado
+import { Link } from "react-router-dom"; 
 import "./LandingPage.css";
 
 function LandingPage() {
   const cards = [
-    {
-      title: "Aprender com leveza",
-      text: "Jogos e recursos que estimulam habilidades cognitivas de forma prazerosa e adaptada.",
+     {
+      title: "Brinquedos sensoriais",
+      text:
+        "Materiais pensados para acolher os sentidos — texturas, pesos e sons que ajudam na regulação e no bem-estar.",
     },
     {
-      title: "Explorar com os sentidos",
-      text: "Materiais sensoriais que acolhem, acalmam e convidam a descobrir o mundo ao seu ritmo.",
+      title: "Brinquedos educativos e pedagógicos",
+      text:
+        "Recursos lúdicos que transformam aprendizagem em experiência prazerosa: raciocínio, linguagem e coordenação.",
     },
     {
-      title: "Inclusão em cada detalhe",
-      text: "Produtos pensados para apoiar diferentes rotinas, idades e estilos de vida dentro do TEA.",
+      title: "Rotina e organização",
+      text:
+        "Materiais que facilitam previsibilidade e autonomia: quadros de rotina, timers e suportes visuais adaptados.",
+    },
+    {
+      title: "Moda e acessórios sensoriais",
+      text:
+        "Roupas e acessórios projetados para conforto, segurança tátil e facilidade no uso cotidiano.",
+    },
+    {
+      title: "Ambiente e relaxamento",
+      text:
+        "Itens para criar espaços calmantes: luzes suaves, texturas aconchegantes e instrumentos de relaxamento.",
+    },
+    {
+      title: "Jogos Cognitivos e Educacionais",
+      text:
+        "Jogos que estimulam memória, atenção e resolução de problemas com níveis adaptáveis de desafio.",
+    },
+    {
+      title: "Materiais Escolares Adaptados",
+      text:
+        "Ferramentas didáticas que tornam a escola mais acessível: recursos visuais, ajustáveis e fáceis de usar.",
+    },
+    {
+      title: "Cuidados e Rotina Pessoal",
+      text:
+        "Produtos pensados para autonomia nas atividades diárias com conforto e segurança.",
+    },
+    {
+      title: "Materiais de CAA",
+      text:
+        "Soluções de Comunicação Aumentativa e Alternativa criadas para apoiar a expressão e interação.",
+    },
+    {
+      title: "Material Ponderado",
+      text:
+        "Produtos ponderados e de pressão profunda para ajudar na autorregulação e sensação de segurança.",
     },
   ];
 
@@ -28,34 +66,41 @@ function LandingPage() {
     setCurrent((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
   };
 
+ 
+  const leftIndex = (current - 1 + cards.length) % cards.length;
+  const rightIndex = (current + 1) % cards.length;
+
   return (
     <div className="landing-container">
-
       <nav className="landing-navbar">
         <img src="/Spectrum Store.png" alt="Spectrum Store" className="landing-logo" />
         <div className="landing-nav-links">
-          <Link to="/login">Entrar</Link>
-          <Link to="/cadastro">Cadastre-se</Link>
+          <Link to="/Login">Entrar</Link>
+          <Link to="/Cadastro">Cadastre-se</Link>
         </div>
       </nav>
-
-      <section className="landing-hero">
-        <h1>Bem-vindo(a)</h1>
+       <div>
+      <section className="landing-hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Bem-vindo(a)</h1>
         <p>
           Na Spectrum Store, cada produto é pensado para pessoas no espectro autista em todas as
           fases da vida. Mais que itens, oferecemos recursos que promovem bem-estar, autonomia e
           inclusão — sempre com carinho, qualidade e propósito.
         </p>
       </section>
-
-      <section className="landing-carousel">
-        <button className="carousel-arrow left" onClick={prevCard}>
-          <img src="/SetaE.png" alt="Anterior" />
+      </div>
+      <section className="landing-carousel" aria-roledescription="carousel">
+        <button
+          className="carousel-arrow left"
+          onClick={prevCard}
+          aria-label="Anterior"
+        >
+          <img src="/SetaE.png" alt="Seta esquerda" />
         </button>
 
         <div className="carousel-card">
-          <h3>{cards[current].title}</h3>
-          <p>{cards[current].text}</p>
+          <h3>{cards[leftIndex].title}</h3>
+          <p>{cards[leftIndex].text}</p>
         </div>
 
         <div className="carousel-card">
@@ -64,12 +109,16 @@ function LandingPage() {
         </div>
 
         <div className="carousel-card">
-          <h3>{cards[current].title}</h3>
-          <p>{cards[current].text}</p>
+          <h3>{cards[rightIndex].title}</h3>
+          <p>{cards[rightIndex].text}</p>
         </div>
 
-        <button className="carousel-arrow right" onClick={nextCard}>
-          <img src="/SetaD.png" alt="Próximo" />
+        <button
+          className="carousel-arrow right"
+          onClick={nextCard}
+          aria-label="Próximo"
+        >
+          <img src="/SetaD.png" alt="Seta direita" />
         </button>
       </section>
     </div>

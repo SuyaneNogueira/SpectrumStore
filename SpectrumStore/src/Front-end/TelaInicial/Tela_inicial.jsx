@@ -76,12 +76,8 @@ function Tela_inicial() {
             {produtosExibidos.map((produto, idx) => (
               <div className="produtos-store" key={idx}>
                 <div className="icone-favorito">
-<<<<<<< HEAD
                   <Button isFavorited={isFavorited(produto.id)} 
                     onClick={() => toggleFavorite(produto)}/>
-=======
-                  <Button onClick={() => handleFavoriteClick(produto.id || idx)} />
->>>>>>> 1b2726e5dd03571e8b28f353aef2053fddd7266b
                 </div>
                 <Link to={`/produto/${produto.id || idx}`} className="link-produto-card">
                   <div className='produto-imagem-container'>
