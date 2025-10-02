@@ -1,5 +1,8 @@
+@import url('https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUF4J3BRw.woff2');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 .landing-container {
-  font-family: 'Georgia', serif;
+  font-family: 'Inknut Antiqua', serif;
   color: #034E61;
 }
 
@@ -32,6 +35,7 @@
   text-align: center;
   background: url('/LogoLandingPage.png') center;
   background-repeat: no-repeat;
+  background-size: 50%;
   width: 100%;
   height: 520px; 
 
@@ -40,6 +44,7 @@
 .landing-hero h1 {
   font-size: 34px;
   margin-top: 1%;
+  text-align: center;
 }
 
 .landing-hero p {
@@ -48,6 +53,7 @@
   line-height: 1.4;
   margin-top: 10%;
   margin-left: 24%;
+  text-align: center;
 
 }
 
@@ -66,7 +72,7 @@
 }
 
 .carousel-card {
-  background-color: rgba(104, 159, 173, 0.9); /* 689FAD com 90% de opacidade */
+  background-color: rgba(104, 159, 173, 0.9); 
   color: #ffffff;
   padding: 30px;
   width: 348px;
