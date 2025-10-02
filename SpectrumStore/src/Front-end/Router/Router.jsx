@@ -20,11 +20,8 @@ import Dashboard from "../../Adm/pages/Dashboard";
 import Pedidos from "../../Adm/pages/Pedidos";
 import Estatisticas from "../../Adm/pages/Estatisticas";
 import Estoque from "../../Adm/pages/Estoque";
-<<<<<<< HEAD
 import TelaFavoritos from "../TelaFavoritos/TelaFavoritos";
-=======
 import LandingPage from "../LandingPage/LandingPage";
->>>>>>> 1b2726e5dd03571e8b28f353aef2053fddd7266b
 
 const Router = createBrowserRouter([
     { path: "/", element: <Tela_inicial/> },

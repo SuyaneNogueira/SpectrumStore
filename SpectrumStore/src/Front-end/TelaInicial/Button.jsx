@@ -1,26 +1,51 @@
+import React, { useState, useEffect } from 'react';
 import './Button.css';
 
-const Button = ({ onClick, isFavorited }) => { // Receba isFavorited como prop
+const Button = ({ onClick, isFavorited }) => {
+  // 1. Estado local para controlar o disparo da animação de celebração
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
   const handleHeartClick = (e) => {
     e.stopPropagation(); // Impede o clique do link
+
+    // A animação SÓ deve ocorrer se o estado ATUAL for false,
+    // ou seja, se o clique estiver prestes a FAVORITAR o item.
+    if (!isFavorited) {
+      setShouldAnimate(true);
+    }
+    
+    // Chama a função do componente pai para alternar o estado isFavorited
     onClick(); 
   };
+
+  // 2. useEffect para resetar o estado shouldAnimate após o tempo da animação
+  useEffect(() => {
+    if (shouldAnimate) {
+      // Define um timeout ligeiramente maior que a duração da animação (0.7s)
+      const timer = setTimeout(() => {
+        setShouldAnimate(false);
+      }, 750); // Reseta para false após 750ms
+
+      // Cleanup function para limpar o timer se o componente for desmontado
+      return () => clearTimeout(timer);
+    }
+  }, [shouldAnimate]); // Executa sempre que shouldAnimate muda para true
 
   return (
     <div title="Like" className="heart-container" onClick={handleHeartClick}>
       <div className="svg-container">
-        {/* O coração vazio agora depende da prop isFavorited */}
+        {/* O coração vazio (outline) */}
         <svg xmlns="http://www.w3.org/2000/svg" className={`svg-outline ${isFavorited ? 'hidden' : ''}`} viewBox="0 0 24 24">
           <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
         </svg>
 
-        {/* O coração preenchido agora depende da prop isFavorited */}
+        {/* O coração preenchido (filled) continua dependendo de isFavorited */}
         <svg xmlns="http://www.w3.org/2000/svg" className={`svg-filled ${isFavorited ? 'active' : ''}`} viewBox="0 0 24 24">
           <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
         </svg>
 
-        {/* Os "pontinhos" também dependem da prop */}
-        <svg xmlns="http://www.w3.org/2000/svg" height={100} width={100} className={`svg-celebrate ${isFavorited ? 'active' : ''}`}>
+        {/* O SVG de celebração agora depende do estado local shouldAnimate */}
+        <svg xmlns="http://www.w3.org/2000/svg" height={100} width={100} className={`svg-celebrate ${shouldAnimate ? 'active' : ''}`}>
           <polygon points="10,10 20,20" />
           <polygon points="10,50 20,50" />
           <polygon points="20,80 30,70" />

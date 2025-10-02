@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Abaco from '../imagens/Abaco.jpg';
 import QuebraCabeca from '../imagens/Quebra-cabeça.avif';
 import MassinhaModelar from '../imagens/Massinha-modelar.webp';
+import BolaFut from '../imagens/BolaFut.webp';
 import JogoMemoria from '../imagens/Jogo-memoria.jpg';
 import CuboMagico from '../imagens/Cubo-magico.jpg';
 import { useFavorites } from '../TelaFavoritos/FavoriteContext';
@@ -16,7 +17,8 @@ const produtosFixos = [
   { id: 2, name: "Quebra-cabeça", price: 40.00, image: QuebraCabeca, description: "Quebra-cabeça de madeira com 50 peças para estimular a coordenação motora.", rating: 4.5, category: "BrinquedosEducativosEPedagogicos"},
   { id: 3, name: "Massinha de modelar", price: 8.00, image: MassinhaModelar, description: "Kit de massinhas coloridas para desenvolver a criatividade e a coordenação.", rating: 2.5, category: "BrinquedosSensoriais"},
   { id: 4, name: "Jogo da memória", price: 15.00, image: JogoMemoria, description: "Jogo de memória com animais para exercitar a memória e a concentração.", rating: 1.5, category: "JogosCognitivosEEducacionais"},
-  { id: 5, name: "Cubo Mágico", price: 10.00, image: CuboMagico, description: "Clássico cubo mágico para desafiar a lógica e a paciência.", rating: 5.0, category: "BrinquedosEducativosEPedagogicos"}
+  { id: 5, name: "Cubo Mágico", price: 10.00, image: CuboMagico, description: "Clássico cubo mágico para desafiar a lógica e a paciência.", rating: 5.0, category: "BrinquedosEducativosEPedagogicos"},
+  { id: 6, name: "Bola", price: 19.00, image: BolaFut, description: "Clássico", rating: 2.5, category: "BrinquedosEducativosEPedagogicos"}
 ];
 
 function Tela_inicial() {
@@ -76,12 +78,8 @@ function Tela_inicial() {
             {produtosExibidos.map((produto, idx) => (
               <div className="produtos-store" key={idx}>
                 <div className="icone-favorito">
-<<<<<<< HEAD
                   <Button isFavorited={isFavorited(produto.id)} 
                     onClick={() => toggleFavorite(produto)}/>
-=======
-                  <Button onClick={() => handleFavoriteClick(produto.id || idx)} />
->>>>>>> 1b2726e5dd03571e8b28f353aef2053fddd7266b
                 </div>
                 <Link to={`/produto/${produto.id || idx}`} className="link-produto-card">
                   <div className='produto-imagem-container'>

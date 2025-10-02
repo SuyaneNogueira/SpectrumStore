@@ -13,8 +13,9 @@ function TelaFavoritos() {
   return (
     <div>
       <Navbar/>
-      <div className="container-favoritos">
-        <h2>Meus Favoritos ❤️</h2>
+      <div className="div-favoritos-principal">
+        <div className="container-favoritos">
+        <h2 className='titulo-fav'>Meus Favoritos</h2>
         {favorites.length === 0 ? (
           <p>Você ainda não tem nenhum produto favorito. Adicione alguns!</p>
         ) : (
@@ -44,6 +45,7 @@ function TelaFavoritos() {
             ))}
           </div>
         )}
+      </div>
       </div>
     </div>
   );
