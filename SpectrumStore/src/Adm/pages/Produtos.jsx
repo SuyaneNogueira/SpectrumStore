@@ -12,6 +12,7 @@ export default function Produtos() {
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [showPersonalizacao, setShowPersonalizacao] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   const [indexParaExcluir, setIndexParaExcluir] = useState(null);
@@ -27,14 +28,13 @@ export default function Produtos() {
   const [editIndex, setEditIndex] = useState(null);
 
   const normalizarCategoria = (cat) => {
-  if (!cat) return "";
-  return cat
-    .toLowerCase()
-    .normalize("NFD") // remove acentos
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, ""); // remove espaços
-};
-
+    if (!cat) return "";
+    return cat
+      .toLowerCase()
+      .normalize("NFD") // remove acentos
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, ""); // remove espaços
+  };
 
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
@@ -45,6 +45,7 @@ export default function Produtos() {
     descricao: "",
     paraQueServe: "",
     imagem: "https://via.placeholder.com/150",
+    // NOTA: não alterei para adicionar personalizacao aqui — vamos criar o objeto dinamicamente quando o usuário editar a personalização
   });
 
   const categoriasFixas = [
@@ -64,46 +65,52 @@ export default function Produtos() {
 
   // 🔹 Carrega os produtos do localStorage "produtosLoja"
   useEffect(() => {
-    const produtosSalvos = JSON.parse(localStorage.getItem("produtosLoja")) || [];
+    const produtosSalvos =
+      JSON.parse(localStorage.getItem("produtosLoja")) || [];
     setProdutos(produtosSalvos);
   }, []);
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // 🔹 Gera ID aleatório se não houver (novo produto)
-  const produtoADM = { 
-    ...novoProduto, 
-  id: editIndex !== null ? produtos[editIndex].id : Date.now() + Math.floor(Math.random() * 1000),
-  categoria: normalizarCategoria(novoProduto.categoria) // 🔹 padroniza antes de salvar
+    // 🔹 Gera ID aleatório se não houver (novo produto)
+    const produtoADM = {
+      ...novoProduto,
+      id:
+        editIndex !== null
+          ? produtos[editIndex].id
+          : Date.now() + Math.floor(Math.random() * 1000),
+      categoria: normalizarCategoria(novoProduto.categoria), // 🔹 padroniza antes de salvar
+    };
+
+    let novosProdutos;
+    if (editIndex !== null) {
+      novosProdutos = [...produtos];
+      novosProdutos[editIndex] = produtoADM;
+    } else {
+      novosProdutos = [...produtos, produtoADM];
+    }
+
+    setProdutos(novosProdutos);
+
+    // 🔹 Salva no localStorage "produtosLoja"
+    localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
+
+    setIsOpen(false);
+    setEditIndex(null);
+    setNovoProduto({
+      nome: "",
+      valor: "",
+      categoria: "",
+      cor: "",
+      tamanho: "",
+      descricao: "",
+      paraQueServe: "",
+      imagem: "https://via.placeholder.com/150",
+    });
+    // fecha o modal de personalização caso estivesse aberto (segurança)
+    setShowPersonalizacao(false);
   };
-
-  let novosProdutos;
-  if (editIndex !== null) {
-    novosProdutos = [...produtos];
-    novosProdutos[editIndex] = produtoADM;
-  } else {
-    novosProdutos = [...produtos, produtoADM];
-  }
-
-  setProdutos(novosProdutos);
-
-  // 🔹 Salva no localStorage "produtosLoja"
-  localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
-
-  setIsOpen(false);
-  setEditIndex(null);
-  setNovoProduto({
-    nome: "",
-    valor: "",
-    categoria: "",
-    cor: "",
-    tamanho: "",
-    descricao: "",
-    paraQueServe: "",
-    imagem: "https://via.placeholder.com/150",
-  });
-};
 
   const handleDelete = (index) => {
     const novosProdutos = produtos.filter((_, i) => i !== index);
@@ -128,8 +135,14 @@ export default function Produtos() {
 
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  const itensVisiveis = produtosFiltrados.slice(indexPrimeiroItem, indexUltimoItem);
-  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / itensPorPagina));
+  const itensVisiveis = produtosFiltrados.slice(
+    indexPrimeiroItem,
+    indexUltimoItem
+  );
+  const totalPaginas = Math.max(
+    1,
+    Math.ceil(produtosFiltrados.length / itensPorPagina)
+  );
 
   return (
     <div className="container-produtos-adm">
@@ -229,13 +242,16 @@ export default function Produtos() {
                     <p>
                       <span>R$</span> {produto.valor}
                     </p>
-                  </div>  
+                  </div>
                 </div>
 
                 <div className="div-valor-do-produto-adm">
                   <div className="preco-categoria-produto-adm">
                     <div className="style-categorias-adm">
-                      <p className="ajust-categoria-adm" title={produto.categoria}>
+                      <p
+                        className="ajust-categoria-adm"
+                        title={produto.categoria}
+                      >
                         {produto.categoria}
                       </p>
                     </div>
@@ -284,7 +300,9 @@ export default function Produtos() {
               Página {paginaAtual} de {totalPaginas}
             </span>
             <ImArrowRight
-              onClick={() => setPaginaAtual((p) => Math.min(p + 1, totalPaginas))}
+              onClick={() =>
+                setPaginaAtual((p) => Math.min(p + 1, totalPaginas))
+              }
               disabled={paginaAtual === totalPaginas}
             />
           </div>
@@ -309,14 +327,21 @@ export default function Produtos() {
             <div className="botão-fechar-modal-adm">
               <span
                 className="close-btn-produtos-adm"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  // garante que a personalização também feche caso estivesse aberta
+                  setShowPersonalizacao(false);
+                }}
               >
                 &times;
               </span>
             </div>
 
             <div className="imagem-clicavel-trocar-adm">
-              <label htmlFor="input-imagem" className="label-imagem-adm-produtos">
+              <label
+                htmlFor="input-imagem"
+                className="label-imagem-adm-produtos"
+              >
                 <img
                   src={novoProduto.imagem}
                   alt="Selecione a imagem do produto"
@@ -364,7 +389,10 @@ export default function Produtos() {
                       type="number"
                       value={novoProduto.valor}
                       onChange={(e) =>
-                        setNovoProduto({ ...novoProduto, valor: e.target.value })
+                        setNovoProduto({
+                          ...novoProduto,
+                          valor: e.target.value,
+                        })
                       }
                       required
                     />
@@ -376,9 +404,15 @@ export default function Produtos() {
                     <label>Categoria:</label>
                     <select
                       value={novoProduto.categoria}
-                      onChange={(e) =>
-                        setNovoProduto({ ...novoProduto, categoria: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setNovoProduto({ ...novoProduto, categoria: value });
+
+                        // 👉 abre o modal só se for "Material Ponderado"
+                        if (value === "Material Ponderado") {
+                          setShowPersonalizacao(true);
+                        }
+                      }}
                     >
                       <option value="">Selecione</option>
                       {categoriasFixas.map((cat, idx) => (
@@ -406,7 +440,10 @@ export default function Produtos() {
                       type="text"
                       value={novoProduto.tamanho}
                       onChange={(e) =>
-                        setNovoProduto({ ...novoProduto, tamanho: e.target.value })
+                        setNovoProduto({
+                          ...novoProduto,
+                          tamanho: e.target.value,
+                        })
                       }
                     />
                   </div>
@@ -418,7 +455,10 @@ export default function Produtos() {
                     rows="2"
                     value={novoProduto.descricao}
                     onChange={(e) =>
-                      setNovoProduto({ ...novoProduto, descricao: e.target.value })
+                      setNovoProduto({
+                        ...novoProduto,
+                        descricao: e.target.value,
+                      })
                     }
                   ></textarea>
                 </div>
@@ -433,6 +473,90 @@ export default function Produtos() {
           </div>
         </div>
       )}
+
+      {/* ========== AQUI: modal de personalização (adicionado) ========== */}
+      {showPersonalizacao && (
+        <div className="personalizacao-overlay">
+          <div className="personalizacao-modal">
+            <button
+              className="personalizacao-close"
+              onClick={() => setShowPersonalizacao(false)}
+            >
+              &times;
+            </button>
+
+            <h3>Personalização — Material Ponderado</h3>
+
+            <div className="personalizacao-field">
+              <label>Espessura (mm):</label>
+              <input
+                type="text"
+                value={
+                  (novoProduto.personalizacao &&
+                    novoProduto.personalizacao.espessura) ||
+                  ""
+                }
+                onChange={(e) =>
+                  setNovoProduto((prev) => ({
+                    ...prev,
+                    personalizacao: {
+                      ...(prev.personalizacao || {}),
+                      espessura: e.target.value,
+                    },
+                  }))
+                }
+                placeholder="Ex: 5"
+              />
+            </div>
+
+            <div className="personalizacao-field">
+              <label>Material:</label>
+              <select
+                value={
+                  (novoProduto.personalizacao &&
+                    novoProduto.personalizacao.material) ||
+                  ""
+                }
+                onChange={(e) =>
+                  setNovoProduto((prev) => ({
+                    ...prev,
+                    personalizacao: {
+                      ...(prev.personalizacao || {}),
+                      material: e.target.value,
+                    },
+                  }))
+                }
+              >
+                <option value="">Selecione</option>
+                <option value="ferro">Ferro</option>
+                <option value="aço">Aço</option>
+                <option value="alumínio">Alumínio</option>
+              </select>
+            </div>
+
+            <div className="personalizacao-actions">
+              <button
+                onClick={() => {
+                  // cancelar mantém o objeto personalizacao (se já existir) e fecha modal
+                  setShowPersonalizacao(false);
+                }}
+              >
+                Cancelar
+              </button>
+
+              <button
+                onClick={() => {
+                  // confirmar apenas fecha; os valores já foram gravados em novoProduto.personalizacao
+                  setShowPersonalizacao(false);
+                }}
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* ================================================================= */}
     </div>
   );
 }
