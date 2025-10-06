@@ -598,13 +598,12 @@
   /* border: solid hotpink; */
 }
 .modal-buttons-produto-adm button {
-  /* height: 100%; */
   background-color: #a2c9cd;
   border: none;
-  width: 25%;
+  width: 28%;
   border-radius: 10px;
   /* margin-top: 5%; */
-  height: 50%;
+  height: 65%;
   color: #021c41;
 }
 
