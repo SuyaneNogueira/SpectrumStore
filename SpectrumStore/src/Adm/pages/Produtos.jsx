@@ -6,27 +6,36 @@ import { ImArrowLeft } from "react-icons/im";
 import { ImArrowRight } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ModalPersonalizacao from "./ModalPersonalizacao";
 
 export default function Produtos() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [mostrarPersonalizacao, setMostrarPersonalizacao] = useState(false);
 
-  // 🔹 estados do modal de exclusão
   const [showModal, setShowModal] = useState(false);
   const [indexParaExcluir, setIndexParaExcluir] = useState(null);
-
   const confirmarExclusao = () => {
     if (indexParaExcluir !== null) {
-      handleDelete(indexParaExcluir); // executa a exclusão
-      setShowModal(false); // fecha modal
-      setIndexParaExcluir(null); // limpa
+      handleDelete(indexParaExcluir);
+      setShowModal(false);
+      setIndexParaExcluir(null);
     }
   };
 
-  const itensPorPagina = 14;
+  const itensPorPagina = 9;
   const [editIndex, setEditIndex] = useState(null);
+
+  const normalizarCategoria = (cat) => {
+    if (!cat) return "";
+    return cat
+      .toLowerCase()
+      .normalize("NFD") // remove acentos
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, ""); // remove espaços
+  };
 
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
@@ -39,7 +48,6 @@ export default function Produtos() {
     imagem: "https://via.placeholder.com/150",
   });
 
-  // 🔹 CATEGORIAS FIXAS
   const categoriasFixas = [
     "Brinquedos sensoriais",
     "Brinquedos educativos e pedagógicos",
@@ -47,31 +55,46 @@ export default function Produtos() {
     "Moda e acessórios sensoriais",
     "Ambiente e relaxamento",
     "Jogos Cognitivos e Educacionais",
+    "Materiais Escolares Adaptados",
+    "Cuidados e Rotina Pessoal",
+    "Materiais de CAA",
+    "Material Ponderado",
   ];
 
-  // 🔹 estado para categoria selecionada (filtro)
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
 
-  // Carregar produtos do localStorage
+  // 🔹 Carrega os produtos do localStorage "produtosLoja"
   useEffect(() => {
-    const produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
+    const produtosSalvos =
+      JSON.parse(localStorage.getItem("produtosLoja")) || [];
     setProdutos(produtosSalvos);
   }, []);
 
-  // Criar ou editar produto
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // 🔹 Gera ID aleatório se não houver (novo produto)
+    const produtoADM = {
+      ...novoProduto,
+      id:
+        editIndex !== null
+          ? produtos[editIndex].id
+          : Date.now() + Math.floor(Math.random() * 1000),
+      categoria: normalizarCategoria(novoProduto.categoria), // 🔹 padroniza antes de salvar
+    };
 
     let novosProdutos;
     if (editIndex !== null) {
       novosProdutos = [...produtos];
-      novosProdutos[editIndex] = novoProduto;
+      novosProdutos[editIndex] = produtoADM;
     } else {
-      novosProdutos = [...produtos, novoProduto];
+      novosProdutos = [...produtos, produtoADM];
     }
 
     setProdutos(novosProdutos);
-    localStorage.setItem("produtos", JSON.stringify(novosProdutos));
+
+    // 🔹 Salva no localStorage "produtosLoja"
+    localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
 
     setIsOpen(false);
     setEditIndex(null);
@@ -87,29 +110,22 @@ export default function Produtos() {
     });
   };
 
-  // Excluir produto
   const handleDelete = (index) => {
     const novosProdutos = produtos.filter((_, i) => i !== index);
     setProdutos(novosProdutos);
-    localStorage.setItem("produtos", JSON.stringify(novosProdutos));
+    localStorage.setItem("produtosLoja", JSON.stringify(novosProdutos));
 
     const totalPaginas = Math.ceil(novosProdutos.length / itensPorPagina);
-    if (paginaAtual > totalPaginas) {
-      setPaginaAtual(totalPaginas);
-    }
+    if (paginaAtual > totalPaginas) setPaginaAtual(totalPaginas);
   };
 
-  // Editar produto
   const handleEdit = (index) => {
     setEditIndex(index);
     setNovoProduto(produtos[index]);
     setIsOpen(true);
   };
 
-  // 🔹 categorias dinâmicas (produtos) + fixas
   const categorias = ["Todos", ...categoriasFixas];
-
-  // 🔹 filtragem conforme categoria selecionada
   const produtosFiltrados =
     categoriaSelecionada === "Todos"
       ? produtos
@@ -129,14 +145,12 @@ export default function Produtos() {
   return (
     <div className="container-produtos-adm">
       <div className="titulo-produtos-adm">
-        <div>
+        <div className="div-geral-titulo-categoria-estoque">
           <h1>Produtos</h1>
           <p>{produtos.length} produtos cadastrados</p>
-
           <div className="categorias-produto-adm">
             <p>Categorias</p>
             <div className="imagem-down-png-adm">
-              {/* 🔹 SELECT PARA FILTRO */}
               <select
                 className="select-image-down-produtos-adm"
                 value={categoriaSelecionada}
@@ -155,10 +169,27 @@ export default function Produtos() {
           </div>
         </div>
 
+        <div className="div-botao-adicionar-estoque">
+          <div className="criar-produto-adm">
+            <button
+              className="button-adicionar-produto-adm"
+              onClick={() => {
+                setIsOpen(true);
+                setEditIndex(null);
+              }}
+            >
+              <div>
+                <img className="plus-png-adm" src="/plus.png" alt="" />
+              </div>
+              Adicionar Produto
+            </button>
+          </div>
+        </div>
+
         <div className="icones-geral-adm-produtos">
           <div className="icons-notification-adm-produtos">
             <FaRegBell
-             className="notification-produtos-adm"
+              className="notification-produtos-adm"
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
@@ -188,21 +219,6 @@ export default function Produtos() {
 
       <div className="cadastro-dos-produtos-adm">
         <div className="lista-produtos-adm">
-          <div className="criar-produto-adm">
-            <button
-              className="button-adicionar-produto-adm"
-              onClick={() => {
-                setIsOpen(true);
-                setEditIndex(null);
-              }}
-            >
-              Adicionar Produto
-              <div>
-              <img className="plus-png-adm" src="/plus.png" alt="" />
-              </div>
-            </button>
-          </div>
-
           {itensVisiveis.map((produto, index) => {
             const originalIndex = produtos.findIndex((p) => p === produto);
             const idParaAcoes =
@@ -220,18 +236,21 @@ export default function Produtos() {
                     src={produto.imagem}
                     alt={produto.nome}
                   />
+                  <div className="style-valor-produto">
+                    <p>
+                      <span>R$</span> {produto.valor}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="div-valor-do-produto-adm">
-                  <div className="preco-categota-produto-adm">
-                    <div className="style-valor-produto">
-                      <p>
-                        <span>R$</span> {produto.valor}
-                      </p>
-                    </div>
+                  <div className="preco-categoria-produto-adm">
                     <div className="style-categorias-adm">
-                      <p className="ajust-categoria-adm" title={produto.categoria}>
-                         {produto.categoria}
+                      <p
+                        className="ajust-categoria-adm"
+                        title={produto.categoria}
+                      >
+                        {produto.categoria}
                       </p>
                     </div>
                   </div>
@@ -248,12 +267,13 @@ export default function Produtos() {
                 </div>
 
                 <div className="div-botoes-card-edita-ex-adm">
-
-                  <button onClick={() => handleEdit(idParaAcoes)} className="button-editar-produtos-adm">
+                  <button
+                    onClick={() => handleEdit(idParaAcoes)}
+                    className="button-editar-produtos-adm"
+                  >
                     Editar
                   </button>
-
-                  <button 
+                  <button
                     className="button-excluir-produtos-adm"
                     onClick={() => {
                       setIndexParaExcluir(idParaAcoes);
@@ -287,7 +307,6 @@ export default function Produtos() {
         </div>
       </div>
 
-      {/* Modal de confirmação */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -300,7 +319,6 @@ export default function Produtos() {
         </div>
       )}
 
-      {/* MODAL DE CADASTRO/EDIÇÃO */}
       {isOpen && (
         <div className="modal-overlay-produtos-adm">
           <div className="modal-content-produtos-adm">
@@ -335,6 +353,11 @@ export default function Produtos() {
                     const imageUrl = URL.createObjectURL(file);
                     setNovoProduto({ ...novoProduto, imagem: imageUrl });
                   }
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setNovoProduto({ ...novoProduto, imagem: reader.result });
+                  };
+                  reader.readAsDataURL(file);
                 }}
               />
             </div>
@@ -373,15 +396,22 @@ export default function Produtos() {
                 <div className="form-row-produtos-adm-dois">
                   <div className="div-categoria-produtos-adm">
                     <label>Categoria:</label>
-                    {/* 🔹 SELECT DE CATEGORIAS FIXAS NO MODAL */}
                     <select
                       value={novoProduto.categoria}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const novaCategoria = e.target.value;
                         setNovoProduto({
                           ...novoProduto,
-                          categoria: e.target.value,
-                        })
-                      }
+                          categoria: novaCategoria,
+                        });
+
+                        // 👉 Abre o modal de personalização se for "Material Ponderado"
+                        if (novaCategoria === "Material Ponderado") {
+                          setMostrarPersonalizacao(true);
+                        } else {
+                          setMostrarPersonalizacao(false);
+                        }
+                      }}
                     >
                       <option value="">Selecione</option>
                       {categoriasFixas.map((cat, idx) => (
@@ -420,7 +450,6 @@ export default function Produtos() {
 
                 <div className="form-row-produtos-adm-tres">
                   <label>Descrição do produto:</label>
-
                   <textarea
                     rows="2"
                     value={novoProduto.descricao}
@@ -428,20 +457,6 @@ export default function Produtos() {
                       setNovoProduto({
                         ...novoProduto,
                         descricao: e.target.value,
-                      })
-                    }
-                  ></textarea>
-                </div>
-
-                <div className="form-row-produtos-adm-quatro">
-                  <label>Descrição de para que serve:</label>
-                  <textarea
-                    rows="3"
-                    value={novoProduto.paraQueServe}
-                    onChange={(e) =>
-                      setNovoProduto({
-                        ...novoProduto,
-                        paraQueServe: e.target.value,
                       })
                     }
                   ></textarea>
@@ -455,6 +470,15 @@ export default function Produtos() {
               </form>
             </div>
           </div>
+          {/* 🔹 LADO DIREITO — Modal de personalização */}
+          {mostrarPersonalizacao && (
+            <div className="modal-personalizacao-lateral">
+              <ModalPersonalizacao
+                novoProduto={novoProduto}
+                setNovoProduto={setNovoProduto}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

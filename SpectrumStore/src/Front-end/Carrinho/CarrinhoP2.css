@@ -1,0 +1,298 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
+.fundoPagamento {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: #e0f0f0;
+}
+
+.div-conteinerDeFora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.FundoBanco {
+    background-color: #ffffff85;
+    height: 88vh;
+    width: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1%;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.div-conteinerDosProtudos {
+    background-color: #A2C9CD;
+    height: 42%;
+    width: 100%;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-protudos {
+    height: 85%;
+    width: 95%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.Protudos {
+    background-color: #ffffff;
+    width: 23%;
+    height: 100%;
+    border-radius: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.178);
+}
+
+.imagem-protudo-pagamento {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    height: 60%;
+}
+
+.imagem-pagamento {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.infomações-protudo-pagamento {
+    height: 35%;
+    width: 78%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Tamanhos dos ícones de pagamento */
+.img-cartao-credito, .img-cartao-debito {
+    width: 60px;
+    height: auto;
+}
+
+.img-pix {
+    width: 40px;
+    height: auto;
+}
+
+.nome-pagamento {
+    font-size: 78%;
+    color: #03374C;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.cor-amarelo-preco-2-pagamento {
+    color: #ed9b20;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.preço-pagamento-protudos {
+    font-size: 80%;
+    font-weight: bold;
+    color: #054964;
+}
+
+/* Container principal para as duas seções inferiores (formas de pagamento e resumo) */
+.resumo-e-botoes-compra {
+    height: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+/* Div para as formas de pagamento */
+.forma-pagamento {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 50%; /* Ajustado para ocupar 40% do container pai */
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.forma-pagamento h2 {
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: 100%;
+    color: #03374C;
+}
+
+.opcoes-pagamento {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.opcao-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f7fcfc; 
+    padding: 5px;
+    border-radius: 12px;
+    border: 2px solid #e0f0f0;
+    transition: all 0.2s ease-in-out;
+}
+
+.opcao-item:has(input:checked) {
+    border-color: #03374C; 
+    /* background-color: #e0f0f0; */
+}
+
+.opcao-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #03374C;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.opcao-item input[type="radio"]:checked::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #03374C;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.info-pagamento {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.icone-pagamento {
+    width: 70px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.texto-pagamento h4 {
+    margin: 0;
+    font-size: 90%;
+    color: #03374C;
+}
+
+.bandeiras {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.bandeiras img {
+    height: 14px;
+    width: auto;
+}
+
+/* Seção de Resumo e Botões */
+.resumo-e-botoes-acoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 100%;
+}
+
+.total-geral {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    height: 75%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.resumo-valores p {
+    font-size: 1rem;
+    color: #03374C;
+    margin: 10px 0;
+}
+
+.total-final {
+    text-align: right;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+.total-final p {
+    font-size: 100%;
+    font-weight: bold;
+    color: #03374C;
+    margin: 0;
+}
+
+.botao-pagar-cancelar-compra {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.botao-cancelar {
+    padding: 12px 24px;
+    border-radius: 5px;
+    background-color: #A2C9CD;
+    color: #03374C;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.botao-cancelar:hover {
+    background-color: #92b9bd;
+}
+
+.botao-pagar {
+    padding: 12px 24px;
+    border-radius: 5px;
+    background-color: #085D72;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.botao-pagar:hover {
+    background-color: #054c68;
+}

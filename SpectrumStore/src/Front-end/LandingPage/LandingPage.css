@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300&display=swap');
+
+/* Variáveis CSS para cores */
+:root {
+  --color-primary-dark: #034E61; 
+  --color-secondary-light: #A2C9CD; 
+  --color-card-blue: rgba(104, 159, 173, 0.9); 
+  --color-background-arc: #F0F5F6;
+}
+
+.landing-container {
+  font-family: 'Inclusive Sans', sans-serif;
+  color: var(--color-primary-dark);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+.landing-navbar {
+  background-color: var(--color-secondary-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  top: 0;
+  z-index: 10;
+}
+
+.landing-logo {
+  height: 22px; 
+  width: auto;
+}
+
+.landing-nav-links a {
+  color: var(--color-primary-dark);
+  margin-left: 30px;
+  text-decoration: none;
+  font-weight: 200;
+  font-family: 'Inter', sans-serif;
+}
+
+/* HERO SECTION */
+.landing-hero {
+  text-align: center;
+  background: url('/LogoLandingPage.png') center -80px no-repeat; 
+  background-size: 650px;
+  padding-top: 30px;
+  height: 400px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.landing-hero h2 {
+  font-size: 36px;
+  margin-top: 80px;
+  font-weight: 400;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+.landing-hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 0 50px;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+/* CARROSSEL */
+.carousel-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 90px 0 80px 0; 
+  padding: 0 6%; 
+}
+
+.carousel-window {
+  width: 77%; 
+  overflow: hidden; 
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: calc(100% * 10 / 3); 
+}
+
+.carousel-card {
+  background-color: var(--color-card-blue);
+  color: #ffffff;
+  padding: 40px;
+  width: calc(100% / 10); 
+  flex-shrink: 0;
+  min-height: 250px;
+  margin: 0 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 29px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.carousel-arrow.left {
+  left: 2%;
+}
+
+.carousel-arrow.right {
+  right: 2%;
+}
+
+
+.carousel-indicators {
+    position: absolute;
+    bottom: -50px; 
+    display: flex;
+    gap: 10px;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicator-dot.active {
+    background-color: var(--color-card-blue); 
+}
+
+/* SEÇÃO “MUITO ALÉM DE PRODUTOS” */
+.beyond-products {
+  text-align: center;
+  padding: 50px 10%;
+  margin-top: 50px;
+}
+
+.beyond-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.beyond-products h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+.beyond-products p {
+  font-size: 17px;
+  line-height: 1.6;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+/* SEÇÃO “POR QUE ESCOLHER A SPECTRUM STORE?” */
+.why-spectrum {
+  background: url('/FundoLandingPageSpec.png') center top no-repeat;
+  background-size: cover;
+  padding: 60px 10% 80px;
+  text-align: center;
+  position: relative;
+}
+
+.why-header-container {
+    background-color: transparent; 
+    display: inline-block; 
+    padding: 0;
+    position: relative;
+    top: -1px; 
+    margin-bottom: 0; 
+}
+
+.why-spectrum h2 {
+  font-size: 30px;
+  color: var(--color-primary-dark);
+  text-align: center;
+  font-family: 'Inknut Antiqua', serif; 
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px; 
+  margin-top: 80px;
+  padding: 0 5%; 
+}
+
+.why-card {
+  background-color: var(--color-card-blue);
+  color: #ffffff;
+  padding: 25px; 
+  text-align: left;
+  min-height: 180px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 6px;
+}
+
+/* CHAMADA FINAL */
+.final-call {
+  text-align: center;
+  padding: 50px 10% 70px;
+  margin-top: 3%;
+}
+
+.final-call h3 {
+  font-size: 25px;
+  margin-bottom: 35px;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+.final-call p {
+  font-size: 17px;
+  line-height: 1.6;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+/* FOOTER */
+.landing-footer {
+  background-color: var(--color-secondary-light);
+  color: #ffffff;
+  padding: 25px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 14px;
+}
+
+.footer-logo {
+  height: 25px; 
+  width: auto;
+}
+
+
+.footer-social-icon {
+    height: 26px; 
+    width: auto;
+    margin-right: 5px; 
+    vertical-align: middle; 
+}
+
+.footer-info p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    margin: 5px 0;
+}
+
+.footer-info p:first-child {
+    justify-content: flex-end;
+}
+
+.footer-social-icon{
+  background-color: none;
+}
+
+@media (max-width: 1024px) {
+  .carousel-card {
+    width: calc(100% / 1);
+  }
+
+  .carousel-track {
+    width: calc(100% * 10 / 1);
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .landing-hero h2 {
+    margin-top: 50px;
+  }
+}
