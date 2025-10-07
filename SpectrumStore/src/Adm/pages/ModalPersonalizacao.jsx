@@ -60,8 +60,8 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
   }, []);
 
   return (
-    <div className="modal-personalizacao">
-      <h3 className="titulo-modal">Personalização para Material Ponderado</h3>
+    <div className="modal-personalizacao-adm">
+      <h3 className="titulo-modal-personalizacao-adm">Personalização para Material Ponderado</h3>
 
       {/* ---------- Página 1 ---------- */}
       {pagina === 1 && (

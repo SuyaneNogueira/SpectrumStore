@@ -16,10 +16,6 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Inknut Antiqua', serif;
-}
-
 /* NAVBAR */
 .landing-navbar {
   background-color: var(--color-secondary-light);

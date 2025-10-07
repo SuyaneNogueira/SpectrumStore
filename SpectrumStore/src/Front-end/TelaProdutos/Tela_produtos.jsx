@@ -25,7 +25,17 @@ function Tela_produtos() {
 
   // 🔹 Buscar produto pelo ID tanto do array fixo quanto do localStorage
   const produtosLoja = JSON.parse(localStorage.getItem("produtosLoja")) || [];
-  const produto = produtosLoja.find(p => Number(p.id) === Number(id)) || produtosSpectrum.find(p => p.id === Number(id));
+  const produtoBase =
+    produtosLoja.find(p => Number(p.id) === Number(id)) ||
+    produtosSpectrum.find(p => p.id === Number(id));
+
+  // 🔹 Buscar personalização salva no localStorage
+  const produtoPersonalizado = JSON.parse(localStorage.getItem("produtoAtual"));
+  
+  // 🔹 Combinar produto com personalizações (se existir)
+  const produto = produtoPersonalizado && produtoPersonalizado.id === produtoBase?.id
+    ? { ...produtoBase, personalizacao: produtoPersonalizado.personalizacao }
+    : produtoBase;
 
   const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
   const { addToCart } = useCart();
@@ -65,7 +75,11 @@ function Tela_produtos() {
         <div className="conteudo-principal">
           <div className="secao-produto">
             <div className="imagem-produto-container">
-              <img className="imagem-produto" src={produto.image || produto.imagem} alt={produto.name || produto.nome} />
+              <img
+                className="imagem-produto"
+                src={produto.image || produto.imagem}
+                alt={produto.name || produto.nome}
+              />
             </div>
             <div className="detalhes-produto">
               <div className="detalhes-texto-container">
@@ -74,19 +88,40 @@ function Tela_produtos() {
                 <div className="avaliacao-produto">
                   <StarRating rating={produto.rating || 0} />
                 </div>
-                <p className="preco-produto"> <span className='cor-amarelo-preco-3'>R$:</span> {(Number(produto.price) || Number(produto.valor)).toFixed(2)}</p>
+                <p className="preco-produto">
+                  <span className='cor-amarelo-preco-3'>R$:</span> {(Number(produto.price) || Number(produto.valor)).toFixed(2)}
+                </p>
               </div>
             </div>
           </div>
 
           <div className="wrapper-linha"><div className="linha-divisora"></div></div>
 
+          {/* 🔹 Personalizações visuais do produto */}
           <div className="secao-personalizacao">
             <h3 className="titulo-personalizacao">Personalizações</h3>
+
+            {/* 🔸 Mostra apenas o que foi escolhido no modal */}
+            {produto.personalizacao && (
+              <div className="area-personalizacao-selecionada">
+                <h4>Personalizações escolhidas:</h4>
+                {Object.entries(produto.personalizacao).map(([campo, valores]) =>
+                  valores.length > 0 ? (
+                    <div key={campo} className="linha-personalizacao">
+                      <strong>{campo.charAt(0).toUpperCase() + campo.slice(1)}:</strong> {valores.join(", ")}
+                    </div>
+                  ) : null
+                )}
+              </div>
+            )}
+
+            {/* 🔸 Opções normais (fixas, se quiser manter) */}
             <div className="opcoes-personalizacao">
               {Object.keys(personalizacoesDoProduto).map(key => (
                 <div key={key} className="grupo-opcao">
-                  <p className="titulo-opcao">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</p>
+                  <p className="titulo-opcao">
+                    {key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:
+                  </p>
                   <div className="opcoes-container">
                     {personalizacoesDoProduto[key].map(opcao => (
                       <div 

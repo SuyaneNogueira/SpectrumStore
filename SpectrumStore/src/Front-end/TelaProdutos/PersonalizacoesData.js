@@ -1,3 +1,4 @@
+
 const personalizacoesPorCategoria = {
   // 1. Brinquedos Sensoriais
   "Brinquedos Sensoriais": {

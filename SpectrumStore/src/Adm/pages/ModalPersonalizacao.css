@@ -1,4 +1,4 @@
-.modal-personalizacao {
+.modal-personalizacao-adm{
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -11,7 +11,7 @@
   flex-wrap: wrap;
 }
 
-.titulo-modal {
+.titulo-modal-personalizacao-adm {
   text-align: center;
   font-weight: 600;
   color: #1a3c40;
