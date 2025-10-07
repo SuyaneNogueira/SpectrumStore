@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;600&family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300&display=swap');
 
 /* Variáveis CSS para cores */
 :root {
-  --color-primary-dark: #034E61; /* Azul Escuro do Texto */
-  --color-secondary-light: #A2C9CD; /* Verde Água Claro para Header/Footer */
-  --color-card-blue: rgba(104, 159, 173, 0.9); /* Azul/Verde dos Cards */
-  --color-background-arc: #F0F5F6; /* Cor do fundo da seção 'Por que escolher' */
+  --color-primary-dark: #034E61; 
+  --color-secondary-light: #A2C9CD; 
+  --color-card-blue: rgba(104, 159, 173, 0.9); 
+  --color-background-arc: #F0F5F6;
 }
 
 .landing-container {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inclusive Sans', sans-serif;
   color: var(--color-primary-dark);
   margin: 0;
   padding: 0;
@@ -58,12 +58,14 @@
   font-size: 36px;
   margin-top: 80px;
   font-weight: 400;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 .landing-hero p {
   font-size: 18px;
   line-height: 1.6;
   padding: 0 50px;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 /* CARROSSEL */
@@ -158,11 +160,13 @@
 .beyond-products h3 {
   font-size: 28px;
   margin-bottom: 20px;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 .beyond-products p {
   font-size: 17px;
   line-height: 1.6;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 /* SEÇÃO “POR QUE ESCOLHER A SPECTRUM STORE?” */
@@ -186,7 +190,8 @@
 .why-spectrum h2 {
   font-size: 30px;
   color: var(--color-primary-dark);
-  text-align: center; 
+  text-align: center;
+  font-family: 'Inknut Antiqua', serif; 
 }
 
 .why-grid {
@@ -218,13 +223,15 @@
 }
 
 .final-call h3 {
-  font-size: 28px;
+  font-size: 25px;
   margin-bottom: 35px;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 .final-call p {
   font-size: 17px;
   line-height: 1.6;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 /* FOOTER */
@@ -277,7 +284,7 @@
   }
 
   .why-grid {
-    grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+    grid-template-columns: 1fr; 
   }
 
   .landing-hero h2 {
