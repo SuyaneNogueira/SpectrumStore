@@ -45,6 +45,7 @@ export const defineRoutes = (app) => {
         }
     });
 
+
     // ROTA GET /api/pedido — lista todos os pedidos
     app.get('/api/pedido', async (req, res) => {
         try {
@@ -82,6 +83,7 @@ export const defineRoutes = (app) => {
             res.status(500).json({ error: 'Erro no servidor ao cadastrar usuário.' });
         }
     });
+    // app.delete();
 
     // ROTA GET /api/usuarios — lista todos os usuários
     app.get('/api/usuarios', async (req, res) => {
