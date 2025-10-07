@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Picker from "emoji-picker-react";
-=======
-import React, { useEffect, useState } from "react";
-// import { useForm, ValidationError } from "@formspree/react";
-// import EmojiPicker from "emoji-picker-react";
->>>>>>> 0be2783541b62d931751cbbb175e880285e04b6a
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
-  const [state, handleSubmit] = useForm("mpwjbkbk");
+  const [state, handleSubmit] = useForm("mpwjbkbk"); // seu endpoint do Formspree
   const [fromEmail, setFromEmail] = useState("seuemail@gmail.com");
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -19,12 +13,16 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
   const fileRef = useRef(null);
   const emojiButtonRef = useRef(null);
 
+  // bloqueio scroll
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
+  // popup de envio
   useEffect(() => {
     if (state.succeeded) {
       setShowPopup(true);
@@ -38,9 +36,14 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
     }
   }, [state.succeeded, onClose]);
 
+  // fechar emoji picker
   useEffect(() => {
     function handleDocClick(e) {
-      if (showEmoji && emojiButtonRef.current && !emojiButtonRef.current.contains(e.target)) {
+      if (
+        showEmoji &&
+        emojiButtonRef.current &&
+        !emojiButtonRef.current.contains(e.target)
+      ) {
         setShowEmoji(false);
       }
     }
@@ -48,11 +51,13 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
     return () => document.removeEventListener("mousedown", handleDocClick);
   }, [showEmoji]);
 
+  // emoji
   const onEmojiClick = (emojiData) => {
     setMessage((prev) => prev + (emojiData.emoji || ""));
     setShowEmoji(false);
   };
 
+  // arquivos
   const handleFileChange = (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) {
@@ -61,7 +66,8 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
     }
     if (file.type.startsWith("image/")) {
       const reader = new FileReader();
-      reader.onload = () => setFilePreview({ url: reader.result, name: file.name });
+      reader.onload = () =>
+        setFilePreview({ url: reader.result, name: file.name });
       reader.readAsDataURL(file);
     } else {
       setFilePreview({ url: null, name: file.name });
@@ -83,7 +89,11 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
       }}
     >
       <div className="suporte-modal" role="document">
-        <button className="suporte-fechar" onClick={onClose} aria-label="Fechar">
+        <button
+          className="suporte-fechar"
+          onClick={onClose}
+          aria-label="Fechar"
+        >
           ×
         </button>
 
@@ -93,9 +103,13 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="suporte-form"
+          noValidate={false}
         >
+          {/* De (editável) */}
           <div className="suporte-campo linha-horizontal">
-            <label className="suporte-label" htmlFor="email">De:</label>
+            <label className="suporte-label" htmlFor="email">
+              De:
+            </label>
             <input
               id="email"
               name="email"
@@ -105,39 +119,39 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
               onChange={(e) => setFromEmail(e.target.value)}
               required
             />
-            <ValidationError prefix="Email" field="email" errors={state.errors} />
+            <ValidationError
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
           </div>
 
+          {/* Para */}
           <div className="suporte-campo linha-horizontal">
             <label className="suporte-label">Para:</label>
             <span className="suporte-texto">spectrum.tea0204@gmail.com</span>
           </div>
 
-          <label className="suporte-label" htmlFor="message">Assunto:</label>
-          <div className="suporte-textarea-wrapper">
-            <textarea
-              id="message"
-              name="message"
-              className="suporte-textarea"
-              placeholder="Digite sua mensagem..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-            <ValidationError prefix="Message" field="message" errors={state.errors} />
+          {/* Assunto */}
+          <label className="suporte-label" htmlFor="message">
+            Assunto:
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            className="suporte-textarea"
+            placeholder="Digite sua mensagem..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+          <ValidationError
+            prefix="Message"
+            field="message"
+            errors={state.errors}
+          />
 
-            {filePreview && (
-              <div className="suporte-file-preview">
-                {filePreview.url ? (
-                  <img src={filePreview.url} alt={filePreview.name} className="suporte-file-img" />
-                ) : (
-                  <span className="suporte-file-name">{filePreview.name}</span>
-                )}
-                <button type="button" className="suporte-file-remove" onClick={removeFile}>×</button>
-              </div>
-            )}
-          </div>
-
+          {/* Arquivo invisível */}
           <input
             ref={fileRef}
             type="file"
@@ -147,10 +161,37 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
             onChange={handleFileChange}
           />
 
+          {/* Ações */}
           <div className="suporte-actions">
-            <button className="suporte-btn" type="submit" disabled={state.submitting}>
+            <button
+              className="suporte-btn"
+              type="submit"
+              disabled={state.submitting}
+            >
               {state.submitting ? "Enviando..." : "Enviar"}
             </button>
+
+            {/* preview dentro da caixa */}
+            {filePreview && (
+              <div
+                className="suporte-file-preview"
+                role="group"
+                aria-label="Arquivo selecionado"
+              >
+                {filePreview.url ? (
+                  <img src={filePreview.url} alt={filePreview.name} />
+                ) : (
+                  <span className="suporte-file-name">{filePreview.name}</span>
+                )}
+                <button
+                  type="button"
+                  className="suporte-file-remove"
+                  onClick={removeFile}
+                >
+                  ×
+                </button>
+              </div>
+            )}
 
             <div className="suporte-icones">
               <button
@@ -173,7 +214,11 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
                 </button>
 
                 {showEmoji && (
-                  <div className="emoji-picker-container" role="dialog" aria-label="Emoji picker">
+                  <div
+                    className="emoji-picker-container"
+                    role="dialog"
+                    aria-label="Emoji picker"
+                  >
                     <Picker onEmojiClick={onEmojiClick} />
                   </div>
                 )}

@@ -116,7 +116,7 @@
 }
 
 .criar-produto-adm {
-  height: 336px;
+  height: 329px;
   border: solid 2px #a2c9cd;
   width: 25%;
 }
@@ -139,7 +139,7 @@
 .card-produtos-adm {
   border: 2px solid #dadada;
   width: 25%;
-  height: 336px;
+  height: 329px;
   text-decoration: none;
   position: relative;
   display: flex;
@@ -315,7 +315,7 @@
   justify-content: center;
   align-items: center;
   height: 15%;
-  margin-top: 5%;
+  margin-top: 3.5%;
 
 }
 
