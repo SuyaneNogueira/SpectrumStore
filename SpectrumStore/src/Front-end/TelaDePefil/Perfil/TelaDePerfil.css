@@ -30,9 +30,12 @@
 }
 
 .perfil-info p{
-  margin: 1% 0%;
+  margin: -9% 0%;
   font-size: 112%;
   margin-top: 4%;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 /* Abas (histórico, avaliações, pesquisa) */
@@ -181,8 +184,12 @@
 
 .menu-ajustes h4 {
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
   color: #023b52;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: -4%;
 }
 
 .ajuste-opcao-editar, 

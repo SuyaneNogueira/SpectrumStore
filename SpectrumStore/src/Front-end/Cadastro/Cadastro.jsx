@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, provider, signInWithPopup } from "../../Login/Firebase";
+// import { auth, provider, signInWithPopup } from "../../Login/Firebase";
 import "./Cadastro.css";
 
 function Cadastro({ isOpen = false, onClose = () => {} }) {

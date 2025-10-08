@@ -102,7 +102,7 @@ function TelaDePerfil() {
                 <div className="imagem-produto"></div>
                 <span className="preco">R$ {pedido.preco}</span>
                 <h4>{pedido.nome}</h4>
-                <p className="container-descricao">{pedido.descricao}</p>
+                {/* <p className="container-descricao">{pedido.descricao}</p> */}
                 <span className="favorito">♥</span>
               </div>
             ))}
