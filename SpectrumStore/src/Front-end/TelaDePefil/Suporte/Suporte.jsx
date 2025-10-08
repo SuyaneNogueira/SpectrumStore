@@ -4,13 +4,8 @@ import Picker from "emoji-picker-react";
 import "./Suporte.css";
 
 function Suporte({ isOpen = false, onClose = () => {} }) {
-<<<<<<< HEAD:SpectrumStore/src/TelaDePefil/Suporte/Suporte.jsx
-  const [state, handleSubmit] = useForm("mpwjbkbk"); // seu endpoint do Formspree
-  const [fromEmail, setFromEmail] = useState("seuemail@gmail.com");
-=======
   const [state, handleSubmit] = useForm("mpwjbkbk");
   const [fromEmail, setFromEmail] = useState("");
->>>>>>> dbcdb1a8390b797272fc7dc7c70a9abd60fa4fcc:SpectrumStore/src/Front-end/TelaDePefil/Suporte/Suporte.jsx
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
@@ -108,11 +103,7 @@ function Suporte({ isOpen = false, onClose = () => {} }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="suporte-form"
-<<<<<<< HEAD:SpectrumStore/src/TelaDePefil/Suporte/Suporte.jsx
-          noValidate={false}
-=======
           noValidate={false}  
->>>>>>> dbcdb1a8390b797272fc7dc7c70a9abd60fa4fcc:SpectrumStore/src/Front-end/TelaDePefil/Suporte/Suporte.jsx
         >
           {/* De (editável) */}
           <div className="suporte-campo linha-horizontal">

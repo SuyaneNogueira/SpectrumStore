@@ -33,7 +33,7 @@
 }
 
 .landing-nav-links a {
-  color: var(--color-primary-dark);
+  color: #ffffff;
   margin-left: 30px;
   text-decoration: none;
   font-weight: 200;
@@ -44,9 +44,9 @@
 .landing-hero {
   text-align: center;
   background: url('/LogoLandingPage.png') center -80px no-repeat; 
-  background-size: 650px;
+  background-size: 632px;
   padding-top: 30px;
-  height: 400px;
+  height: 420px;
 }
 
 .hero-content {
@@ -57,7 +57,7 @@
 .landing-hero h2 {
   font-size: 36px;
   margin-top: 80px;
-  font-weight: 400;
+  font-weight: 300;
   font-family: 'Inknut Antiqua', serif;
 }
 
@@ -66,6 +66,8 @@
   line-height: 1.6;
   padding: 0 50px;
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 /* CARROSSEL */
@@ -74,12 +76,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 90px 0 80px 0; 
+  margin: 90px 0 90px 0; 
   padding: 0 6%; 
+  border: solid;
+  width: 100%;
 }
 
 .carousel-window {
-  width: 77%; 
+  width: 76%; 
   overflow: hidden; 
 }
 
@@ -93,14 +97,21 @@
   background-color: var(--color-card-blue);
   color: #ffffff;
   padding: 40px;
-  width: calc(100% / 10); 
+  /* width: calc(100% / 10);  */
   flex-shrink: 0;
-  min-height: 250px;
-  margin: 0 15px;
+  height: 312px;
+  width: 302px;
+  margin: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 6px;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 13px;
+  text-align: center;
 }
 
 .carousel-arrow {
@@ -149,7 +160,8 @@
 .beyond-products {
   text-align: center;
   padding: 50px 10%;
-  margin-top: 50px;
+  margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 .beyond-content {
@@ -161,12 +173,16 @@
   font-size: 28px;
   margin-bottom: 20px;
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .beyond-products p {
   font-size: 17px;
   line-height: 1.6;
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 /* SEÇÃO “POR QUE ESCOLHER A SPECTRUM STORE?” */
@@ -192,6 +208,9 @@
   color: var(--color-primary-dark);
   text-align: center;
   font-family: 'Inknut Antiqua', serif; 
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 60px;
 }
 
 .why-grid {
@@ -207,31 +226,52 @@
   color: #ffffff;
   padding: 25px; 
   text-align: left;
-  min-height: 180px; 
+  height: 220px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 6px;
+  text-align: center;
+}
+
+.why-card p{
+  margin-top: 2px;
+  font-family: 'Inknut Antiqua', serif; 
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+}
+
+.why-card h4{
+  margin-top: 15px;
+  font-family: 'Inknut Antiqua', serif; 
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* CHAMADA FINAL */
 .final-call {
   text-align: center;
   padding: 50px 10% 70px;
-  margin-top: 3%;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 .final-call h3 {
   font-size: 25px;
   margin-bottom: 35px;
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .final-call p {
   font-size: 17px;
   line-height: 1.6;
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 /* FOOTER */
@@ -244,6 +284,8 @@
   align-items: center;
   font-family: 'Inclusive Sans', sans-serif;
   font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .footer-logo {
