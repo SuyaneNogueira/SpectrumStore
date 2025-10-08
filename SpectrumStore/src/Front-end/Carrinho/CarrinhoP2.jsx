@@ -37,69 +37,60 @@ function CarrinhoP2() {
 
   // Função para enviar pedido ao backend
   const finalizarCompra = async () => {
-    
-    // --- 🚨 VALOR SUBSTITUÍVEL 🚨 ---
-    // Você precisa obter o ID real do usuário logado.
-    // Usamos '1' como um ID temporário/fixo para teste.
-    const usuarioIdFixo = 1; 
-    // ---------------------------------
+  const usuarioIdFixo = 1;
 
-    if (cartItems.length === 0 || totalFinal <= 0) {
-        // Usando modal box ou alert, como você estava usando anteriormente
-        alert('O carrinho está vazio.'); 
-        return;
-    }
-    
-    if (!formaPagamento) {
-        alert('Por favor, selecione uma forma de pagamento para continuar.');
-        return;
-    }
-    
-    // Objeto com os campos EXATOS que o BACKEND espera
-    const pedidoBackend = {
-      usuario_id: usuarioIdFixo, 
-      data_pedido: new Date().toISOString(),
-      // Converte para string com 2 decimais, pois o SQL pode esperar um formato específico
-      total: totalFinal.toFixed(2), 
-      forma_pagamento: formaPagamento, 
-      status: 'Aguardando Pagamento',
-    };
-    
-    // Debug para verificar o payload ANTES de enviar. Se aqui estiver tudo preenchido, 
-    // o 400 Bad Request não vai mais ocorrer.
-    console.log('Dados do Pedido a enviar (verifique se os campos estão preenchidos):', pedidoBackend);
+  if (cartItems.length === 0 || totalFinal <= 0) {
+    alert('O carrinho está vazio.');
+    return;
+  }
 
-    try {
-      // 🚨 ENDPOINT CORRETO: /api/pedidos
-      const resposta = await fetch('http://localhost:3001/api/pedidos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pedidoBackend),
-      }); 
+  if (!formaPagamento) {
+    alert('Por favor, selecione uma forma de pagamento para continuar.');
+    return;
+  }
 
-      if (!resposta.ok) {
-        // Tenta ler o erro do backend. Se for 404 ou 500, tenta pegar o erro em JSON.
-        try {
-            const erroDados = await resposta.json();
-            throw new Error(erroDados.error || `Erro desconhecido. Status: ${resposta.status}`);
-        } catch (error) {
-        console.error('Erro ao salvar pedido:', error); // <-- A MENSAGEM REAL ESTÁ AQUI
-          // ...
-        res.status(500).json({ error: 'Erro interno ao processar o pedido. Por favor, tente novamente.' });
-      }
-      }
-
-      const dados = await resposta.json();
-      alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
-      
-      // Ações pós-compra (limpeza e redirecionamento)
-      // window.location.href = '/'; 
-
-    } catch (erro) {
-      console.error('Erro ao enviar pedido:', erro);
-      alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
-    }
+  const pedidoBackend = {
+    usuario_id: usuarioIdFixo,
+    data_pedido: new Date().toISOString(),
+    total: totalFinal.toFixed(2),
+    forma_pagamento: formaPagamento,
+    status: 'Aguardando Pagamento',
   };
+
+  console.log('Dados do Pedido a enviar (verifique se os campos estão preenchidos):', pedidoBackend);
+
+  try {
+    const resposta = await fetch('http://localhost:3001/api/pedido', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pedidoBackend),
+    });
+
+
+    if (!resposta.ok) {
+      const erroDados = await resposta.json().catch(() => null);
+      const mensagemErro = erroDados?.error || `Erro desconhecido. Status: ${resposta.status}`;
+      throw new Error(mensagemErro);
+    }
+
+    const dados = await resposta.json();
+    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
+
+    // Redirecionamento ou limpeza de carrinho
+    // window.location.href = '/';
+
+  }catch (erro) {
+  console.error('Erro ao enviar pedido:', erro);
+  if (erro.response) {
+    // caso você use axios, por exemplo
+    alert(`Falha ao enviar pedido. Detalhes: ${erro.response.data.details || erro.message}`);
+  } else {
+    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
+  }
+}
+
+};
+
 
   // Função para cancelar compra: redirecionar para a tela inicial
   const cancelarCompra = () => {
