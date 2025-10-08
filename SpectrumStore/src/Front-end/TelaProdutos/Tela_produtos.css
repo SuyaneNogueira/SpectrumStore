@@ -90,7 +90,7 @@
   .nome-produto {
     /* border: 2px solid; */
     color: #03374C;
-    font-size: 200%;
+    font-size: 150%;
     margin: 0;
   }
   .descricao-produto-completa {
@@ -111,7 +111,7 @@
  }
 /* /////////////////// */
   .secao-personalizacao {
-    /* border: 2px solid; */
+    /* border: 2px solid ; */
     flex: 1;
     flex-basis: 20%;
     min-width: 300px;
@@ -143,12 +143,13 @@
     font-weight: 600;
     font-size: 90%;
     margin-bottom: 0px;
+    color: #022a3d;
   }
   .opcoes-container {
     /* border: 2px solid; */
     display: flex;
-    gap: 4px; 
-    margin-top: 1px;
+    /* gap: 1px;  */
+    /* margin-top: 1px; */
   }
   .opcoes-container .selecionado {
     /* border: 2px solid; */
