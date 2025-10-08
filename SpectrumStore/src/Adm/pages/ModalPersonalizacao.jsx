@@ -47,6 +47,8 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
 
     setNovoProduto(novoProdutoAtualizado);
     localStorage.setItem("produtoAtual", JSON.stringify(novoProdutoAtualizado));
+    +   localStorage.setItem("personalizacaoSelecionada", JSON.stringify(personalizacao));
+
 
     alert("✅ Personalização salva com sucesso!");
   };
