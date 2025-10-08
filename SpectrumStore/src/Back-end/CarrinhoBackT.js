@@ -10,26 +10,25 @@ export const defineRoutes = (app) => {
     // ROTAS DE PEDIDO
     // ==========================================================
 
-    // ROTA POST /api/pedido — cria um novo pedido (espera 5 campos)
+    // ROTA POST /api/pedido — cria um novo pedido (espera 4 campos, sem data_pedido)
     app.post('/api/pedido', async (req, res) => {
-        const { usuario_id, data_pedido, total, forma_pagamento, status } = req.body;
-        
-        // ** (RECOMENDAÇÃO: Adicionar a conversão para número aqui, como sugerido antes) **
+        const { usuario_id, total, forma_pagamento, status } = req.body;
+
+        // Converte total para número
         const totalNumerico = parseFloat(total); 
 
-        // Validação estrita para evitar o erro 400 Bad Request
-        if (!usuario_id || !data_pedido || isNaN(totalNumerico) || !forma_pagamento || !status) {
+        // Validação estrita para evitar erro 400 Bad Request
+        if (!usuario_id || isNaN(totalNumerico) || !forma_pagamento || !status) {
             console.warn('Tentativa de criar pedido com dados incompletos:', req.body);
-            return res.status(400).json({ error: 'Dados incompletos: usuario_id, data_pedido, total, forma_pagamento e status são obrigatórios.' });
+            return res.status(400).json({ error: 'Dados incompletos: usuario_id, total, forma_pagamento e status são obrigatórios.' });
         }
 
         try {
             const query = `
-                INSERT INTO pedido (usuario_id, data_pedido, total, forma_pagamento, status) 
-                VALUES ($1, $2, $3, $4, $5) RETURNING *;
+                INSERT INTO pedido (usuario_id, total, forma_pagamento, status) 
+                VALUES ($1, $2, $3, $4) RETURNING *;
             `;
-            // IMPORTANTE: O campo 'total' deve ser enviado como um número (ou string formatada para número)
-            const values = [usuario_id, data_pedido, totalNumerico, forma_pagamento, status];
+            const values = [usuario_id, totalNumerico, forma_pagamento, status];
             const result = await pool.query(query, values);
             
             // Retorna 201 Created
@@ -38,13 +37,14 @@ export const defineRoutes = (app) => {
                 pedido: result.rows[0]
             });
 
-        } catch (error) {
-            console.error('Erro ao salvar pedido:', error);
-            // Retorna 500 Internal Server Error
-            res.status(500).json({ error: 'Erro interno ao processar o pedido. Por favor, tente novamente.' });
+        } catch (erro) {
+          console.error('Erro ao enviar pedido:', erro);
+          alert(`Falha ao enviar pedido. Detalhes: ${erro.message || erro.details || erro.stack || 'Erro desconhecido'}`);
         }
-    });
 
+
+
+    });
 
     // ROTA GET /api/pedido — lista todos os pedidos
     app.get('/api/pedido', async (req, res) => {
@@ -76,14 +76,13 @@ export const defineRoutes = (app) => {
             const result = await pool.query(query, values);
             res.status(201).json({ message: 'Usuário criado com sucesso', usuario: result.rows[0] });
         } catch (error) {
-            if (error.code === '23505') { // Código de erro do PostgreSQL para violação de unique constraint (email duplicado)
+            if (error.code === '23505') {
                 return res.status(400).json({ error: 'Email já cadastrado. Por favor, use outro email.' });
             }
             console.error('Erro ao cadastrar usuário:', error);
             res.status(500).json({ error: 'Erro no servidor ao cadastrar usuário.' });
         }
     });
-    // app.delete();
 
     // ROTA GET /api/usuarios — lista todos os usuários
     app.get('/api/usuarios', async (req, res) => {
