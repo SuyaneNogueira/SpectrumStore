@@ -405,8 +405,9 @@ export default function Produtos() {
                           categoria: novaCategoria,
                         });
 
-                        // 👉 Abre o modal de personalização se for "Material Ponderado"
-                        if (novaCategoria === "Material Ponderado") {
+                        // 👉 Abre o modal de personalização automaticamente
+                        // para qualquer categoria (não só Material Ponderado)
+                        if (novaCategoria) {
                           setMostrarPersonalizacao(true);
                         } else {
                           setMostrarPersonalizacao(false);

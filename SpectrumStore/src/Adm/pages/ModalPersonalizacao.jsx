@@ -10,10 +10,11 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
       peso: [],
       material: [],
       extra: [],
-      especifico: []
+      especifico: [],
     }
   );
 
+  // 🔹 Conjuntos básicos
   const cores = ["#0000FF", "#FFFF00", "#008000", "#FF0000", "#800080", "#FFA500"];
   const tamanhos = ["Pequeno", "Médio", "Grande"];
   const pesos = ["1kg", "2kg", "3kg", "4kg", "5kg", "6kg"];
@@ -21,21 +22,86 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
   const extras = ["Com som", "Com textura", "Brilha no escuro", "Personalizado"];
   const especificos = ["Infantil", "Adulto", "Sensorial", "Decorativo"];
 
+  // 🔹 Todas as categorias
+  const categoriasMap = {
+    "Brinquedos sensoriais": {
+      textura: ["Lisa", "Rugosa", "Macia", "Com bolhas"],
+      formato: ["Cubo", "Esfera", "Pirâmide", "Anel"],
+      material: ["Silicone", "Borracha", "Espuma", "Plástico"],
+      cor: cores,
+    },
+    "Brinquedos educativos e pedagógicos": {
+      tema: ["Matemática", "Letras", "Formas", "Cores"],
+      material: ["Madeira", "Plástico", "Cartão"],
+      dificuldade: ["Fácil", "Médio", "Difícil"],
+    },
+    "Rotina e organização": {
+      tipo: ["Quadro de Rotina", "Planner Visual", "Agenda Adaptada"],
+      tamanho: ["A4", "A3", "A5"],
+      estilo: ["Colorido", "Minimalista", "Ilustrado"],
+    },
+    "Moda e acessórios sensoriais": {
+      tipo: ["Pulseira Sensorial", "Colar Mordedor", "Camiseta com Peso"],
+      material: ["Silicone", "Tecido", "Velcro"],
+      cor: cores,
+      tamanho: tamanhos,
+    },
+    "Ambiente e relaxamento": {
+      aroma: ["Lavanda", "Baunilha", "Menta", "Sem perfume"],
+      textura: ["Macia", "Felpuda", "Refrescante"],
+      tipo: ["Travesseiro", "Manta", "Capa de Almofada"],
+    },
+    "Jogos Cognitivos e Educacionais": {
+      tema: ["Memória", "Raciocínio Lógico", "Atenção", "Linguagem"],
+      nivel: ["Infantil", "Juvenil", "Adulto"],
+      material: ["Papel", "Madeira", "Plástico"],
+    },
+    "Materiais Escolares Adaptados": {
+      tipo: ["Lápis Grosso", "Tesoura Adaptada", "Caderno Sensorial"],
+      cor: cores,
+      tamanho: tamanhos,
+    },
+    "Cuidados e Rotina Pessoal": {
+      tipo: ["Escova Sensorial", "Toalha Adaptada", "Massageador"],
+      material: ["Silicone", "Tecido", "Borracha"],
+      cor: cores,
+    },
+    "Materiais de CAA": {
+      tipo: ["Cartas de Comunicação", "Prancha Visual", "Aplicativo CAA"],
+      simbolos: ["PCS", "ARASAAC", "PECS", "Outro"],
+      tamanho: tamanhos,
+    },
+    "Material Ponderado": {
+      cor: cores,
+      tamanho: tamanhos,
+      peso: pesos,
+      material: materiais,
+      extra: extras,
+      especifico: especificos,
+    },
+  };
+
+  // 🔹 Define categoria atual (ou padrão)
+  const categoriaAtual = categoriasMap[novoProduto.categoria] || categoriasMap["Material Ponderado"];
+
   // ✅ Alterna múltiplas seleções
   const handleSelecionar = (campo, valor) => {
     setPersonalizacao((prev) => {
-      const jaSelecionado = prev[campo].includes(valor);
+      const jaSelecionado = prev[campo]?.includes(valor);
       return {
         ...prev,
         [campo]: jaSelecionado
           ? prev[campo].filter((v) => v !== valor)
-          : [...prev[campo], valor],
+          : [...(prev[campo] || []), valor],
       };
     });
   };
 
   const handleConfirmar = () => {
-    if (personalizacao.peso.length < 4) {
+    if (
+      novoProduto.categoria === "Material Ponderado" &&
+      personalizacao.peso.length < 4
+    ) {
       alert("⚠️ Escolha pelo menos 4 opções de peso antes de salvar!");
       return;
     }
@@ -47,8 +113,7 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
 
     setNovoProduto(novoProdutoAtualizado);
     localStorage.setItem("produtoAtual", JSON.stringify(novoProdutoAtualizado));
-    +   localStorage.setItem("personalizacaoSelecionada", JSON.stringify(personalizacao));
-
+    localStorage.setItem("personalizacaoSelecionada", JSON.stringify(personalizacao));
 
     alert("✅ Personalização salva com sucesso!");
   };
@@ -61,131 +126,56 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
     }
   }, []);
 
+  // 🔹 Divide automaticamente os campos em páginas (máx 3 seções por página)
+  const camposPorPagina = 3;
+  const campos = Object.entries(categoriaAtual);
+  const totalPaginas = Math.ceil(campos.length / camposPorPagina);
+  const camposDaPagina = campos.slice(
+    (pagina - 1) * camposPorPagina,
+    pagina * camposPorPagina
+  );
+
   return (
     <div className="modal-personalizacao-adm">
-      <h3 className="titulo-modal-personalizacao-adm">Personalização para Material Ponderado</h3>
+      <h3 className="titulo-modal-personalizacao-adm">
+        Personalização para {novoProduto.categoria || "Material Ponderado"}
+      </h3>
 
-      {/* ---------- Página 1 ---------- */}
-      {pagina === 1 && (
-        <div className="pagina-personalizacao">
-          <h4>Principal:</h4>
-
-          <div className="secao">
-            <p>Cores:</p>
-            <div className="opcoes-cores">
-              {cores.map((cor) => (
+      {/* ---------- Conteúdo paginado ---------- */}
+      <div className="pagina-personalizacao">
+        {camposDaPagina.map(([campo, opcoes]) => (
+          <div className="secao" key={campo}>
+            <p>{campo.charAt(0).toUpperCase() + campo.slice(1)}:</p>
+            <div className={campo === "cor" ? "opcoes-cores" : "botoes-opcao"}>
+              {opcoes.map((valor) => (
                 <button
-                  key={cor}
+                  key={valor}
                   style={{
-                    backgroundColor: cor,
-                    border: personalizacao.cor.includes(cor)
-                      ? "3px solid #333"
-                      : "1px solid #ccc",
+                    backgroundColor: campo === "cor" ? valor : "",
+                    border:
+                      campo === "cor" && personalizacao[campo]?.includes(valor)
+                        ? "3px solid #333"
+                        : campo === "cor"
+                        ? "1px solid #ccc"
+                        : undefined,
                   }}
-                  className="botao-cor"
-                  onClick={() => handleSelecionar("cor", cor)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="secao">
-            <p>Tamanho:</p>
-            <div className="botoes-opcao">
-              {tamanhos.map((t) => (
-                <button
-                  key={t}
                   className={`botao-opcao ${
-                    personalizacao.tamanho.includes(t) ? "selecionado" : ""
+                    personalizacao[campo]?.includes(valor) ? "selecionado" : ""
                   }`}
-                  onClick={() => handleSelecionar("tamanho", t)}
+                  onClick={() => handleSelecionar(campo, valor)}
                 >
-                  {t}
+                  {campo === "cor" ? "" : valor}
                 </button>
               ))}
             </div>
           </div>
+        ))}
+      </div>
 
-          <div className="secao">
-            <p>Peso (mínimo 4):</p>
-            <div className="botoes-opcao">
-              {pesos.map((p) => (
-                <button
-                  key={p}
-                  className={`botao-opcao ${
-                    personalizacao.peso.includes(p) ? "selecionado" : ""
-                  }`}
-                  onClick={() => handleSelecionar("peso", p)}
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="secao">
-            <p>Material:</p>
-            <div className="botoes-opcao">
-              {materiais.map((m) => (
-                <button
-                  key={m}
-                  className={`botao-opcao ${
-                    personalizacao.material.includes(m) ? "selecionado" : ""
-                  }`}
-                  onClick={() => handleSelecionar("material", m)}
-                >
-                  {m}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ---------- Página 2 ---------- */}
-      {pagina === 2 && (
-        <div className="pagina-personalizacao">
-          <h4>Extras:</h4>
-          <div className="botoes-opcao">
-            {extras.map((extra) => (
-              <button
-                key={extra}
-                className={`botao-opcao ${
-                  personalizacao.extra.includes(extra) ? "selecionado" : ""
-                }`}
-                onClick={() => handleSelecionar("extra", extra)}
-              >
-                {extra}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ---------- Página 3 ---------- */}
-      {pagina === 3 && (
-        <div className="pagina-personalizacao">
-          <h4>Específico:</h4>
-          <div className="botoes-opcao">
-            {especificos.map((esp) => (
-              <button
-                key={esp}
-                className={`botao-opcao ${
-                  personalizacao.especifico.includes(esp) ? "selecionado" : ""
-                }`}
-                onClick={() => handleSelecionar("especifico", esp)}
-              >
-                {esp}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ---------- Rodapé ---------- */}
+      {/* ---------- Rodapé com paginação automática ---------- */}
       <div className="rodape-modal">
         <div className="paginacao">
-          {[1, 2, 3].map((num) => (
+          {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
             <button
               key={num}
               className={`pagina-botao ${pagina === num ? "ativo" : ""}`}

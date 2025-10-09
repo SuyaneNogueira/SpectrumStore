@@ -1,4 +1,4 @@
-.modal-personalizacao-adm{
+.modal-personalizacao-adm {
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -10,32 +10,27 @@
   margin-left: 10%;
   flex-wrap: wrap;
 }
-
 .titulo-modal-personalizacao-adm {
   text-align: center;
   font-weight: 600;
   color: #1a3c40;
   margin-bottom: 15px;
 }
-
 .pagina-personalizacao {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 .secao p {
   margin-bottom: 5px;
   font-weight: 500;
   color: #1a3c40;
 }
-
 .opcoes-cores {
   display: flex;
   gap: 10px;
   justify-content: flex-start;
 }
-
 .botao-cor {
   width: 30px;
   height: 30px;
@@ -43,7 +38,6 @@
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .botao-opcao {
   padding: 8px 14px;
   border-radius: 8px;
@@ -53,28 +47,23 @@
   transition: 0.2s;
   margin: 4px;
 }
-
 .botao-opcao:hover {
   background: #cfdede;
 }
-
 .botao-opcao.selecionado {
   background: #1a3c40;
   color: white;
 }
-
 .rodape-modal {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 }
-
 .paginacao {
   display: flex;
   gap: 6px;
 }
-
 .pagina-botao {
   width: 24px;
   height: 24px;
@@ -83,12 +72,10 @@
   background: #cfdede;
   cursor: pointer;
 }
-
 .pagina-botao.ativo {
   background: #1a3c40;
   color: white;
 }
-
 .botao-confirmar {
   padding: 8px 14px;
   background: #cfdede;
@@ -98,7 +85,6 @@
   font-weight: 500;
   transition: 0.2s;
 }
-
 .botao-confirmar:hover {
   background: #a2c9cd;
 }
