@@ -27,11 +27,29 @@ function Tela_inicial() {
   const [termoPesquisa, setTermoPesquisa] = useState('');
   const [produtosCombinados, setProdutosCombinados] = useState([]);
 
-  // 🔹 Carregar produtos cadastrados no ADM + fixos
-  useEffect(() => {
+ useEffect(() => {
+  // Função para recarregar produtos sempre que o localStorage mudar
+  const carregarProdutos = () => {
     const produtosSalvos = JSON.parse(localStorage.getItem("produtosLoja")) || [];
     setProdutosCombinados([...produtosFixos, ...produtosSalvos]);
-  }, []);
+  };
+
+  // 🔹 Carrega os produtos ao montar
+  carregarProdutos();
+
+  // 🔹 Escuta alterações no localStorage (até entre abas)
+  window.addEventListener("storage", carregarProdutos);
+
+  // 🔹 Observa mudanças diretas feitas na mesma aba
+  const observer = new MutationObserver(carregarProdutos);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 🔹 Cleanup ao desmontar
+  return () => {
+    window.removeEventListener("storage", carregarProdutos);
+    observer.disconnect();
+  };
+}, []);
 
   const handleCategoriaClick = (categoria) => {
     setCategoriaSelecionada(categoria);

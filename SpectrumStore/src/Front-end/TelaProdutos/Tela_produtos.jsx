@@ -184,7 +184,7 @@ function Tela_produtos() {
                 {Object.entries(produto.personalizacao).map(
                   ([campo, valores]) =>
                     valores.length > 0 ? (
-                      <div key={campo} className="linha-personalizacao">
+                      <div key={campo} className="linha-personalizacao-">
                         <strong>
                           {campo.charAt(0).toUpperCase() + campo.slice(1)}:
                         </strong>{" "}
