@@ -69,27 +69,47 @@ function Tela_produtos() {
 
   ////////////////////////////////////////////
 
- // 🔥 1️⃣ CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
+  // 🔥 1️⃣ CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
   React.useEffect(() => {
     const produtosLoja = JSON.parse(localStorage.getItem("produtosLoja")) || [];
     const produtoBase =
       produtosLoja.find((p) => Number(p.id) === Number(id)) ||
       produtosSpectrum.find((p) => p.id === Number(id));
 
-    const produtoPersonalizado = JSON.parse(localStorage.getItem("produtoAtual"));
+    const produtoPersonalizado = JSON.parse(
+      localStorage.getItem("produtoAtual")
+    );
 
     const produtoCombinado =
       produtoPersonalizado && produtoPersonalizado.id === produtoBase?.id
-        ? { ...produtoBase, personalizacao: produtoPersonalizado.personalizacao }
+        ? {
+            ...produtoBase,
+            personalizacao: produtoPersonalizado.personalizacao,
+          }
         : produtoBase;
 
     setProduto(produtoCombinado);
+
+    if (produtoCombinado) {
+      const categoria = produtoCombinado.category;
+      const personalizacoesCategoria =
+        personalizacoesPorCategoria[categoria] || {};
+
+      // Se o produto ainda não tiver personalizacao, aplica a da categoria
+      setProduto({
+        ...produtoCombinado,
+        personalizacao:
+          produtoCombinado.personalizacao || personalizacoesCategoria,
+      });
+    }
   }, [id]);
 
   // ⚡ 2️⃣ REAGE AUTOMATICAMENTE A ALTERAÇÕES NO LOCALSTORAGE (SEM DAR F5)
   React.useEffect(() => {
     const handleStorageChange = () => {
-      const produtoPersonalizado = JSON.parse(localStorage.getItem("produtoAtual"));
+      const produtoPersonalizado = JSON.parse(
+        localStorage.getItem("produtoAtual")
+      );
       if (produtoPersonalizado && produtoPersonalizado.id === Number(id)) {
         setProduto((prev) =>
           prev
@@ -103,14 +123,14 @@ function Tela_produtos() {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, [id]);
 
-////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////
 
-  const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] = useState({});
+  const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] =
+    useState({});
   const { addToCart } = useCart();
   const [quantidade, setQuantidade] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
   const [produto, setProduto] = useState(null);
-
 
   const handlePersonalizacaoClick = (key, opcao) => {
     setPersonalizacoesSelecionadas((prev) => {
@@ -122,14 +142,30 @@ function Tela_produtos() {
   };
 
   const handleAddToCart = () => {
-    if (produto) {
-      addToCart({
-        ...produto,
-        personalizacoes: personalizacoesSelecionadas,
-        quantidade,
-      });
-      setShowPopup(true);
+    if (!produto) return;
+
+    const totalPersonalizacoes = Object.values(personalizacoesSelecionadas)
+      .flat()
+      .filter((v) => v && v.trim && v.trim() !== "").length;
+
+    if (totalPersonalizacoes < 5) {
+      alert("⚠️ Adicione pelo menos 5 personalizações antes de continuar!");
+      return;
     }
+
+    // 🔥 Garante compatibilidade dos nomes das propriedades
+    const produtoParaCarrinho = {
+      id: produto.id,
+      name: produto.name || produto.nome,
+      price: produto.price || produto.valor,
+      image: produto.image || produto.imagem,
+      rating: produto.rating || 0,
+      personalizacoes: personalizacoesSelecionadas, // ⚠️ Usa 'personalizacoes', igual no CarrinhoP1
+      quantidade,
+    };
+
+    addToCart(produtoParaCarrinho);
+    setShowPopup(true);
   };
 
   const handleClosePopup = () => setShowPopup(false);
@@ -177,62 +213,62 @@ function Tela_produtos() {
           <div className="secao-personalizacao">
             <h3 className="titulo-personalizacao">Personalizações</h3>
 
-            {/* 🔸 Mostra apenas o que foi escolhido no modal */}
-            {produto.personalizacao && (
-              <div className="area-personalizacao-selecionada">
-                <h4>Personalizações escolhidas:</h4>
-                {Object.entries(produto.personalizacao).map(
-                  ([campo, valores]) =>
-                    valores.length > 0 ? (
-                      <div key={campo} className="linha-personalizacao-">
-                        <strong>
-                          {campo.charAt(0).toUpperCase() + campo.slice(1)}:
-                        </strong>{" "}
-                        {valores.join(", ")}
-                      </div>
-                    ) : null
-                )}
-              </div>
-            )}
-
-            {/* 🔸 Opções normais (fixas, se quiser manter) */}
+            {/* 🔹 Opções disponíveis (definidas no cadastro) */}
             <div className="opcoes-personalizacao">
-              {Object.keys(personalizacoesDoProduto).map((key) => (
-                <div key={key} className="grupo-opcao">
-                  <p className="titulo-opcao">
-                    {key.charAt(0).toUpperCase() +
-                      key.slice(1).replace(/([A-Z])/g, " $1")}
-                    :
-                  </p>
-                  <div className="opcoes-container">
-                    {personalizacoesDoProduto[key].map((opcao) => (
-                      <div
-                        key={opcao}
-                        className={`personalizacao-item ${
-                          personalizacoesSelecionadas[key] === opcao
-                            ? "selecionado"
-                            : ""
-                        }`}
-                        onClick={() => handlePersonalizacaoClick(key, opcao)}
-                      >
-                        {key.toLowerCase().includes("cor") ? (
-                          <div
-                            className="cor-quadrado"
-                            style={{
-                              backgroundColor: opcao
-                                .toLowerCase()
-                                .normalize("NFD")
-                                .replace(/[\u0300-\u036f]/g, ""),
-                            }}
-                          ></div>
-                        ) : (
-                          <div className="textura-caixa">{opcao}</div>
-                        )}
-                      </div>
-                    ))}
+              {produto.personalizacao &&
+                Object.keys(produto.personalizacao).map((key) => (
+                  <div key={key} className="grupo-opcao">
+                    <p className="titulo-opcao">
+                      {key.charAt(0).toUpperCase() +
+                        key.slice(1).replace(/([A-Z])/g, " $1")}
+                      :
+                    </p>
+                    <div className="opcoes-container">
+                      {produto.personalizacao[key].map((opcao) => (
+                        <div
+                          key={opcao}
+                          className={`personalizacao-item ${
+                            personalizacoesSelecionadas[key]?.includes(opcao)
+                              ? "selecionado"
+                              : ""
+                          }`}
+                          onClick={() => {
+                            setPersonalizacoesSelecionadas((prev) => {
+                              const novas = { ...prev };
+                              const selecionadas = novas[key] || [];
+
+                              if (selecionadas.includes(opcao)) {
+                                novas[key] = selecionadas.filter(
+                                  (v) => v !== opcao
+                                );
+                              } else {
+                                novas[key] = [...selecionadas, opcao];
+                              }
+
+                              return novas;
+                            });
+                          }}
+                        >
+                          {key.toLowerCase().includes("cor") ? (
+                            <div
+                              className="cor-quadrado"
+                              style={{
+                                backgroundColor: opcao
+                                  .toLowerCase()
+                                  .normalize("NFD")
+                                  .replace(/[\u0300-\u036f]/g, ""),
+                              }}
+                            ></div>
+                          ) : (
+                            <div className="textura-caixa">{opcao}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+
+              {/* //////////////////////////////////////////////////////////// */}
 
               <div className="quantidade-e-botao">
                 <div className="seletor-quantidade">
