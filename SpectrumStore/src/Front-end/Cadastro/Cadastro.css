@@ -22,10 +22,8 @@
 
 .cadastro-modal {
     display: flex;
-    width: 900px;
+    width: 1000px;
     height: 600px; 
-    max-width: 95%;
-    max-height: 95vh;
     border-radius: 15px; 
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -75,6 +73,26 @@
     justify-content: space-between; 
 }
 
+.cadastro-content-wrapper {
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+    flex-grow: 1; 
+    /* A altura do wrapper deve ser a altura máxima disponível para centralizar o separador */
+    align-items: stretch; 
+    margin-top: 10px; 
+}
+
+/* NOVO: Container do Formulário */
+.cadastro-form-container {
+    /* O formulário ocupará a maior parte do espaço e terá margem à direita */
+    width: 80%; 
+    flex-grow: 1;
+    /* Ajustado para não ter margem que possa se sobrepor ao separador */
+    padding-right: 20px; 
+}
+
+
 /* Botão de Fechar (X) */
 .close-button {
     position: absolute;
@@ -110,6 +128,7 @@
 
 .cadastro-form {
     width: 100%;
+    margin-top: 0; 
 }
 
 .input-group {
@@ -208,9 +227,31 @@
     margin-bottom: 20px; 
 }
 
+.vertical-separator-area {
+    /* Posicionamento Absoluto para retirá-lo do fluxo e alinhá-lo */
+    position: absolute; 
+    
+    /* CENTRALIZAÇÃO VERTICAL: top 50% e ajuste com transform */
+    top: 50%; 
+    transform: translateY(-50%); 
+    
+    /* POSIÇÃO HORIZONTAL: Alinha à direita, respeitando o padding lateral */
+    right: 45px; /* Use o mesmo valor do seu padding da .cadastro-direita */
+    
+    display: flex;
+    flex-direction: column; /* Linha de cima, Ou/Google, Linha de baixo */
+    align-items: center; 
+    justify-content: space-between; /* Distribui os elementos verticalmente */
+    
+    /* Define uma altura para a coluna do separador (centraliza o "Ou" na altura dos inputs) */
+    height: 350px; 
+    width: 60px;
+    z-index: 10; 
+}
+
 .vertical-line {
     width: 1px; 
-    height: 120px; /* Linha vertical alta, como na imagem */
+    height: 100%; /* Preenche a altura disponível no container */
     background-color: var(--color-input-line); 
     flex-shrink: 0; 
 }
@@ -219,9 +260,11 @@
     display: flex;
     flex-direction: column; /* "Ou" em cima do Google */
     align-items: center;
-    justify-content: center; /* Centraliza o 'Ou' e Google verticalmente */
-    height: 100%; 
-    padding: 0 25px; /* Espaço entre a linha e o conteúdo */
+    justify-content: center;
+    
+    /* Ocupa o espaço central entre as linhas */
+    padding: 20px 0; 
+    height: auto; /* Deixa a altura ser definida pelo conteúdo */
 }
 
 .cadastro-ou {
@@ -256,7 +299,8 @@
     font-size: 14px;
     color: var(--color-primary);
     align-self: center; 
-    margin-bottom: 0; /* Garante que fique na parte inferior */
+    margin-bottom: 0;
+    margin-top: 15px;
 }
 
 .cadastro-footer a {
