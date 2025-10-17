@@ -19,3 +19,4 @@ defineRoutes(app);  // Passa o `app` para a função de rotas
 app.listen(PORT, () => {
   console.log(`✅ Backend rodando em http://localhost:${PORT}`);
 });
+
