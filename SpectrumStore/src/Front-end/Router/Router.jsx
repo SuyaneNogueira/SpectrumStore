@@ -24,8 +24,8 @@ import TelaFavoritos from "../TelaFavoritos/TelaFavoritos";
 import LandingPage from "../LandingPage/LandingPage";
 
 const Router = createBrowserRouter([
-    { path: "/", element: <Tela_inicial/> },
-    { path: "/LandingPage", element: <LandingPage/> },
+    { path: "/", element: <LandingPage/> },
+    { path: "/TelaInicial", element: <Tela_inicial/> },
     { path: "/produto/:id", element: <Tela_produtos/> }, 
     { path: "/Carrinho", element: <CarrnhoP1/> },
     {path: "/pagamento", element: <CarrinhoP2/>},
