@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // 👉 Coloque aqui sua SECRET KEY real do Stripe (sk_test_...)
-const stripe = new Stripe("sk_test_51SID8yPG8QyczJkkXBCJmNfTWMg8r7wrBDkZMeH1uzHJiPhaTfvKLZ4tqpDrMERCx6T0FBFmOFMmVyAz5KHbUO8d00hHRRW5Vm");
+const stripe = new Stripe("");
 
 // ✅ Cria uma sessão de checkout dinâmica
 app.post("/create-checkout-session", async (req, res) => {
