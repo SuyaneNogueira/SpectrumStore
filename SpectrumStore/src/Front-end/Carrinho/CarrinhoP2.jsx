@@ -60,7 +60,8 @@ const finalizarCompra = async () => {
       body: JSON.stringify({ cartItems }),
     });
 
-    const data = await res.json();
+    const dados = await resposta.json();
+    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
 
     if (data.url) {
       window.location.href = data.url; // redireciona para o checkout Stripe
@@ -68,12 +69,20 @@ const finalizarCompra = async () => {
       alert("Erro ao criar sessão Stripe");
       console.error(data);
     }
-  } catch (err) {
-    console.error("Erro ao redirecionar:", err);
-    alert("Falha ao iniciar o pagamento: " + err.message);
+
+    // Redirecionamento ou limpeza de carrinho
+    // window.location.href = '/';
+
+  }catch (erro) {
+  console.error('Erro ao enviar pedido:', erro);
+  if (erro.response) {
+    // caso você use axios, por exemplo
+    alert(`Falha ao enviar pedido. Detalhes: ${erro.response.data.details || erro.message}`);
+  } else {
+    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
   }
 };
-
+}
 
   return (
     <div className='fundoPagamento'>
