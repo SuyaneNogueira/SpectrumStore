@@ -66,15 +66,14 @@ function CarrinhoP2() {
       body: JSON.stringify(pedidoBackend),
     });
 
+    const dados = await resposta.json();
+    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
 
     if (!resposta.ok) {
       const erroDados = await resposta.json().catch(() => null);
       const mensagemErro = erroDados?.error || `Erro desconhecido. Status: ${resposta.status}`;
       throw new Error(mensagemErro);
     }
-
-    const dados = await resposta.json();
-    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
 
     // Redirecionamento ou limpeza de carrinho
     // window.location.href = '/';
