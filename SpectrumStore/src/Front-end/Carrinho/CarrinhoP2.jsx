@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CarrinhoP2.css';
 import Navbar from '../Navbar/Navbar';
+import { loadStripe } from "@stripe/stripe-js";
 import { useCart } from './CartContext';
 import { Link } from 'react-router-dom';
 
@@ -20,6 +21,11 @@ function CarrinhoP2() {
   // 1. ESTADO para controlar qual forma de pagamento está selecionada
   const [formaPagamento, setFormaPagamento] = useState(''); 
 
+  const cancelarCompra = () => {
+  // Redireciona para a página do carrinho
+  window.location.href = '/Carrinho';
+};
+
   // Simulação dos valores de desconto e frete
   const frete = 0.00;
   const desconto = 0.00;
@@ -36,66 +42,38 @@ function CarrinhoP2() {
   }
 
   // Função para enviar pedido ao backend
-  const finalizarCompra = async () => {
-  const usuarioIdFixo = 1;
 
-  if (cartItems.length === 0 || totalFinal <= 0) {
-    alert('O carrinho está vazio.');
+const stripePromise = loadStripe("pk_test_51SID8yPG8QyczJkkb6grVBHmEOKZDegxspa37FTCnGJAPJKcLrXw8g0SG6I7UaJHGnC8dX9p0YqMVZDzIH1c8OE700HmNMipkn");
+
+const finalizarCompra = async () => {
+  if (cartItems.length === 0) {
+    alert("O carrinho está vazio.");
     return;
   }
-
-  if (!formaPagamento) {
-    alert('Por favor, selecione uma forma de pagamento para continuar.');
-    return;
-  }
-
-  const pedidoBackend = {
-    usuario_id: usuarioIdFixo,
-    data_pedido: new Date().toISOString(),
-    total: totalFinal.toFixed(2),
-    forma_pagamento: formaPagamento,
-    status: 'Aguardando Pagamento',
-  };
-
-  console.log('Dados do Pedido a enviar (verifique se os campos estão preenchidos):', pedidoBackend);
 
   try {
-    const resposta = await fetch('http://localhost:3001/api/pedido', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(pedidoBackend),
+    const stripe = await stripePromise;
+
+    const res = await fetch("http://localhost:3001/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cartItems }),
     });
 
+    const data = await res.json();
 
-    if (!resposta.ok) {
-      const erroDados = await resposta.json().catch(() => null);
-      const mensagemErro = erroDados?.error || `Erro desconhecido. Status: ${resposta.status}`;
-      throw new Error(mensagemErro);
+    if (data.url) {
+      window.location.href = data.url; // redireciona para o checkout Stripe
+    } else {
+      alert("Erro ao criar sessão Stripe");
+      console.error(data);
     }
-
-    const dados = await resposta.json();
-    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
-
-    // Redirecionamento ou limpeza de carrinho
-    // window.location.href = '/';
-
-  }catch (erro) {
-  console.error('Erro ao enviar pedido:', erro);
-  if (erro.response) {
-    // caso você use axios, por exemplo
-    alert(`Falha ao enviar pedido. Detalhes: ${erro.response.data.details || erro.message}`);
-  } else {
-    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
+  } catch (err) {
+    console.error("Erro ao redirecionar:", err);
+    alert("Falha ao iniciar o pagamento: " + err.message);
   }
-}
-
 };
 
-
-  // Função para cancelar compra: redirecionar para a tela inicial
-  const cancelarCompra = () => {
-    window.location.href = '/'; 
-  };
 
   return (
     <div className='fundoPagamento'>

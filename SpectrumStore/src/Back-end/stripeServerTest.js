@@ -1,4 +1,3 @@
-// stripeServer.js
 import express from "express";
 import Stripe from "stripe";
 import cors from "cors";
@@ -7,35 +6,39 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 🧩 Coloque aqui a sua SECRET KEY de teste (começa com "sk_test_...")
-const stripe = new Stripe("sk_test_SUA_CHAVE_AQUI"); // troque por sua chave real
+// 👉 Coloque aqui sua SECRET KEY real do Stripe (sk_test_...)
+const stripe = new Stripe("sk_test_51SID8yPG8QyczJkkXBCJmNfTWMg8r7wrBDkZMeH1uzHJiPhaTfvKLZ4tqpDrMERCx6T0FBFmOFMmVyAz5KHbUO8d00hHRRW5Vm");
 
-// ✅ Cria sessão de pagamento Stripe
+// ✅ Cria uma sessão de checkout dinâmica
 app.post("/create-checkout-session", async (req, res) => {
-  const { cartItems, totalFinal } = req.body;
+  const { cartItems } = req.body;
 
-  try {
+   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "pix"], // PIX disponível no Brasil
+      payment_method_types: ["card"],
       mode: "payment",
-      line_items: cartItems.map((item) => ({
+      line_items: cartItems.map(item => ({
         price_data: {
           currency: "brl",
-          product_data: { name: item.name },
-          unit_amount: Math.round(item.price * 100), // preço em centavos
+          product_data: {
+            name: item.name || "Produto sem nome",
+            images: [item.image || "https://via.placeholder.com/150"],
+          },
+          unit_amount: Math.round(Number(item.price) * 100),
         },
-        quantity: item.quantidade || 1,
+        quantity: Number(item.quantity) || 1,
       })),
-      // URLs de redirecionamento após pagamento
       success_url: "http://localhost:5173/sucesso",
       cancel_url: "http://localhost:5173/cancelado",
     });
 
-    res.json({ id: session.id });
+    res.json({ url: session.url }); // envia o link do checkout
   } catch (err) {
-    console.error("❌ Erro ao criar sessão Stripe:", err);
+    console.error("Erro Stripe:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
-app.listen(3001, () => console.log("🚀 Servidor Stripe rodando em http://localhost:3001"));
+app.listen(3001, () =>
+  console.log("🚀 Servidor Stripe rodando em http://localhost:3001")
+);
