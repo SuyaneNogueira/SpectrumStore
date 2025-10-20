@@ -1,10 +1,9 @@
-/* DEFINIÇÃO DAS CORES */
 :root {
-    --color-primary: #034e61; /* Azul Escuro / Título e botões */
-    --color-secondary: #a3c9d6; /* Fundo principal do formulário (Lado Direito) */
-    --color-tertiary-base: #cad7de; /* Cor BASE para o Lado Esquerdo */
-    --color-input-line: #f7f7f7; /* Linha branca dos inputs e separadores */
-    --color-overlay-soft: rgba(0, 0, 0, 0.1); /* Fundo muito suave do modal */
+    --color-primary: #034e61;
+    --color-secondary: #a3c9d6; 
+    --color-tertiary-base: #cad7de;
+    --color-input-line: #f7f7f7; 
+    --color-overlay-soft: rgba(0, 0, 0, 0.1);
 }
 
 .cadastro-overlay {
@@ -22,8 +21,8 @@
 
 .cadastro-modal {
     display: flex;
-    width: 1000px;
-    height: 600px; 
+    width: 1010px;
+    height: 580px; 
     border-radius: 15px; 
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -31,17 +30,14 @@
 
 .cadastro-esquerda {
     flex: 1;
-    /* Adiciona um background-color explícito com opacidade para o backdrop-filter funcionar bem */
-    background-color: rgba(202, 215, 222, 0.7); /* Usando var(--color-tertiary-base) com opacidade */
+    background-color: rgba(202, 215, 222, 0.7); 
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    
-    /* O EFEITO DE BLUR/VIDRO - Ajustado para ser mais visível */
     backdrop-filter: blur(8px); 
-    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Linha sutil para separar */
+    border-right: 2px solid rgba(255, 255, 255, 0.3); 
 }
 
 .cadastro-esquerda h1 {
@@ -65,12 +61,13 @@
 .cadastro-direita {
     flex: 1;
     background: #a2c9cdfb;
-    padding: 45px;
+    padding: 60px;
     display: flex;
     flex-direction: column;
     position: relative;
     color: var(--color-primary);
-    justify-content: space-between; 
+    width: 60%;
+    height: 600px;
 }
 
 .cadastro-content-wrapper {
@@ -78,22 +75,17 @@
     flex-direction: row; 
     width: 100%;
     flex-grow: 1; 
-    /* A altura do wrapper deve ser a altura máxima disponível para centralizar o separador */
     align-items: stretch; 
     margin-top: 10px; 
 }
 
-/* NOVO: Container do Formulário */
+
 .cadastro-form-container {
-    /* O formulário ocupará a maior parte do espaço e terá margem à direita */
     width: 80%; 
     flex-grow: 1;
-    /* Ajustado para não ter margem que possa se sobrepor ao separador */
     padding-right: 20px; 
 }
 
-
-/* Botão de Fechar (X) */
 .close-button {
     position: absolute;
     top: 10px;
@@ -113,7 +105,8 @@
     color: var(--color-primary);
     font-size: 30px;
     margin-bottom: -15px;
-    align-self: flex-start; 
+    flex-direction: column;
+    margin-right: 70px;
 }
 
 .cadastro-direita h2 {
@@ -203,14 +196,13 @@
     background: var(--color-primary);
     color: white;
     border: none;
-    padding: 0px 80px;
+    padding: 10px;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: lighter;
     transition: background 0.3s;
     font-family: 'Inknut Antiqua', serif;
-    font-weight: 300;
-    font-style: normal;
 }
 
 .cadastro-btn:hover {
@@ -220,61 +212,36 @@
 .google-separator-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centraliza o conteúdo */
-    width: 100%;
-    /* Ajusta o espaçamento do container, empurrando para cima o footer */
-    margin-top: auto; 
-    margin-bottom: 20px; 
-}
-
-.vertical-separator-area {
-    /* Posicionamento Absoluto para retirá-lo do fluxo e alinhá-lo */
-    position: absolute; 
-    
-    /* CENTRALIZAÇÃO VERTICAL: top 50% e ajuste com transform */
-    top: 50%; 
-    transform: translateY(-50%); 
-    
-    /* POSIÇÃO HORIZONTAL: Alinha à direita, respeitando o padding lateral */
-    right: 45px; /* Use o mesmo valor do seu padding da .cadastro-direita */
-    
-    display: flex;
-    flex-direction: column; /* Linha de cima, Ou/Google, Linha de baixo */
-    align-items: center; 
-    justify-content: space-between; /* Distribui os elementos verticalmente */
-    
-    /* Define uma altura para a coluna do separador (centraliza o "Ou" na altura dos inputs) */
-    height: 350px; 
-    width: 60px;
-    z-index: 10; 
+    justify-content: center;
+    flex-direction: column;
+    margin: -200px;
+    margin-left: 150px;
 }
 
 .vertical-line {
     width: 1px; 
-    height: 100%; /* Preenche a altura disponível no container */
+    height: 120px; /* Linha vertical alta, como na imagem */
     background-color: var(--color-input-line); 
-    flex-shrink: 0; 
+    flex-shrink: 0; /* Impede que a linha encolha */
 }
 
 .google-interaction {
+    /* Container para o 'Ou' e o botão Google, centralizado entre as linhas */
     display: flex;
-    flex-direction: column; /* "Ou" em cima do Google */
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    
-    /* Ocupa o espaço central entre as linhas */
-    padding: 20px 0; 
-    height: auto; /* Deixa a altura ser definida pelo conteúdo */
+    justify-content: space-between;
+    height: 100%; /* Ocupa o espaço total para posicionamento */
+    padding: 0 25px; /* Espaço entre a linha e o conteúdo */
 }
 
 .cadastro-ou {
     color: var(--color-primary);
-    font-family: 'Inknut Antiqua', serif;
-    font-weight: 300;
-    font-style: normal;
     font-size: 14px;
     white-space: nowrap;
-    margin-bottom: 10px; /* Espaço entre "Ou" e Google */
+    margin-top: 15px; /* Ajuste fino para centralização vertical */
+    margin-bottom: 15px;
+    font-family: 'Inknut Antiqua', serif;
 }
 
 .google-btn {
@@ -282,6 +249,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    margin-top: 5px; /* Pequeno ajuste */
     flex-shrink: 0; 
 }
 
@@ -295,12 +263,11 @@
 /* ---------------------------------------------------- */
 
 .cadastro-footer {
-    font-family: 'Inknut Antiqua', serif; /* Fonte também para o footer */
     font-size: 14px;
+    margin-top: auto; /* Empurra para o final da div direita */
+    padding-top: 10px;
     color: var(--color-primary);
     align-self: center; 
-    margin-bottom: 0;
-    margin-top: 15px;
 }
 
 .cadastro-footer a {
