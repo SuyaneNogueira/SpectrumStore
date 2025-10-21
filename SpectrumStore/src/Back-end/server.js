@@ -27,17 +27,59 @@ app.listen(PORT, () => {
 
 
 // ///teste apenas
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// ⚠️ Webhook precisa vir antes do express.json()
+app.post("/webhook", bodyParser.raw({ type: "application/json" }), async (req, res) => {
+  const sig = req.headers["stripe-signature"];
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+  try {
+    const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object;
+      const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
+
+      const pedido = {
+        sessionId: session.id,
+        customer_email: session.customer_email,
+        total: session.amount_total,
+        items: lineItems.data.map(li => ({
+          description: li.description,
+          quantity: li.quantity,
+          price: li.amount_total ? li.amount_total / 100 : null,
+          price_unit: li.price?.unit_amount ? li.price.unit_amount / 100 : null,
+          product_id: li.price?.product || null,
+        })),
+      };
+
+      console.log("✅ Pedido recebido via webhook:", pedido);
+      // Aqui você pode salvar no banco futuramente
+    }
+
+    res.json({ received: true });
+  } catch (err) {
+    console.error("⚠️ Erro webhook:", err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+});
+
+// ⚙️ Middlewares normais
 app.use(cors());
 app.use(express.json());
+
+// 📦 Rotas normais do seu app
+defineRoutes(app);
+
+// 💳 Rota Stripe Checkout
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   const { cartItems, customerEmail } = req.body;
 
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "pix"],
+      payment_method_types: ["card"],
       mode: "payment",
       customer_email: customerEmail,
       line_items: cartItems.map(item => ({
@@ -45,70 +87,40 @@ app.post("/create-checkout-session", async (req, res) => {
           currency: "brl",
           product_data: {
             name: item.name,
-            description: item.description || undefined,
-            images: item.image ? [item.image] : [], // imagem: precisa ser URL pública
-            metadata: {
-              productId: String(item.id || ""), // id do seu produto no seu DB
-            }
+            images: item.image ? [item.image] : [],
+            metadata: { productId: String(item.id || "") },
           },
           unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantidade || 1,
-        // metadata no nível do line_item não é suportado em todas as versões;
-        // prefer usar product_data.metadata ou session.metadata
       })),
-      metadata: {
-        cartId: String(req.body.cartId || ""), // id do carrinho no seu sistema
-      },
+      metadata: { cartId: String(req.body.cartId || "") },
       success_url: "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:5173/cancelado"
+      cancel_url: "http://localhost:5173/cancelado",
     });
 
-    res.json({ id: session.id });
+    // ✅ importante: retornar a URL completa
+    res.json({ url: session.url });
   } catch (err) {
-    console.error(err);
+    console.error("⚠️ Erro Stripe:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// webhook (raw body)
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, res) => {
-  const sig = req.headers['stripe-signature'];
-  try {
-    const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object;
-
-      // Recupera os line items completos (quantidade, produto, price)
-      const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
-
-      // Exemplo: salvar pedido no DB
-      const pedido = {
-        sessionId: session.id,
-        customer_email: session.customer_email,
-        total: session.amount_total, // em centavos
-        items: lineItems.data.map(li => ({
-          description: li.description,
-          quantity: li.quantity,
-          price: li.amount_total ? li.amount_total / 100 : null,
-          price_unit: li.price?.unit_amount ? li.price.unit_amount / 100 : null,
-          price_id: li.price?.id || null,
-          product_id: li.price?.product || li.price?.product_data?.id || null,
-          // Se você colocou product_data.metadata.productId, é preciso recuperar expandindo price.product
-        }))
-      };
-
-      console.log('Pedido recebido via webhook:', pedido);
-      // TODO: salvar pedido no DB, enviar e-mail, etc.
-    }
-
-    res.json({ received: true });
-  } catch (err) {
-    console.error('Erro webhook:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
+// 🚀 Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`✅ Backend rodando em http://localhost:${PORT}`);
 });
 
-app.listen(3001, () => console.log('Server rodando na porta 3001'));
-// 
+app.get("/checkout-session/:sessionId", async (req, res) => {
+  const { sessionId } = req.params;
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ["line_items.data.price.product"],
+    });
+    res.json(session);
+  } catch (err) {
+    console.error("Erro ao buscar sessão:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
