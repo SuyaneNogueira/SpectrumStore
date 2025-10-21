@@ -181,12 +181,10 @@
 .suporte-icones {
   margin-right: 70%;
   display: flex;
-  /* align-items: center; */
   gap: 1px;
   margin-top: -2%;
 }
 
-/* clip button */
 .suporte-clip-btn {
   background: transparent;
   border: none;
@@ -210,7 +208,6 @@
 }
 .suporte-emoji-btn img { width: 45px; height: 30px; }
 
-/* emoji picker popup - absoluto, não empurra o resto */
 .emoji-picker-container {
   position: absolute;
   bottom: 4px;
@@ -218,10 +215,8 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   margin-top: 5%;
   width: -400px;
-  /* height: 380px; */
 }
 
-/* preview pequeno do arquivo, à esquerda dos ícones */
 .suporte-file-preview {
   display: flex;
   align-items: center;
@@ -231,6 +226,7 @@
   padding: 6px 18px;
   min-width: 120px;
 }
+
 .suporte-file-preview img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
 .suporte-file-name { font-size: 13px; color: var(--verde-escuro); }
 .suporte-file-remove {

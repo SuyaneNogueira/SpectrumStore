@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { auth, provider } from "../../Login/Firebase"; 
-// import { signInWithPopup } from 'firebase/auth'; // Importe signInWithPopup diretamente do módulo 'firebase/auth'
+// import { signInWithPopup } from 'firebase/auth'; // 
 import "./Cadastro.css";
 
 function Cadastro({ onClose }) {
@@ -52,75 +52,75 @@ function Cadastro({ onClose }) {
       }}
     >
       <div className="cadastro-modal" onClick={(e) => e.stopPropagation()}>
-        
-        {/* COLUNA ESQUERDA: Boas-vindas */}
-        <div className="cadastro-esquerda">
-          <h1>Seja Bem Vindo!</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            Maecenes placerat ultricies libero eu pharetra. Vestibulum a
-            ultrices augue.
-          </p>
-        </div>
+   
+   {/* COLUNA ESQUERDA: Boas-vindas */}
+   <div className="cadastro-esquerda">
+     <h1>Seja Bem Vindo!</h1>
+     <p>
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+       Maecenes placerat ultricies libero eu pharetra. Vestibulum a
+       ultrices augue.
+     </p>
+   </div>
 
-        {/* COLUNA DIREITA: Formulário */}
-        <div className="cadastro-direita">
-          <button className="close-button" onClick={onClose}>&times;</button>
-          
-          <h2>Cadastre-se</h2>
+   {/* COLUNA DIREITA: Formulário */}
+   <div className="cadastro-direita">
+     <button className="close-button" onClick={onClose}>&times;</button>
+     
+     <h2>Cadastre-se</h2>
 
-          <form onSubmit={handleSubmit} className="cadastro-form">
-            
-            <div className="input-group">
-                <label>Seu Nome:</label>
-                <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
-            </div>
+     <form onSubmit={handleSubmit} className="cadastro-form">
+       
+       <div className="input-group">
+           <label>Seu Nome:</label>
+           <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+       </div>
 
-            <div className="input-group">
-                <label>Sua Data de Nascimento:</label>
-                <input type="text" placeholder="DD/MM/AAAA" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} required />
-            </div>
+       <div className="input-group">
+           <label>Sua Data de Nascimento:</label>
+           <input type="text" placeholder="DD/MM/AAAA" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} required />
+       </div>
 
-            <div className="input-group">
-                <label>Sua Senha:</label>
-                <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-            </div>
+       <div className="input-group">
+           <label>Sua Senha:</label>
+           <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+       </div>
 
-            <div className="input-group">
-                <label>Confirme Sua Senha:</label>
-                <input type="password" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required />
-            </div>
+       <div className="input-group">
+           <label>Confirme Sua Senha:</label>
+           <input type="password" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required />
+       </div>
 
-            <div className="cadastro-termos">
-                <input type="radio" id="termos" name="termos" required /> 
-                <label htmlFor="termos">Li e Aceito os Termos de Uso</label>
-            </div>
-            
-            {erro && <p className="cadastro-erro">{erro}</p>}
-            
-            <button type="submit" className="cadastro-btn">
-                Criar Conta
-            </button>
-          </form>
+       <div className="cadastro-termos">
+           <input type="radio" id="termos" name="termos" required /> 
+           <label htmlFor="termos">Li e Aceito os Termos de Uso</label>
+       </div>
+       
+       {erro && <p className="cadastro-erro">{erro}</p>}
+       
+       <button type="submit" className="cadastro-btn">
+           Criar Conta
+       </button>
+     </form>
 
-            <div className="google-separator-container">
-                <div className="vertical-line"></div> 
-                
-                <div className="google-interaction">
-                    <div className="cadastro-ou">Ou</div>
-                    <button className="google-btn" onClick={handleGoogleLogin}>
-                        <img src="/GoogleCadastro.png" alt="Google" className="google-icon" />
-                    </button>
-                </div>
-                
-                <div className="vertical-line"></div> 
-            </div>
-
-            {/* Footer de Login */}
-            <p className="cadastro-footer">
-                Já possui Cadastro? <a href="#" onClick={onClose}>Faça Login Aqui</a>
-            </p>
-        </div>
+       <div className="separator-container">
+           <div className="vertical-line"></div> 
+            <div className="cadastro-ou">Ou</div>
+           <div className="google-interaction">                                    
+           </div>
+           
+           <div className="vertical-line"></div> 
+       </div>
+       <div>
+           <button className="google-btn" onClick={handleGoogleLogin}>
+               <img src="/GoogleCadastro.png" alt="Google" className="google-icon" />
+           </button>
+       </div>
+       {/* Footer de Login */}
+       <p className="cadastro-footer">
+           Já possui Cadastro? <a href="#" onClick={onClose}>Faça Login Aqui</a>
+       </p>
+   </div>
       </div>
     </div>
   );
