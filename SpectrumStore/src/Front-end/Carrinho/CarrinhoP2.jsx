@@ -75,6 +75,8 @@ const finalizarCompra = async () => {
 
   }catch (erro) {
   console.error('Erro ao enviar pedido:', erro);
+  
+    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
   if (erro.response) {
     // caso você use axios, por exemplo
     alert(`Falha ao enviar pedido. Detalhes: ${erro.response.data.details || erro.message}`);
