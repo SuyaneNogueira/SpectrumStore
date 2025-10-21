@@ -4,11 +4,16 @@ import HistoricoDeCompraModal from "../Historico/HistoricoDeCompraModal";
 import EditarPerfil from "../Editar/EditarPerfil"; 
 import ExcluirPerfil from "../Excluir/ExcluirPerfil";
 import Suporte from "../Suporte/Suporte";
+import { useCart } from "../../Carrinho/CartContext";
+import StarRating from "../../TelaInicial/StarRating";
+import { useFavorites } from '../../TelaFavoritos/FavoriteContext';
+import Button from '../../TelaInicial/Button';
 
 function TelaDePerfil() {
   const [abaAtiva, setAbaAtiva] = useState("historico");
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
   const [menuAberto, setMenuAberto] = useState(false);
+  const { toggleFavorite, isFavorited } = useFavorites();
 
   // estados para abrir os modais
   const [modalEditar, setModalEditar] = useState(false);
@@ -19,19 +24,15 @@ function TelaDePerfil() {
     console.log("Pesquisa:", event.target.value);
   };
 
-  const pedidos = [
-    {
-      id: 1,
-      nome: "Quebra-cabeça",
-      preco: 40.0,
-      qtd: 1,
-      data: "07 Setembro 2024",
-      numero: "GSHNDN49Q0Q2RMF",
-      devolucao: "Antes de 15/10/2024",
-      descricao:
-        "Quebra-cabeça de madeira com 50 peças para estimular a coordenação motora.",
-    },
-  ];
+  const {
+    cartItems,
+    removeFromCart,
+    toggleAllItems,
+    toggleItem,
+    selectAll,
+    totalSelected,
+    updateQuantity,
+  } = useCart();
 
   return (
     <div className="perfil-container">
@@ -92,18 +93,21 @@ function TelaDePerfil() {
       <div className="perfil-conteudo">
         {abaAtiva === "historico" && (
           <div className="produtos-grid">
-            {pedidos.map((pedido) => (
+
+            {cartItems && cartItems.map((item, index) => (
               <div
-                key={pedido.id}
+              key={item.cartItemId || `item-${index}`}
                 className="produto-card"
-                onClick={() => setPedidoSelecionado(pedido)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="imagem-produto"></div>
-                <span className="preco">R$ {pedido.preco}</span>
-                <h4>{pedido.nome}</h4>
+                onClick={() => setPedidoSelecionado(item)}
+                style={{ cursor: "pointer" }}>
+                <StarRating rating={item.rating} />
+                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
+                src={item.image} alt={item.name}/></div>
+                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
+                <h4>{item.name}</h4>
                 {/* <p className="container-descricao">{pedido.descricao}</p> */}
-                <span className="favorito">♥</span>
+                <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
+                    onClick={() => toggleFavorite(item)}/></span>
               </div>
             ))}
           </div>
