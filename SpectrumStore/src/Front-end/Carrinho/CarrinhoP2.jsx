@@ -52,39 +52,34 @@ const finalizarCompra = async () => {
   }
 
   try {
-    const stripe = await stripePromise;
+    const cartItemsParaStripe = cartItems.map(item => ({
+      name: item.name,
+      image: item.image?.startsWith("http")
+        ? item.image
+        : "https://via.placeholder.com/150", // URL válida temporária
+      price: Number(item.price),
+      quantity: item.quantidade || 1
+    }));
 
     const res = await fetch("http://localhost:3001/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cartItems }),
+      body: JSON.stringify({ cartItems: cartItemsParaStripe }),
     });
 
-    const dados = await resposta.json();
-    alert(`Pedido #${dados.pedido.id} criado com sucesso!`);
+    const data = await res.json();
 
-    if (data.url) {
-      window.location.href = data.url; // redireciona para o checkout Stripe
+    if (res.ok && data.url) {
+      window.location.href = data.url;
     } else {
-      alert("Erro ao criar sessão Stripe");
-      console.error(data);
+      console.error("❌ Erro ao criar sessão:", data);
+      alert("Erro ao criar sessão de pagamento.");
     }
-
-    // Redirecionamento ou limpeza de carrinho
-    // window.location.href = '/';
-
-  }catch (erro) {
-  console.error('Erro ao enviar pedido:', erro);
-  
-    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
-  if (erro.response) {
-    // caso você use axios, por exemplo
-    alert(`Falha ao enviar pedido. Detalhes: ${erro.response.data.details || erro.message}`);
-  } else {
-    alert(`Falha ao enviar pedido. Detalhes: ${erro.message}`);
+  } catch (err) {
+    console.error("Erro ao enviar pedido:", err);
+    alert("Erro ao processar pagamento.");
   }
 };
-}
 
   return (
     <div className='fundoPagamento'>
