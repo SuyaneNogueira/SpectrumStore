@@ -2,6 +2,9 @@ import express from "express";
 import Stripe from "stripe";
 import cors from "cors";
 
+
+dotenv.config(); // carrega o .env
+
 const app = express();
 app.use(cors());
 app.use(express.json());
