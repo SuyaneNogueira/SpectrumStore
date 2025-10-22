@@ -17,27 +17,26 @@ function HistoricoDeCompraModal({ pedido, onClose }) {
       <div className="modal-conteudo">
         <button className="modal-fechar" onClick={onClose}>✕</button>
         {cartItems && cartItems.map((item, index) => (
-        <div className="pedido-header">
+        <div className="pedido-header"  key={item.cartItemId || `item-${index}`}>
           <div className="pedido-imagem"><img className="imagem-mesmo-produtos-carrinho" 
                 src={item.image} alt={item.name}/></div>
           <div className="pedido-info">
             <h3 className="pedido-nome">{item.name}</h3>
             <div className="span-pedido-preco">
-            <span className="pedido-preco">R$ {item.price}</span>
+            <span className="pedido-preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
             <span className="pedido-quantidade">{item.quantidade}</span>
             </div>
             <p>{item.data}</p>
             <p>Número do Pedido: <strong>{item.numero}</strong></p>
-            {/* <p>Prazo de devolução: {.devolucao}</p> */}
             <button className="botao-recomprar">Recompra</button>
           </div>
         </div>
-      ))};
+      ))}
 
         <div className="pedido-status">
           <div className="etapa concluida">
             <div className="icone"></div>
-            <p>Pedido Confirmado</p>
+            <p>Pedido Criado</p>
           </div>
           <div className="linha"></div>
           <div className="etapa concluida">
@@ -47,7 +46,7 @@ function HistoricoDeCompraModal({ pedido, onClose }) {
           <div className="linha"></div>
           <div className="etapa atual">
             <div className="icone"></div>
-            <p>Pedido Enviado</p>
+            <p>Pedido Em andamento</p>
           </div>
           <div className="linha"></div>
           <div className="etapa">
