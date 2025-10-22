@@ -73,6 +73,12 @@ function TelaDePerfil() {
           className={abaAtiva === "historico" ? "aba ativa" : "aba"}
           onClick={() => setAbaAtiva("historico")}
         >
+          Meu Carrinho
+        </button>
+        <button
+          className={abaAtiva === "historico" ? "aba ativa" : "aba"}
+          onClick={() => setAbaAtiva("historico")}
+        >
           Histórico de Compras Realizadas
         </button>
         <button
