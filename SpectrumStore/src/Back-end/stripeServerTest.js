@@ -10,41 +10,44 @@ app.use(express.json());
 dotenv.config(); // carrega o .env
 
 // ⚠️ Use a SECRET KEY de teste (nunca a pública)
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 app.post("/create-checkout-session", async (req, res) => {
+  const { cartItems, paymentMethod } = req.body;
+
+  // Verifica se o carrinho tem itens
+  if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
+    return res.status(400).json({ error: "Carrinho vazio" });
+  }
+
+  // Define tipos de pagamento
+  const paymentTypes = paymentMethod === "pix" ? ["pix"] : ["card"];
+
   try {
-    const { cartItems } = req.body;
-
-    if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
-      return res.status(400).json({ error: "Carrinho inválido ou vazio." });
-    }
-
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+      payment_method_types: paymentTypes,
       mode: "payment",
       line_items: cartItems.map((item) => ({
         price_data: {
           currency: "brl",
           product_data: {
             name: item.name,
-            images: [item.image],
+            images: item.image?.startsWith("http")
+              ? [item.image]
+              : ["https://i.imgur.com/zYIlgBl.png"], // fallback
           },
-          unit_amount: Math.round(item.price * 100),
+          unit_amount: Math.max(Math.round(item.price * 100), 100), // mínimo 1 BRL
         },
-        quantity: item.quantity || 1,
+        quantity: item.quantity || item.quantidade || 1,
       })),
       success_url: "http://localhost:5173/sucesso",
       cancel_url: "http://localhost:5173/cancelado",
     });
 
     res.json({ url: session.url });
-  } catch (err) {
-    console.error("⚠️ Erro Stripe:", err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.error("Erro ao criar sessão Stripe:", error);   
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.listen(3001, () =>
-  console.log("🚀 Servidor Stripe rodando em http://localhost:3001")
-);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`✅ Backend rodando em http://localhost:${PORT}`));

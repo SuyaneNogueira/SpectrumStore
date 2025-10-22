@@ -22,6 +22,7 @@ import Estatisticas from "../../Adm/pages/Estatisticas";
 import Estoque from "../../Adm/pages/Estoque";
 import TelaFavoritos from "../TelaFavoritos/TelaFavoritos";
 import LandingPage from "../LandingPage/LandingPage";
+import Sucesso from "../Carrinho/Sucesso";
 
 const Router = createBrowserRouter([
     { path: "/", element: <LandingPage/> },
@@ -41,6 +42,8 @@ const Router = createBrowserRouter([
     { path: "/MaterialPonderado", element: <MaterialPonderado/> },
     { path: "/TelaDePerfil", element: <TelaDePerfil/> },
     { path: "/TelaFavoritos", element: <TelaFavoritos/> },
+    { path: "/sucesso", element: <Sucesso/> },
+
     {
         path: "/LayoutAdm",
         element: <Layout/>, 

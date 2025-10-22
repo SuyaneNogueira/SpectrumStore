@@ -24,14 +24,14 @@ app.listen(PORT, () => {
 
 
 
-
-
 // ///teste apenas
 
-// ⚠️ Webhook precisa vir antes do express.json()
+// ✅ Stripe declarado apenas uma vez
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+// ⚠️ Webhook vem antes do express.json()
 app.post("/webhook", bodyParser.raw({ type: "application/json" }), async (req, res) => {
   const sig = req.headers["stripe-signature"];
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
   try {
     const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
@@ -54,7 +54,7 @@ app.post("/webhook", bodyParser.raw({ type: "application/json" }), async (req, r
       };
 
       console.log("✅ Pedido recebido via webhook:", pedido);
-      // Aqui você pode salvar no banco futuramente
+      // futuramente: salvar no banco
     }
 
     res.json({ received: true });
@@ -64,16 +64,14 @@ app.post("/webhook", bodyParser.raw({ type: "application/json" }), async (req, r
   }
 });
 
-// ⚙️ Middlewares normais
+// ⚙️ Middlewares normais (depois do webhook)
 app.use(cors());
 app.use(express.json());
 
-// 📦 Rotas normais do seu app
+// 📦 Suas rotas normais
 defineRoutes(app);
 
-// 💳 Rota Stripe Checkout
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+// 💳 Rota para criar sessão de checkout
 app.post("/create-checkout-session", async (req, res) => {
   const { cartItems, customerEmail } = req.body;
 
@@ -99,7 +97,6 @@ app.post("/create-checkout-session", async (req, res) => {
       cancel_url: "http://localhost:5173/cancelado",
     });
 
-    // ✅ importante: retornar a URL completa
     res.json({ url: session.url });
   } catch (err) {
     console.error("⚠️ Erro Stripe:", err);
@@ -107,11 +104,7 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-// 🚀 Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`✅ Backend rodando em http://localhost:${PORT}`);
-});
-
+// ✅ Rota para buscar dados de sessão (usada na tela de sucesso)
 app.get("/checkout-session/:sessionId", async (req, res) => {
   const { sessionId } = req.params;
   try {
@@ -120,7 +113,12 @@ app.get("/checkout-session/:sessionId", async (req, res) => {
     });
     res.json(session);
   } catch (err) {
-    console.error("Erro ao buscar sessão:", err);
+    console.error("❌ Erro ao buscar sessão:", err);
     res.status(500).json({ error: err.message });
   }
+});
+
+// 🚀 Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`✅ Backend rodando em http://localhost:${PORT}`);
 });
