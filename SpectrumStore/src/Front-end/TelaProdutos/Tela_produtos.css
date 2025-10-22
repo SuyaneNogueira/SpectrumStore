@@ -207,7 +207,7 @@
     background-color: #e0e0e0;
   }
   .botao-adicionar-carrinho {
-    border: 2px solid;
+    /* border: 2px solid; */
     background-color: #03374C;
     color: #fff;
     border: none;
@@ -216,7 +216,7 @@
     font-size: 100%;
     font-weight: bold;
     cursor: pointer;
-    width: 60%;
+    width: 70%;
     text-align: center;
     transition: background-color 0.3s;
     /* margin-top: 20px; */
@@ -262,14 +262,16 @@
   justify-content: start;
   width: 100%;
   align-items: center; 
-  gap: 50px; 
+  gap: 40px; 
   margin-top: 5px; 
 }
 
 .seletor-quantidade {
+  border: 2px solid rgba(0, 0, 0, 0);
+  width: 38%;
   display: flex;
   align-items: center;
-  gap: 5px; 
+  gap: 2px; 
 }
 
 .seletor-quantidade button {
