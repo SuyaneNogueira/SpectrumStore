@@ -37,10 +37,14 @@ export const defineRoutes = (app) => {
                 pedido: result.rows[0]
             });
 
-        } catch (erro) {
-          console.error('Erro ao enviar pedido:', erro);
-          alert(`Falha ao enviar pedido. Detalhes: ${erro.message || erro.details || erro.stack || 'Erro desconhecido'}`);
-        }
+        } 
+        catch (erro) {
+    console.error('❌ Erro ao enviar pedido:', erro);
+    res.status(500).json({
+      error: 'Erro no servidor ao criar pedido.',
+      detalhes: erro.message
+    });
+  }
 
 
 
