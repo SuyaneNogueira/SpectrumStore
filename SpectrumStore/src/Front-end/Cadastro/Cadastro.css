@@ -286,3 +286,35 @@
   margin-top: 8px;
   font-size: 0.95rem;
 }
+
+.termos-container {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  cursor: pointer;
+  gap: -1px;
+  font-family: 'Inknut Antiqua', serif;
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-top: -20px;
+  margin-bottom: -10px;
+}
+
+.termo-circulo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  margin-right: 10px;
+  margin-left: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.termo-circulo.ativo {
+  background-color: var(--color-primary); 
+}
+
+.container-termos{
+ color: var(--color-primary);
+  text-decoration: none;  
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { auth, provider, signInWithPopup } from "./Firebase"; 
+import TermosDeUso from './TermosDeUso';
 import "./Cadastro.css";
 
 function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
@@ -8,6 +9,8 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [termosAceitos, setTermosAceitos] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +41,15 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
     }
   };
 
+     const abrirModalTermos = (e) => {
+       e.stopPropagation(); 
+       setModalAberto(true);
+     };
+    
+     const fecharModalTermos = () => {
+       setModalAberto(false);
+     };
+    
   return (
     <div
       className="cadastro-overlay"
@@ -107,15 +119,17 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
               />
             </div>
 
-            <div className="cadastro-termos">
-              <input type="radio" id="termos" name="termos" required />
-              <label htmlFor="termos">
-                Li e Aceito os{" "}
-                {/* <a href="#" onClick={(e) => { e.preventDefault(); onOpenTermos(); }}>
-                  Termos de Uso
-                </a> */}
-              </label>
-            </div>
+            <div className="termos-container">
+            <div className={`termo-circulo ${termosAceitos ? 'ativo' : ''}`} onClick={() => setTermosAceitos(!termosAceitos)} />
+            <p>Li e aceito os 
+              <span
+                onClick={abrirModalTermos} 
+                style={{ cursor: 'pointer' }}
+              >
+                Termos de Uso
+              </span>
+            </p>
+          </div>
 
             {erro && <p className="cadastro-erro">{erro}</p>}
 
@@ -143,8 +157,12 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
             </a>
           </p>
         </div>
-      </div>
-    </div>
+        </div>
+      <TermosDeUso isOpen={modalAberto} onClose={fecharModalTermos} />
+        </div>
+     
+
+    
   );
 }
 
