@@ -1,5 +1,6 @@
 import { pool } from './db.js';
 
+
 /**
  * Define todas as rotas da API para pedidos, usuários e produtos.
  * @param {import('express').Application} app Instância do Express.

@@ -9,6 +9,8 @@ app.use(express.json());
 
 dotenv.config(); // carrega o .env
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 // ⚠️ Use a SECRET KEY de teste (nunca a pública)
 app.post("/create-checkout-session", async (req, res) => {
   const { cartItems, paymentMethod } = req.body;
@@ -38,7 +40,7 @@ app.post("/create-checkout-session", async (req, res) => {
         },
         quantity: item.quantity || item.quantidade || 1,
       })),
-      success_url: "http://localhost:5173/sucesso",
+      success_url: "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: "http://localhost:5173/cancelado",
     });
 
