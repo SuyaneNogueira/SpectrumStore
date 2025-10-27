@@ -70,8 +70,8 @@ function TelaDePerfil() {
       {/* Abas */}
       <div className="perfil-abas">
         <button
-          className={abaAtiva === "historico" ? "aba ativa" : "aba"}
-          onClick={() => setAbaAtiva("historico")}
+          className={abaAtiva === "meucarrinho" ? "aba ativa" : "aba"}
+          onClick={() => setAbaAtiva("meucarrinho")}
         >
           Meu Carrinho
         </button>
