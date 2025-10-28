@@ -6,121 +6,110 @@
   --color-overlay-soft: rgba(0, 0, 0, 0.1);
 }
 
-/* Fundo com leve blur */
-.termos-overlay {
+.modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(3, 78, 97, 0.4);
-  backdrop-filter: blur(5px);
+  background: rgba(3, 78, 97, 0.3);
+  backdrop-filter: blur(6px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 999;
 }
 
-/* Container principal */
-.termos-modal {
-  background: linear-gradient(180deg, var(--color-tertiary-base) 0%, var(--color-input-line) 100%);
-  border-radius: 20px;
+.modal {
+  background: linear-gradient(180deg, var(--color-input-line) 0%, #ffffff 100%);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(3, 78, 97, 0.25);
   width: 85%;
-  max-width: 720px;
+  max-width: 800px;
   max-height: 85vh;
-  padding: 28px 36px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
-  animation: surgir 0.35s ease forwards;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Inknut Antiqua', serif;
 }
 
-@keyframes surgir {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Cabeçalho */
-.termos-header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--color-primary);
-  border-bottom: 1px solid var(--color-secondary);
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
 }
 
-.termos-header h2 {
-  font-family: 'Inknut Antiqua', serif;
-  font-weight: 600;
-  font-size: 20px;
+.modal-header h2 {
   color: var(--color-primary);
+  font-size: 22px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Botão fechar */
-.termos-close {
+.button-close {
   background: none;
   border: none;
   color: var(--color-primary);
   font-size: 28px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
+  padding-left: 80px;
+  margin-top: -50px;
 }
 
-.termos-close:hover {
+.button-close:hover {
   color: var(--color-secondary);
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
-/* Corpo */
-.termos-content {
+.modal-content {
+  color: var(--color-primary);
   overflow-y: auto;
   max-height: 65vh;
-  padding-right: 10px;
-  color: var(--color-primary);
+  padding-right: 8px;
   line-height: 1.7;
-  font-family: 'Inknut Antiqua', serif;
-  text-align: justify;
 }
 
-/* Scrollbar bonita */
-.termos-content::-webkit-scrollbar {
-  width: 10px;
+.modal-content::-webkit-scrollbar {
+  width: 8px;
 }
-.termos-content::-webkit-scrollbar-thumb {
+
+.modal-content::-webkit-scrollbar-thumb {
   background: var(--color-secondary);
   border-radius: 8px;
 }
 
-.termos-body::-webkit-scrollbar-track {
-   background: var(--color-tertiary-base);
+.modal-content::-webkit-scrollbar-track {
+  background: var(--color-tertiary-base);
 }
 
-/* Títulos */
-.termos-content h3 {
-  font-size: 16px;
+.modal-content h3 {
   color: var(--color-primary);
+  font-size: 18px;
   margin-top: 20px;
-  margin-bottom: 8px;
-  font-weight: 600;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-/* Texto */
-.termos-content p {
+.modal-content p {
   margin-bottom: 12px;
+  text-align: justify;
+  font-weight: 300;
+  padding-left: 10px;
 }
 
-/* Lista */
-.termos-content ul {
+.modal-content ul {
   margin-left: 24px;
-  list-style: disc;
+  margin-bottom: 12px;
+  list-style-type: disc;
+  text-align: left;
+  font-weight: 300;
+  padding-left: 10px;
 }
 
-.termos-content li {
+.modal-content li {
   margin-bottom: 4px;
+  font-weight: 300;
 }
-

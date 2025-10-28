@@ -123,7 +123,7 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
             <div className={`termo-circulo ${termosAceitos ? 'ativo' : ''}`} onClick={() => setTermosAceitos(!termosAceitos)} />
             <p>Li e aceito os 
               <span
-                onClick={abrirModalTermos} 
+                onClick={() => abrirModalTermos("TermosDeUso")}
                 style={{ cursor: 'pointer' }}
               >
                 Termos de Uso
@@ -158,7 +158,7 @@ function Cadastro({ onClose, onOpenLogin, onOpenTermos }) {
           </p>
         </div>
         </div>
-      <TermosDeUso isOpen={modalAberto} onClose={fecharModalTermos} />
+      {modalAberto && <TermosDeUso onClose={() => setModalAberto(false)} />}
         </div>
      
 
