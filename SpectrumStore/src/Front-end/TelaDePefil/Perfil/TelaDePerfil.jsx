@@ -97,25 +97,29 @@ function TelaDePerfil() {
 
       {/* Conteúdo */}
       <div className="perfil-conteudo">
-        {abaAtiva === "historico" && (
+        {abaAtiva === "meucarrinho" && (
           <div className="produtos-grid">
-
-            {cartItems && cartItems.map((item, index) => (
+           
+            {cartItems && cartItems.map((item, index) => ( 
+              <div className="protudo-geral-carrinho-perfil">
               <div
               key={item.cartItemId || `item-${index}`}
                 className="produto-card"
                 onClick={() => setPedidoSelecionado(item)}
                 style={{ cursor: "pointer" }}>
-                <StarRating rating={item.rating} />
+                  <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
+                    onClick={() => toggleFavorite(item)}/></span>
                 <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
                 src={item.image} alt={item.name}/></div>
                 <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4>{item.name}</h4>
+                <h4 className="container-descricao">{item.name}</h4>
                 {/* <p className="container-descricao">{pedido.descricao}</p> */}
-                <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
-                    onClick={() => toggleFavorite(item)}/></span>
+              
+                    <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
+              </div>
               </div>
             ))}
+            
           </div>
         )}
 
