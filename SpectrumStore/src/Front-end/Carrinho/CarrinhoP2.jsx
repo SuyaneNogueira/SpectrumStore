@@ -37,11 +37,7 @@ function CarrinhoP2() {
     setFormaPagamento(event.target.value);
   };
 
-  const stripePromise = loadStripe(
-    "pk_test_51SID8yPG8QyczJkkb6grVBHmEOKZDegxspa37FTCnGJAPJKcLrXw8g0SG6I7UaJHGnC8dX9p0YqMVZDzIH1c8OE700HmNMipkn"
-  );
-
-  const finalizarCompra = async () => {
+ const finalizarCompra = async () => {
   if (cartItems.length === 0) {
     alert("O carrinho está vazio.");
     return;
@@ -62,6 +58,7 @@ function CarrinhoP2() {
       quantity: item.quantidade || item.quantity || 1,
     }));
 
+    // 👇👇👇 A CORREÇÃO ESTÁ AQUI (PORTA 3001) 👇👇👇
     const res = await fetch("http://localhost:3001/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,19 +67,34 @@ function CarrinhoP2() {
         paymentMethod: formaPagamento, // envia para o backend
       }),
     });
+    // 👆👆👆 FIM DA CORREÇÃO 👆👆👆
 
-    const data = await res.json();
+    // --- MELHORIA NO TRATAMENTO DE ERRO ---
+    // Tenta ler a resposta (seja ela de sucesso ou erro) como JSON
+    const data = await res.json(); 
 
-    if (res.ok && data.url) {
+    // Se a resposta NÃO for 'ok' (ex: erro 400 ou 500 do backend)
+    if (!res.ok) {
+      // 'data' vai conter o JSON de erro do nosso backend (ex: { error: "..." })
+      console.error("❌ Erro retornado pelo backend:", data);
+      throw new Error(data.error || data.message || "Erro do servidor");
+    }
+    // --- FIM DA MELHORIA ---
+
+    // Se chegou aqui, a resposta está 'ok' (200) e temos 'data'
+    if (data.url) {
       // redireciona para a página de checkout Stripe (Pix ou Cartão)
       window.location.href = data.url;
     } else {
-      console.error("❌ Erro ao criar sessão:", data);
+      // Isso não deve acontecer se 'res.ok' for true, mas é uma segurança
+      console.error("❌ Erro ao criar sessão: URL não recebida.", data);
       alert("Erro ao criar sessão de pagamento.");
     }
+    
   } catch (err) {
+    // 'err' vai ser o erro da rede, o erro de 'throw' acima, ou um 'SyntaxError'
     console.error("Erro ao enviar pedido:", err);
-    alert("Erro ao processar pagamento.");
+    alert(`Erro ao processar pagamento: ${err.message}`);
   }
 };
 
