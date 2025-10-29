@@ -1,8 +1,7 @@
 import React from 'react';
 import './TermosDeUso.css';
 
-const TermosDeUso = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+const TermosDeUso = ({ onClose }) => {
 
   return (
     <div className="modal-overlay">

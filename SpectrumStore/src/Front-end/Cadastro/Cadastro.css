@@ -290,31 +290,35 @@
 .termos-container {
   display: flex;
   align-items: center;
-  font-size: 15px;
+  gap: 5px;
+  margin-top: -18px;
+  margin-bottom: -20px;
   cursor: pointer;
-  gap: -1px;
-  font-family: 'Inknut Antiqua', serif;
-  color: var(--color-primary);
-  text-decoration: none;
-  margin-top: -20px;
-  margin-bottom: -10px;
+  user-select: none;
+  font-size: 50%;
 }
 
+
 .termo-circulo {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: 18px;
+  height: 18px;
   border: 2px solid var(--color-primary);
-  margin-right: 10px;
-  margin-left: 1px;
-  transition: background-color 0.2s ease;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
 .termo-circulo.ativo {
-  background-color: var(--color-primary); 
+  background-color: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-secondary);
 }
 
-.container-termos{
- color: var(--color-primary);
-  text-decoration: none;  
+.modal-termos-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
