@@ -8,6 +8,7 @@ import { useCart } from "../../Carrinho/CartContext";
 import StarRating from "../../TelaInicial/StarRating";
 import { useFavorites } from '../../TelaFavoritos/FavoriteContext';
 import Button from '../../TelaInicial/Button';
+import { Link } from "react-router-dom";
 
 function TelaDePerfil() {
   const [abaAtiva, setAbaAtiva] = useState("historico");
@@ -34,9 +35,22 @@ function TelaDePerfil() {
     updateQuantity,
   } = useCart();
 
+// function historicoB() {
+
+//   if (finalizarCompra) {
+//     setAbaAtiva("historico")
+    
+//   } else{
+//     <div>
+//      <p>Você ainda não fez nenhuma compra.</p>
+//     </div>
+//   }
+  
+// }
+
   return (
     <div className="perfil-container">
-      <div className="perfil-topo"></div>
+      <div className="perfil-topo"><Link to='/TelaInicial'><img src="voltarteladeperfil.png" alt="" className="VoltartelaDePerfil" /></Link></div>
 
       <div className="perfil-header">
         <img src="https://via.placeholder.com/150" className="foto-perfil" />
@@ -98,6 +112,32 @@ function TelaDePerfil() {
       {/* Conteúdo */}
       <div className="perfil-conteudo">
         {abaAtiva === "meucarrinho" && (
+          <div className="produtos-grid">
+           
+            {cartItems && cartItems.map((item, index) => ( 
+              <div className="protudo-geral-carrinho-perfil">
+              <div
+              key={item.cartItemId || `item-${index}`}
+                className="produto-card"
+                // onClick={() => setPedidoSelecionado(item)}
+                style={{ cursor: "pointer" }}>
+                  <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
+                    onClick={() => toggleFavorite(item)}/></span>
+                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
+                src={item.image} alt={item.name}/></div>
+                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
+                <h4 className="container-descricao">{item.name}</h4>
+                {/* <p className="container-descricao">{pedido.descricao}</p> */}
+              
+                    <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
+              </div>
+              </div>
+            ))}
+            
+          </div>
+        )}
+
+         {abaAtiva === "historico" && (
           <div className="produtos-grid">
            
             {cartItems && cartItems.map((item, index) => ( 
