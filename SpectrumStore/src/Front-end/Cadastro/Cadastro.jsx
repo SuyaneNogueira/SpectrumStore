@@ -136,7 +136,7 @@ function Cadastro({ onClose, onOpenLogin }) {
                   className={`termo-circulo ${termosAceitos ? "ativo" : ""}`}
                   onClick={() => setTermosAceitos(!termosAceitos)}
                 />
-                <p>
+                <p className="container-text">
                   Li e aceito os{" "}
                   <span
                     onClick={abrirModalTermos}

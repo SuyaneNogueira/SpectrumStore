@@ -1,0 +1,118 @@
+:root {
+  --color-primary: #034e61;
+  --color-secondary: #a3c9d6;
+  --color-tertiary-base: #cad7de;
+  --color-input-line: #f7f7f7;
+  --color-overlay-soft: rgba(0, 0, 0, 0.1);
+}
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-overlay-soft);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-modal {
+  background: var(--color-secondary);
+  border-radius: 180px 0 0 180px;
+  width: 380px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  font-family: 'Inknut Antiqua', serif;
+  color: var(--color-primary);
+}
+
+.login-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+.login-form input {
+  border: none;
+  border-bottom: 1px solid var(--color-input-line);
+  background: transparent;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.google-login {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  padding: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--color-primary);
+  gap: 8px;
+}
+
+.google-login img {
+  width: 18px;
+  height: 18px;
+}
+
+.login-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #023b4a;
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 20px;
+  color: var(--color-primary);
+}
+
+.login-footer span {
+  display: block;
+  margin-top: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LandingPage.css"; 
 import Cadastro from "../Cadastro/Cadastro";
+// import Login from "../Login/Login";
 
 
 // Dados para a seção Carrossel

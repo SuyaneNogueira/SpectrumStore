@@ -295,9 +295,11 @@
   margin-bottom: -20px;
   cursor: pointer;
   user-select: none;
-  font-size: 50%;
 }
 
+.container-text{
+    font-size: 50%;
+}
 
 .termo-circulo {
   width: 18px;
