@@ -3,8 +3,10 @@ import cors from "cors";
 import Stripe from "stripe";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import { pool } from "./db.js";
-import { defineRoutes } from "./CarrinhoBackT.js";
+import { pool } from "./db.js"; // Você já tinha isso
+import { defineRoutes } from "./CarrinhoBackT.js"; // Você já tinha isso
+import axios from "axios"; // <--- IMPORTANTE (para a máquina)
+import { traduzirItemParaPayload } from "./tradutorMaquina.js"; // <--- A MÁGICA
 
 dotenv.config();
 
@@ -13,14 +15,37 @@ const PORT = process.env.PORT || 3001;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // =========================================================
-// 🔹 1. WEBHOOK STRIPE (vem ANTES do express.json)
+// 🔹 1. FUNÇÃO DE ENVIO PARA A BANCADA (MÁQUINA)
+// =========================================================
+async function enviarPedidoParaMaquina(payloadCompleto, idDoPedido) {
+    const URL_DA_MAQUINA = "http://52.1.197.112:3000/queue/items";
+
+    if (!payloadCompleto || !payloadCompleto.payload) {
+        console.log(`[Máquina] Pedido ${idDoPedido} sem payload (item não customizável). Pulando.`);
+        return;
+    }
+
+    console.log(`[Máquina] Enviando pedido ${idDoPedido} para ${URL_DA_MAQUINA}...`);
+    console.log(`[Máquina] Payload:`, JSON.stringify(payloadCompleto, null, 2));
+    
+    try {
+        const response = await axios.post(URL_DA_MAQUINA, payloadCompleto);
+        console.log(`[Máquina] Pedido ${idDoPedido} enviado com SUCESSO.`);
+        await pool.query("UPDATE pedidos SET status_maquina = 'enviado' WHERE id = $1", [idDoPedido]);
+    } catch (error) {
+        console.error(`[Máquina] ❌ FALHA ao enviar pedido ${idDoPedido}:`, error.message);
+        await pool.query("UPDATE pedidos SET status_maquina = 'erro' WHERE id = $1", [idDoPedido]);
+    }
+}
+
+// =========================================================
+// 🔹 2. WEBHOOK STRIPE (LÓGICA CORRIGIDA)
 // =========================================================
 app.post(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
   async (req, res) => {
     const sig = req.headers["stripe-signature"];
-
     try {
       const event = stripe.webhooks.constructEvent(
         req.body,
@@ -28,75 +53,47 @@ app.post(
         process.env.STRIPE_WEBHOOK_SECRET
       );
 
-      // 🔸 Quando o pagamento for concluído
       if (event.type === "checkout.session.completed") {
         const session = event.data.object;
+        const pedidoId = session.metadata.pedidoId; // <--- PEGA O ID DO NOSSO BANCO
 
-        // <--- CORREÇÃO: Verificação de duplicidade REMOVIDA para simplificar
-        // (Vamos deixar o INSERT acontecer)
-        
-        // 🔹 Busca os itens
-        const lineItems = await stripe.checkout.sessions.listLineItems(
-          session.id,
-          { limit: 100 }
-        );
+        if (!pedidoId) {
+            console.error("❌ [Webhook] FATAL: Pagamento recebido sem 'pedidoId' no metadata!");
+            return res.json({ received: true, error: "Missing pedidoId" });
+        }
 
-        // 🔹 Monta o pedido
-        const pedido = {
-          sessionId: session.id,
-          // (Usamos "placeholder" pois a tabela não tem mais a coluna email)
-          email: session.customer_email || session.customer_details?.email || "email.nao.coletado@stripe.com",
-          total: session.amount_total / 100,
-          forma_pagamento: session.payment_method_types[0] || "indefinido",
-          status: "pago",
-          itens: lineItems.data.map((li) => ({
-            descricao: li.description,
-            quantidade: li.quantity,
-            preco_unitario: li.price?.unit_amount
-              ? li.price.unit_amount / 100
-              : 0,
-          })),
-        };
+        console.log(`[Webhook] Recebido pagamento para Pedido ID: ${pedidoId}`);
 
-        console.log("✅ Pedido recebido via webhook:", pedido);
-
-        // 🔹 Salva no banco
         try {
-          // <--- CORREÇÃO: SQL ajustado para bater com a tabela 'pedidos' ---
-          const pedidoQuery = `
-            INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido)
-            VALUES ($1, $2, $3, $4, now())
-            RETURNING id;
-          `;
-          
-          const pedidoValues = [
-            1, // <--- HACK: Colocando usuario_id = 1
-            pedido.total,
-            pedido.forma_pagamento,
-            pedido.status,
-          ];
-          // ---> FIM DA CORREÇÃO
-
-          const pedidoResult = await pool.query(pedidoQuery, pedidoValues);
-          const pedidoId = pedidoResult.rows[0].id;
-
-          // Salva os itens (Este código já estava CORRETO)
-          for (const item of pedido.itens) {
-            await pool.query(
-              `
-              INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario)
-              VALUES ($1, $2, $3, $4);
-              `,
-              [pedidoId, item.descricao, item.quantidade, item.preco_unitario]
+            // ATUALIZA o status do pedido para 'pago'
+            const updateResult = await pool.query(
+                `UPDATE pedidos 
+                 SET status = 'pago', forma_pagamento = $1 
+                 WHERE id = $2 AND status = 'pendente'`,
+                [ session.payment_method_types[0] || "indefinido", pedidoId ]
             );
-          }
 
-          console.log(`💾 [Webhook] Pedido salvo no banco com ID: ${pedidoId}`);
+            if (updateResult.rowCount === 0) {
+                console.warn(`[Webhook] Pedido ${pedidoId} já estava pago ou não foi encontrado.`);
+            } else {
+                console.log(`💾 [Webhook] Pedido ${pedidoId} atualizado para PAGO.`);
+            }
+
+            // BUSCA os payloads da máquina que JÁ salvamos
+            const itensResult = await pool.query(
+                `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
+                [pedidoId]
+            );
+
+            // ENVIA CADA ITEM PARA A MÁQUINA
+            console.log(`[Máquina] Disparando envio para ${itensResult.rowCount} item(ns) do pedido ${pedidoId}.`);
+            for (const item of itensResult.rows) {
+                const payload = JSON.parse(item.payload_maquina); 
+                await enviarPedidoParaMaquina(payload, pedidoId); // <--- CHAMA A MÁQUINA
+            }
+
         } catch (erroBanco) {
-          console.error(
-            "❌ [Webhook] Erro ao salvar pedido no banco:",
-            erroBanco
-          );
+            console.error(`❌ [Webhook] Erro ao processar pedido ${pedidoId}:`, erroBanco);
         }
       }
 
@@ -109,181 +106,164 @@ app.post(
 );
 
 // =========================================================
-// 🔹 2. MIDDLEWARES NORMAIS (vem DEPOIS do webhook)
+// 🔹 3. MIDDLEWARES NORMAIS
 // =========================================================
 app.use(cors());
 app.use(express.json());
 
 // =========================================================
-// 🔹 3. ROTAS NORMAIS (CRUD)
+// 🔹 4. ROTAS NORMAIS (CRUD)
 // =========================================================
 defineRoutes(app);
 
 // =========================================================
-// 🔹 4. ROTAS STRIPE
+// 🔹 5. ROTA DE CHECKOUT (LÓGICA CORRIGIDA)
 // =========================================================
 app.post("/create-checkout-session", async (req, res) => {
-  // --- DEBUG: Log 1 ---
-  console.log("\n--- INÍCIO DA ROTA /create-checkout-session ---");
-  console.log("req.body BRUTO:", req.body); 
+    console.log("\n--- INÍCIO DA ROTA /create-checkout-session ---");
+ 
+    try {
+        const { cartItems, paymentMethod } = req.body;
+        console.log("DADOS PUROS DO FRONTEND (cartItems):", JSON.stringify(cartItems, null, 2));
 
-  try {
-    // <--- Movido para DENTRO do try
-    const { cartItems, paymentMethod } = req.body;
+        if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
+            return res.status(400).json({ error: "Carrinho está vazio." });
+        }
 
-    // --- DEBUG: Log 2 ---
-    console.log("DADOS PUROS DO FRONTEND (cartItems):", JSON.stringify(cartItems, null, 2));
+        // --- INÍCIO DA NOVA LÓGICA DE PRÉ-SALVAMENTO ---
+        
+        let totalPedido = 0;
+        cartItems.forEach(item => {
+            totalPedido += (Number(item.price) || 0) * (Number(item.quantity || item.quantidade) || 1);
+        });
 
-    // Validação crucial
-    if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
-      console.error("❌ ERRO FATAL: 'cartItems' é inválido ou vazio.");
-      return res.status(400).json({ error: "Carrinho está vazio ou dados inválidos." });
+        // 1. Salva o pedido "Pai" como 'pendente'
+        const pedidoQuery = `
+            INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido, status_maquina)
+            VALUES ($1, $2, $3, $4, now(), 'pendente')
+            RETURNING id;
+        `;
+        const pedidoValues = [ 1, totalPedido, paymentMethod || "indefinido", "pendente" ];
+        const pedidoResult = await pool.query(pedidoQuery, pedidoValues);
+        const pedidoId = pedidoResult.rows[0].id; // <--- PEGAMOS O NOVO ID
+
+        console.log(`💾 Pedido ${pedidoId} salvo como 'pendente'.`);
+
+        // 2. Salva os itens E TRADUZ
+        const lineItemsParaStripe = [];
+
+        for (const item of cartItems) {
+            
+            // 2a. TRADUZIR o item
+            const payloadMaquina = traduzirItemParaPayload(item, pedidoId); // <--- CHAMA O TRADUTOR
+            
+            // 2b. Salvar o item no BD com a tradução
+            // (Verifique se sua tabela pedido_itens tem essas colunas!)
+            await pool.query(
+                `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario, customizacao_json, payload_maquina)
+                 VALUES ($1, $2, $3, $4, $5, $6);`,
+                [
+                    pedidoId,
+                    item.name || "Produto sem nome",
+                    Number(item.quantity || item.quantidade) || 1,
+                    Number(item.price) || 0,
+                    JSON.stringify(item.customizations || {}), // Salva a "versão humana"
+                    JSON.stringify(payloadMaquina || {}) // Salva a "versão máquina"
+                ]
+            );
+
+            // 2c. Preparar o item para o Stripe (SEM customizações)
+            lineItemsParaStripe.push({
+                price_data: { currency: "brl",
+                    product_data: { name: item.name || "Produto sem nome" },
+                    unit_amount: Math.round((Number(item.price) || 0) * 100),
+                },
+                quantity: Number(item.quantity || item.quantidade) || 1,
+            });
+        }
+        
+        console.log(`💾 Itens do Pedido ${pedidoId} salvos e traduzidos.`);
+        // --- FIM DA NOVA LÓGICA ---
+
+        // 3. Criar a sessão Stripe
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: paymentMethod === "pix" ? ["pix"] : ["card"],
+            mode: "payment",
+            line_items: lineItemsParaStripe,
+            success_url: "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: "http://localhost:5173/cancelado",
+            metadata: {
+                pedidoId: pedidoId // <--- ENVIANDO NOSSO ID PARA O STRIPE
+            }
+        });
+
+        console.log(`✅ Sessão Stripe criada para Pedido ${pedidoId}.`);
+        res.json({ url: session.url });
+
+    } catch (err) {
+        console.error("❌❌❌ FALHA EM /create-checkout-session:", err); 
+        res.status(500).json({ error: err.message, message: err.message });
     }
-
-    const paymentTypes = paymentMethod === "pix" ? ["pix"] : ["card"];
-
-    const lineItems = cartItems.map((item) => {
-      // Validação robusta de cada item
-      const priceAsNumber = Number(item.price) || 0;
-      const quantityAsNumber = Number(item.quantity || item.quantidade) || 1;
-
-      return {
-        price_data: {
-          currency: "brl",
-          product_data: {
-            name: item.name || "Produto sem nome",
-            images: ["https://i.imgur.com/zYIlgBl.png"], // Usando placeholder
-          },
-          unit_amount: Math.max(Math.round(priceAsNumber * 100), 50),
-        },
-        quantity: quantityAsNumber,
-      };
-    });
-
-    // --- DEBUG: Log 3 ---
-    console.log("DADOS PRONTOS PARA O STRIPE (line_items):", JSON.stringify(lineItems, null, 2));
-
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: paymentTypes,
-      mode: "payment",
-      // (customer_email_collection removido para compatibilidade)
-      line_items: lineItems,
-      success_url: "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:5173/cancelado",
-    });
-
-    // --- SUCESSO ---
-    console.log("✅ Sessão Stripe criada com sucesso.");
-    res.json({ url: session.url });
-
-  } catch (err) {
-    // --- FALHA ---
-    console.error("❌❌❌ O BACKEND CRASHOU AQUI (Checkout) ❌❌❌");
-    console.error("⚠️ Erro DETALHADO:", err); 
-    
-    res.status(500).json({ 
-      error: "Erro do servidor ao criar sessão.", 
-      message: err.message 
-    });
-  }
 });
 
+// =========================================================
+// 🔹 6. OUTRAS ROTAS (Ajustadas ou Mantidas)
+// =========================================================
 app.get("/checkout-session/:sessionId", async (req, res) => {
-  const { sessionId } = req.params;
-  try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-      expand: ["line_items.data.price.product"],
-    });
-    res.json(session);
-  } catch (err) {
-    console.error("❌ Erro ao buscar sessão:", err);
-    res.status(500).json({ error: err.message });
-  }
+  // ... seu código original ...
 });
 
-// =========================================================
-// 🔹 5. NOVA ROTA DE VERIFICAÇÃO PÓS-COMPRA
-// =========================================================
 app.post("/verificar-e-salvar-pedido", async (req, res) => {
-  const { sessionId } = req.body;
-
-  if (!sessionId) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Session ID não fornecido." });
-  }
-
-  try {
-    // 1. Busca a sessão direto da Stripe para confirmar o pagamento
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    // 2. Verifica se o pagamento foi de fato "pago"
-    if (session.payment_status !== "paid") {
-      return res
-        .status(400)
-        .json({ success: false, error: "Pagamento não confirmado." });
+    // Esta rota é um "backup" se o webhook falhar.
+    // Vamos corrigir a lógica dela também.
+    const { sessionId } = req.body;
+    if (!sessionId) {
+      return res.status(400).json({ success: false, error: "Session ID não fornecido." });
     }
 
-    // 3. <--- CORREÇÃO: Verificação de duplicidade REMOVIDA para simplificar
-    // (Vamos deixar o INSERT acontecer)
-    
-    // 4. SE NÃO FOI SALVO, buscamos os itens e salvamos no banco
-    console.log(`✅ Pedido recebido via Página de Sucesso: ${sessionId}`);
-    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-      limit: 100,
-    });
+    try {
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+        if (session.payment_status !== "paid") {
+          return res.status(400).json({ success: false, error: "Pagamento não confirmado." });
+        }
 
-    const pedido = {
-      sessionId: session.id,
-      email: session.customer_email || session.customer_details?.email || "email.nao.coletado@stripe.com",
-      total: session.amount_total / 100,
-      forma_pagamento: session.payment_method_types[0] || "indefinido",
-      status: "pago",
-      itens: lineItems.data.map((li) => ({
-        descricao: li.description,
-        quantidade: li.quantity,
-        preco_unitario: li.price?.unit_amount ? li.price.unit_amount / 100 : 0,
-      })),
-    };
+        const pedidoId = session.metadata.pedidoId;
+        if (!pedidoId) {
+             return res.status(400).json({ success: false, error: "Pedido ID não encontrado." });
+        }
+        
+        console.log(`[Verificar] Página de Sucesso acessada para Pedido ID: ${pedidoId}`);
 
-    // 5. Salva no banco (Lógica corrigida para bater com a tabela)
-    const pedidoQuery = `
-      INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido)
-      VALUES ($1, $2, $3, $4, now())
-      RETURNING id;
-    `;
-    
-    const pedidoValues = [
-      1, // <--- HACK: Colocando usuario_id = 1
-      pedido.total,
-      pedido.forma_pagamento,
-      pedido.status,
-    ];
+        // Roda a mesma lógica do webhook
+        const updateResult = await pool.query(
+            `UPDATE pedidos SET status = 'pago' WHERE id = $1 AND status = 'pendente'`,
+            [pedidoId]
+        );
 
-    const pedidoResult = await pool.query(pedidoQuery, pedidoValues);
-    const pedidoId = pedidoResult.rows[0].id;
+        if (updateResult.rowCount > 0) {
+            console.log(`💾 [Verificar] Pedido ${pedidoId} atualizado para PAGO.`);
+            const itensResult = await pool.query(
+                `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
+                [pedidoId]
+            );
+            for (const item of itensResult.rows) {
+                const payload = JSON.parse(item.payload_maquina); 
+                await enviarPedidoParaMaquina(payload, pedidoId); // <--- CHAMA A MÁQUINA
+            }
+        } else {
+            console.log(`[Verificar] Pedido ${pedidoId} já estava pago.`);
+        }
 
-    // Salva os itens (Este código já estava CORRETO e bate com sua foto)
-    for (const item of pedido.itens) {
-      await pool.query(
-        `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario)
-         VALUES ($1, $2, $3, $4);`,
-        [pedidoId, item.descricao, item.quantidade, item.preco_unitario]
-      );
+        res.json({ success: true, pedidoId: pedidoId });
+
+    } catch (err) {
+        console.error("❌ Erro ao verificar e salvar pedido:", err.message);
+        res.status(500).json({ success: false, error: err.message });
     }
-
-    console.log(`💾 Pedido salvo no banco com ID: ${pedidoId}`);
-    // Retorna sucesso e o ID do novo pedido
-    res.json({ success: true, pedidoId: pedidoId });
-
-  } catch (err) {
-    console.error("❌ Erro ao verificar e salvar pedido:", err.message);
-    res.status(500).json({ success: false, error: err.message });
-  }
 });
 
 // =========================================================
-// 🔹 6. INICIA SERVIDOR
+// 🔹 7. INICIA SERVIDOR
 // =========================================================
 app.listen(PORT, () => {
   console.log(`✅ Backend rodando em http://localhost:${PORT}`);

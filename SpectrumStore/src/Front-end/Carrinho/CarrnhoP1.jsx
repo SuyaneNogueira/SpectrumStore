@@ -74,10 +74,10 @@ function CarrnhoP1() {
                           </div>
                         </div>
 
-                        {item.personalizacoes &&
-                          Object.entries(item.personalizacoes).length > 0 && (
-                            <div className="personalizacoes-carrinho">
-                              {Object.entries(item.personalizacoes).map(
+                       {item.customizations &&
+                       Object.entries(item.customizations).length > 0 && (
+                         <div className="personalizacoes-carrinho">
+                           {Object.entries(item.customizations).map(
                                 ([key, value]) => {
                                   // Se for array, mostra todos os valores
                                   const valores = Array.isArray(value)

@@ -1,26 +1,32 @@
-.sucesso-container {
+.sucesso-container-carrinho-compra {
   text-align: center;
   padding: 3rem;
-  max-width: 700px;
-  margin: 3rem auto;
-  background: #f0fff4;
+  max-width: 750px;
+  background: #A2C9CD;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 150, 100, 0.15);
-  position: relative;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  left: 33%;
+  top: 26%;
+  color: #03374C;
 }
 
-h1 {
+.compra-realizada-com-sucesso{
   /* color: #28a745; */
   font-size: 2rem;
 }
 
-.itens-comprados {
+.itens-comprados-carrinho-compra {
   list-style: none;
   padding: 0;
   margin: 2rem 0;
 }
 
-.item-compra {
+.item-compra-carrinho {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,28 +36,28 @@ h1 {
   border-radius: 8px;
 }
 
-.item-img {
+.item-img-carrinho-compra {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.item-nome {
+.item-nome-carrinho-compra {
   flex: 1;
   margin-left: 1rem;
   text-align: left;
 }
 
-.item-quantidade,
-.item-preco {
+.item-quantidade-carrinho-compra,
+.item-preco-carrinho-compra {
   margin-left: 1rem;
 }
 
-.btn-voltar {
+.btn-voltar-carrinho-compra {
   margin-top: 2rem;
   padding: 0.7rem 2rem;
-  background: #28a745;
+  background: #067591;
   color: white;
   border: none;
   border-radius: 10px;
@@ -60,6 +66,6 @@ h1 {
   transition: background 0.3s;
 }
 
-.btn-voltar:hover {
-  background: #218838;
+.btn-voltar-carrinho-compra:hover {
+  background: #085D72;
 }

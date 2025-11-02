@@ -49,50 +49,52 @@ function CarrinhoP2() {
   }
 
   try {
-    const cartItemsParaStripe = cartItems.map((item) => ({
-      name: item.name,
-      image: item.image?.startsWith("http")
-        ? item.image
-        : `${window.location.origin}/${item.image?.replace("../", "") || "placeholder.jpg"}`,
-      price: Number(item.price),
-      quantity: item.quantidade || item.quantity || 1,
+    
+    // =========================================================
+    // 1. APAGUE O BLOCO "cartItemsParaStripe"
+    // Nós não precisamos mais dele.
+    // =========================================================
+    /* const cartItemsParaStripe = cartItems.map((item) => ({
+       name: item.name,
+       image: ...
+       price: ...
+       quantity: ...
     }));
+    */
 
-    // 👇👇👇 A CORREÇÃO ESTÁ AQUI (PORTA 3001) 👇👇👇
+    // =========================================================
+    // 2. ENVIE O "cartItems" ORIGINAL (QUE VEM DO useCart())
+    // =========================================================
     const res = await fetch("http://localhost:3001/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cartItems: cartItemsParaStripe,
-        paymentMethod: formaPagamento, // envia para o backend
+        cartItems: cartItems, // <--- ESSA É A MUDANÇA
+        paymentMethod: formaPagamento,
       }),
     });
-    // 👆👆👆 FIM DA CORREÇÃO 👆👆👆
+    // =========================================================
+    // FIM DA MUDANÇA
+    // =========================================================
+
 
     // --- MELHORIA NO TRATAMENTO DE ERRO ---
-    // Tenta ler a resposta (seja ela de sucesso ou erro) como JSON
     const data = await res.json(); 
 
-    // Se a resposta NÃO for 'ok' (ex: erro 400 ou 500 do backend)
     if (!res.ok) {
-      // 'data' vai conter o JSON de erro do nosso backend (ex: { error: "..." })
       console.error("❌ Erro retornado pelo backend:", data);
       throw new Error(data.error || data.message || "Erro do servidor");
     }
     // --- FIM DA MELHORIA ---
 
-    // Se chegou aqui, a resposta está 'ok' (200) e temos 'data'
     if (data.url) {
-      // redireciona para a página de checkout Stripe (Pix ou Cartão)
       window.location.href = data.url;
     } else {
-      // Isso não deve acontecer se 'res.ok' for true, mas é uma segurança
       console.error("❌ Erro ao criar sessão: URL não recebida.", data);
       alert("Erro ao criar sessão de pagamento.");
     }
     
   } catch (err) {
-    // 'err' vai ser o erro da rede, o erro de 'throw' acima, ou um 'SyntaxError'
     console.error("Erro ao enviar pedido:", err);
     alert(`Erro ao processar pagamento: ${err.message}`);
   }

@@ -78,10 +78,10 @@ export default function Sucesso() {
   if (loading) return <p>🔄 Processando seu pedido e salvando no banco...</p>;
   
   if (error) return (
-    <div className="sucesso-container">
+    <div className="sucesso-container-carrinho-compra">
       <h1>❌ Erro ao processar seu pedido</h1>
       <p>{error}</p>
-      <button className="btn-voltar" onClick={() => navigate("/")}>
+      <button className="btn-voltar-carrinho-compra" onClick={() => navigate("/")}>
         🔙 Voltar à loja
       </button>
     </div>
@@ -89,32 +89,32 @@ export default function Sucesso() {
 
   // Se chegou aqui, loading=false, error=null e session existe
   return (
-    <div className="sucesso-container">
+    <div className="sucesso-container-carrinho-compra">
       <Confetti numberOfPieces={200} recycle={false} />
-      <h1>🎉 Compra concluída com sucesso!</h1>
+      <h1 className="compra-realizada-com-sucesso">🎉 Compra concluída com sucesso!</h1>
       <p>Obrigado, <strong>{session.customer_details?.email}</strong>!</p>
       
       {/* Mostra o ID salvo do banco de dados */}
       <p>Seu pedido (ID: <strong>{pedidoId}</strong>) foi salvo em nosso sistema.</p> 
 
       <h2>🛒 Itens comprados:</h2>
-      <ul className="itens-comprados">
+      <ul className="itens-comprados-carrinho-compra">
         {session.line_items?.data.map((item, i) => (
-          <li key={i} className="item-compra">
+          <li key={i} className="item-compra-carrinho">
             {/* Garante que a imagem exista antes de tentar mostrar */}
             {item.price.product.images?.[0] && (
-              <img src={item.price.product.images[0]} alt={item.description} className="item-img" />
+              <img src={item.price.product.images[0]} alt={item.description} className="item-img-carrinho-compra" />
             )}
-            <span className="item-nome">{item.description}</span>
-            <span className="item-quantidade">{item.quantity}x</span>
-            <span className="item-preco">R$ {(item.amount_total / 100).toFixed(2)}</span>
+            <span className="item-nome-carrinho-compra">{item.description}</span>
+            <span className="item-quantidade-carrinho-compra">{item.quantity}x</span>
+            <span className="item-preco-carrinho-compra">R$ {(item.amount_total / 100).toFixed(2)}</span>
           </li>
         ))}
       </ul>
 
       <h3>Total pago: R$ {(session.amount_total / 100).toFixed(2)}</h3>
 
-      <button className="btn-voltar" onClick={() => navigate("/")}>
+      <button className="btn-voltar-carrinho-compra" onClick={() => navigate("/telaInicial")}>
         🔙 Voltar à loja
       </button>
     </div>
