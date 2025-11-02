@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CarrinhoP2.css";
 import Navbar from "../Navbar/Navbar";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCart } from "./CartContext";
 import { Link } from "react-router-dom";
-
-// Importações de Imagens
 import CartaoCredito from "../imagens/cartao-credito.png";
 import CartaoDebito from "../imagens/cartao-debito.png";
 import Pix from "../imagens/pix.png";
@@ -15,7 +13,24 @@ import Mastercard from "../imagens/mastercard.png";
 import Bradesco from "../imagens/bradesco.png";
 
 function CarrinhoP2() {
-  const { cartItems } = useCart();
+  // const { cartItems } = useCart();
+
+  const [cartItems, setCartItems] = useState([]); 
+  
+  // 2. Usamos o useEffect para carregar os dados do localStorage (que o CarrinhoP1 salvou)
+  useEffect(() => {
+    const itensSalvos = localStorage.getItem("itensPagamento");
+    if (itensSalvos) {
+      const itensParseados = JSON.parse(itensSalvos);
+      setCartItems(itensParseados);
+      console.log("Itens carregados do localStorage para pagamento:", itensParseados);
+    }
+  }, []); // O array vazio [] faz isso rodar só uma vez quando a página carregar
+
+  // =========================================================
+  // 👆👆👆 FIM DA MUDANÇA ESSENCIAL 👆👆👆
+  // =========================================================
+
 
   const [formaPagamento, setFormaPagamento] = useState("");
 
@@ -26,6 +41,7 @@ function CarrinhoP2() {
   const frete = 0.0;
   const desconto = 0.0;
 
+  // (Esta função agora vai usar os 'cartItems' corretos do localStorage)
   const totalProdutos = cartItems.reduce(
     (total, item) => total + item.price * (item.quantidade || 1),
     0
@@ -37,46 +53,34 @@ function CarrinhoP2() {
     setFormaPagamento(event.target.value);
   };
 
- const finalizarCompra = async () => {
-  if (cartItems.length === 0) {
-    alert("O carrinho está vazio.");
-    return;
-  }
+  // (Esta função que você colou agora vai funcionar, pois 'cartItems' está correto)
+  const finalizarCompra = async () => {
+    if (cartItems.length === 0) {
+      alert("O carrinho está vazio.");
+      return;
+    }
 
-  if (!formaPagamento) {
-    alert("Escolha uma forma de pagamento.");
-    return;
-  }
+    if (!formaPagamento) {
+      alert("Escolha uma forma de pagamento.");
+      return;
+    }
 
-  try {
-    
-    // =========================================================
-    // 1. APAGUE O BLOCO "cartItemsParaStripe"
-    // Nós não precisamos mais dele.
-    // =========================================================
-    /* const cartItemsParaStripe = cartItems.map((item) => ({
-       name: item.name,
-       image: ...
-       price: ...
-       quantity: ...
-    }));
-    */
+    // DEBUG: Verifique o que você está prestes a enviar
+    console.log("Enviando estes cartItems (do localStorage) para o backend:", JSON.stringify(cartItems, null, 2));
 
-    // =========================================================
-    // 2. ENVIE O "cartItems" ORIGINAL (QUE VEM DO useCart())
-    // =========================================================
-    const res = await fetch("http://localhost:3001/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        cartItems: cartItems, // <--- ESSA É A MUDANÇA
-        paymentMethod: formaPagamento,
-      }),
-    });
-    // =========================================================
-    // FIM DA MUDANÇA
-    // =========================================================
+    try {
+      
+      // O seu bloco 'cartItemsParaStripe' está comentado (ou apagado), o que está CORRETO.
 
+      // Este fetch agora envia os 'cartItems' corretos (com 'customizations')
+      const res = await fetch("http://localhost:3001/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cartItems: cartItems, // <--- CORRETO
+          paymentMethod: formaPagamento,
+        }),
+      });
 
     // --- MELHORIA NO TRATAMENTO DE ERRO ---
     const data = await res.json(); 

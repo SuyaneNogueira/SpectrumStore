@@ -25,9 +25,6 @@ export default function Sucesso() {
       try {
         setLoading(true);
 
-        // =========================================================
-        // PASSO 1: SALVAR O PEDIDO (O CÓDIGO QUE FALTAVA)
-        // =========================================================
         const saveRes = await fetch(`http://localhost:3001/verificar-e-salvar-pedido`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -96,6 +93,17 @@ export default function Sucesso() {
       
       {/* Mostra o ID salvo do banco de dados */}
       <p>Seu pedido (ID: <strong>{pedidoId}</strong>) foi salvo em nosso sistema.</p> 
+
+    {statusMaquina === 'erro' && (
+        <div className="aviso-maquina-erro">
+          <p><strong>Aviso:</strong> Seu pedido foi confirmado, mas a distribuidora esta com problemas. Em breve tentaremos denovo, não se preocupe, seu pedido esta salvo no banco de dados nosso 😊</p>
+        </div>
+      )}
+      {statusMaquina === 'enviado' && (
+        <div className="aviso-maquina-sucesso">
+          <p>✅ Seu pedido já foi enviado para a fila de produção!</p>
+        </div>
+      )}
 
       <h2>🛒 Itens comprados:</h2>
       <ul className="itens-comprados-carrinho-compra">

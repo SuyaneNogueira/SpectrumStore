@@ -46,7 +46,7 @@ app.post(
   bodyParser.raw({ type: "application/json" }),
   async (req, res) => {
     const sig = req.headers["stripe-signature"];
-    try {
+    try {   
       const event = stripe.webhooks.constructEvent(
         req.body,
         sig,
@@ -88,9 +88,15 @@ app.post(
             // ENVIA CADA ITEM PARA A MÁQUINA
             console.log(`[Máquina] Disparando envio para ${itensResult.rowCount} item(ns) do pedido ${pedidoId}.`);
             for (const item of itensResult.rows) {
-                const payload = JSON.parse(item.payload_maquina); 
-                await enviarPedidoParaMaquina(payload, pedidoId); // <--- CHAMA A MÁQUINA
-            }
+                
+               if (item.payload_maquina && item.payload_maquina !== 'null' && item.payload_maquina !== '{}') {
+                    const payload = JSON.parse(item.payload_maquina); 
+                enviarPedidoParaMaquina(payload, pedidoId); // (Sem 'await')
+} else {
+console.log(`[Webhook] Pedido ${pedidoId} não tem payload, pulando.`);
+ }
+                
+}
 
         } catch (erroBanco) {
             console.error(`❌ [Webhook] Erro ao processar pedido ${pedidoId}:`, erroBanco);
@@ -213,6 +219,57 @@ app.get("/checkout-session/:sessionId", async (req, res) => {
   // ... seu código original ...
 });
 
+
+app.post("/verificar-e-salvar-pedido-bloqueante", async (req, res) => {
+ const { sessionId } = req.body;
+ if (!sessionId) { /* ... (erro) ... */ }
+
+ try {
+ const session = await stripe.checkout.sessions.retrieve(sessionId);
+ if (session.payment_status !== "paid") { /* ... (erro) ... */ }
+ const pedidoId = session.metadata.pedidoId;
+ if (!pedidoId) { /* ... (erro) ... */ }
+
+ console.log(`[Verificar-Bloqueante] Página de Sucesso acessada para Pedido ID: ${pedidoId}`);
+
+ // Tenta atualizar para "pago"
+ await pool.query(
+ `UPDATE pedidos SET status = 'pago' WHERE id = $1 AND status = 'pendente'`,
+ [pedidoId]
+);
+
+// Busca os itens
+ const itensResult = await pool.query(
+ `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
+ [pedidoId]
+ );
+ 
+        let statusFinalMaquina = 'nenhum_item'; // Padrão
+
+ for (const item of itensResult.rows) {
+ if (item.payload_maquina && item.payload_maquina !== 'null' && item.payload_maquina !== '{}') {
+ const payload = JSON.parse(item.payload_maquina); 
+                
+                // CHAMA A FUNÇÃO DE ENVIO E ESPERA (com await)
+ const sucesso = await enviarPedidoParaMaquina(payload, pedidoId); 
+                statusFinalMaquina = sucesso ? 'enviado' : 'erro';
+ }
+ }
+
+ // Responde ao frontend com o status final
+ res.json({ 
+            success: true, 
+            pedidoId: pedidoId,
+            maquinaStatus: statusFinalMaquina // Retorna 'enviado', 'erro', ou 'nenhum_item'
+        });
+
+ } catch (err) {
+ console.error("❌ Erro ao verificar e salvar pedido (bloqueante):", err.message);
+ res.status(500).json({ success: false, error: err.message });
+ }
+});
+
+
 app.post("/verificar-e-salvar-pedido", async (req, res) => {
     // Esta rota é um "backup" se o webhook falhar.
     // Vamos corrigir a lógica dela também.
@@ -242,14 +299,22 @@ app.post("/verificar-e-salvar-pedido", async (req, res) => {
 
         if (updateResult.rowCount > 0) {
             console.log(`💾 [Verificar] Pedido ${pedidoId} atualizado para PAGO.`);
-            const itensResult = await pool.query(
-                `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
-                [pedidoId]
-            );
-            for (const item of itensResult.rows) {
-                const payload = JSON.parse(item.payload_maquina); 
-                await enviarPedidoParaMaquina(payload, pedidoId); // <--- CHAMA A MÁQUINA
-            }
+            // (Nós sempre tentamos enviar, não importa quem atualizou o status)
+ const itensResult = await pool.query(
+ `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
+ [pedidoId]
+ );
+
+        console.log(`[Máquina] Disparando envio (via Página de Sucesso) para ${itensResult.rowCount} item(ns)...`);
+ for (const item of itensResult.rows) {
+                // 👇👇👇 COMEÇO DA CORREÇÃO 👇👇👇
+               if (item.payload_maquina && item.payload_maquina !== 'null' && item.payload_maquina !== '{}') {
+                    const payload = JSON.parse(item.payload_maquina); 
+                    enviarPedidoParaMaquina(payload, pedidoId); // (Sem 'await')
+ } else {
+console.log(`[Verificar] Pedido ${pedidoId} não tem payload, pulando.`);
+ }
+ }
         } else {
             console.log(`[Verificar] Pedido ${pedidoId} já estava pago.`);
         }

@@ -1,3 +1,5 @@
+// teste e depressão
+
 function getOrDefault(map, key, defaultValue) {
     const effectiveKey = Array.isArray(key) ? key[0] : key; // Pega o primeiro item se for array
     if (effectiveKey === null || typeof effectiveKey === 'undefined') {

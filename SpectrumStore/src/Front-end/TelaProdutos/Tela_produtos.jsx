@@ -209,60 +209,49 @@ function Tela_produtos() {
     });
   };
 
- // Na Tela_produtos.jsx
-
- const handleAddToCart = () => {
- if (!produto) return;
+const handleAddToCart = () => {
+if (!produto) return;
 
  const totalPersonalizacoes = Object.values(personalizacoesSelecionadas)
- .flat()
+.flat()
  .filter((v) => v && v.trim && v.trim() !== "").length;
 
  if (totalPersonalizacoes < 5) {
-   alert("⚠️ Adicione pelo menos 5 personalizações antes de continuar!");
+ alert("⚠️ Adicione pelo menos 5 personalizações antes de continuar!");
  return;
  }
 
     // =========================================================
     // 1. PREPARAR AS CUSTOMIZAÇÕES
     // =========================================================
-    // O seu 'personalizacoesSelecionadas' já está no formato
-    // de array (ex: { extras: ["Opção A", "Opção B"] }),
-    // o que é ÓTIMO, pois o usuário quer múltiplas opções.
+    // O seu 'personalizacoesSelecionadas' (ex: { tipoTecido: ["Algodão"] }) está ótimo.
     
-    // Nós só precisamos fazer duas coisas:
-    
-    // 1a. Clonar o objeto para não mexer no original
+    // 1a. Clonar o objeto
     const customizationsParaCarrinho = { ...personalizacoesSelecionadas };
 
-    // 1b. Adicionar o "SKU" que o nosso roteador do backend precisa
+    // 1b. Adicionar o "SKU" que o roteador do backend precisa
     // 'produto.category' (ex: "ModaEAcessoriosSensoriais")
     customizationsParaCarrinho.sku = produto.category;
 
 
-    // =========================================================
+ // =========================================================
     // 2. MONTAR O PRODUTO FINAL PARA O CARRINHO
     // =========================================================
-    const produtoParaCarrinho = {
-      id: produto.id,
-      name: produto.name || produto.nome,
-      price: produto.price || produto.valor,
-      image: produto.image || produto.imagem,
-      rating: produto.rating || 0,
-      
-      // 2a. Usa o nome 'customizations' (que o backend espera)
-      // 2b. Passa o objeto que acabamos de preparar (com o SKU)
-      customizations: customizationsParaCarrinho,
+ const produtoParaCarrinho = {
+id: produto.id,
+name: produto.name || produto.nome,
+price: produto.price || produto.valor,
+image: produto.image || produto.imagem,
+rating: produto.rating || 0,
+customizations: customizationsParaCarrinho, // <--- NOME CORRETO + SKU
+quantidade,
+ };
 
-      quantidade,
-    };
-
-    // DEBUG: Veja o que você está enviando
     console.log("Enviando para o carrinho:", JSON.stringify(produtoParaCarrinho, null, 2));
 
-    addToCart(produtoParaCarrinho);
-    setShowPopup(true);
-  };
+ addToCart(produtoParaCarrinho);
+ setShowPopup(true);
+ };
 
   const handleClosePopup = () => setShowPopup(false);
 
