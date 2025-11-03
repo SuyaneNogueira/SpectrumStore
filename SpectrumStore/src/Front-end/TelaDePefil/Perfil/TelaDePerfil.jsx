@@ -119,7 +119,6 @@ function TelaDePerfil() {
               <div
               key={item.cartItemId || `item-${index}`}
                 className="produto-card"
-                // onClick={() => setPedidoSelecionado(item)}
                 style={{ cursor: "pointer" }}>
                   <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
                     onClick={() => toggleFavorite(item)}/></span>
@@ -129,7 +128,7 @@ function TelaDePerfil() {
                 <h4 className="container-descricao">{item.name}</h4>
                 {/* <p className="container-descricao">{pedido.descricao}</p> */}
               
-                    <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
+                  <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
               </div>
               </div>
             ))}
