@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LandingPage.css"; 
 import Cadastro from "../Cadastro/Cadastro";
-// import Login from "../Login/Login";
+import Login from "../Login/Login";
 
 
 // Dados para a seção Carrossel
@@ -34,6 +34,7 @@ function LandingPage() {
   const TOTAL_GROUPS = 4; 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0); 
   const [isCadastroOpen, setIsCadastroOpen] = useState(false);  
+  const [isLoginOpen, setIsLoginOpen] = useState(false);  
   const cardsToDisplay = [...carouselCardsData, ...carouselCardsData.slice(0, CARDS_PER_VIEW)];
   const VISUAL_CARDS_COUNT = cardsToDisplay.length;
   const nextGroup = () => {
@@ -52,6 +53,7 @@ function LandingPage() {
     <div className="landing-container">
             
             {isCadastroOpen && <Cadastro onClose={() => setIsCadastroOpen(false)} />}
+            {isLoginOpen && <Login onClose={() => setIsLoginOpen(false)} />}
          
          {/* NAVBAR */}
          <nav className="landing-navbar">
@@ -63,7 +65,7 @@ function LandingPage() {
                      style={{cursor: 'pointer', marginLeft: '30px'}} 
                  >
                      Cadastre-se
-                 </div>
+                 </div>m  
         </div>
    </nav>       
    {/* HERO */}

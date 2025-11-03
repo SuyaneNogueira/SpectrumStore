@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { auth, provider, signInWithPopup } from "../Login/Firebase";
+import { auth, provider, signInWithPopup } from "../Cadastro/Firebase";
 
 function Login({ onClose, onOpenCadastro }) {
   const [nome, setNome] = useState("");
