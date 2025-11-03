@@ -181,7 +181,7 @@
     align-items: center;
     cursor: pointer;
     width: auto;
-    padding: 12px;
+    padding: 8px;
     height: 100%;
     font-size: 12px;
     font-weight: bold;
@@ -212,11 +212,12 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 30px;
-    font-size: 100%;
+    /* padding: 10px 10px; */
+    font-size: 90%;
     font-weight: bold;
     cursor: pointer;
-    width: 70%;
+    width: 50%;
+    height: 100%;
     text-align: center;
     transition: background-color 0.3s;
     /* margin-top: 20px; */
@@ -262,7 +263,7 @@
   justify-content: start;
   width: 100%;
   align-items: center; 
-  gap: 40px; 
+  gap: 10px; 
   margin-top: 5px; 
 }
 

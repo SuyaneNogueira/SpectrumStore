@@ -23,6 +23,7 @@ import Estoque from "../../Adm/pages/Estoque";
 import TelaFavoritos from "../TelaFavoritos/TelaFavoritos";
 import LandingPage from "../LandingPage/LandingPage";
 import Sucesso from "../Carrinho/Sucesso";
+import TelaInfo from "../TelaInformacoes/TelaInfo";
 
 const Router = createBrowserRouter([
     { path: "/", element: <LandingPage/> },
@@ -43,6 +44,8 @@ const Router = createBrowserRouter([
     { path: "/TelaDePerfil", element: <TelaDePerfil/> },
     { path: "/TelaFavoritos", element: <TelaFavoritos/> },
     { path: "/sucesso", element: <Sucesso/> },
+    { path: "/informacoes", element: <TelaInfo/> },
+
 
     {
         path: "/LayoutAdm",

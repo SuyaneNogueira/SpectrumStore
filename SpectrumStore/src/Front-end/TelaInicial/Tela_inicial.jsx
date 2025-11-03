@@ -197,7 +197,7 @@ function Tela_inicial() {
         <div className="div-fundo-brinquedos-container">
           <img className="foto-fundo-b" src="Fundo-brinquedos.png" alt="Brinquedos educativos" />
           <div className="conteudo-principal-brinquedos">
-            <h2 className="titulo-brinquedos">Por que os brinquedos são importantes?</h2>
+            <h2 className="titulo-brinquedos">Qual a finalidade de cada produto?</h2>
             <button className="botao-saiba-mais">Saiba mais</button>
           </div>
         </div>
