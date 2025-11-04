@@ -65,7 +65,7 @@ function LandingPage() {
                      style={{cursor: 'pointer', marginLeft: '30px'}} 
                  >
                      Cadastre-se
-                 </div>m  
+                 </div>
         </div>
    </nav>       
    {/* HERO */}
