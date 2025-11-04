@@ -72,7 +72,7 @@ function Login({ onClose, onOpenCadastro }) {
 
         <p className="login-footer">
           Ainda não Possui uma Conta?{" "}
-          <span onClick={onOpenCadastro}>Faça seu Cadastro Aqui</span>
+          <span onClick={() => setIsCadastroOpen(true)} >Faça seu Cadastro Aqui</span>
         </p>
       </div>
     </div>

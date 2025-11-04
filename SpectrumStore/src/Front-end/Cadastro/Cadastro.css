@@ -76,7 +76,7 @@
     position: absolute;
     background: none;
     border: none;
-    font-size: 26px;
+    font-size: 27px;
     color: var(--color-primary);
     cursor: pointer;
     margin-left: 470px;
@@ -98,7 +98,7 @@
     font-style: normal;
     color: var(--color-primary);
     font-size: 30px;
-    margin-top: -5%;
+    margin-top: -6%;
     align-self: flex-start; 
     margin-left: -48px;
 }
@@ -119,7 +119,7 @@
 .input-group label {
     font-size: 14px;
     color: var(--color-primary);
-    margin-bottom: -35px;
+    margin-bottom: -40px;
     display: block;
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
