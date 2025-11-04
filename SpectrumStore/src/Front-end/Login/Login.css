@@ -20,13 +20,14 @@
 }
 
 .login-modal {
-  background: var(--color-secondary);
-  border-radius: 180px 0 0 180px;
+  background: #a2c9cdfb;
+  border-radius: 150px 0 150px 0 ;
   width: 380px;
   padding: 40px;
   position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
   color: var(--color-primary);
 }
 
@@ -38,18 +39,21 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--color-primary);
+  color: #ffff;
 }
 
 h2 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 25px;
+  color: var(--color-primary);
+  font-weight: 300;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
+  font-weight: 300;
 }
 
 .login-form label {
@@ -72,12 +76,13 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-primary);
+  border: none;
+  text-decoration: underline #ffff 1.4px;
   border-radius: 6px;
   padding: 8px;
   background: transparent;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--color-primary);
   gap: 8px;
 }
@@ -114,5 +119,5 @@ h2 {
   display: block;
   margin-top: 4px;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: underline ;
 }

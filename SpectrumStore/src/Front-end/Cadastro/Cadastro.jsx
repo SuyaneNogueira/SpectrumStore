@@ -11,6 +11,7 @@ function Cadastro({ onClose, onOpenLogin }) {
   const [erro, setErro] = useState("");
   const [termosAceitos, setTermosAceitos] = useState(false);
   const [modalAberto, setModalAberto] = useState(false);
+  
 
   // Envio de cadastro
   const handleSubmit = (e) => {
@@ -173,15 +174,10 @@ function Cadastro({ onClose, onOpenLogin }) {
                 />
               </button>
             </div>
-
             <p className="cadastro-footer">
               Já possui Cadastro?{" "}
               <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenLogin();
-                }}
+                onClick={() => setIsLoginOpen(true)} 
               >
                 Faça Login Aqui
               </a>

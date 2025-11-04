@@ -59,13 +59,18 @@ function LandingPage() {
          <nav className="landing-navbar">
              <img src="/Spectrum Store.png" alt="Spectrum Store Logo" className="landing-logo" />
              <div className="landing-login-links">
-             <a href="#" style={{cursor: 'pointer'}}>Entrar</a>
+              <div className="landing-login-links"
+                     onClick={() => setIsLoginOpen(true)} 
+                     style={{cursor: 'pointer', marginLeft: '-35px'}} 
+                 >
+                     Entrar
+                 </div>
              <div className="landing-cadastro-links"
                      onClick={() => setIsCadastroOpen(true)} 
                      style={{cursor: 'pointer', marginLeft: '30px'}} 
                  >
                      Cadastre-se
-                 </div>m  
+                 </div>
         </div>
    </nav>       
    {/* HERO */}
