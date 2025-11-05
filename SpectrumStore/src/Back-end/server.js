@@ -151,6 +151,7 @@ app.use(express.json());
 // 🔹 4. ROTAS NORMAIS (CRUD)
 // =========================================================
 defineRoutes(app);
+app.use(adminRoutes); 
 
 // =========================================================
 // 🔹 5. ROTA DE CHECKOUT (LÓGICA CORRIGIDA)

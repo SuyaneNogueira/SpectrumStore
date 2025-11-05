@@ -364,7 +364,7 @@ const MAPA_MP_EXTRAS = { "Com ajuste de velcro": "lamina1", "Com bolsos": "lamin
 
 function traduzirMaterialPonderado(customs) {
     const objetoCaixa = {
-        codigoProduto: 3, // CORRIGIDO
+        codigoProduto: 1, // CORRIGIDO
         bloco1: {
             ...traduzirArrayParaBloco(MAPA_MP_DISTRIBUICAO, customs.distribuicaoPeso),
             cor: getOrDefault(MAPA_MP_PESO, customs.nivelPeso, 1),

@@ -62,6 +62,7 @@ export default function Dashboard() {
         />
       </div>
 
+<div className='tabela-scroll-container'>
       {/* Tabela de Resultados */}
       {loading && <p>Carregando estoque da máquina...</p>}
       {error && <p className="erro-estoque">{error}</p>}
@@ -104,7 +105,9 @@ export default function Dashboard() {
             )}
           </tbody>
         </table>
+    
       )}
     </div>
+     </div>
   );
 }

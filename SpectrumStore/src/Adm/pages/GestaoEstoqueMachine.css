@@ -2,17 +2,20 @@
    Conteúdo Principal (Estoque)
    ============================ */
 .admin-content {
-  flex: 1; /* Ocupa o espaço disponível ao lado da sua sidebar */
+  /* flex: 1;  */
   padding: 40px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .admin-content h1 {
-  font-family: 'Times New Roman', Times, serif; /* Fonte do título como na sua foto */
+  font-family: "Times New Roman", Times, serif; /* Fonte do título como na sua foto */
   font-size: 2.5rem;
   color: #333;
-  border-bottom: 2px solid #eee;
+  /* border-bottom: 2px solid #eee; */
   padding-bottom: 10px;
 }
 
@@ -102,4 +105,21 @@
   background-color: #fde0e0;
   padding: 15px;
   border-radius: 6px;
+}
+
+/* scrollbar */
+
+/* O "Envelope" que limita a altura */
+.tabela-scroll-container {
+  max-height: 400px; /* <<-- AQUI ESTÁ O LIMITE! (600px ou o que você quiser) */
+  overflow-y: auto; /* Adiciona a scrollbar VERTICAL quando o conteúdo passa do limite */
+  border-radius: 8px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tabela-estoque thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
