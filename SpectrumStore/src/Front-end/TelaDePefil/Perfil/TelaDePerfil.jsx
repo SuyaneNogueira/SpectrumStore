@@ -112,20 +112,20 @@ function TelaDePerfil() {
       {/* Conteúdo */}
       <div className="perfil-conteudo">
         {abaAtiva === "meucarrinho" && (
-          <div className="produtos-grid">
+          <div className="produtos-grid-perfil-carrinho">
            
             {cartItems && cartItems.map((item, index) => ( 
-              <div className="protudo-geral-carrinho-perfil">
+              <div>
               <div
               key={item.cartItemId || `item-${index}`}
-                className="produto-card"
+                className="produto-card-perfil-carrinho"
                 style={{ cursor: "pointer" }}>
-                  <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
+                  <span className="favorito-perfil-carrinho"><Button isFavorited={isFavorited(item.id)} 
                     onClick={() => toggleFavorite(item)}/></span>
-                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
+                <div className="imagem-produto-perfil-carrinho"><img className="imagem-mesmo-produtos-carrinho" 
                 src={item.image} alt={item.name}/></div>
-                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4 className="container-descricao">{item.name}</h4>
+                <span className="preco-perfil-carrinho">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
+                <h4 className="container-descricao-perfil-carrinho">{item.name}</h4>
                 {/* <p className="container-descricao">{pedido.descricao}</p> */}
               
                   <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
@@ -137,23 +137,23 @@ function TelaDePerfil() {
         )}
 
          {abaAtiva === "historico" && (
-          <div className="produtos-grid">
+          <div className="produtos-grid-perfil-historico">
            
             {cartItems && cartItems.map((item, index) => ( 
-              <div className="protudo-geral-carrinho-perfil">
+              <div className="produto-geral-historico-perfil">
               <div
               key={item.cartItemId || `item-${index}`}
-                className="produto-card"
+                className="produto-card-perfil-historico"
                 onClick={() => setPedidoSelecionado(item)}
                 style={{ cursor: "pointer" }}>
                   <div className="favorito-e-imagem">
-                    <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
+                    <span className="favorito-perfil-historico"><Button isFavorited={isFavorited(item.id)} 
                     onClick={() => toggleFavorite(item)}/></span>
-                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
+                <div className="imagem-produto-perfil-historico"><img className="imagem-mesmo-produtos-historico" 
                 src={item.image} alt={item.name}/></div>
                 </div>
-                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4 className="container-descricao">{item.name}</h4>
+                <span className="preco-perfil-historico">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
+                <h4 className="container-descricao-perfil-historico">{item.name}</h4>
                 {/* <p className="container-descricao">{pedido.descricao}</p> */}
               
                     <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
