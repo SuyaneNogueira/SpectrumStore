@@ -258,14 +258,14 @@
 
 .cadastro-footer a {
     color: var(--color-primary);
-    text-decoration: none; 
+    text-decoration: underline; 
     cursor: pointer;
 }
 
 .cadastro-termos,
 .link-login {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
   border-bottom: 1px solid transparent;
   transition: border-color 150ms ease;
   cursor: pointer;

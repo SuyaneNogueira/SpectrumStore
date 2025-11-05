@@ -58,7 +58,11 @@ function Login({ onClose, onOpenCadastro }) {
             onChange={(e) => setSenha(e.target.value)}
           />
 
-          <button type="button" className="google-login" onClick={handleGoogleLogin}>
+          <button
+            type="button"
+            className="google-login"
+            onClick={handleGoogleLogin}
+          >
             <img src="/GoogleCadastro.png" alt="Google" />
             Continue com o Google
           </button>
@@ -71,8 +75,8 @@ function Login({ onClose, onOpenCadastro }) {
         </form>
 
         <p className="login-footer">
-          Ainda não Possui uma Conta?{" "}
-          <span onClick={() => setIsCadastroOpen(true)} >Faça seu Cadastro Aqui</span>
+          Ainda não possui uma conta?{" "}
+          <span onClick={onOpenCadastro}>Faça seu Cadastro Aqui</span>
         </p>
       </div>
     </div>

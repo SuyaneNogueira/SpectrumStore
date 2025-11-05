@@ -1,3 +1,4 @@
+// src/Front-end/Cadastro/Cadastro.jsx
 import React, { useState } from "react";
 import { auth, provider, signInWithPopup } from "./Firebase"; 
 import TermosDeUso from "./TermosDeUso";
@@ -11,7 +12,6 @@ function Cadastro({ onClose, onOpenLogin }) {
   const [erro, setErro] = useState("");
   const [termosAceitos, setTermosAceitos] = useState(false);
   const [modalAberto, setModalAberto] = useState(false);
-  
 
   // Envio de cadastro
   const handleSubmit = (e) => {
@@ -29,18 +29,22 @@ function Cadastro({ onClose, onOpenLogin }) {
 
     setErro("");
     console.log("Cadastro enviado:", { nome, dataNascimento, senha });
-    onClose();
+    if (typeof onClose === "function") onClose();
   };
 
   // Login Google
   const handleGoogleLogin = async () => {
     try {
+      // signInWithPopup deve ser exportado pelo seu Firebase.js (conforme combinado)
       const result = await signInWithPopup(auth, provider);
       console.log("Usuário logado com Google:", result.user);
+      // redirecionamento depois do login
       window.location.href = "/TelaInicial";
-      onClose();
+      if (typeof onClose === "function") onClose();
     } catch (err) {
-      const errorMessage = err.message.includes("auth/popup-closed-by-user")
+      // proteção caso err seja indefinido
+      const message = err && err.message ? err.message : "";
+      const errorMessage = message.includes("auth/popup-closed-by-user")
         ? "Autenticação cancelada pelo usuário."
         : "Erro ao autenticar com Google";
       console.error("Erro ao logar com Google:", err);
@@ -50,14 +54,27 @@ function Cadastro({ onClose, onOpenLogin }) {
 
   // Abre modal de termos
   const abrirModalTermos = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e && e.preventDefault();
+    e && e.stopPropagation();
     setModalAberto(true);
   };
 
   // Fecha modal de termos
   const fecharModalTermos = () => {
     setModalAberto(false);
+  };
+
+  // Abre modal Login de forma segura (fechando este modal antes)
+  const abrirLoginAPartirCadastro = (e) => {
+    e && e.preventDefault();
+    // fecha o cadastro primeiro
+    if (typeof onClose === "function") onClose();
+    // só chama onOpenLogin se foi passado
+    if (typeof onOpenLogin === "function") {
+      onOpenLogin();
+    } else {
+      console.warn("onOpenLogin não foi passado como prop para <Cadastro />.");
+    }
   };
 
   return (
@@ -67,7 +84,7 @@ function Cadastro({ onClose, onOpenLogin }) {
         role="dialog"
         aria-modal="true"
         onClick={(e) => {
-          if (e.target.classList.contains("cadastro-overlay")) onClose();
+          if (e.target.classList.contains("cadastro-overlay") && typeof onClose === "function") onClose();
         }}
       >
         <div className="cadastro-modal" onClick={(e) => e.stopPropagation()}>
@@ -83,7 +100,7 @@ function Cadastro({ onClose, onOpenLogin }) {
 
           {/* COLUNA DIREITA */}
           <div className="cadastro-direita">
-            <button className="close-button" onClick={onClose}>
+            <button className="close-button" onClick={() => typeof onClose === "function" && onClose()}>
               &times;
             </button>
 
@@ -134,8 +151,12 @@ function Cadastro({ onClose, onOpenLogin }) {
               {/* TERMOS */}
               <div className="termos-container">
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={termosAceitos}
                   className={`termo-circulo ${termosAceitos ? "ativo" : ""}`}
                   onClick={() => setTermosAceitos(!termosAceitos)}
+                  onKeyDown={(ev) => { if(ev.key === 'Enter' || ev.key === ' ') setTermosAceitos(!termosAceitos); }}
                 />
                 <p className="container-text">
                   Li e aceito os{" "}
@@ -146,13 +167,16 @@ function Cadastro({ onClose, onOpenLogin }) {
                       textDecoration: "underline",
                       color: "var(--color-primary)"
                     }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(ev) => { if(ev.key === 'Enter') abrirModalTermos(ev); }}
                   >
                     Termos de Uso
                   </span>
                 </p>
               </div>
 
-              {erro && <p className="cadastro-erro">{erro}</p>}
+              {erro && <p className="cadastro-erro" role="alert">{erro}</p>}
 
               <button type="submit" className="cadastro-btn">
                 Criar Conta
@@ -160,24 +184,23 @@ function Cadastro({ onClose, onOpenLogin }) {
             </form>
 
             <div className="separator-container">
-              <div className="vertical-line"></div>
+              <div className="vertical-line" />
               <div className="cadastro-ou">Ou</div>
-              <div className="vertical-line"></div>
+              <div className="vertical-line" />
             </div>
 
             <div>
-              <button className="google-btn" onClick={handleGoogleLogin}>
-                <img
-                  src="/GoogleCadastro.png"
-                  alt="Google"
-                  className="google-icon"
-                />
+              <button className="google-btn" onClick={handleGoogleLogin} type="button">
+                <img src="/GoogleCadastro.png" alt="Google" className="google-icon" />
               </button>
             </div>
+
             <p className="cadastro-footer">
               Já possui Cadastro?{" "}
               <a
-                onClick={() => setIsLoginOpen(true)} 
+                href="Login"
+                onClick={abrirLoginAPartirCadastro}
+                style={{ cursor: "pointer" }}
               >
                 Faça Login Aqui
               </a>
