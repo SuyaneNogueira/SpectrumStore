@@ -116,18 +116,15 @@
 
 /* Ordem dos pedidos */
 
-/* ==============================================
-   👇👇👇 ESTILOS DA "DINAMINA" 👇👇👇
-   ============================================== */
-
 /* Container para as linhas de dados */
 .pedidos-lista-container-adm {
 display: flex;
 flex-direction: column;
- gap: 10px; /* Espaçamento entre as linhas */
- margin-top: 10px;
+gap: 10px; /* Espaçamento entre as linhas */
+margin-top: 10px;
 margin-left: 0.8%;
- /* width: 100%; */
+overflow-y: auto;
+max-height: 410px;
 }
 
 /* A Linha de um Pedido (imita o seu cabeçalho) */
