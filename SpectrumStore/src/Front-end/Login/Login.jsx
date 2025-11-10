@@ -16,6 +16,7 @@ function Login({ onClose, onOpenCadastro }) {
     }
 
     console.log("Login efetuado:", { nome, senha });
+    window.location.href = "/TelaInicial";
     onClose();
   };
 
@@ -69,7 +70,7 @@ function Login({ onClose, onOpenCadastro }) {
 
           {erro && <p className="login-erro">{erro}</p>}
 
-          <button type="submit" className="login-btn">
+          <button type="submit" className="login-btn"> 
             Entrar
           </button>
         </form>
