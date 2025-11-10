@@ -124,7 +124,7 @@ gap: 10px; /* Espaçamento entre as linhas */
 margin-top: 10px;
 margin-left: 0.8%;
 overflow-y: auto;
-max-height: 410px;
+max-height: 385px;
 }
 
 /* A Linha de um Pedido (imita o seu cabeçalho) */
@@ -143,7 +143,7 @@ max-height: 410px;
  padding: 10px 0; /* Adiciona um padding vertical */
 }
 
-/* Faz cada célula dentro da linha de dados ter o mesmo tamanho */
+
 .status-pedidos-adm-item > div {
   flex: 1; /* Faz as colunas terem o mesmo tamanho */
   text-align: center;
@@ -170,10 +170,15 @@ max-height: 410px;
   font-size: 0.85rem;
   font-weight: bold;
   text-transform: capitalize;
+  /* max-width: 10px; */
 }
 .status-pendente {
   background-color: #fff4e0;
   color: #e69500;
+  /* width: 20%; */
+  display: flex;
+  flex-direction: column;
+/* border: solid; */
 }
 .status-processando {
   background-color: #fff4e0;

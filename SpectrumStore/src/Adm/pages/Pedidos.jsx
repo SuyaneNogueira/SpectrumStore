@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+
 export default function Pedidos() {
   const navigate = useNavigate();
   const [openPopup, setOpenPopup] = useState(false);
@@ -15,8 +16,7 @@ export default function Pedidos() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Esta é a rota que você criou no 'CarrinhoBackT.js'
-    // Certifique-se que ela está rodando e usando a tabela 'pedidos' (plural)
+   
     fetch("http://localhost:3001/api/pedido")
       .then((res) => {
         if (!res.ok) {
@@ -41,9 +41,7 @@ export default function Pedidos() {
 
   // 👇👇👇 4. FUNÇÃO DE AÇÃO (O "DISPARADOR" ⚙️) 👇👇👇
   const handleLiberarPedido = async (pedido) => {
-    // O 'tradutorMaquina.js' cria o ID assim: "SPECTRUM-PEDIDO-10"
-    // Vamos assumir que o {op} que a máquina espera é o ID do pedido.
-    // SE O FORMATO FOR DIFERENTE (ex: "SPECTRUM-PEDIDO-10"), MUDE AQUI!
+   
     const ordemDePedido = pedido.id; // Ex: 290
 
     if (
