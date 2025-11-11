@@ -7,7 +7,7 @@ import { pool } from "./db.js"; // Você já tinha isso
 import { defineRoutes } from "./CarrinhoBackT.js"; // Você já tinha isso
 import axios from "axios"; // <--- IMPORTANTE (para a máquina)
 import { traduzirItemParaPayload } from "./tradutorMaquina.js"; // <--- A MÁGICA
-import adminRoutes from './AdminRoutes.js'; // 👈 1. IMPORTE O NOVO ARQUIVO 
+import adminRoutes from './AdminRoutes.js';  
 
 dotenv.config();
 
