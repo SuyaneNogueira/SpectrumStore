@@ -53,17 +53,40 @@ const DEFAULT_BLOCO_VAZIO = {
 };
 
 // =========================================================
-// PRODUTO 0: "CAIXA DE ANDARES" (A Exceção)
-// (Esta lógica continua a mesma, pois ela USA os 3 blocos)
+// PRODUTO 0: "CAIXA DE ANDARES" (A EXCEÇÃO que foi apagada)
 // =========================================================
 const MAPA_CAIXA_SKU_FRONTEND = "CAIXA_ANDARES";
-// ... (Todos os mapas MAPA_CAIXA... continuam os mesmos)
-// ... (A função traduzirCaixaAndares(customs) continua a mesma)
+const MAPA_CAIXA_SKU_MAQUINA = "CAIXA-01"; // TODO: Confirme este SKU
+const MAPA_CAIXA_PRODUTO = { "caixa de um andar": 1, "caixa de dois andares": 2, "caixa de três andares": 3 };
+const MAPA_CAIXA_CHASSI = { "preto": 1, "vermelho": 2, "azul": 3 };
+const MAPA_CAIXA_PALETA_COR = { "null": 0, "vermelho": 1, "azul": 2, "amarelo": 3, "verde": 4, "preto": 5, "branco": 6 };
+const MAPA_CAIXA_PALETA_DESENHO = { "null": "0", "casa": "1", "barco": "2", "estrela": "3" };
 
-// =========================================================
-// CATEGORIA 1: Brinquedos Sensoriais
-// (SKU: "BrinquedosSensoriais" | SKU Máquina: "KIT-01")
-// =========================================================
+function traduzirCaixaAndares(customs) {
+  console.log("Traduzindo CAIXA_ANDARES (Lógica 1-para-1)...");
+  const traduzirAndar = (andarData) => {
+    // Usa DEFAULT_BLOCO_VAZIO
+    if (!andarData) { return DEFAULT_BLOCO_VAZIO; } 
+    return {
+      "cor":   getOrDefault(MAPA_CAIXA_CHASSI, customs.corChassi, 1),
+      "lamina1": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaEsquerda, 0),
+      "padrao1": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaEsquerda, "0"),
+      "lamina2": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaFrontal, 0),
+      "padrao2": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaFrontal, "0"),
+      "lamina3": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaDireita, 0),
+      "padrao3": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaDireita, "0")
+    };
+  };
+  const objetoCaixa = {
+    codigoProduto: getOrDefault(MAPA_CAIXA_PRODUTO, customs.produtoEscolhido, 1),
+    bloco1: traduzirAndar(customs.andar1),
+    bloco2: traduzirAndar(customs.andar2),
+    bloco3: traduzirAndar(customs.andar3)
+  };
+  return { objetoCaixa, skuMaquina: MAPA_CAIXA_SKU_MAQUINA };
+}
+
+
 const MAPA_BS_PRESSAO = { "Muito macio": 1, Macio: 2, Médio: 3, Rígido: 4 }; // -> cor
 const MAPA_BS_TAMANHO = {
   "Pequeno (5cm)": 1,
