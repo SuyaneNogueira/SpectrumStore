@@ -38,7 +38,11 @@ const DEFAULT_BLOCO_PADRAO = {
 };
 
 // =========================================================
+<<<<<<< HEAD
 // PRODUTO 0: "CAIXA DE ANDARES" (A Exceção)
+=======
+// PRODUTO 0: "CAIXA DE ANDARES" (A EXCEÇÃO que foi apagada)
+>>>>>>> 1ff6e9fadd402d627ee80c408fe3290d6917ded9
 // =========================================================
 const MAPA_CAIXA_SKU_FRONTEND = "CAIXA_ANDARES";
 const MAPA_CAIXA_SKU_MAQUINA = "CAIXA-01"; // TODO: Confirme este SKU
@@ -48,6 +52,7 @@ const MAPA_CAIXA_PALETA_COR = { "null": 0, "vermelho": 1, "azul": 2, "amarelo": 
 const MAPA_CAIXA_PALETA_DESENHO = { "null": "0", "casa": "1", "barco": "2", "estrela": "3" };
 
 function traduzirCaixaAndares(customs) {
+<<<<<<< HEAD
     console.log("Traduzindo CAIXA_ANDARES (Lógica 1-para-1)...");
     const traduzirAndar = (andarData) => {
         if (!andarData) { return DEFAULT_BLOCO_PADRAO; }
@@ -80,6 +85,62 @@ const MAPA_BS_TAMANHO = { "Pequeno (5cm)": 1, "Médio (10cm)": 2, "Grande (15cm)
 const MAPA_BS_TEXTURA = { "Áspero": "lamina1", "Liso": "lamina2", "Ondulado": "lamina3", "Escamoso": "padrao1", "Pontilhado": "padrao2", "Acolchoado": "padrao3" };
 const MAPA_BS_COR = { "Azul": "lamina1", "Verde": "lamina2", "Amarelo": "lamina3", "Vermelho": "padrao1", "Roxo": "padrao2", "Laranja": "padrao3" };
 const MAPA_BS_DETALHES = { "Com sinos": "lamina1", "Com espelhos": "lamina2", "Com glitter": "lamina3", "Com luzes": "padrao1", "Com alça": "padrao2", "Com velcro": "padrao3" };
+=======
+  console.log("Traduzindo CAIXA_ANDARES (Lógica 1-para-1)...");
+  const traduzirAndar = (andarData) => {
+    // Usa DEFAULT_BLOCO_VAZIO
+    if (!andarData) { return DEFAULT_BLOCO_VAZIO; } 
+    return {
+      "cor":   getOrDefault(MAPA_CAIXA_CHASSI, customs.corChassi, 1),
+      "lamina1": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaEsquerda, 0),
+      "padrao1": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaEsquerda, "0"),
+      "lamina2": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaFrontal, 0),
+      "padrao2": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaFrontal, "0"),
+      "lamina3": getOrDefault(MAPA_CAIXA_PALETA_COR, andarData.corPaletaDireita, 0),
+      "padrao3": getOrDefault(MAPA_CAIXA_PALETA_DESENHO, andarData.desenhoPaletaDireita, "0")
+    };
+  };
+  const objetoCaixa = {
+    codigoProduto: getOrDefault(MAPA_CAIXA_PRODUTO, customs.produtoEscolhido, 1),
+    bloco1: traduzirAndar(customs.andar1),
+    bloco2: traduzirAndar(customs.andar2),
+    bloco3: traduzirAndar(customs.andar3)
+  };
+  return { objetoCaixa, skuMaquina: MAPA_CAIXA_SKU_MAQUINA };
+}
+
+
+const MAPA_BS_PRESSAO = { "Muito macio": 1, Macio: 2, Médio: 3, Rígido: 4 }; // -> cor
+const MAPA_BS_TAMANHO = {
+  "Pequeno (5cm)": 1,
+  "Médio (10cm)": 2,
+  "Grande (15cm)": 3,
+}; // -> lamina1
+const MAPA_BS_TEXTURA = {
+  Áspero: 1,
+  Liso: 2,
+  Ondulado: 3,
+  Escamoso: 4,
+  Pontilhado: 5,
+  Acolchoado: 6,
+}; // -> lamina2
+const MAPA_BS_COR = {
+  Azul: 1,
+  Verde: 2,
+  Amarelo: 3,
+  Vermelho: 4,
+  Roxo: 5,
+  Laranja: 6,
+}; // -> lamina3
+const MAPA_BS_DETALHES = {
+  "Com sinos": "1",
+  "Com espelhos": "2",
+  "Com glitter": "3",
+  "Com luzes": "4",
+  "Com alça": "5",
+  "Com velcro": "6",
+}; // -> padrao1,2,3
+>>>>>>> 1ff6e9fadd402d627ee80c408fe3290d6917ded9
 
 function traduzirBrinquedosSensoriais(customs) {
     console.log("Traduzindo BrinquedosSensoriais (Lógica Binária)...");

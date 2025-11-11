@@ -1,0 +1,23 @@
+{
+  "name": "spectrumstore-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend para Spectrum Store com integração de máquina",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["spectrum", "store", "backend", "stripe"],
+  "author": "Spectrum Store",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "stripe": "^14.4.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "pg": "^8.11.3"
+  }
+}
