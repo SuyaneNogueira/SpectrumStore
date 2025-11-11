@@ -200,26 +200,33 @@ function Tela_produtos() {
   const [showPopup, setShowPopup] = useState(false);
   const [produto, setProduto] = useState(null);
 
-  const handlePersonalizacaoClick = (key, opcao) => {
-    setPersonalizacoesSelecionadas((prev) => {
-      const newSelections = { ...prev };
-      if (newSelections[key] === opcao) delete newSelections[key];
-      else newSelections[key] = opcao;
-      return newSelections;
-    });
-  };
 
 const handleAddToCart = () => {
-if (!produto) return;
+ if (!produto) return;
 
- const totalPersonalizacoes = Object.values(personalizacoesSelecionadas)
-.flat()
- .filter((v) => v && v.trim && v.trim() !== "").length;
+    // Pega o "molde" das personalizações deste produto
+    const personalizacoesDoProduto = personalizacoesPorCategoria[produto.category] || {};
+    const chavesObrigatorias = Object.keys(personalizacoesDoProduto);
 
- if (totalPersonalizacoes < 5) {
- alert("⚠️ Adicione pelo menos 5 personalizações antes de continuar!");
- return;
- }
+    let camposFaltando = false;
+    // Loop para checar se CADA campo (exceto extras) foi preenchido
+    for (const key of chavesObrigatorias) {
+      // "Extras" e "Detalhes" são os únicos que podem ser arrays (não são obrigatórios)
+      const isArrayField = key.toLowerCase().includes('extras') || 
+                           key.toLowerCase().includes('detalhes') ||
+                           key.toLowerCase().includes('tema'); // (Adicione outros campos de array aqui)
+
+      // Se NÃO for um campo de array E não estiver selecionado
+      if (!isArrayField && !personalizacoesSelecionadas[key]) {
+        camposFaltando = true;
+        break; // Para o loop, já achamos um erro
+      }
+    }
+
+    if (camposFaltando) {
+      alert("⚠️ Por favor, selecione uma opção para cada categoria de personalização (exceto 'Extras').");
+      return;
+    }
 
     // =========================================================
     // 1. PREPARAR AS CUSTOMIZAÇÕES
@@ -313,26 +320,39 @@ quantidade,
                         <div
                           key={opcao}
                           className={`personalizacao-item ${
-                            personalizacoesSelecionadas[key]?.includes(opcao)
-                              ? "selecionado"
-                              : ""
-                          }`}
+              (personalizacoesSelecionadas[key] === opcao || 
+                             personalizacoesSelecionadas[key]?.includes(opcao))
+               ? "selecionado"
+               : ""
+             }`}
                           onClick={() => {
-                            setPersonalizacoesSelecionadas((prev) => {
-                              const novas = { ...prev };
-                              const selecionadas = novas[key] || [];
+              setPersonalizacoesSelecionadas((prev) => {
+               const novas = { ...prev };
+                              
+                              // "Extras", "Detalhes" e "Tema" são os únicos que podem ser arrays
+                              const isArrayField = key.toLowerCase().includes('extras') || 
+                                                   key.toLowerCase().includes('detalhes') ||
+                                                   key.toLowerCase().includes('tema');
 
-                              if (selecionadas.includes(opcao)) {
-                                novas[key] = selecionadas.filter(
-                                  (v) => v !== opcao
-                                );
-                              } else {
-                                novas[key] = [...selecionadas, opcao];
-                              }
-
-                              return novas;
-                            });
-                          }}
+               if (isArrayField) {
+                // LÓGICA DE CHECKBOX (ARRAY) - SÓ PARA "EXTRAS"
+                const selecionadas = novas[key] || [];
+                if (selecionadas.includes(opcao)) {
+                 novas[key] = selecionadas.filter((v) => v !== opcao);
+                } else {
+                 novas[key] = [...selecionadas, opcao]; // Pode ter múltiplos
+                }
+               } else {
+                // LÓGICA DE RADIO (STRING) - PARA TODO O RESTO
+                if (novas[key] === opcao) {
+                 delete novas[key]; // Permite desmarcar
+                } else {
+                 novas[key] = opcao; // SÓ pode ter UM
+                }
+               }
+               return novas;
+              });
+             }}
                         >
                           {key.toLowerCase().includes("cor") ? (
                             <div
