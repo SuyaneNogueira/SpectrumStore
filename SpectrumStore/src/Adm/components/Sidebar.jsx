@@ -12,7 +12,7 @@ export default function Sidebar() {
 
      <div className="butons-sidebar">
       <Link to="dashboard" className={`menu-item ${location.pathname === "dashboard" ? "active" : ""}`}>
-        Dashboard
+        GEM
       </Link>
 
       <Link to="pedidos" className={`menu-item ${location.pathname === "pedidos" ? "active" : ""}`}>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { auth, provider, signInWithPopup } from "../Login/Firebase";
+import { auth, provider, signInWithPopup } from "../Cadastro/Firebase";
 
 function Login({ onClose, onOpenCadastro }) {
   const [nome, setNome] = useState("");
@@ -16,6 +16,7 @@ function Login({ onClose, onOpenCadastro }) {
     }
 
     console.log("Login efetuado:", { nome, senha });
+    window.location.href = "/TelaInicial";
     onClose();
   };
 
@@ -58,20 +59,24 @@ function Login({ onClose, onOpenCadastro }) {
             onChange={(e) => setSenha(e.target.value)}
           />
 
-          <button type="button" className="google-login" onClick={handleGoogleLogin}>
+          <button
+            type="button"
+            className="google-login"
+            onClick={handleGoogleLogin}
+          >
             <img src="/GoogleCadastro.png" alt="Google" />
             Continue com o Google
           </button>
 
           {erro && <p className="login-erro">{erro}</p>}
 
-          <button type="submit" className="login-btn">
+          <button type="submit" className="login-btn"> 
             Entrar
           </button>
         </form>
 
         <p className="login-footer">
-          Ainda não Possui uma Conta?{" "}
+          Ainda não possui uma conta?{" "}
           <span onClick={onOpenCadastro}>Faça seu Cadastro Aqui</span>
         </p>
       </div>

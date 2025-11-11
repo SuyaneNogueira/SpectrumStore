@@ -1,0 +1,125 @@
+/* ============================
+   Conteúdo Principal (Estoque)
+   ============================ */
+.admin-content {
+  /* flex: 1;  */
+  padding: 40px;
+  /* background-color: #f9f9f9; */
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+}
+
+.admin-content h1 {
+  font-family: "Times New Roman", Times, serif; /* Fonte do título como na sua foto */
+  font-size: 2.5rem;
+  color: #333;
+  /* border-bottom: 2px solid #eee; */
+  padding-bottom: 10px;
+}
+
+.filtro-container {
+  margin: 20px 0;
+}
+
+.filtro-container input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+/* Tabela de Estoque */
+.tabela-estoque {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden; /* Para o border-radius funcionar na tabela */
+}
+
+.tabela-estoque th,
+.tabela-estoque td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabela-estoque th {
+  background-color: #f4f6f8;
+  font-weight: 600;
+  color: #555;
+}
+
+.tabela-estoque tr:hover {
+  background-color: #fdfdfd;
+}
+
+/* Status Ativo/Inativo */
+.status-ativo,
+.status-inativo {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.status-ativo {
+  background-color: #e0f8e9;
+  color: #2a8a4d;
+}
+
+.status-inativo {
+  background-color: #fde0e0;
+  color: #c0392b;
+}
+
+/* Botões de Ação */
+.acoes-botoes button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.btn-repor {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-editar {
+  background-color: #f1c40f;
+  color: #333;
+}
+
+.erro-estoque {
+  color: #c0392b;
+  font-weight: bold;
+  background-color: #fde0e0;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+/* scrollbar */
+
+/* O "Envelope" que limita a altura */
+.tabela-scroll-container {
+  max-height: 400px; /* <<-- AQUI ESTÁ O LIMITE! (600px ou o que você quiser) */
+  overflow-y: auto; /* Adiciona a scrollbar VERTICAL quando o conteúdo passa do limite */
+  border-radius: 8px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tabela-estoque thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

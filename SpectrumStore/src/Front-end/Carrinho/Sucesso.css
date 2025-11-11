@@ -1,3 +1,12 @@
+.correcão-alinhamento-sucesso{
+  display: flex;
+  /* border: solid; */
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content:center ;
+}
+
 .sucesso-container-carrinho-compra {
   text-align: center;
   padding: 3rem;
@@ -5,13 +14,13 @@
   background: #A2C9CD;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 150, 100, 0.15);
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  left: 33%;
-  top: 26%;
+  /* left: 33%;
+  top: 26%; */
   color: #03374C;
   
 }
@@ -69,4 +78,8 @@
 
 .btn-voltar-carrinho-compra:hover {
   background: #085D72;
+}
+.aviso-maquina-erro{
+  /* border: solid; */
+  margin: 2.5%;
 }

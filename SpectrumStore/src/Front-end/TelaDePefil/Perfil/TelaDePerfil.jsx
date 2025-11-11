@@ -11,7 +11,7 @@ import Button from '../../TelaInicial/Button';
 import { Link } from "react-router-dom";
 
 function TelaDePerfil() {
-  const [abaAtiva, setAbaAtiva] = useState("historico");
+  const [abaAtiva, setAbaAtiva] = useState("meucarrinho");
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
   const [menuAberto, setMenuAberto] = useState(false);
   const { toggleFavorite, isFavorited } = useFavorites();
@@ -35,25 +35,16 @@ function TelaDePerfil() {
     updateQuantity,
   } = useCart();
 
-// function historicoB() {
-
-//   if (finalizarCompra) {
-//     setAbaAtiva("historico")
-    
-//   } else{
-//     <div>
-//      <p>Você ainda não fez nenhuma compra.</p>
-//     </div>
-//   }
-  
-// }
-
   return (
     <div className="perfil-container">
-      <div className="perfil-topo"><Link to='/TelaInicial'><img src="voltarteladeperfil.png" alt="" className="VoltartelaDePerfil" /></Link></div>
+      <div className="perfil-topo">
+        <Link to='/TelaInicial'>
+          <img src="voltarteladeperfil.png" alt="Voltar" className="VoltartelaDePerfil" />
+        </Link>
+      </div>
 
       <div className="perfil-header">
-        <img src="https://via.placeholder.com/150" className="foto-perfil" />
+        <img src="https://via.placeholder.com/150" className="foto-perfil" alt="Foto de perfil" />
         <div className="perfil-info">
           <p><strong>Nome:</strong> Maria Knupp</p>
           <p><strong>Idade:</strong> 23</p>
@@ -71,12 +62,11 @@ function TelaDePerfil() {
 
           {menuAberto && (
             <div className="menu-ajustes">
-  <h4>Ajustes</h4>
-  <button className="ajuste-opcao-editar" onClick={() => setModalEditar(true)}>Editar Perfil</button>
-  <button className="ajuste-opcao-excluir" onClick={() => setModalExcluir(true)}>Excluir Perfil</button>
-  <button className="ajuste-opcao-suporte" onClick={() => setModalSuporte(true)}>Suporte</button>
-</div>
-
+              <h4>Ajustes</h4>
+              <button className="ajuste-opcao-editar" onClick={() => setModalEditar(true)}>Editar Perfil</button>
+              <button className="ajuste-opcao-excluir" onClick={() => setModalExcluir(true)}>Excluir Perfil</button>
+              <button className="ajuste-opcao-suporte" onClick={() => setModalSuporte(true)}>Suporte</button>
+            </div>
           )}
         </div>
       </div>
@@ -112,54 +102,83 @@ function TelaDePerfil() {
       {/* Conteúdo */}
       <div className="perfil-conteudo">
         {abaAtiva === "meucarrinho" && (
-          <div className="produtos-grid">
-           
-            {cartItems && cartItems.map((item, index) => ( 
-              <div className="protudo-geral-carrinho-perfil">
-              <div
-              key={item.cartItemId || `item-${index}`}
-                className="produto-card"
-                // onClick={() => setPedidoSelecionado(item)}
-                style={{ cursor: "pointer" }}>
-                  <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
-                    onClick={() => toggleFavorite(item)}/></span>
-                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
-                src={item.image} alt={item.name}/></div>
-                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4 className="container-descricao">{item.name}</h4>
-                {/* <p className="container-descricao">{pedido.descricao}</p> */}
-              
-                    <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
-              </div>
-              </div>
-            ))}
-            
+          <div className="produtos-grid-perfil-carrinho">
+            {cartItems && cartItems.length > 0 ? (
+              cartItems.map((item, index) => ( 
+                <div className="produto-card-perfil-carrinho" key={index}>
+                  <span className="favorito-perfil-carrinho">
+                    <Button 
+                      isFavorited={isFavorited(item.id)} 
+                      onClick={() => toggleFavorite(item)}
+                    />
+                  </span>
+                  <div className="produto-imagem-container">
+                    <img 
+                      className="imagem-mesmo-produtos-carrinho" 
+                      src={item.image} 
+                      alt={item.name}
+                    />
+                    <span className="preco-perfil-carrinho">
+                      <span className="cor-amarela-preco">R$</span> 
+                      {(item.price * (item.quantidade || 1)).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="produto-detalhes-perfil">
+                    <h4 className="titulo-produto-perfil">{item.name}</h4>
+                    <div className="estrela-perfil-usuario">
+                      <StarRating rating={item.rating} />
+                      <div className="quantidade-estrela">
+                        <span>{(item.quantidade)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Seu carrinho está vazio.</p>
+            )}
           </div>
         )}
 
-         {abaAtiva === "historico" && (
-          <div className="produtos-grid">
-           
-            {cartItems && cartItems.map((item, index) => ( 
-              <div className="protudo-geral-carrinho-perfil">
-              <div
-              key={item.cartItemId || `item-${index}`}
-                className="produto-card"
-                onClick={() => setPedidoSelecionado(item)}
-                style={{ cursor: "pointer" }}>
-                  <span className="favorito"><Button isFavorited={isFavorited(item.id)} 
-                    onClick={() => toggleFavorite(item)}/></span>
-                <div className="imagem-produto"><img className="imagem-mesmo-produtos-carrinho" 
-                src={item.image} alt={item.name}/></div>
-                <span className="preco">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4 className="container-descricao">{item.name}</h4>
-                {/* <p className="container-descricao">{pedido.descricao}</p> */}
-              
-                    <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
-              </div>
-              </div>
-            ))}
-            
+        {abaAtiva === "historico" && (
+          <div className="produtos-grid-perfil-historico">
+            {cartItems && cartItems.length > 0 ? (
+              cartItems.map((item, index) => ( 
+                <div 
+                  className="produto-card-perfil-historico"
+                  key={index}
+                  onClick={() => setPedidoSelecionado(item)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <span className="favorito-perfil-historico">
+                    <Button 
+                      isFavorited={isFavorited(item.id)} 
+                      onClick={() => toggleFavorite(item)}
+                    />
+                  </span>
+                  <div className="produto-imagem-container">
+                    <img 
+                      className="imagem-mesmo-produtos-historico" 
+                      src={item.image} 
+                      alt={item.name}
+                    />
+                    <span className="preco-perfil-historico">
+                      <span className="cor-amarela-preco">R$</span> 
+                      {(item.price * (item.quantidade || 1)).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="produto-detalhes-perfil">
+                    <h4 className="titulo-produto-perfil">{item.name}</h4>
+                    <p className="descricao-produto-perfil">{item.description}</p>
+                    <div className="estrela-perfil-usuario">
+                      <StarRating rating={item.rating} />
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Você ainda não fez nenhuma compra.</p>
+            )}
           </div>
         )}
 
@@ -179,7 +198,6 @@ function TelaDePerfil() {
       {modalEditar && <EditarPerfil onClose={() => setModalEditar(false)} />}
       {modalExcluir && <ExcluirPerfil onClose={() => setModalExcluir(false)} />}
       {modalSuporte && <Suporte onClose={() => setModalSuporte(false)} />}
-
     </div>
   );
 }

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CarrinhoP2.css";
 import Navbar from "../Navbar/Navbar";
-import { loadStripe } from "@stripe/stripe-js";
-import { useCart } from "./CartContext";
 import { Link } from "react-router-dom";
 import CartaoCredito from "../imagens/cartao-credito.png";
 import CartaoDebito from "../imagens/cartao-debito.png";
@@ -13,11 +11,9 @@ import Mastercard from "../imagens/mastercard.png";
 import Bradesco from "../imagens/bradesco.png";
 
 function CarrinhoP2() {
-  // const { cartItems } = useCart();
 
   const [cartItems, setCartItems] = useState([]); 
   
-  // 2. Usamos o useEffect para carregar os dados do localStorage (que o CarrinhoP1 salvou)
   useEffect(() => {
     const itensSalvos = localStorage.getItem("itensPagamento");
     if (itensSalvos) {
@@ -25,12 +21,7 @@ function CarrinhoP2() {
       setCartItems(itensParseados);
       console.log("Itens carregados do localStorage para pagamento:", itensParseados);
     }
-  }, []); // O array vazio [] faz isso rodar só uma vez quando a página carregar
-
-  // =========================================================
-  // 👆👆👆 FIM DA MUDANÇA ESSENCIAL 👆👆👆
-  // =========================================================
-
+  }, []); 
 
   const [formaPagamento, setFormaPagamento] = useState("");
 

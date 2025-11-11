@@ -20,7 +20,7 @@
     position: relative;
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #6ba5ac 0%, #03374C 100%);
+    background: linear-gradient(135deg, #03374C 0%, #03374C 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +84,7 @@
 
 .status-texto {
     font-weight: bold;
-    color: #2E7D32;
+    color: #0e6f13;
     font-size: 1.1em;
 }
 
@@ -352,4 +352,134 @@
 
 .span-cor-logo-spectrum-rodape{
     color: #A2C9CC;
+}
+
+/* Estilos existentes... */
+
+.botao-fechar-codigo {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.botao-fechar-codigo:hover {
+  background: #ff3742;
+}
+
+.botao-adicionar-teste {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.botao-adicionar-teste:hover {
+  background: #00a085;
+}
+
+/* Informações da fila */
+.info-fila-tempo-real {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.fila-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.fila-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+.total-fila {
+  background: #667eea;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.itens-fila {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+}
+
+.posicao-fila {
+  font-weight: bold;
+  color: #667eea;
+  min-width: 30px;
+}
+
+.pedido-fila {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.tempo-fila {
+  color: #666;
+  font-size: 12px;
+}
+
+/* Header dos pedidos prontos */
+.header-pedidos-prontos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.contador-pedidos {
+  background: #28a745;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.info-tempo-espera {
+  margin: 10px 0;
+  padding: 8px;
+  background: #fff3cd;
+  border-radius: 4px;
+  border-left: 4px solid #ffc107;
+}
+
+.tempo-estimado {
+  font-size: 14px;
+  color: #856404;
+}
+
+.info-fila {
+  margin: 8px 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
 }

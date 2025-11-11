@@ -1,145 +1,227 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  getPedidosProntos, 
-  confirmarRetirada, 
-  cancelarRetirada, 
-  getStatusRetirada,
-  getStatusPedido 
-} from '../services/RetiradaService';
+import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
 
 const RetiradaContext = createContext();
 
-export const useRetirada = () => {
-  const context = useContext(RetiradaContext);
-  console.log('RetiradaContext value:', context);
-  if (!context) {
-    throw new Error('useRetirada deve ser usado dentro de RetiradaProvider');
-  }
-  return context;
-};
-
-export const RetiradaProvider = ({ children }) => {
+export function RetiradaProvider({ children }) {
   const [pedidosProntos, setPedidosProntos] = useState([]);
-  const [statusRetirada, setStatusRetirada] = useState(null);
+  const [filaRetirada, setFilaRetirada] = useState([]);
+  const [statusRetirada, setStatusRetirada] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [codigoRetirada, setCodigoRetirada] = useState(null);
+  const [estatisticasLoja, setEstatisticasLoja] = useState({
+    pessoasNaFila: 0,
+    funcionariosDisponiveis: 2,
+    tempoMedioAtendimento: 2.5 // em minutos
+  });
 
-  // Buscar pedidos prontos para retirada
-  const buscarPedidosProntos = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await getPedidosProntos();
-      setPedidosProntos(response.pedidos || []);
-      return response;
-    } catch (err) {
-      setError('Erro ao buscar pedidos prontos');
-      console.error(err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Função para gerar código único
+  const gerarCodigoRetirada = useCallback(() => {
+    const timestamp = Date.now();
+    const random = Math.floor(Math.random() * 1000);
+    return `RET-${timestamp}${random}`;
+  }, []);
 
-  // Confirmar retirada
-  const confirmarRetiradaPedido = async (orderId) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await confirmarRetirada(orderId);
-      
-      // Atualizar lista local
-      setPedidosProntos(prev => 
-        prev.filter(pedido => pedido.orderId !== orderId)
-      );
-      
-      return response;
-    } catch (err) {
-      setError('Erro ao confirmar retirada');
-      console.error(err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Calcular tempo de espera baseado na fila
+  const calcularTempoEspera = useCallback((fila, funcionarios, tempoMedio) => {
+    if (fila.length === 0) return 0;
+    return (fila.length / funcionarios) * tempoMedio;
+  }, []);
 
-  // Cancelar retirada
-  const cancelarRetiradaPedido = async (orderId, motivo) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await cancelarRetirada(orderId, motivo);
-      
-      // Atualizar lista local
-      setPedidosProntos(prev => 
-        prev.filter(pedido => pedido.orderId !== orderId)
-      );
-      
-      return response;
-    } catch (err) {
-      setError('Erro ao cancelar retirada');
-      console.error(err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Atualizar estatísticas quando a fila mudar
+  useEffect(() => {
+    const tempoEspera = calcularTempoEspera(
+      filaRetirada,
+      estatisticasLoja.funcionariosDisponiveis,
+      estatisticasLoja.tempoMedioAtendimento
+    );
 
-  // Buscar status da área de retirada
-  const buscarStatusRetirada = async () => {
-    try {
-      const response = await getStatusRetirada();
-      setStatusRetirada(response);
-      return response;
-    } catch (err) {
-      setError('Erro ao buscar status da retirada');
-      console.error(err);
-      throw err;
-    }
-  };
+    setEstatisticasLoja(prev => ({
+      ...prev,
+      pessoasNaFila: filaRetirada.length,
+      tempoEsperaFila: tempoEspera
+    }));
+  }, [filaRetirada, estatisticasLoja.funcionariosDisponiveis, estatisticasLoja.tempoMedioAtendimento, calcularTempoEspera]);
 
-  // Verificar status de um pedido específico
-  const verificarStatusPedido = async (pedidoId) => {
-    try {
-      const response = await getStatusPedido(pedidoId);
-      return response;
-    } catch (err) {
-      console.error('Erro ao verificar status do pedido:', err);
-      throw err;
-    }
-  };
-
-  // Atualizar automaticamente a cada 30 segundos
+  // Simular chegada de novos pedidos
   useEffect(() => {
     const interval = setInterval(() => {
-      buscarPedidosProntos();
-      buscarStatusRetirada();
-    }, 30000);
+      // 20% de chance de chegar um novo pedido a cada 30 segundos
+      if (Math.random() < 0.2) {
+        const novosPedidos = [
+          {
+            id: `P${Date.now()}`,
+            clienteNome: 'Cliente ' + Math.floor(Math.random() * 1000),
+            quantidadeItens: Math.floor(Math.random() * 5) + 1,
+            valorTotal: Math.random() * 200 + 50
+          }
+        ];
+        
+        setPedidosProntos(prev => [...prev, ...novosPedidos]);
+      }
+    }, 30000); // Verifica a cada 30 segundos
 
     return () => clearInterval(interval);
   }, []);
 
-  // Buscar dados iniciais
-  useEffect(() => {
-    buscarPedidosProntos();
-    buscarStatusRetirada();
+  const adicionarNaFila = useCallback((pedidoId) => {
+    const novoItemFila = {
+      id: `F${Date.now()}`,
+      pedidoId: pedidoId,
+      horarioEntrada: new Date(),
+      tempoEstimado: estatisticasLoja.tempoEsperaFila || 0
+    };
+
+    setFilaRetirada(prev => [...prev, novoItemFila]);
+    return novoItemFila;
+  }, [estatisticasLoja.tempoEsperaFila]);
+
+  const removerDaFila = useCallback((pedidoId) => {
+    setFilaRetirada(prev => prev.filter(item => item.pedidoId !== pedidoId));
   }, []);
 
-  const value = {
-    pedidosProntos,
-    statusRetirada,
-    loading,
-    error,
-    buscarPedidosProntos,
-    confirmarRetiradaPedido,
-    cancelarRetiradaPedido,
-    buscarStatusRetirada,
-    verificarStatusPedido
-  };
+  const confirmarRetiradaPedido = useCallback(async (pedidoId) => {
+    try {
+      setLoading(true);
+      
+      // Gerar novo código
+      const novoCodigo = gerarCodigoRetirada();
+      setCodigoRetirada(novoCodigo);
+      
+      // Adicionar na fila de retirada
+      adicionarNaFila(pedidoId);
+      
+      // Simular chamada API
+      console.log(`Confirmando retirada do pedido ${pedidoId} com código: ${novoCodigo}`);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Atualizar lista de pedidos
+      setPedidosProntos(prev => prev.filter(pedido => pedido.id !== pedidoId));
+      
+      setError(null);
+    } catch (err) {
+      setError('Erro ao confirmar retirada');
+      setCodigoRetirada(null);
+    } finally {
+      setLoading(false);
+    }
+  }, [gerarCodigoRetirada, adicionarNaFila]);
+
+  const cancelarRetiradaPedido = useCallback(async (pedidoId, motivo) => {
+    try {
+      setLoading(true);
+      setCodigoRetirada(null); // Limpar código ao cancelar
+      
+      // Remover da fila se estiver lá
+      removerDaFila(pedidoId);
+      
+      // Simular chamada API
+      console.log(`Cancelando retirada do pedido ${pedidoId}. Motivo: ${motivo}`);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setPedidosProntos(prev => prev.filter(pedido => pedido.id !== pedidoId));
+      setError(null);
+    } catch (err) {
+      setError('Erro ao cancelar retirada');
+    } finally {
+      setLoading(false);
+    }
+  }, [removerDaFila]);
+
+  const buscarPedidosProntos = useCallback(async () => {
+    try {
+      setLoading(true);
+      // Simular busca de pedidos
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Dados mockados para exemplo
+      const pedidosMock = [
+        {
+          id: '1001',
+          clienteNome: 'João Silva',
+          quantidadeItens: 3,
+          valorTotal: 149.90
+        },
+        {
+          id: '1002', 
+          clienteNome: 'Maria Santos',
+          quantidadeItens: 2,
+          valorTotal: 89.50
+        }
+      ];
+      setPedidosProntos(pedidosMock);
+      setError(null);
+    } catch (err) {
+      setError('Erro ao buscar pedidos');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Função para simular atendimento (remover da fila)
+  const simularAtendimentoConcluido = useCallback(() => {
+    if (filaRetirada.length > 0) {
+      setFilaRetirada(prev => prev.slice(1)); // Remove o primeiro da fila
+    }
+  }, [filaRetirada.length]);
+
+  // Simular atendimento automático
+  useEffect(() => {
+    if (filaRetirada.length > 0) {
+      const interval = setInterval(() => {
+        // Tempo de atendimento base + variação aleatória
+        const tempoAtendimento = (estatisticasLoja.tempoMedioAtendimento * 60000) + (Math.random() * 60000);
+        
+        setTimeout(() => {
+          simularAtendimentoConcluido();
+        }, tempoAtendimento);
+      }, 10000); // Verifica a cada 10 segundos
+
+      return () => clearInterval(interval);
+    }
+  }, [filaRetirada.length, estatisticasLoja.tempoMedioAtendimento, simularAtendimentoConcluido]);
+
+  // Adicionar função para limpar código
+  const limparCodigoRetirada = useCallback(() => {
+    setCodigoRetirada(null);
+  }, []);
+
+  // Função para adicionar pedido de teste
+  const adicionarPedidoTeste = useCallback(() => {
+    const novoPedido = {
+      id: `TEST${Date.now()}`,
+      clienteNome: `Cliente Teste ${Math.floor(Math.random() * 1000)}`,
+      quantidadeItens: Math.floor(Math.random() * 5) + 1,
+      valorTotal: Math.random() * 200 + 50
+    };
+    
+    setPedidosProntos(prev => [...prev, novoPedido]);
+  }, []);
 
   return (
-    <RetiradaContext.Provider value={value}>
+    <RetiradaContext.Provider value={{
+      pedidosProntos,
+      filaRetirada,
+      statusRetirada,
+      codigoRetirada,
+      estatisticasLoja,
+      loading,
+      error,
+      confirmarRetiradaPedido,
+      cancelarRetiradaPedido,
+      buscarPedidosProntos,
+      limparCodigoRetirada,
+      adicionarPedidoTeste,
+      simularAtendimentoConcluido
+    }}>
       {children}
     </RetiradaContext.Provider>
   );
-};
+}
+
+export function useRetirada() {
+  const context = useContext(RetiradaContext);
+  if (!context) {
+    throw new Error('useRetirada deve ser usado dentro de um RetiradaProvider');
+  }
+  return context;
+}

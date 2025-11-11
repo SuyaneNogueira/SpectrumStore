@@ -113,3 +113,90 @@
   color: #03374c;
   text-decoration: none;
 }
+
+/* Ordem dos pedidos */
+
+/* Container para as linhas de dados */
+.pedidos-lista-container-adm {
+display: flex;
+flex-direction: column;
+gap: 10px; /* Espaçamento entre as linhas */
+margin-top: 10px;
+margin-left: 0.8%;
+overflow-y: auto;
+max-height: 385px;
+}
+
+/* A Linha de um Pedido (imita o seu cabeçalho) */
+.status-pedidos-adm-item {
+ border: solid 1px #e0e0e0; /* Borda mais suave que o cabeçalho */
+ background-color: #ffffff;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+ height: 10%;
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: center; /* (Igual ao seu cabeçalho) */
+ gap: 10%; /* (Igual ao seu cabeçalho) */
+ width: 100%;
+  color: #03374c;
+ padding: 10px 0; /* Adiciona um padding vertical */
+}
+
+
+.status-pedidos-adm-item > div {
+  flex: 1; /* Faz as colunas terem o mesmo tamanho */
+  text-align: center;
+  padding: 0 5px;
+  word-break: break-word; /* Quebra palavras longas */
+}
+
+/* Botão de Ação ⚙️ */
+.acao-btn-adm {
+ background: none;
+ border: none;
+ cursor: pointer;
+ font-size: 1.5rem; /* Tamanho do ícone ⚙️ */
+  color: #03374c;
+}
+.acao-btn-adm:hover {
+  opacity: 0.7;
+}
+
+/* Bolha de Status (Processando, etc) */
+.status-bubble {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  /* max-width: 10px; */
+}
+.status-pendente {
+  background-color: #fff4e0;
+  color: #e69500;
+  /* width: 20%; */
+  display: flex;
+  flex-direction: column;
+/* border: solid; */
+}
+.status-processando {
+  background-color: #fff4e0;
+  color: #e69500;
+}
+.status-pago {
+  background-color: #e0f8e9;
+  color: #2a8a4d;
+}
+.status-despacho {
+  background-color: #e0eaf8;
+  color: #3498db;
+}
+
+/* Mensagens de Erro/Loading */
+.erro-pedidos-adm {
+  color: #c0392b;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}

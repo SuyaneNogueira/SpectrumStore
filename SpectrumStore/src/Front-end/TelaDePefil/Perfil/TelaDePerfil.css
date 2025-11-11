@@ -5,9 +5,20 @@
   flex-direction: column;
 }
 
-/* .VoltartelaDePerfil{
-  
-} */
+.perfil-topo {
+  width: 100%;
+  height: 120px; 
+  background: url('/Fundo-brinquedos.png') center;
+  background-size: 100%;
+  background-color: #a2c9cde0;
+}
+
+.VoltartelaDePerfil {
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
 
 .perfil-header {
   background-color: #CFEBEE;
@@ -15,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: 3%;
+  position: relative;
 }
 
 .foto-perfil {
@@ -22,9 +34,9 @@
   height: 180px !important;
   border-radius: 50%;
   background: #6AB3BC;
-  /* object-fit: cover; */
   margin-left: 4.5%;
   margin-top: -7.7%;
+  object-fit: cover;
 }
 
 .perfil-info {
@@ -32,7 +44,7 @@
   margin-top: -4.5%;
 }
 
-.perfil-info p{
+.perfil-info p {
   margin: -9% 0%;
   font-size: 112%;
   margin-top: 4%;
@@ -41,16 +53,15 @@
   font-style: normal;
 }
 
-/* Abas (histórico, avaliações, pesquisa) */
+/* Abas */
 .perfil-abas {
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 60%;
   align-items: center;
   gap: 1.1%;
-  background: #A2C9CD; /* navbar */
+  background: #A2C9CD;
   padding: 11px;
-
 }
 
 .aba {
@@ -74,7 +85,7 @@
 }
 
 .perfil-pesquisa {
-  margin-left: 590px;
+  margin-left: auto;
   padding: 6px 20px;
   border: none;
   border-radius: 6px;
@@ -82,91 +93,155 @@
   width: 16%;
 }
 
-
+/* Conteúdo principal */
 .perfil-conteudo {
-  padding: 18px;
   background: #ffffff; 
-  border-radius: 8px;
-  margin-top: 11px;
+  min-height: 500px;
+  padding: 20px 0;
 }
 
-
-.produtos-grid {
+/* Container dos produtos - IGUAL À TELA INICIAL */
+.produtos-grid-perfil-carrinho,
+.produtos-grid-perfil-historico {
+  width: 100%;
+  height: auto;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  /* width: 100%; */
+  gap: 30px;
+  padding: 20px;
 }
 
-.produto-card {
+/* Card do produto - IGUAL À TELA INICIAL */
+.produto-card-perfil-carrinho,
+.produto-card-perfil-historico {
   position: relative;
-  border: 1px solid #ccc;
-  padding: 2%;
+  border: 2px solid #dadada;
   width: 19%;
-  /* height: 16.5%; */
+  height: 300px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  background: white;
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin-top: -1.5%;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.imagem-produto {
-  background: #e0e0e0;
+.produto-card-perfil-carrinho:hover,
+.produto-card-perfil-historico:hover {
+  transform: scale(1.03);
+}
+
+/* Container da imagem - IGUAL À TELA INICIAL */
+.produto-imagem-container {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 10px;
+  background: white;
+}
+
+.imagem-mesmo-produtos-carrinho,
+.imagem-mesmo-produtos-historico {
+  border: 2px solid #cecece;
   width: 100%;
-  height: 120%;
-  border: solid #A2C9CD;
-  border-radius: 12px;
-  margin-bottom: 8%;
-  margin-top: -11%;
-}
-
-.preco {
-  background: #034E61;
-  color: white;
-  padding: 2px 7px;
+  height: 180px;
+  display: block;
+  object-fit: contain;
+  background: white;
   border-radius: 4px;
-  font-size: 9.6px;
-  border: solid 2px #540dd6;
 }
 
-.container-descricao{
-  font-size: 80%;
-  margin-top: 5%;
-  border: solid #b22222;
-}
-
-.estrela-perfil-usuario{
-  border: 2px solid #023B52;
-  width: 40%;
-  height:0%;
-}
-
-
-.favorito {
+/* Etiqueta de preço - IGUAL À TELA INICIAL */
+.preco-perfil-carrinho,
+.preco-perfil-historico {
   position: absolute;
-  top: 4%;
-  right: 9%;
-  color: #034E61;
-  font-size: 20px;
-  cursor: pointer;
-  border: solid #17be2de0;
-  height: 11%;
+  bottom: 10px;
+  left: 10px;
+  background-color: #03374C;
+  color: #fff;
+  padding: 8px 8px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
 }
 
-.perfil-topo {
-  width: 100%;
-  height: 120px; 
-  background: url('/Fundo-brinquedos.png') center;
-  background-size: 100%;
-  background-color: #a2c9cde0;
-
+.cor-amarela-preco {
+  color: #FFF0A6;
 }
 
-/* Menu de ajustes (três pontos) */
+/* Detalhes do produto - IGUAL À TELA INICIAL */
+.produto-detalhes-perfil {
+  padding: 10px;
+  text-align: left;
+  overflow-wrap: break-word;
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.titulo-produto-perfil {
+  /* border: 2px solid; */
+  color: #03374C;
+  margin: 0 10px;
+  white-space: normal;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 2; */
+  -webkit-box-orient: vertical;
+}
+
+
+/* Ícone de favorito - IGUAL À TELA INICIAL */
+.favorito-perfil-carrinho,
+.favorito-perfil-historico {
+  /* border: 2px solid; */
+  position: absolute;
+  top: 14px;
+  right: 29px;
+  z-index: 100;
+}
+
+/* Avaliação com estrelas - IGUAL À TELA INICIAL */
+.estrela-perfil-usuario {
+  /* border: 2px solid; */
+  color: #FFD500;
+  margin: 0 10px;
+  white-space: normal;
+  padding: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 115px;
+}
+.quantidade-estrela{
+  border: 2px solid;
+  border-radius: 10px;
+  color: #023B52;
+  width: 15%;
+  height: 68%;
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+/* Menu de ajustes */
 .menu-container {
   margin-left: auto;
   position: relative;
-  top: -65px;
+  top: -5px;
 }
 
 .menu-icone {
@@ -182,7 +257,7 @@
   margin-left: 96%;
 }
 
-.container-ajustes{
+.container-ajustes {
   width: 100%;
   height: 100%;
 }
@@ -222,10 +297,14 @@
   background: #86BEC4;
   color: #023b52;
   font-size: 15px;
-  font-family: inknut-antiqua
+  font-family: 'Inknut Antiqua', serif;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.ajuste-opcao:hover {
+.ajuste-opcao-editar:hover, 
+.ajuste-opcao-excluir:hover, 
+.ajuste-opcao-suporte:hover {
   background: #7ab7be;
   color: white;
 }
@@ -233,21 +312,120 @@
 .ajuste-opcao-excluir {
   color: #b22222;
   font-weight: bolder;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
 .ajuste-opcao-suporte {
   color: #ffffff;
   font-weight: bolder;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
 .ajuste-opcao-editar {
   color: #034E61;
   font-weight: bolder;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
+/* Mensagem quando não há itens */
+.perfil-conteudo > div > p {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 1400px) {
+  .produto-card-perfil-carrinho,
+  .produto-card-perfil-historico {
+    width: 23%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .produto-card-perfil-carrinho,
+  .produto-card-perfil-historico {
+    width: 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .produto-card-perfil-carrinho,
+  .produto-card-perfil-historico {
+    width: 45%;
+  }
+  
+  .perfil-abas {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  
+  .aba.ativa {
+    width: auto;
+  }
+  
+  .perfil-pesquisa {
+    width: 200px;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .produto-card-perfil-carrinho,
+  .produto-card-perfil-historico {
+    width: 45%;
+    height: 350px;
+  }
+  
+  .foto-perfil {
+    width: 120px !important;
+    height: 120px !important;
+    margin-top: -5%;
+  }
+  
+  .perfil-info p {
+    font-size: 90%;
+  }
+  
+  .menu-container {
+    top: -45px;
+  }
+  
+  .imagem-mesmo-produtos-carrinho,
+  .imagem-mesmo-produtos-historico {
+    height: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .produto-card-perfil-carrinho,
+  .produto-card-perfil-historico {
+    width: 90%;
+    height: 320px;
+  }
+  
+  .perfil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .foto-perfil {
+    margin-left: 0;
+    margin-top: -15%;
+  }
+  
+  .perfil-info {
+    margin-top: 10px;
+  }
+  
+  .menu-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .produtos-grid-perfil-carrinho,
+  .produtos-grid-perfil-historico {
+    padding: 0 10px;
+    gap: 20px;
+  }
+}

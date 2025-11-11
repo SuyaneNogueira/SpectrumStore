@@ -135,9 +135,7 @@ const produtosSpectrum = [
 function Tela_produtos() {
   const { id } = useParams();
 
-  ////////////////////////////////////////////
-
-  // 🔥 1️⃣ CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
+// CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
   React.useEffect(() => {
     const produtosLoja = JSON.parse(localStorage.getItem("produtosLoja")) || [];
     const produtoBase =
@@ -172,7 +170,7 @@ function Tela_produtos() {
     }
   }, [id]);
 
-  // ⚡ 2️⃣ REAGE AUTOMATICAMENTE A ALTERAÇÕES NO LOCALSTORAGE (SEM DAR F5)
+  // REAGE AUTOMATICAMENTE A ALTERAÇÕES NO LOCALSTORAGE (SEM DAR F5)
   React.useEffect(() => {
     const handleStorageChange = () => {
       const produtoPersonalizado = JSON.parse(
@@ -190,8 +188,6 @@ function Tela_produtos() {
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, [id]);
-
-  ////////////////////////////////////////////////////////////////
 
   const [personalizacoesSelecionadas, setPersonalizacoesSelecionadas] =
     useState({});
@@ -294,11 +290,11 @@ quantidade,
             <div className="linha-divisora"></div>
           </div>
 
-          {/* 🔹 Personalizações visuais do produto */}
+          {/*  Personalizações visuais do produto */}
           <div className="secao-personalizacao">
             <h3 className="titulo-personalizacao">Personalizações</h3>
 
-            {/* 🔹 Opções disponíveis (definidas no cadastro) */}
+            {/*  Opções disponíveis (definidas no cadastro) */}
             <div className="opcoes-personalizacao">
               {produto.personalizacao &&
                 Object.keys(produto.personalizacao).map((key) => (
@@ -352,8 +348,6 @@ quantidade,
                     </div>
                   </div>
                 ))}
-
-              {/* //////////////////////////////////////////////////////////// */}
 
               <div className="quantidade-e-botao">
                 <div className="seletor-quantidade">

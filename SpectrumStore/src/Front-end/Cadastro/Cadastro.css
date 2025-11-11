@@ -76,7 +76,7 @@
     position: absolute;
     background: none;
     border: none;
-    font-size: 26px;
+    font-size: 27px;
     color: var(--color-primary);
     cursor: pointer;
     margin-left: 470px;
@@ -98,7 +98,7 @@
     font-style: normal;
     color: var(--color-primary);
     font-size: 30px;
-    margin-top: -5%;
+    margin-top: -6%;
     align-self: flex-start; 
     margin-left: -48px;
 }
@@ -119,7 +119,7 @@
 .input-group label {
     font-size: 14px;
     color: var(--color-primary);
-    margin-bottom: -35px;
+    margin-bottom: -40px;
     display: block;
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
@@ -199,6 +199,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    /* border: solid 2px #40f811; */
     margin: -195px;
     margin-left: 110px;
 }
@@ -258,14 +259,14 @@
 
 .cadastro-footer a {
     color: var(--color-primary);
-    text-decoration: none; 
+    text-decoration: underline; 
     cursor: pointer;
 }
 
 .cadastro-termos,
 .link-login {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
   border-bottom: 1px solid transparent;
   transition: border-color 150ms ease;
   cursor: pointer;
@@ -290,24 +291,29 @@
 .termos-container {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-top: -18px;
-  margin-bottom: -20px;
+  font-size: 14px;
   cursor: pointer;
-  user-select: none;
+  gap: 1px;
+  font-family: 'Inknut Antiqua', serif;
+  color: var(--color-primary);
+  margin-top: -3%;
+  margin-bottom: -3%;
 }
 
-.container-text{
-    font-size: 50%;
+.termos-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .termo-circulo {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--color-primary);
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  margin-right: 10px;
+  margin-left: 8px;
+  transition: background-color 0.2s ease;
 }
 
 .termo-circulo.ativo {
