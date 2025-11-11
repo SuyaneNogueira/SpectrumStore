@@ -126,7 +126,7 @@ function TelaDePerfil() {
                 src={item.image} alt={item.name}/></div>
                 <span className="preco-perfil-carrinho">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
                 <h4 className="container-descricao-perfil-carrinho">{item.name}</h4>
-                {/* <p className="container-descricao">{pedido.descricao}</p> */}
+                <p className="container-descricao">{pedido.descricao}</p>
               
                   <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
               </div>
