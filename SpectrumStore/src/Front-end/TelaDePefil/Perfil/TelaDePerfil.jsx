@@ -103,7 +103,6 @@ function TelaDePerfil() {
       <div className="perfil-conteudo">
         {abaAtiva === "meucarrinho" && (
           <div className="produtos-grid-perfil-carrinho">
-<<<<<<< HEAD
             {cartItems && cartItems.length > 0 ? (
               cartItems.map((item, index) => ( 
                 <div className="produto-card-perfil-carrinho" key={index}>
@@ -138,28 +137,6 @@ function TelaDePerfil() {
             ) : (
               <p>Seu carrinho está vazio.</p>
             )}
-=======
-           
-            {cartItems && cartItems.map((item, index) => ( 
-              <div>
-              <div
-              key={item.cartItemId || `item-${index}`}
-                className="produto-card-perfil-carrinho"
-                style={{ cursor: "pointer" }}>
-                  <span className="favorito-perfil-carrinho"><Button isFavorited={isFavorited(item.id)} 
-                    onClick={() => toggleFavorite(item)}/></span>
-                <div className="imagem-produto-perfil-carrinho"><img className="imagem-mesmo-produtos-carrinho" 
-                src={item.image} alt={item.name}/></div>
-                <span className="preco-perfil-carrinho">R$ {(item.price * (item.quantidade || 1)).toFixed(2)}</span>
-                <h4 className="container-descricao-perfil-carrinho">{item.name}</h4>
-                <p className="container-descricao">{pedido.descricao}</p>
-              
-                  <div className="estrela-perfil-usuario"><StarRating rating={item.rating}  /></div>
-              </div>
-              </div>
-            ))}
-            
->>>>>>> 376b6de81de59974eaff45722ae98b86b694069e
           </div>
         )}
 

@@ -50,8 +50,8 @@
   background: #fff;
   border-radius: 12px;
   padding: 30px;
-  max-width: 56%;   /* aumentei a largura */
-  min-height: 66%;   /* aumentei altura mínima */
+  max-width: 90%;   /* aumentei a largura */
+  min-height: 80%;   /* aumentei altura mínima */
   width: 95%;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   position: relative;
