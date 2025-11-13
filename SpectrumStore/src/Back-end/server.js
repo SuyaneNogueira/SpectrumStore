@@ -3,22 +3,11 @@ import cors from "cors";
 import Stripe from "stripe";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-<<<<<<< HEAD
 import { pool } from "./db.js";
 import { defineRoutes } from "./CarrinhoBackT.js";
 import axios from "axios";
 import { traduzirItemParaPayload } from "./tradutorMaquina.js";
-=======
-import { pool } from "./db.js"; // Você já tinha isso
-import { defineRoutes } from "./CarrinhoBackT.js"; // Você já tinha isso
-import axios from "axios"; // <--- IMPORTANTE (para a máquina)
-import { traduzirItemParaPayload } from "./tradutorMaquina.js"; // <--- A MÁGICA
-<<<<<<< HEAD
 import adminRoutes from './AdminRoutes.js';  
-=======
-import adminRoutes from './AdminRoutes.js'; // 👈 1. IMPORTE O NOVO ARQUIVO 
->>>>>>> d8dc9dbf3a043659943db428508894b03338f576
->>>>>>> 1ff6e9fadd402d627ee80c408fe3290d6917ded9
 
 dotenv.config();
 
@@ -27,9 +16,6 @@ const PORT = process.env.PORT || 3030; // ← PORTA FIXA 3030
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // =========================================================
-<<<<<<< HEAD
-// 🔹 MIDDLEWARES
-=======
 // 🔹 1. FUNÇÃO DE ENVIO PARA A BANCADA (MÁQUINA)
 // =========================================================
 async function enviarPedidoParaMaquina(payloadCompleto, idDoPedido) {
@@ -157,7 +143,6 @@ app.post(
 
 // =========================================================
 // 🔹 3. MIDDLEWARES NORMAIS
->>>>>>> d8dc9dbf3a043659943db428508894b03338f576
 // =========================================================
 app.use(cors());
 app.use(express.json());
@@ -171,7 +156,6 @@ app.use(adminRoutes);
 // =========================================================
 // 🔹 ROTAS DE RETIRADA MOCKADAS (NOVAS)
 // =========================================================
-<<<<<<< HEAD
 
 // Health Check
 app.get('/health', (req, res) => {
@@ -306,7 +290,6 @@ app.listen(PORT, () => {
 });
 
 // NÃO ADICIONE NENHUM OUTRO app.listen() AQUI!
-=======
 app.post("/create-checkout-session", async (req, res) => {
   console.log("\n--- INÍCIO DA ROTA /create-checkout-session ---");
 
@@ -547,4 +530,3 @@ app.post("/verificar-e-salvar-pedido", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Backend rodando em http://localhost:${PORT}`);
 });
->>>>>>> d8dc9dbf3a043659943db428508894b03338f576
