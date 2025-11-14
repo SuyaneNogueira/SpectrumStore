@@ -94,7 +94,7 @@ export default function Sucesso() {
           className="btn-voltar-carrinho-compra"
           onClick={() => navigate("/")}
         >
-          🔙 Voltar à loja
+          Voltar à loja
         </button>
       </div>
     );

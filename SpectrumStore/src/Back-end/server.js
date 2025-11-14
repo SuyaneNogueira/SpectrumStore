@@ -153,6 +153,92 @@ app.use(express.json());
 defineRoutes(app);
 app.use(adminRoutes); 
 
+
+// =========================================================
+// (A "Caixa de Correio" para o seu 'Produtos.jsx')
+// =========================================================
+
+// GET (Listar todos os produtos)
+app.get('/api/produtos', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM produtos ORDER BY id DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error("❌ Erro ao buscar produtos:", err);
+    res.status(500).json({ error: 'Erro interno ao buscar produtos.' });
+  }
+});
+
+// POST (Criar novo produto)
+app.post('/api/produtos', async (req, res) => {
+  console.log("[API] Recebida requisição para criar novo produto...");
+  const { name, price, description, category, image, personalizacao } = req.body;
+
+  if (!name || !price || !category) {
+    return res.status(400).json({ error: 'Nome, Preço e Categoria são obrigatórios.' });
+  }
+  
+  // Converte o objeto JS das personalizações em texto JSON para salvar no BD
+  const personalizacaoJson = JSON.stringify(personalizacao || {});
+
+  try {
+    const query = `
+      INSERT INTO produtos (name, price, description, category, image, personalizacao)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *; 
+    `;
+    const values = [name, price, description, category, image, personalizacaoJson];
+    const result = await pool.query(query, values);
+
+    console.log(`[API] Produto #${result.rows[0].id} salvo no banco.`);
+    res.status(201).json(result.rows[0]); // Retorna o produto salvo
+  } catch (err) {
+    console.error("❌ Erro ao salvar produto:", err);
+    res.status(500).json({ error: 'Erro interno ao salvar produto.', details: err.message });
+  }
+});
+
+// PUT (Editar um produto)
+app.put('/api/produtos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, price, description, category, image, personalizacao } = req.body;
+  const personalizacaoJson = JSON.stringify(personalizacao || {});
+  
+  try {
+    const query = `
+      UPDATE produtos 
+      SET name = $1, price = $2, description = $3, category = $4, image = $5, personalizacao = $6
+      WHERE id = $7
+      RETURNING *;
+    `;
+    const values = [name, price, description, category, image, personalizacaoJson, id];
+    const result = await pool.query(query, values);
+    
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Produto não encontrado.' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(`❌ Erro ao atualizar produto #${id}:`, err);
+    res.status(500).json({ error: 'Erro interno ao atualizar produto.' });
+  }
+});
+
+// DELETE (Excluir um produto)
+app.delete('/api/produtos/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query('DELETE FROM produtos WHERE id = $1', [id]);
+    res.status(204).send(); // 204 = Sucesso, sem conteúdo
+  } catch (err) {
+    console.error(`❌ Erro ao excluir produto #${id}:`, err);
+    res.status(500).json({ error: 'Erro interno ao excluir produto.' });
+  }
+});
+// 
+// =========================================================
+
+
 // =========================================================
 // 🔹 ROTAS DE RETIRADA MOCKADAS (NOVAS)
 // =========================================================

@@ -16,7 +16,6 @@ import TelaDePerfil from "../TelaDePefil/Perfil/TelaDePerfil";
 import CarrinhoP2 from "../Carrinho/CarrinhoP2";
 import Produtos from "../../Adm/pages/Produtos";
 import Layout from "../../Adm/components/Layout";
-import Dashboard from "../../Adm/pages/Dashboard";
 import Pedidos from "../../Adm/pages/Pedidos";
 import Estatisticas from "../../Adm/pages/Estatisticas";
 import Estoque from "../../Adm/pages/Estoque";
@@ -25,6 +24,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import Sucesso from "../Carrinho/Sucesso";
 import TelaInfo from "../TelaInformacoes/TelaInfo";
 import TelaRetirada from "../../telaRetirada/TelaRetirada";
+import GestaoEstoqueAdm from "../../Adm/pages/GestaoEstoqueMaquina"
 
 const Router = createBrowserRouter([
     { path: "/", element: <LandingPage/> },
@@ -54,8 +54,8 @@ const Router = createBrowserRouter([
         path: "/LayoutAdm",
         element: <Layout/>, 
         children: [
-            { index: true, element: <Dashboard/> },
-            { path: "dashboard", element: <Dashboard/> },
+            { index: true, element: <GestaoEstoqueAdm/> },
+            { path: "GEM", element: <GestaoEstoqueAdm/> },
             { path: "pedidos", element: <Pedidos/> },
             { path: "estatisticas", element: <Estatisticas/> },
             { path: "produtos", element: <Produtos/> },

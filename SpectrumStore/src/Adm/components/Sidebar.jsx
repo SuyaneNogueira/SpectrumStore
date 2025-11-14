@@ -11,7 +11,7 @@ export default function Sidebar() {
       </h1>
 
      <div className="butons-sidebar">
-      <Link to="dashboard" className={`menu-item ${location.pathname === "dashboard" ? "active" : ""}`}>
+      <Link to="GEM" className={`menu-item ${location.pathname === "GEM" ? "active" : ""}`}>
         GEM
       </Link>
 
