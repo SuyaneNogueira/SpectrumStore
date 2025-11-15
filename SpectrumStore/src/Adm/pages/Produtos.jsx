@@ -211,7 +211,7 @@ export default function Produtos() {
               size={30}
               color="#03374C"
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/PerfilAdm")}
             />
           </div>
         </div>

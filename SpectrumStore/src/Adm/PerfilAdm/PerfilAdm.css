@@ -1,0 +1,431 @@
+.perfil-container-adm {
+  font-family: 'Inknut Antiqua', serif;
+  color: #023B52;
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-top-adm {
+  width: 100%;
+  height: 120px; 
+  background: url('/Fundo-brinquedos.png') center;
+  background-size: 100%;
+  background-color: #a2c9cde0;
+}
+
+.VoltartelaDePerfil-adm {
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.perfil-header-adm {
+  background-color: #CFEBEE;
+  padding: 3%;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  position: relative;
+}
+
+.foto-perfil-adm {
+  width: 180px !important;
+  height: 180px !important;
+  border-radius: 50%;
+  background: #6AB3BC;
+  margin-left: 4.5%;
+  margin-top: -7.7%;
+  object-fit: cover;
+}
+
+.perfil-info-adm {
+  margin: 1% 0%;
+  margin-top: -4.5%;
+}
+
+.perfil-info-adm p {
+  margin: -9% 0%;
+  font-size: 112%;
+  margin-top: 4%;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Abas */
+.perfil-abas-adm {
+  display: flex;
+  width: 100%;
+  height: 60%;
+  align-items: center;
+  gap: 1.1%;
+  background: #A2C9CD;
+  padding: 11px;
+}
+
+.aba-adm {
+  background: transparent;
+  border: none;
+  padding: 9px 18px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #023B52;
+  transition: 0.2s;
+  font-size: 79%;
+}
+
+.aba.ativa-adm {
+  background: #067591; 
+  color: white;
+  width: 18%;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-left: 2%;
+}
+
+.perfil-pesquisa-adm {
+  margin-left: auto;
+  padding: 6px 20px;
+  border: none;
+  border-radius: 6px;
+  color: #034E61;
+  width: 16%;
+}
+
+/* Conteúdo principal */
+.perfil-conteudo-adm {
+  background: #ffffff; 
+  min-height: 500px;
+  padding: 20px 0;
+}
+
+/* Container dos produtos - IGUAL À TELA INICIAL */
+.produtos-grid-perfil-carrinho-adm,
+.produtos-grid-perfil-historico-adm {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Card do produto - IGUAL À TELA INICIAL */
+.produto-card-perfil-carrinho-adm,
+.produto-card-perfil-historico-adm {
+  position: relative;
+  border: 2px solid #dadada;
+  width: 19%;
+  height: 300px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.produto-card-perfil-carrinho-adm:hover,
+.produto-card-perfil-historico-adm:hover {
+  transform: scale(1.03);
+}
+
+/* Container da imagem - IGUAL À TELA INICIAL */
+.produto-imagem-container-adm {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 10px;
+  background: white;
+}
+
+.imagem-mesmo-produtos-carrinho-adm,
+.imagem-mesmo-produtos-historico-adm {
+  border: 2px solid #cecece;
+  width: 100%;
+  height: 180px;
+  display: block;
+  object-fit: contain;
+  background: white;
+  border-radius: 4px;
+}
+
+/* Etiqueta de preço - IGUAL À TELA INICIAL */
+.preco-perfil-carrinho-adm,
+.preco-perfil-historico-adm {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #03374C;
+  color: #fff;
+  padding: 8px 8px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.cor-amarela-preco-adm {
+  color: #FFF0A6;
+}
+
+/* Detalhes do produto - IGUAL À TELA INICIAL */
+.produto-detalhes-perfil-adm {
+  padding: 10px;
+  text-align: left;
+  overflow-wrap: break-word;
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.titulo-produto-perfil-adm {
+  /* border: 2px solid; */
+  color: #03374C;
+  margin: 0 10px;
+  white-space: normal;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 2; */
+  -webkit-box-orient: vertical;
+}
+
+
+/* Ícone de favorito - IGUAL À TELA INICIAL */
+.favorito-perfil-carrinho-adm,
+.favorito-perfil-historico-adm {
+  /* border: 2px solid; */
+  position: absolute;
+  top: 14px;
+  right: 29px;
+  z-index: 100;
+}
+
+/* Avaliação com estrelas - IGUAL À TELA INICIAL */
+.estrela-perfil-usuario-adm {
+  /* border: 2px solid; */
+  color: #FFD500;
+  margin: 0 10px;
+  white-space: normal;
+  padding: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 115px;
+}
+.quantidade-estrela-adm{
+  border: 2px solid;
+  border-radius: 10px;
+  color: #023B52;
+  width: 15%;
+  height: 68%;
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+/* Menu de ajustes */
+.menu-container-adm {
+  margin-left: auto;
+  position: relative;
+  top: -5px;
+}
+
+.menu-icone-adm {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #68A7AE;
+  width: 62%;
+  height: 2%;
+  display: flex;
+  align-items: start;
+  margin-top: 15%;
+  margin-left: 96%;
+}
+
+.container-ajustes-adm {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-ajustes-adm {
+  position: absolute;
+  right: -20%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 410%;
+  z-index: 1000;
+  margin-top: -15%;
+}
+
+.menu-ajustes-adm h4 {
+  font-size: 16px;
+  margin-bottom: 9px;
+  color: #023b52;
+  font-family: 'Inknut Antiqua', serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: -4%;
+}
+
+.ajuste-opcao-editar-adm, 
+.ajuste-opcao-excluir-adm, 
+.ajuste-opcao-suporte-adm {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #86BEC4;
+  color: #023b52;
+  font-size: 15px;
+  font-family: 'Inknut Antiqua', serif;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ajuste-opcao-editar-adm:hover, 
+.ajuste-opcao-excluir-adm:hover, 
+.ajuste-opcao-suporte-adm:hover {
+  background: #7ab7be;
+  color: white;
+}
+
+.ajuste-opcao-excluir-adm {
+  color: #b22222;
+  font-weight: bolder;
+}
+
+.ajuste-opcao-suporte-adm {
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+.ajuste-opcao-editar-adm {
+  color: #034E61;
+  font-weight: bolder;
+}
+
+/* Mensagem quando não há itens */
+.perfil-conteudo-adm > div > p {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 1400px) {
+  .produto-card-perfil-carrinho-adm,
+  .produto-card-perfil-historico-adm {
+    width: 23%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .produto-card-perfil-carrinho-adm,
+  .produto-card-perfil-historico-adm {
+    width: 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .produto-card-perfil-carrinho-adm,
+  .produto-card-perfil-historico-adm {
+    width: 45%;
+  }
+  
+  .perfil-abas-adm {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  
+  .aba.ativa-adm {
+    width: auto;
+  }
+  
+  .perfil-pesquisa-adm {
+    width: 200px;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .produto-card-perfil-carrinho-adm,
+  .produto-card-perfil-historico-adm {
+    width: 45%;
+    height: 350px;
+  }
+  
+  .foto-perfil-adm {
+    width: 120px !important;
+    height: 120px !important;
+    margin-top: -5%;
+  }
+  
+  .perfil-info-adm p {
+    font-size: 90%;
+  }
+  
+  .menu-container-adm {
+    top: -45px;
+  }
+  
+  .imagem-mesmo-produtos-carrinho-adm,
+  .imagem-mesmo-produtos-historico-adm {
+    height: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .produto-card-perfil-carrinho-adm,
+  .produto-card-perfil-historico-adm {
+    width: 90%;
+    height: 320px;
+  }
+  
+  .perfil-header-adm {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .foto-perfil-adm {
+    margin-left: 0;
+    margin-top: -15%;
+  }
+  
+  .perfil-info-adm {
+    margin-top: 10px;
+  }
+  
+  .menu-container-adm {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .produtos-grid-perfil-carrinho-adm,
+  .produtos-grid-perfil-historico-adm {
+    padding: 0 10px;
+    gap: 20px;
+  }
+}
