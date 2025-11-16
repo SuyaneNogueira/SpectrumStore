@@ -26,6 +26,7 @@ import TelaInfo from "../TelaInformacoes/TelaInfo";
 import TelaRetirada from "../../telaRetirada/TelaRetirada";
 import GestaoEstoqueAdm from "../../Adm/pages/GestaoEstoqueMaquina"
 import PerfilAdm from "../../Adm/PerfilAdm/PerfilAdm";
+import CadastroAdm from "../../Adm/CadastroLoginAdm/CadastroAdm";
 
 const Router = createBrowserRouter([
     { path: "/", element: <LandingPage/> },
@@ -48,7 +49,9 @@ const Router = createBrowserRouter([
     { path: "/sucesso", element: <Sucesso/> },
     { path: "/informacoes", element: <TelaInfo/> },
     { path: "/retirada", element: <TelaRetirada/>},
-  {path: "/PerfilAdm", element: <PerfilAdm/>},
+    {path: "/PerfilAdm", element: <PerfilAdm/>},
+    {path: "/CadastroAdm", element: <CadastroAdm/>},
+
 
 
     {

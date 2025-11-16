@@ -1,0 +1,99 @@
+/* Ajustes divs */
+
+.div-mestre-cadastro-adm{
+/* border: solid ; */
+height: 100vh;
+width: 100vw;
+display: flex;
+}
+.seja-bem-vindo-adm{
+    /* border: solid blueviolet; */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cadastro-do-adm{
+    /* border: solid ; */
+    width: 50%;
+    height: 100%;
+}
+
+/* Ajustes mesmo para ficar bonito */
+.letreiro-bem-vindo-adm{
+    /* border: solid; */
+    height: 60%;
+    width: 100%;
+}
+
+.titulo-bem-vindo-adm{
+/* border: solid purple; */
+height: 30%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #034E61;
+}
+
+.text-boas-vindas-adm{
+/* border: solid; */
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50%;
+font-size: 20px;
+color: #034E61;
+}
+
+/* Area de cadastrar */
+
+.cadastro-do-adm{
+background-color: #A2C9CD;
+}
+
+.titulo-cadastro-adm{
+ /* border: solid; */
+ height: 25%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 23px;
+ color: #034E61;
+}
+
+.inputs-cadastro-adm{
+    /* border: solid blue; */
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.inputs-cadastro-adm input{
+    height: 10%;
+    width: 40%;
+    border-radius: 6px;
+    border: solid #A2C9CD;
+}
+
+.botão-cadastrar-adm{
+   /* border: solid; */
+   height: 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center; 
+}
+
+.botão-cadastrar-adm button{
+  
+    background-color: #067591;
+    color: #FFFFFF;
+    height: 25%;
+    width: 20%;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
