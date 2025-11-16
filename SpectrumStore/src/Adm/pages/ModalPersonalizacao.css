@@ -9,6 +9,7 @@
   justify-content: space-between;
   margin-left: 10%;
   flex-wrap: wrap;
+  height: 100%;
 }
 .titulo-modal-personalizacao-adm {
   text-align: center;
