@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth, provider, signInWithPopup } from "./Firebase";
 import TermosDeUso from "./TermosDeUso";
+import { useCadastro } from "../../Back-end/Hooks/UseCadastro";
 import "./Cadastro.css";
 
 function Cadastro({ onClose, onOpenLogin }) {
@@ -8,27 +9,41 @@ function Cadastro({ onClose, onOpenLogin }) {
   const [dataNascimento, setDataNascimento] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const [erro, setErro] = useState("");
+  const [email, setEmail] = useState("");
   const [termosAceitos, setTermosAceitos] = useState(false);
   const [modalAberto, setModalAberto] = useState(false);
 
+  const { loading, error, cadastrarUsuario } = useCadastro();
+
   // Envio de cadastro
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (senha !== confirmarSenha) {
-      setErro("As senhas não conferem!");
-      return;
-    }
-
+    // Validação básica no frontend
     if (!termosAceitos) {
-      setErro("Você deve aceitar os Termos de Uso para continuar.");
+      alert("Você deve aceitar os Termos de Uso para continuar.");
       return;
     }
 
-    setErro("");
-    console.log("Cadastro enviado:", { nome, dataNascimento, senha });
-    if (typeof onClose === "function") onClose();
+    const userData = {
+      nome,
+      email,
+      dataNascimento,
+      senha,
+      confirmarSenha,
+      termosAceitos
+    };
+
+    const resultado = await cadastrarUsuario(userData);
+
+    if (resultado.success) {
+      console.log("✅ Cadastro realizado com sucesso:", resultado.data);
+      alert("Cadastro realizado com sucesso!");
+      
+      if (typeof onClose === "function") onClose();
+    } else {
+      console.error("❌ Erro no cadastro:", resultado.error);
+    }
   };
 
   // Login Google
@@ -36,6 +51,7 @@ function Cadastro({ onClose, onOpenLogin }) {
     try {
       const result = await signInWithPopup(auth, provider);
       console.log("Usuário logado com Google:", result.user);
+      
       window.location.href = "/TelaInicial";
       if (typeof onClose === "function") onClose();
     } catch (err) {
@@ -44,7 +60,7 @@ function Cadastro({ onClose, onOpenLogin }) {
         ? "Autenticação cancelada pelo usuário."
         : "Erro ao autenticar com Google";
       console.error("Erro ao logar com Google:", err);
-      setErro(errorMessage);
+      alert(errorMessage);
     }
   };
 
@@ -84,19 +100,20 @@ function Cadastro({ onClose, onOpenLogin }) {
           <div className="cadastro-esquerda">
             <h1>Seja Bem-Vindo!</h1>
             <p>
-              Nosso espaço foi criado com base em ciência, empatia e inclusão, para promover bem-estar e autonomia a todas as pessoas no espectro.
+              Nosso espaço foi criado com base em ciência, empatia e inclusão, 
+              para promover bem-estar e autonomia a todas as pessoas no espectro.
             </p>
           </div>
 
           {/* DIREITA */}
           <div className="cadastro-direita">
-            <button className="close-button" onClick={onClose}>
-              &times;
-            </button>
-
-            <h2>Cadastre-se</h2>
-
             <form onSubmit={handleSubmit} className="cadastro-form">
+              <button className="close-button" onClick={onClose} type="button">
+                &times;
+              </button>
+
+              <h2>Cadastro</h2>
+
               <div className="input-group">
                 <label>Seu Nome:</label>
                 <input
@@ -104,17 +121,31 @@ function Cadastro({ onClose, onOpenLogin }) {
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
                   required
+                  disabled={loading}
+                  placeholder="Digite seu nome completo"
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Seu Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={loading}
+                  placeholder="seu@email.com"
                 />
               </div>
 
               <div className="input-group">
                 <label>Sua Data de Nascimento:</label>
                 <input
-                  type="text"
-                  placeholder="DD/MM/AAAA"
+                  type="date"
                   value={dataNascimento}
                   onChange={(e) => setDataNascimento(e.target.value)}
                   required
+                  disabled={loading}
                 />
               </div>
 
@@ -125,42 +156,61 @@ function Cadastro({ onClose, onOpenLogin }) {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                   required
+                  disabled={loading}
+                  minLength={6}
+                  placeholder="Mínimo 6 caracteres"
                 />
               </div>
 
               <div className="input-group">
-                <label>Confirme Sua Senha:</label>
+                <label>Confirmar Senha:</label>
                 <input
                   type="password"
                   value={confirmarSenha}
                   onChange={(e) => setConfirmarSenha(e.target.value)}
                   required
+                  disabled={loading}
+                  minLength={6}
+                  placeholder="Digite a senha novamente"
                 />
               </div>
 
               {/* TERMOS */}
               <div className="termos-container">
-            <div className={`termo-circulo ${termosAceitos ? 'ativo' : ''}`} onClick={() => setTermosAceitos(!termosAceitos)} />
-            <p>Li e aceito os
-              <span className="termos-link"
-                onClick={abrirModalTermos} 
-                style={{cursor: 'pointer' }}
-              >
-                Termos de Uso
-              </span>
-            </p>
-          </div>
+                <div 
+                  className={`termo-circulo ${termosAceitos ? 'ativo' : ''}`} 
+                  onClick={() => !loading && setTermosAceitos(!termosAceitos)} 
+                />
+                <p>Li e aceito os
+                  <span 
+                    className="termos-link"
+                    onClick={abrirModalTermos} 
+                  >
+                    Termos de Uso
+                  </span>
+                </p>
+              </div>
 
-
-              {erro && (
+              {error && (
                 <p className="cadastro-erro" role="alert">
-                  {erro}
+                  {error}
                 </p>
               )}
 
-              <button type="submit" className="cadastro-btn">
-                Criar Conta
+              <button 
+                type="submit" 
+                className="cadastro-btn"
+                disabled={loading}
+              >
+                {loading ? "Cadastrando..." : "Criar Conta"}
               </button>
+
+              <p className="cadastro-footer">
+                Já possui Cadastro?{" "}
+                <a href="#login" onClick={abrirLoginAPartirCadastro}>
+                  Faça Login Aqui
+                </a>
+              </p>
             </form>
 
             <div className="separator-container">
@@ -169,11 +219,12 @@ function Cadastro({ onClose, onOpenLogin }) {
               <div className="vertical-line" />
             </div>
 
-            <div>
+            <div className="div-google-bnt">
               <button
                 className="google-btn"
                 onClick={handleGoogleLogin}
                 type="button"
+                disabled={loading}
               >
                 <img
                   src="/GoogleCadastro.png"
@@ -182,13 +233,6 @@ function Cadastro({ onClose, onOpenLogin }) {
                 />
               </button>
             </div>
-
-            <p className="cadastro-footer">
-              Já possui Cadastro?{" "}
-              <a href="Login" onClick={abrirLoginAPartirCadastro}>
-                Faça Login Aqui
-              </a>
-            </p>
           </div>
         </div>
       </div>
@@ -197,7 +241,7 @@ function Cadastro({ onClose, onOpenLogin }) {
       {modalAberto && (
         <div className="modal-termos-overlay" onClick={fecharModalTermos}>
           <div onClick={(e) => e.stopPropagation()}>
-            {/* <TermosDeUso onClose={fecharModalTermos} /> */}
+            <TermosDeUso onClose={fecharModalTermos} />
           </div>
         </div>
       )}

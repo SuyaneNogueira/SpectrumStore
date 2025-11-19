@@ -9,12 +9,14 @@
 .cadastro-overlay {
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 102%;
     background: var(--color-overlay-soft); 
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    top: 0;
+    left: 0;
 }
 
 .cadastro-modal {
@@ -24,11 +26,13 @@
     border-radius: 15px; 
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #a2c9cd7c;
+    position: relative;
 }
 
 .cadastro-esquerda {
     width: 95%;
-    background-color: rgba(202, 215, 222, 0.7); 
+    background-color: rgba(178, 212, 232, 0.7); 
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -54,72 +58,62 @@
 }
 
 .cadastro-direita {
-    background: #a2c9cdfb;
-    padding: 60px;
+  /* border: 2px solid purple; */
+    background: #e9fbfdfb;
+    padding: 10px 40px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     color: var(--color-primary);
     width: 100%;
-    height: 600px;
-}
-
-.cadastro-content-wrapper {
-    display: flex;
-}
-
-
-.cadastro-form-container {
-    width: 80%; 
+    position: relative;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 .close-button {
+  /* border: 2px solid purple; */
     position: absolute;
     background: none;
     border: none;
     font-size: 27px;
     color: var(--color-primary);
     cursor: pointer;
-    margin-left: 470px;
-    margin-top: -50px;
-}
-
-.cadastro-direita {
-    font-family: 'Inknut Antiqua', serif;
-    font-weight: 300;
-    font-style: normal;
-    color: var(--color-primary);
-    font-size: 30px;
-    flex-direction: column;
+    top: 15px;
+    right: 20px;
+    z-index: 10;
 }
 
 .cadastro-direita h2 {
+  /* border: 2px solid purple; */
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
     font-style: normal;
     color: var(--color-primary);
-    font-size: 30px;
-    margin-top: -6%;
-    align-self: flex-start; 
-    margin-left: -48px;
+    font-size: 150%;
+    margin-bottom: 0px;
+    margin-left: 0;
+    height: 8%;
 }
 
 .cadastro-form {
+  /* border: 2px solid purple; */
     width: 100%;
-    margin-top: 0; 
-    margin-left: -40px;
+    /* margin-top: 0;  */
 }
 
 .input-group {
-    margin-bottom: 13px; 
+  /* border: 2px solid purple; */
+    margin-bottom: 0px;
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
     font-style: normal;
 }
 
 .input-group label {
-    font-size: 14px;
+  /* border: 2px solid purple; */
+    font-size: 90%;
     color: var(--color-primary);
-    margin-bottom: -40px;
+    margin-bottom: 0px;
     display: block;
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
@@ -127,110 +121,141 @@
 }
 
 .cadastro-form input {
-    width: 80%;
-    padding: 2px 0;
-    border: none;
-    border-bottom: 1px solid var(--color-input-line); 
+    width: 100%;
+    padding: 0px 6px;
+    /* border: none; */
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
     background: transparent;
     color: var(--color-primary);
-    font-size: 13px;
+    font-size: 85%;
     font-family: 'Inknut Antiqua', serif;
     font-weight: 300;
     font-style: normal;
-    outline: none; 
+    box-sizing: border-box;
+    /* outline: none;  */
 }
 
 .cadastro-form input:focus {
-    border-bottom: 2px solid var(--color-primary); 
+    border: 2px solid #034e61; /* Ou use uma variável CSS para azul */
+    outline: none; /* Remove o outline padrão do navegador */
 }
 
-.cadastro-form input[placeholder] {
+.cadastro-form input::placeholder {
     color: var(--color-primary);
-    opacity: 1; 
+    opacity: 0.7; 
 }
 
-.cadastro-termos {
+.termos-container {
+  /* border: 2px solid purple; */
     display: flex;
     align-items: center;
-    font-size: 13.5px;
-    color: var(--color-primary);
-    margin-top: -20px;
-    margin-bottom: -15px;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    gap: 5px;
     font-family: 'Inknut Antiqua', serif;
-    font-weight: 300;
-    font-style: normal;
+    color: var(--color-primary);
+    margin: 5px 0;
 }
 
+.termos-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 4px;
+}
 
+.termo-circulo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
 
-.cadastro-termos input[type="radio"]:checked {
-    background-color: var(--color-primary); 
+.termo-circulo.ativo {
+    background-color: var(--color-primary);
 }
 
 .cadastro-btn {
+  /* border: 2px solid purple; */
     background: var(--color-primary);
     color: white;
     border: none;
-    padding: 0.1px 132px;
+    padding: 2px 0;
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
     font-weight: lighter;
     transition: background 0.3s;
     font-family: 'Inknut Antiqua', serif;
+    width: 100%;
+    margin-top: 0px;
 }
 
-.cadastro-btn:hover {
+.cadastro-btn:hover:not(:disabled) {
     background: #065b75;
 }
 
+.cadastro-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .separator-container {
+    /* border: 2px solid purple; */
+    max-width: 15%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* border: solid 2px #40f811; */
-    margin: -195px;
-    margin-left: 110px;
+    margin: 0px;
+    position: relative;
+    width: 100%;
 }
 
 .vertical-line {
+    /* border: 2px solid purple; */
     width: 1px; 
-    height: 150px; 
-    background-color: var(--color-input-line); 
-    flex-shrink: 0; 
-    margin-top: -300px;
-    margin-bottom: -150px;
-    margin-left: 20px;
-}
-
-.google-interaction {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding: 0 25px;
+    height: 35%; 
+    background-color: var(--color-primary); 
+    margin: 0 20px;
 }
 
 .cadastro-ou {
+    /* border: 2px solid purple; */
+    width: 100%;
     color: var(--color-primary);
     font-size: 14px;
     white-space: nowrap;
-    margin-top: -115px;
-    margin-bottom: 15px;
     font-family: 'Inknut Antiqua', serif;
-    margin-left: 20px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.div-google-bnt{
+    /* border: 2px solid purple; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: none;
 }
 
 .google-btn {
+    /* border: 2px solid purple; */
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
-    margin-top: 110px;
-    flex-shrink: 0; 
-    margin-left: 96%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0px 0;
 }
 
 .google-icon {
@@ -240,11 +265,10 @@
 
 .cadastro-footer {
     font-size: 14px;
-    margin-top: auto; /* Empurra para o final da div direita */
-    padding-top: 45%;
+    margin-top: 12px;
     color: var(--color-primary);
-    align-self: center; 
-    margin-left: -260px;
+    text-align: center;
+    width: 100%;
 }
 
 .cadastro-footer a {
@@ -253,70 +277,22 @@
     cursor: pointer;
 }
 
-.cadastro-termos,
-.link-login {
-  color: inherit;
-  text-decoration: underline;
-  border-bottom: 1px solid transparent;
-  transition: border-color 150ms ease;
-  cursor: pointer;
-}
-
-.cadastro-termos:hover,
-.link-login:hover {
-  border-bottom-color: currentColor;
-}
-
-.google-btn:focus {
-  outline: 2px solid rgba(3, 55, 76, 0.15);
-  outline-offset: 2px;
-}
-
 .cadastro-erro {
-  color: #ffffff;
-  margin-top: 8px;
-  font-size: 0.95rem;
-}
-
-.termos-container {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  cursor: pointer;
-  gap: 1px;
-  font-family: 'Inknut Antiqua', serif;
-  color: var(--color-primary);
-  margin-top: -3%;
-  margin-bottom: -3%;
-}
-
-.termos-link {
-  color: var(--color-primary);
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.termo-circulo {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--color-primary);
-  margin-right: 10px;
-  margin-left: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.termo-circulo.ativo {
-  background-color: var(--color-primary);
-  box-shadow: 0 0 6px var(--color-secondary);
+    color: #d32f2f;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
 }
 
 .modal-termos-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

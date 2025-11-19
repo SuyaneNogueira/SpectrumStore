@@ -1,618 +1,371 @@
-import express from "express";
-import cors from "cors";
-import Stripe from "stripe";
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-import { pool } from "./db.js";
-import { defineRoutes } from "./CarrinhoBackT.js";
-import axios from "axios";
-import { traduzirItemParaPayload } from "./tradutorMaquina.js";
-import adminRoutes from './AdminRoutes.js';  
-
-dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT || 3030; // ← PORTA FIXA 3030
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 // =========================================================
-// 🔹 1. FUNÇÃO DE ENVIO PARA A BANCADA (MÁQUINA)
+// 🔹 ROTAS DE CADASTRO E USUÁRIOS (NOVAS)
 // =========================================================
-async function enviarPedidoParaMaquina(payloadCompleto, idDoPedido) {
-  const URL_DA_MAQUINA = "http://52.1.197.112:3000/queue/items";
 
-  if (!payloadCompleto || !payloadCompleto.payload) {
-    console.log(
-      `[Máquina] Pedido ${idDoPedido} sem payload (item não customizável). Pulando.`
-    );
-    return;
-  }
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-  console.log(
-    `[Máquina] Enviando pedido ${idDoPedido} para ${URL_DA_MAQUINA}...`
-  );
-  console.log(`[Máquina] Payload:`, JSON.stringify(payloadCompleto, null, 2));
+// Mock de banco de dados temporário (substitua por suas queries do PostgreSQL)
+let usuarios = [];
+let nextId = 1;
 
+// CREATE - Cadastrar usuário
+app.post('/api/usuarios', async (req, res) => {
   try {
-    const response = await axios.post(URL_DA_MAQUINA, payloadCompleto);
-    console.log(`[Máquina] Pedido ${idDoPedido} enviado com SUCESSO.`);
-    await pool.query(
-      "UPDATE pedidos SET status_maquina = 'enviado' WHERE id = $1",
-      [idDoPedido]
-    );
-  } catch (error) {
-    console.error(
-      `[Máquina] ❌ FALHA ao enviar pedido ${idDoPedido}:`,
-      error.message
-    );
-    await pool.query(
-      "UPDATE pedidos SET status_maquina = 'erro' WHERE id = $1",
-      [idDoPedido]
-    );
-  }
-}
+    const { nome, email, dataNascimento, senha, termosAceitos } = req.body;
 
-// =========================================================
-// 🔹 2. WEBHOOK STRIPE (LÓGICA CORRIGIDA)
-// =========================================================
-app.post(
-  "/webhook",
-  bodyParser.raw({ type: "application/json" }),
-  async (req, res) => {
-    const sig = req.headers["stripe-signature"];
-    try {
-      const event = stripe.webhooks.constructEvent(
-        req.body,
-        sig,
-        process.env.STRIPE_WEBHOOK_SECRET
-      );
+    console.log('📥 Dados recebidos para cadastro:', { nome, email, dataNascimento, termosAceitos });
 
-      if (event.type === "checkout.session.completed") {
-        const session = event.data.object;
-        const pedidoId = session.metadata.pedidoId; // <--- PEGA O ID DO NOSSO BANCO
-
-        if (!pedidoId) {
-          console.error(
-            "❌ [Webhook] FATAL: Pagamento recebido sem 'pedidoId' no metadata!"
-          );
-          return res.json({ received: true, error: "Missing pedidoId" });
-        }
-
-        console.log(`[Webhook] Recebido pagamento para Pedido ID: ${pedidoId}`);
-
-        try {
-          // ATUALIZA o status do pedido para 'pago'
-          const updateResult = await pool.query(
-            `UPDATE pedidos 
-                 SET status = 'pago', forma_pagamento = $1 
-                 WHERE id = $2 AND status = 'pendente'`,
-            [session.payment_method_types[0] || "indefinido", pedidoId]
-          );
-
-          if (updateResult.rowCount === 0) {
-            console.warn(
-              `[Webhook] Pedido ${pedidoId} já estava pago ou não foi encontrado.`
-            );
-          } else {
-            console.log(
-              `💾 [Webhook] Pedido ${pedidoId} atualizado para PAGO.`
-            );
-          }
-
-          // BUSCA os payloads da máquina que JÁ salvamos
-          const itensResult = await pool.query(
-            `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
-            [pedidoId]
-          );
-
-          // ENVIA CADA ITEM PARA A MÁQUINA
-          console.log(
-            `[Máquina] Disparando envio para ${itensResult.rowCount} item(ns) do pedido ${pedidoId}.`
-          );
-          for (const item of itensResult.rows) {
-            if (
-              item.payload_maquina &&
-              item.payload_maquina !== "null" &&
-              item.payload_maquina !== "{}"
-            ) {
-              const payload = JSON.parse(item.payload_maquina);
-              enviarPedidoParaMaquina(payload, pedidoId); // (Sem 'await')
-            } else {
-              console.log(
-                `[Webhook] Pedido ${pedidoId} não tem payload, pulando.`
-              );
-            }
-          }
-        } 
-        
-        catch (erroBanco) {
-          console.error(
-            `❌ [Webhook] Erro ao processar pedido ${pedidoId}:`,
-            erroBanco
-          );
-        }
-      }
-
-      res.json({ received: true });
-    } catch (err) {
-      console.error("⚠️ Erro webhook:", err.message);
-      res.status(400).send(`Webhook Error: ${err.message}`);
-    }
-  }
-);
-
-// =========================================================
-// 🔹 3. MIDDLEWARES NORMAIS
-// =========================================================
-app.use(cors());
-app.use(express.json());
-
-// =========================================================
-// 🔹 ROTAS EXISTENTES (mantenha suas rotas originais)
-// =========================================================
-defineRoutes(app);
-app.use(adminRoutes); 
-
-
-// =========================================================
-// (A "Caixa de Correio" para o seu 'Produtos.jsx')
-// =========================================================
-
-// GET (Listar todos os produtos)
-app.get('/api/produtos', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM produtos ORDER BY id DESC');
-    res.json(result.rows);
-  } catch (err) {
-    console.error("❌ Erro ao buscar produtos:", err);
-    res.status(500).json({ error: 'Erro interno ao buscar produtos.' });
-  }
-});
-
-// POST (Criar novo produto)
-app.post('/api/produtos', async (req, res) => {
-  console.log("[API] Recebida requisição para criar novo produto...");
-  const { name, price, description, category, image, personalizacao } = req.body;
-
-  if (!name || !price || !category) {
-    return res.status(400).json({ error: 'Nome, Preço e Categoria são obrigatórios.' });
-  }
-  
-  // Converte o objeto JS das personalizações em texto JSON para salvar no BD
-  const personalizacaoJson = JSON.stringify(personalizacao || {});
-
-  try {
-    const query = `
-      INSERT INTO produtos (name, price, description, category, image, personalizacao)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING *; 
-    `;
-    const values = [name, price, description, category, image, personalizacaoJson];
-    const result = await pool.query(query, values);
-
-    console.log(`[API] Produto #${result.rows[0].id} salvo no banco.`);
-    res.status(201).json(result.rows[0]); // Retorna o produto salvo
-  } catch (err) {
-    console.error("❌ Erro ao salvar produto:", err);
-    res.status(500).json({ error: 'Erro interno ao salvar produto.', details: err.message });
-  }
-});
-
-// PUT (Editar um produto)
-app.put('/api/produtos/:id', async (req, res) => {
-  const { id } = req.params;
-  const { name, price, description, category, image, personalizacao } = req.body;
-  const personalizacaoJson = JSON.stringify(personalizacao || {});
-  
-  try {
-    const query = `
-      UPDATE produtos 
-      SET name = $1, price = $2, description = $3, category = $4, image = $5, personalizacao = $6
-      WHERE id = $7
-      RETURNING *;
-    `;
-    const values = [name, price, description, category, image, personalizacaoJson, id];
-    const result = await pool.query(query, values);
-    
-    if (result.rowCount === 0) {
-      return res.status(404).json({ error: 'Produto não encontrado.' });
-    }
-    res.json(result.rows[0]);
-  } catch (err) {
-    console.error(`❌ Erro ao atualizar produto #${id}:`, err);
-    res.status(500).json({ error: 'Erro interno ao atualizar produto.' });
-  }
-});
-
-// DELETE (Excluir um produto)
-app.delete('/api/produtos/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    await pool.query('DELETE FROM produtos WHERE id = $1', [id]);
-    res.status(204).send(); // 204 = Sucesso, sem conteúdo
-  } catch (err) {
-    console.error(`❌ Erro ao excluir produto #${id}:`, err);
-    res.status(500).json({ error: 'Erro interno ao excluir produto.' });
-  }
-});
-// 
-// =========================================================
-
-
-// =========================================================
-// 🔹 ROTAS DE RETIRADA MOCKADAS (NOVAS)
-// =========================================================
-
-// Health Check
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    time: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: 'development'
-  });
-});
-
-// Listar pedidos prontos para retirada
-app.get('/retirada/pedidos-prontos', (req, res) => {
-  console.log('📦 Buscando pedidos prontos para retirada...');
-  
-  res.json({
-    pedidos: [
-      {
-        id: '671a5b8c9d0e1f2a3b4c5d6e',
-        orderId: 'PED-TESTE-001',
-        sku: 'KIT-01',
-        cor: 'azul',
-        estoquePos: 5,
-        callbackUrl: '',
-        createdAt: new Date().toISOString(),
-        prontoDesde: new Date().toISOString(),
-        payload: { 
-          orderId: 'PED-TESTE-001', 
-          sku: 'KIT-01', 
-          cor: 'azul',
-          categoria: 'BrinquedosSensoriais'
-        }
-      }
-    ],
-    total: 1,
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Confirmar retirada
-app.post('/retirada/:orderId/confirmar', (req, res) => {
-  const { orderId } = req.params;
-  
-  console.log(`✅ Confirmando retirada do pedido: ${orderId}`);
-  
-  res.json({
-    message: 'Retirada confirmada com sucesso',
-    orderId: orderId,
-    pedidoId: '671a5b8c9d0e1f2a3b4c5d6e',
-    confirmacao: {
-      confirmadoEm: new Date().toISOString(),
-      localRetirada: 'Loja Principal - Balcão 1',
-      funcionario: `Func-${Math.floor(Math.random() * 100)}`,
-      codigoConfirmacao: `RET-${Date.now()}`,
-      metodoVerificacao: 'Código do pedido'
-    },
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Status da área de retirada
-app.get('/retirada/status', (req, res) => {
-  res.json({
-    resumo: {
-      prontosParaRetirada: 1,
-      retiradosHoje: 5,
-      totalProcessado: 6
-    },
-    areaRetirada: {
-      balcoesAtivos: 2,
-      tempoMedioRetirada: '2-5 minutos',
-      filaRetirada: Math.floor(Math.random() * 5),
-      funcionariosDisponiveis: Math.floor(Math.random() * 3) + 1,
-      horarioFuncionamento: '08:00 - 22:00'
-    },
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Cancelar retirada
-app.post('/retirada/:orderId/cancelar', (req, res) => {
-  const { orderId } = req.params;
-  const { motivo } = req.body;
-  
-  console.log(`❌ Cancelando retirada do pedido: ${orderId} - Motivo: ${motivo}`);
-  
-  res.json({
-    message: 'Retirada cancelada com sucesso',
-    orderId: orderId,
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Status de um pedido específico
-app.get('/queue/items/:id', (req, res) => {
-  const { id } = req.params;
-  
-  res.json({
-    _id: id,
-    payload: { 
-      orderId: 'PED-TESTE-001', 
-      sku: 'KIT-01', 
-      cor: 'azul',
-      categoria: 'BrinquedosSensoriais'
-    },
-    status: 'COMPLETED',
-    stage: 'PRONTO_RETIRADA',
-    progress: 100,
-    estoquePos: 5,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
-  });
-});
-
-// Rota de teste simples
-app.get('/test', (req, res) => {
-  res.json({ 
-    message: 'Backend SpectrumStore funcionando! 🚀',
-    timestamp: new Date().toISOString()
-  });
-});
-
-// =========================================================
-// 🔹 APENAS UM app.listen() NO FINAL!
-// =========================================================
-app.listen(PORT, () => {
-  console.log(`🎉 Backend SpectrumStore rodando em http://localhost:${PORT}`);
-  console.log(`🏥 Health Check: http://localhost:${PORT}/health`);
-  console.log(`🛍️  Pedidos Prontos: http://localhost:${PORT}/retirada/pedidos-prontos`);
-  console.log(`🧪 Teste: http://localhost:${PORT}/test`);
-  console.log('==============================================');
-});
-
-// NÃO ADICIONE NENHUM OUTRO app.listen() AQUI!
-app.post("/create-checkout-session", async (req, res) => {
-  console.log("\n--- INÍCIO DA ROTA /create-checkout-session ---");
-
-  try {
-    const { cartItems, paymentMethod } = req.body;
-    console.log(
-      "DADOS PUROS DO FRONTEND (cartItems):",
-      JSON.stringify(cartItems, null, 2)
-    );
-
-    if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
-      return res.status(400).json({ error: "Carrinho está vazio." });
-    }
-
-    // --- INÍCIO DA NOVA LÓGICA DE PRÉ-SALVAMENTO ---
-
-    let totalPedido = 0;
-    cartItems.forEach((item) => {
-      totalPedido +=
-        (Number(item.price) || 0) *
-        (Number(item.quantity || item.quantidade) || 1);
-    });
-
-    // 1. Salva o pedido "Pai" como 'pendente'
-    const pedidoQuery = `
-            INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido, status_maquina)
-            VALUES ($1, $2, $3, $4, now(), 'pendente')
-            RETURNING id;
-        `;
-    const pedidoValues = [
-      1,
-      totalPedido,
-      paymentMethod || "indefinido",
-      "pendente",
-    ];
-    const pedidoResult = await pool.query(pedidoQuery, pedidoValues);
-    const pedidoId = pedidoResult.rows[0].id; // <--- PEGAMOS O NOVO ID
-
-    console.log(`💾 Pedido ${pedidoId} salvo como 'pendente'.`);
-
-    // 2. Salva os itens E TRADUZ
-    const lineItemsParaStripe = [];
-
-    for (const item of cartItems) {
-      // 2a. TRADUZIR o item
-      const payloadMaquina = traduzirItemParaPayload(item, pedidoId); // <--- CHAMA O TRADUTOR
-
-      // 2b. Salvar o item no BD com a tradução
-      // (Verifique se sua tabela pedido_itens tem essas colunas!)
-      await pool.query(
-        `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario, customizacao_json, payload_maquina)
-                 VALUES ($1, $2, $3, $4, $5, $6);`,
-        [
-          pedidoId,
-          item.name || "Produto sem nome",
-          Number(item.quantity || item.quantidade) || 1,
-          Number(item.price) || 0,
-          JSON.stringify(item.customizations || {}), // Salva a "versão humana"
-          JSON.stringify(payloadMaquina || {}), // Salva a "versão máquina"
-        ]
-      );
-
-      // 2c. Preparar o item para o Stripe (SEM customizações)
-      lineItemsParaStripe.push({
-        price_data: {
-          currency: "brl",
-          product_data: { name: item.name || "Produto sem nome" },
-          unit_amount: Math.round((Number(item.price) || 0) * 100),
-        },
-        quantity: Number(item.quantity || item.quantidade) || 1,
+    // Validações
+    if (!nome || !email || !senha) {
+      return res.status(400).json({ 
+        success: false,
+        message: 'Nome, email e senha são obrigatórios' 
       });
     }
 
-    console.log(`💾 Itens do Pedido ${pedidoId} salvos e traduzidos.`);
-    // --- FIM DA NOVA LÓGICA ---
+    if (senha.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'A senha deve ter pelo menos 6 caracteres'
+      });
+    }
 
-    // 3. Criar a sessão Stripe
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: paymentMethod === "pix" ? ["pix"] : ["card"],
-      mode: "payment",
-      line_items: lineItemsParaStripe,
-      success_url:
-        "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:5173/cancelado",
-      metadata: {
-        pedidoId: pedidoId, // <--- ENVIANDO NOSSO ID PARA O STRIPE
+    // Verificar se email já existe (usando PostgreSQL)
+    const usuarioExistente = await pool.query(
+      'SELECT id FROM usuarios WHERE email = $1 AND ativo = true',
+      [email.toLowerCase()]
+    );
+
+    if (usuarioExistente.rows.length > 0) {
+      return res.status(400).json({ 
+        success: false,
+        message: 'Este email já está cadastrado' 
+      });
+    }
+
+    // Criptografar senha
+    const saltRounds = 10;
+    const senhaHash = await bcrypt.hash(senha, saltRounds);
+
+    // Criar usuário no PostgreSQL
+    const query = `
+      INSERT INTO usuarios (nome, email, data_nascimento, senha, termos_aceitos, ativo)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id, nome, email, data_nascimento, termos_aceitos, data_cadastro, ativo
+    `;
+    
+    const values = [
+      nome.trim(),
+      email.toLowerCase().trim(),
+      dataNascimento || null,
+      senhaHash,
+      termosAceitos || false,
+      true
+    ];
+
+    const result = await pool.query(query, values);
+    const novoUsuario = result.rows[0];
+
+    // Gerar token JWT
+    const token = jwt.sign(
+      { 
+        userId: novoUsuario.id, 
+        email: novoUsuario.email 
       },
+      process.env.JWT_SECRET || 'secret-key-spectrum-store',
+      { expiresIn: '24h' }
+    );
+
+    console.log('✅ Usuário criado com sucesso:', novoUsuario.email);
+
+    res.status(201).json({
+      success: true,
+      message: 'Usuário criado com sucesso',
+      usuario: novoUsuario,
+      token
     });
 
-    console.log(`✅ Sessão Stripe criada para Pedido ${pedidoId}.`);
-    res.json({ url: session.url });
-  } catch (err) {
-    console.error("❌❌❌ FALHA EM /create-checkout-session:", err);
-    res.status(500).json({ error: err.message, message: err.message });
+  } catch (error) {
+    console.error('❌ Erro ao criar usuário:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Erro interno do servidor' 
+    });
   }
 });
 
-// =========================================================
-// 🔹 6. OUTRAS ROTAS (Ajustadas ou Mantidas)
-// =========================================================
-app.get("/checkout-session/:sessionId", async (req, res) => {
-  const { sessionId } = req.params;
+// LOGIN - Autenticar usuário
+app.post('/api/usuarios/login', async (req, res) => {
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-      expand: ["line_items.data.price.product"],
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email e senha são obrigatórios'
+      });
+    }
+
+    // Buscar usuário no PostgreSQL
+    const result = await pool.query(
+      'SELECT * FROM usuarios WHERE email = $1 AND ativo = true',
+      [email.toLowerCase()]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({
+        success: false,
+        message: 'Email ou senha incorretos'
+      });
+    }
+
+    const usuario = result.rows[0];
+
+    // Verificar senha
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) {
+      return res.status(401).json({
+        success: false,
+        message: 'Email ou senha incorretos'
+      });
+    }
+
+    // Gerar token
+    const token = jwt.sign(
+      { 
+        userId: usuario.id, 
+        email: usuario.email 
+      },
+      process.env.JWT_SECRET || 'secret-key-spectrum-store',
+      { expiresIn: '24h' }
+    );
+
+    // Remover senha do retorno
+    const { senha: _, ...usuarioSemSenha } = usuario;
+
+    console.log('✅ Login realizado:', usuario.email);
+
+    res.json({
+      success: true,
+      message: 'Login realizado com sucesso',
+      usuario: usuarioSemSenha,
+      token
     });
-    res.json(session);
-  } catch (err) {
-    console.error("❌ Erro ao buscar sessão:", err);
-    res.status(500).json({ error: err.message });
+
+  } catch (error) {
+    console.error('❌ Erro no login:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno do servidor'
+    });
   }
 });
 
-app.post("/verificar-e-salvar-pedido-bloqueante", async (req, res) => {
- const { sessionId } = req.body;
- if (!sessionId) { /* ... (erro) ... */ }
+// VERIFICAR EMAIL - Verificar se email já existe
+app.get('/api/usuarios/verificar-email/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
 
- try {
- const session = await stripe.checkout.sessions.retrieve(sessionId);
- if (session.payment_status !== "paid") { /* ... (erro) ... */ }
- const pedidoId = session.metadata.pedidoId;
- if (!pedidoId) { /* ... (erro) ... */ }
+    const result = await pool.query(
+      'SELECT id FROM usuarios WHERE email = $1 AND ativo = true',
+      [email.toLowerCase()]
+    );
 
- console.log(`[Verificar-Bloqueante] Página de Sucesso acessada para Pedido ID: ${pedidoId}`);
+    res.json({
+      success: true,
+      existe: result.rows.length > 0
+    });
 
- // Tenta atualizar para "pago"
- await pool.query(
- `UPDATE pedidos SET status = 'pago' WHERE id = $1 AND status = 'pendente'`,
- [pedidoId]
-);
+  } catch (error) {
+    console.error('❌ Erro ao verificar email:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno do servidor'
+    });
+  }
+});
 
-// Busca os itens
- const itensResult = await pool.query(
- `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
- [pedidoId]
- );
- 
-        let statusFinalMaquina = 'nenhum_item'; // Padrão
+// GET - Buscar usuário por ID
+app.get('/api/usuarios/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
 
- for (const item of itensResult.rows) {
- if (item.payload_maquina && item.payload_maquina !== 'null' && item.payload_maquina !== '{}') {
- const payload = JSON.parse(item.payload_maquina); 
-                
-                // CHAMA A FUNÇÃO DE ENVIO E ESPERA (com await)
- const sucesso = await enviarPedidoParaMaquina(payload, pedidoId); 
-                statusFinalMaquina = sucesso ? 'enviado' : 'erro';
- }
- }
+    const result = await pool.query(
+      'SELECT id, nome, email, data_nascimento, termos_aceitos, data_cadastro, ativo FROM usuarios WHERE id = $1 AND ativo = true',
+      [id]
+    );
 
- // Responde ao frontend com o status final
- res.json({ 
-            success: true, 
-            pedidoId: pedidoId,
-            maquinaStatus: statusFinalMaquina // Retorna 'enviado', 'erro', ou 'nenhum_item'
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuário não encontrado'
+      });
+    }
+
+    res.json({
+      success: true,
+      usuario: result.rows[0]
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao buscar usuário:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno do servidor'
+    });
+  }
+});
+
+// UPDATE - Atualizar usuário
+app.put('/api/usuarios/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome, email, dataNascimento, senha } = req.body;
+
+    // Verificar se usuário existe
+    const usuarioExistente = await pool.query(
+      'SELECT id FROM usuarios WHERE id = $1 AND ativo = true',
+      [id]
+    );
+
+    if (usuarioExistente.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuário não encontrado'
+      });
+    }
+
+    // Verificar se novo email já existe (se foi alterado)
+    if (email) {
+      const emailExistente = await pool.query(
+        'SELECT id FROM usuarios WHERE email = $1 AND id != $2 AND ativo = true',
+        [email.toLowerCase(), id]
+      );
+
+      if (emailExistente.rows.length > 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Email já está em uso'
         });
-
- } catch (err) {
- console.error("❌ Erro ao verificar e salvar pedido (bloqueante):", err.message);
- res.status(500).json({ success: false, error: err.message });
- }
-});
-
-app.post("/verificar-e-salvar-pedido", async (req, res) => {
-  // Esta rota é um "backup" se o webhook falhar.
-  // Vamos corrigir a lógica dela também.
-  const { sessionId } = req.body;
-  if (!sessionId) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Session ID não fornecido." });
-  }
-
-  try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    if (session.payment_status !== "paid") {
-      return res
-        .status(400)
-        .json({ success: false, error: "Pagamento não confirmado." });
-    }
-
-    const pedidoId = session.metadata.pedidoId;
-    if (!pedidoId) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Pedido ID não encontrado." });
-    }
-
-    console.log(
-      `[Verificar] Página de Sucesso acessada para Pedido ID: ${pedidoId}`
-    );
-
-    // Roda a mesma lógica do webhook
-    const updateResult = await pool.query(
-      `UPDATE pedidos SET status = 'pago' WHERE id = $1 AND status = 'pendente'`,
-      [pedidoId]
-    );
-
-    if (updateResult.rowCount > 0) {
-      console.log(`💾 [Verificar] Pedido ${pedidoId} atualizado para PAGO.`);
-      // (Nós sempre tentamos enviar, não importa quem atualizou o status)
-      const itensResult = await pool.query(
-        `SELECT payload_maquina FROM pedido_itens WHERE pedido_id = $1`,
-        [pedidoId]
-      );
-
-      console.log(
-        `[Máquina] Disparando envio (via Página de Sucesso) para ${itensResult.rowCount} item(ns)...`
-      );
-      for (const item of itensResult.rows) {
-        // 👇👇👇 COMEÇO DA CORREÇÃO 👇👇👇
-        if (
-          item.payload_maquina &&
-          item.payload_maquina !== "null" &&
-          item.payload_maquina !== "{}"
-        ) {
-          const payload = JSON.parse(item.payload_maquina);
-          enviarPedidoParaMaquina(payload, pedidoId); // (Sem 'await')
-        } else {
-          console.log(
-            `[Verificar] Pedido ${pedidoId} não tem payload, pulando.`
-          );
-        }
       }
-    } else {
-      console.log(`[Verificar] Pedido ${pedidoId} já estava pago.`);
     }
 
-    res.json({ success: true, pedidoId: pedidoId });
-  } catch (err) {
-    console.error("❌ Erro ao verificar e salvar pedido:", err.message);
-    res.status(500).json({ success: false, error: err.message });
+    // Construir query dinamicamente
+    let query = 'UPDATE usuarios SET ';
+    const values = [];
+    let paramCount = 1;
+    const updates = [];
+
+    if (nome) {
+      updates.push(`nome = $${paramCount}`);
+      values.push(nome.trim());
+      paramCount++;
+    }
+
+    if (email) {
+      updates.push(`email = $${paramCount}`);
+      values.push(email.toLowerCase().trim());
+      paramCount++;
+    }
+
+    if (dataNascimento) {
+      updates.push(`data_nascimento = $${paramCount}`);
+      values.push(dataNascimento);
+      paramCount++;
+    }
+
+    if (senha) {
+      if (senha.length < 6) {
+        return res.status(400).json({
+          success: false,
+          message: 'A senha deve ter pelo menos 6 caracteres'
+        });
+      }
+      const saltRounds = 10;
+      const senhaHash = await bcrypt.hash(senha, saltRounds);
+      updates.push(`senha = $${paramCount}`);
+      values.push(senhaHash);
+      paramCount++;
+    }
+
+    if (updates.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Nenhum dado para atualizar'
+      });
+    }
+
+    updates.push(`data_atualizacao = NOW()`);
+    query += updates.join(', ') + ` WHERE id = $${paramCount} RETURNING id, nome, email, data_nascimento, data_cadastro, ativo`;
+    values.push(id);
+
+    const result = await pool.query(query, values);
+    const usuarioAtualizado = result.rows[0];
+
+    console.log('✅ Usuário atualizado:', usuarioAtualizado.email);
+
+    res.json({
+      success: true,
+      message: 'Usuário atualizado com sucesso',
+      usuario: usuarioAtualizado
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao atualizar usuário:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno do servidor'
+    });
   }
 });
 
-// =========================================================
-// 🔹 7. INICIA SERVIDOR
-// =========================================================
-app.listen(PORT, () => {
-  console.log(`✅ Backend rodando em http://localhost:${PORT}`);
+// DELETE - Deletar usuário (soft delete)
+app.delete('/api/usuarios/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await pool.query(
+      'UPDATE usuarios SET ativo = false, data_exclusao = NOW() WHERE id = $1 AND ativo = true RETURNING id',
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuário não encontrado'
+      });
+    }
+
+    console.log('✅ Usuário deletado:', id);
+
+    res.json({
+      success: true,
+      message: 'Usuário deletado com sucesso'
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao deletar usuário:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno do servidor'
+    });
+  }
+});
+
+// HEALTH CHECK específico para usuários
+app.get('/api/usuarios/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API de usuários está funcionando',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      'POST /api/usuarios': 'Cadastrar usuário',
+      'POST /api/usuarios/login': 'Login',
+      'GET /api/usuarios/verificar-email/:email': 'Verificar email',
+      'GET /api/usuarios/:id': 'Buscar usuário',
+      'PUT /api/usuarios/:id': 'Atualizar usuário',
+      'DELETE /api/usuarios/:id': 'Deletar usuário'
+    }
+  });
 });
