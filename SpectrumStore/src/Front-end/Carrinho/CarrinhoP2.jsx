@@ -100,8 +100,8 @@ return (
       <Navbar />
       <div className="div-conteinerDeFora">
         <div className="FundoBanco">
-          <div className="Voltar">
-            <Link to="/Carrinho">Voltar</Link>
+          <div className="Voltar-pagamentos">
+            <Link className="Voltar-pagamentos-link" to="/Carrinho">Voltar</Link>
           </div>
 
           {/* Produtos */}

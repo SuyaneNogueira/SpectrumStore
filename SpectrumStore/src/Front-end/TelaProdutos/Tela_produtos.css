@@ -267,7 +267,7 @@
   margin-top: 5px; 
 }
 
-.seletor-quantidade {
+.seletor-quantidade-produtos {
   border: 2px solid rgba(0, 0, 0, 0);
   width: 38%;
   display: flex;
@@ -275,7 +275,7 @@
   gap: 2px; 
 }
 
-.seletor-quantidade button {
+.seletor-quantidade-produtos button {
   background-color: #03374C;
   color: white;
   border: none;
@@ -296,7 +296,7 @@ input[type="number"]::-webkit-outer-spin-button {
   -moz-appearance: textfield;
 } */
 
-.seletor-quantidade input {
+.seletor-quantidade-produtos input {
   width: 50px;
   text-align: center;
   border: 1px solid #ccc;
@@ -304,7 +304,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 5px;
 }
 
-.seletor-quantidade input:focus {
+.seletor-quantidade-produtos input:focus {
   outline: none;
   border-color: #ccc; 
   box-shadow: #537f91; 

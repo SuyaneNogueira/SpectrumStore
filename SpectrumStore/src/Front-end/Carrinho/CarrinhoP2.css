@@ -296,3 +296,22 @@
 .botao-pagar:hover {
     background-color: #054c68;
 }
+
+/* Voltar pagamentos */
+
+.Voltar-pagamentos {
+ /* border: solid; */
+ width: 10%;
+ height: 5%;
+ background-color: #A2C9CD;
+ border-radius: 5px;
+ align-items: center;
+ display: flex;
+ justify-content: center;
+ text-decoration: none;
+}
+
+.Voltar-pagamentos-link{
+ text-decoration: none;
+ color: #03374C;
+}

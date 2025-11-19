@@ -370,7 +370,7 @@ quantidade,
                 ))}
 
               <div className="quantidade-e-botao">
-                <div className="seletor-quantidade">
+                <div className="seletor-quantidade-produtos">
                   <button
                     onClick={() => setQuantidade(Math.max(1, quantidade - 1))}
                   >
