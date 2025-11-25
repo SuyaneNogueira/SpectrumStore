@@ -23,7 +23,7 @@ const produtosSpectrum = [
   {
     id: 1,
     name: "Caderno Brochura",
-    price: 12.50,
+    price: 12.5,
     image: CadernoBrochura,
     description:
       "Caderno brochura simples com capa lisa. Ideal para anotações e desenhos, de fácil manuseio.",
@@ -33,7 +33,7 @@ const produtosSpectrum = [
   {
     id: 2,
     name: "Camisa de Compressão",
-    price: 79.90,
+    price: 79.9,
     image: CamisaCompressao,
     description:
       "Camisa de compressão sensorial, oferece feedback tátil profundo, ajudando a regular e acalmar.",
@@ -43,7 +43,7 @@ const produtosSpectrum = [
   {
     id: 3,
     name: "Escova de Dentes Elétrica",
-    price: 55.00,
+    price: 55.0,
     image: EscovaEletrica,
     description:
       "Escova de dentes elétrica com vibração suave, indicada para sensibilidade oral e rotinas de higiene.",
@@ -53,7 +53,7 @@ const produtosSpectrum = [
   {
     id: 4,
     name: "Fidget Toy Pop-It",
-    price: 25.00,
+    price: 25.0,
     image: FidgetToy,
     description:
       "Brinquedo sensorial Pop-It para alívio do estresse e foco. Ajuda na coordenação motora fina.",
@@ -63,7 +63,7 @@ const produtosSpectrum = [
   {
     id: 5,
     name: "Jogo da Memória",
-    price: 35.00,
+    price: 35.0,
     image: JogoMemoria, // Este já estava no seu import, mas usei o nome da sua lista
     description:
       "Jogo clássico da memória com figuras temáticas, estimulando a concentração e o raciocínio.",
@@ -73,7 +73,7 @@ const produtosSpectrum = [
   {
     id: 6,
     name: "Kit Jogo de Pareamento",
-    price: 45.90,
+    price: 45.9,
     image: KitJogoPareamento,
     description:
       "Kit com cartões para atividades de pareamento, ideal para desenvolver a discriminação visual e a lógica.",
@@ -83,7 +83,7 @@ const produtosSpectrum = [
   {
     id: 7,
     name: "Livro de Comunicação Visual",
-    price: 65.00,
+    price: 65.0,
     image: LivroComunicacao,
     description:
       "Livro/Álbum de comunicação alternativa (PECS). Ferramenta essencial para comunicação não-verbal.",
@@ -103,7 +103,7 @@ const produtosSpectrum = [
   {
     id: 9,
     name: "Manta Ponderada",
-    price: 249.00,
+    price: 249.0,
     image: MantaPonderada,
     description:
       "Manta com peso terapêutico, proporciona pressão suave e constante, promovendo calma e segurança.",
@@ -113,7 +113,7 @@ const produtosSpectrum = [
   {
     id: 10,
     name: "Quadro de Rotina Diária",
-    price: 49.90,
+    price: 49.9,
     image: QuadroRotinaD,
     description:
       "Quadro visual magnético para estabelecer e acompanhar a rotina diária, oferecendo previsibilidade.",
@@ -123,7 +123,7 @@ const produtosSpectrum = [
   {
     id: 11,
     name: "Quebra-Cabeça de Madeira",
-    price: 38.00,
+    price: 38.0,
     image: QuebraCabecaV,
     description:
       "Quebra-cabeça de encaixe em madeira, com figuras coloridas. Desenvolve a motricidade e o foco.",
@@ -135,7 +135,7 @@ const produtosSpectrum = [
 function Tela_produtos() {
   const { id } = useParams();
 
-// CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
+  // CARREGA O PRODUTO AO MONTAR OU MUDAR O ID
   React.useEffect(() => {
     const produtosLoja = JSON.parse(localStorage.getItem("produtosLoja")) || [];
     const produtoBase =
@@ -196,21 +196,22 @@ function Tela_produtos() {
   const [showPopup, setShowPopup] = useState(false);
   const [produto, setProduto] = useState(null);
 
-
-const handleAddToCart = () => {
- if (!produto) return;
+  const handleAddToCart = () => {
+    if (!produto) return;
 
     // Pega o "molde" das personalizações deste produto
-    const personalizacoesDoProduto = personalizacoesPorCategoria[produto.category] || {};
+    const personalizacoesDoProduto =
+      personalizacoesPorCategoria[produto.category] || {};
     const chavesObrigatorias = Object.keys(personalizacoesDoProduto);
 
     let camposFaltando = false;
     // Loop para checar se CADA campo (exceto extras) foi preenchido
     for (const key of chavesObrigatorias) {
       // "Extras" e "Detalhes" são os únicos que podem ser arrays (não são obrigatórios)
-      const isArrayField = key.toLowerCase().includes('extras') || 
-                           key.toLowerCase().includes('detalhes') ||
-                           key.toLowerCase().includes('tema'); // (Adicione outros campos de array aqui)
+      const isArrayField =
+        key.toLowerCase().includes("extras") ||
+        key.toLowerCase().includes("detalhes") ||
+        key.toLowerCase().includes("tema"); // (Adicione outros campos de array aqui)
 
       // Se NÃO for um campo de array E não estiver selecionado
       if (!isArrayField && !personalizacoesSelecionadas[key]) {
@@ -220,7 +221,9 @@ const handleAddToCart = () => {
     }
 
     if (camposFaltando) {
-      alert("⚠️ Por favor, selecione uma opção para cada categoria de personalização (exceto 'Extras').");
+      alert(
+        "⚠️ Por favor, selecione uma opção para cada categoria de personalização (exceto 'Extras')."
+      );
       return;
     }
 
@@ -228,7 +231,7 @@ const handleAddToCart = () => {
     // 1. PREPARAR AS CUSTOMIZAÇÕES
     // =========================================================
     // O seu 'personalizacoesSelecionadas' (ex: { tipoTecido: ["Algodão"] }) está ótimo.
-    
+
     // 1a. Clonar o objeto
     const customizationsParaCarrinho = { ...personalizacoesSelecionadas };
 
@@ -236,25 +239,27 @@ const handleAddToCart = () => {
     // 'produto.category' (ex: "ModaEAcessoriosSensoriais")
     customizationsParaCarrinho.sku = produto.category;
 
-
- // =========================================================
+    // =========================================================
     // 2. MONTAR O PRODUTO FINAL PARA O CARRINHO
     // =========================================================
- const produtoParaCarrinho = {
-id: produto.id,
-name: produto.name || produto.nome,
-price: produto.price || produto.valor,
-image: produto.image || produto.imagem,
-rating: produto.rating || 0,
-customizations: customizationsParaCarrinho, // <--- NOME CORRETO + SKU
-quantidade,
- };
+    const produtoParaCarrinho = {
+      id: produto.id,
+      name: produto.name || produto.nome,
+      price: produto.price || produto.valor,
+      image: produto.image || produto.imagem,
+      rating: produto.rating || 0,
+      customizations: customizationsParaCarrinho, // <--- NOME CORRETO + SKU
+      quantidade,
+    };
 
-    console.log("Enviando para o carrinho:", JSON.stringify(produtoParaCarrinho, null, 2));
+    console.log(
+      "Enviando para o carrinho:",
+      JSON.stringify(produtoParaCarrinho, null, 2)
+    );
 
- addToCart(produtoParaCarrinho);
- setShowPopup(true);
- };
+    addToCart(produtoParaCarrinho);
+    setShowPopup(true);
+  };
 
   const handleClosePopup = () => setShowPopup(false);
 
@@ -316,39 +321,42 @@ quantidade,
                         <div
                           key={opcao}
                           className={`personalizacao-item ${
-              (personalizacoesSelecionadas[key] === opcao || 
-                             personalizacoesSelecionadas[key]?.includes(opcao))
-               ? "selecionado"
-               : ""
-             }`}
+                            personalizacoesSelecionadas[key] === opcao ||
+                            personalizacoesSelecionadas[key]?.includes(opcao)
+                              ? "selecionado"
+                              : ""
+                          }`}
                           onClick={() => {
-              setPersonalizacoesSelecionadas((prev) => {
-               const novas = { ...prev };
-                              
-                              // "Extras", "Detalhes" e "Tema" são os únicos que podem ser arrays
-                              const isArrayField = key.toLowerCase().includes('extras') || 
-                                                   key.toLowerCase().includes('detalhes') ||
-                                                   key.toLowerCase().includes('tema');
+                            setPersonalizacoesSelecionadas((prev) => {
+                              const novas = { ...prev };
 
-               if (isArrayField) {
-                // LÓGICA DE CHECKBOX (ARRAY) - SÓ PARA "EXTRAS"
-                const selecionadas = novas[key] || [];
-                if (selecionadas.includes(opcao)) {
-                 novas[key] = selecionadas.filter((v) => v !== opcao);
-                } else {
-                 novas[key] = [...selecionadas, opcao]; // Pode ter múltiplos
-                }
-               } else {
-                // LÓGICA DE RADIO (STRING) - PARA TODO O RESTO
-                if (novas[key] === opcao) {
-                 delete novas[key]; // Permite desmarcar
-                } else {
-                 novas[key] = opcao; // SÓ pode ter UM
-                }
-               }
-               return novas;
-              });
-             }}
+                              // "Extras", "Detalhes" e "Tema" são os únicos que podem ser arrays
+                              const isArrayField =
+                                key.toLowerCase().includes("extras") ||
+                                key.toLowerCase().includes("detalhes") ||
+                                key.toLowerCase().includes("tema");
+
+                              if (isArrayField) {
+                                // LÓGICA DE CHECKBOX (ARRAY) - SÓ PARA "EXTRAS"
+                                const selecionadas = novas[key] || [];
+                                if (selecionadas.includes(opcao)) {
+                                  novas[key] = selecionadas.filter(
+                                    (v) => v !== opcao
+                                  );
+                                } else {
+                                  novas[key] = [...selecionadas, opcao]; // Pode ter múltiplos
+                                }
+                              } else {
+                                // LÓGICA DE RADIO (STRING) - PARA TODO O RESTO
+                                if (novas[key] === opcao) {
+                                  delete novas[key]; // Permite desmarcar
+                                } else {
+                                  novas[key] = opcao; // SÓ pode ter UM
+                                }
+                              }
+                              return novas;
+                            });
+                          }}
                         >
                           {key.toLowerCase().includes("cor") ? (
                             <div

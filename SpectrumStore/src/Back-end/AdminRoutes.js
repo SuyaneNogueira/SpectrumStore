@@ -16,7 +16,7 @@ router.get('/api/maquina/estoque', async (req, res) => {
     console.log("[Proxy Admin] Recebida requisição para estoque da máquina...");
     
     // 1. Define o endereço REAL da API da máquina
-    const maquinaBaseUrl = "http://52.1.197.112:3000/estoque";
+    const maquinaBaseUrl = "http://52.72.137.244:3000/estoque";
     
     // 2. Pega TODOS os filtros que o frontend enviou (ex: ?q=chassi)
     const filtros = req.query; 
@@ -51,7 +51,7 @@ router.get('/api/maquina/estoque/:pos', async (req, res) => {
     console.log(`[Proxy Admin] Recebida requisição para posição de estoque: ${pos}`);
 
     // 2. Monta a URL REAL da máquina (como na sua foto)
-    const maquinaUrl = `http://52.1.197.112:3000/estoque/${pos}`;
+    const maquinaUrl = `http://52.72.137.244:3000/estoque/${pos}`;
     
     try {
         // 3. Chama a máquina
@@ -90,7 +90,7 @@ router.put('/api/maquina/estoque/:pos', async (req, res) => {
     console.log(`[Proxy Admin] Recebida requisição PUT para posição ${pos} com body:`, bodyParaMaquina);
 
     // 3. Monta a URL REAL da máquina
-    const maquinaUrl = `http://52.1.197.112:3000/estoque/${pos}`;
+    const maquinaUrl = `http://52.72.137.244:3000/estoque/${pos}`;
     
     try {
         // 4. Chama a máquina com o método PUT e envia o 'body'

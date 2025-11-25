@@ -97,9 +97,7 @@ export default function Dashboard() {
   // 👇👇👇 PARTE 2: "DINAMINA" DO MODAL (Novos States) 👇👇👇
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPeca, setCurrentPeca] = useState(null); // A peça que está sendo editada
-  // 👆👆👆 FIM DA "DINAMINA" 👆👆👆
 
-  // useEffect (Busca os dados) - O seu código original, está perfeito
   useEffect(() => {
     setLoading(true);
     let url = "http://localhost:3001/api/maquina/estoque";

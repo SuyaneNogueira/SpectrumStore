@@ -127,7 +127,7 @@ export default function ModalPersonalizacao({ novoProduto, setNovoProduto }) {
   }, []);
 
   // 🔹 Divide automaticamente os campos em páginas (máx 3 seções por página)
-  const camposPorPagina = 3;
+  const camposPorPagina = 5;
   const campos = Object.entries(categoriaAtual);
   const totalPaginas = Math.ceil(campos.length / camposPorPagina);
   const camposDaPagina = campos.slice(
