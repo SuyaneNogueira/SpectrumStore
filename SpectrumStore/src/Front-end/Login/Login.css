@@ -6,7 +6,7 @@
   --color-overlay-soft: rgba(0, 0, 0, 0.1);
 }
 
-.login-overlay {
+.login-page {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,8 +20,8 @@
 }
 
 .login-modal {
-  background: #a2c9cdfb;
-  border-radius: 150px 0 150px 0 ;
+  background: #e9fbfdfb;
+  border-radius: 150px 0 150px 0;
   width: 380px;
   padding: 40px;
   position: relative;
@@ -33,14 +33,26 @@
 
 .login-close {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 20px;
   background: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
-  color: #ffff;
+  color: #034e61;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
+
+/* Remova qualquer efeito hover se não quiser */
+/* .login-close:hover {
+  Sem efeitos
+} */
 
 h2 {
   text-align: center;
@@ -63,12 +75,17 @@ h2 {
 
 .login-form input {
   border: none;
-  border-bottom: 1px solid var(--color-input-line);
+  border-bottom: 1px solid #034e61;
   background: transparent;
   padding: 8px;
   outline: none;
   font-size: 14px;
   color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.login-form input::placeholder {
+  color: rgba(3, 78, 97, 0.6);
 }
 
 .google-login {
@@ -79,7 +96,7 @@ h2 {
   border: none;
   text-decoration: underline #ffff 1.4px;
   border-radius: 6px;
-  padding: 8px;
+  padding: 12px;
   background: transparent;
   cursor: pointer;
   font-size: 15px;
@@ -97,15 +114,23 @@ h2 {
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px;
+  padding: 1px;
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
   transition: 0.3s;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 .login-btn:hover {
   background: #023b4a;
+}
+
+.login-erro {
+  color: #d63031;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 14px;
 }
 
 .login-footer {
@@ -115,9 +140,10 @@ h2 {
   color: var(--color-primary);
 }
 
-.login-footer span {
+.cadastro-link {
   display: block;
-  margin-top: 4px;
+  margin-top: 8px;
   cursor: pointer;
-  text-decoration: underline ;
+  text-decoration: underline;
+  color: var(--color-primary);
 }

@@ -3,6 +3,7 @@ import { auth, provider, signInWithPopup } from "./Firebase";
 import TermosDeUso from "./TermosDeUso";
 import { useCadastro } from "../../Back-end/Hooks/UseCadastro";
 import "./Cadastro.css";
+import { useNavigate } from "react-router-dom";
 
 function Cadastro({ onClose, onOpenLogin }) {
   const [nome, setNome] = useState("");
@@ -14,6 +15,7 @@ function Cadastro({ onClose, onOpenLogin }) {
   const [modalAberto, setModalAberto] = useState(false);
 
   const { loading, error, cadastrarUsuario } = useCadastro();
+   const navigate = useNavigate();
 
   // Envio de cadastro
   const handleSubmit = async (e) => {
@@ -38,9 +40,13 @@ function Cadastro({ onClose, onOpenLogin }) {
 
     if (resultado.success) {
       console.log("✅ Cadastro realizado com sucesso:", resultado.data);
-      alert("Cadastro realizado com sucesso!");
       
-      if (typeof onClose === "function") onClose();
+    if (typeof onClose === "function") onClose();
+      
+      // Redireciona após um pequeno delay
+      setTimeout(() => {
+        navigate("/TelaInicial");
+      }, 500);
     } else {
       console.error("❌ Erro no cadastro:", resultado.error);
     }

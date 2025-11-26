@@ -1,4 +1,3 @@
-// TelaDePerfil.jsx
 import React, { useState, useEffect } from "react";
 import "./TelaDePerfil.css";
 import HistoricoDeCompraModal from "../Historico/HistoricoDeCompraModal";
@@ -27,9 +26,12 @@ function TelaDePerfil() {
     nome: "",
     email: "",
     dataNascimento: "",
-    pontos: 10, // Pontos iniciais
-    foto: "https://via.placeholder.com/150"
+    pontos: 10,
+    foto: null // ✅ Mudar para null inicialmente
   });
+
+  // Verificar se algum modal está aberto
+  const algumModalAberto = modalEditar || modalExcluir || modalSuporte || pedidoSelecionado;
 
   // Carregar dados do usuário do localStorage ao montar o componente
   useEffect(() => {
@@ -43,17 +45,27 @@ function TelaDePerfil() {
       
       if (userData && authToken) {
         const usuarioSalvo = JSON.parse(userData);
+        
+        // ✅ CORREÇÃO: Garantir que a foto seja uma URL válida ou null
+        let fotoUsuario = usuarioSalvo.fotoUrl || usuarioSalvo.foto;
+        
+        // Se a foto estiver vazia, undefined, ou string vazia, usar null
+        if (!fotoUsuario || fotoUsuario === "" || fotoUsuario === "null") {
+          fotoUsuario = null;
+        }
+        
         setUsuario(prev => ({
           ...prev,
           nome: usuarioSalvo.nome || "",
           email: usuarioSalvo.email || "",
           dataNascimento: usuarioSalvo.dataNascimento || "",
-          foto: usuarioSalvo.foto || "https://via.placeholder.com/150"
+          foto: fotoUsuario, // ✅ Usar a foto corrigida
+          pontos: usuarioSalvo.pontos || 10
         }));
         console.log("✅ Dados do usuário carregados:", usuarioSalvo);
+        console.log("🖼️ Foto do usuário:", fotoUsuario);
       } else {
         console.log("⚠️ Nenhum usuário logado encontrado");
-        // Redirecionar para login se não estiver logado
         window.location.href = "/login";
       }
     } catch (error) {
@@ -66,7 +78,6 @@ function TelaDePerfil() {
     if (!dataNascimento) return "Não informada";
     
     try {
-      // Converter de DD/MM/AAAA para Date
       let data;
       if (dataNascimento.includes('/')) {
         const [dia, mes, ano] = dataNascimento.split('/');
@@ -114,19 +125,36 @@ function TelaDePerfil() {
     console.log("Pesquisa:", event.target.value);
   };
 
+  // Fechar menu quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuAberto && !event.target.closest('.menu-container')) {
+        setMenuAberto(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [menuAberto]);
+
   // Dados do carrinho
   const {
     cartItems,
     removeFromCart,
-    toggleAllItems,
-    toggleItem,
-    selectAll,
-    totalSelected,
-    updateQuantity,
   } = useCart();
 
+  // ✅ Função para obter URL segura da foto
+  const getFotoUsuario = () => {
+    if (!usuario.foto || usuario.foto === "" || usuario.foto === "null") {
+      return "/usuario-padrao.png"; // ✅ Usar imagem local padrão
+    }
+    return usuario.foto;
+  };
+
   return (
-    <div className="perfil-container">
+    <div className={`perfil-container ${algumModalAberto ? 'modal-aberto' : ''}`}>
       <div className="perfil-topo">
         <Link to='/TelaInicial'>
           <img src="voltarteladeperfil.png" alt="Voltar" className="VoltartelaDePerfil" />
@@ -134,10 +162,15 @@ function TelaDePerfil() {
       </div>
 
       <div className="perfil-header">
+        {/* ✅ Usar função para obter foto segura */}
         <img 
-          src={usuario.foto} 
+          src={getFotoUsuario()} 
+          alt="Foto do perfil"
           className="foto-perfil" 
-          alt={`Foto de perfil de ${usuario.nome}`} 
+          onError={(e) => {
+            // ✅ Fallback se a imagem não carregar
+            e.target.src = "/usuario-padrao.png";
+          }}
         />
         <div className="perfil-info">
           <p><strong>Nome:</strong> {usuario.nome || "Não informado"}</p>
@@ -150,7 +183,10 @@ function TelaDePerfil() {
         <div className="menu-container">
           <button
             className="menu-icone"
-            onClick={() => setMenuAberto(!menuAberto)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setMenuAberto(!menuAberto);
+            }}
           >
             <img className="container-ajustes" src="ajustes.png" alt="ajustes" />
           </button>
@@ -170,6 +206,7 @@ function TelaDePerfil() {
               <button 
                 className="ajuste-opcao-excluir" 
                 onClick={() => {
+                  console.log("🎯 Abrindo modal de excluir perfil"); 
                   setModalExcluir(true);
                   setMenuAberto(false);
                 }}
