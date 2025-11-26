@@ -123,26 +123,34 @@
   overflow-y: auto; /* scroll vertical quando passar do limite */
   margin-top: 1%;
 }
-
+/* 
 .criar-produto-adm {
   height: 33px;
   border: solid 2px #a2c9cd;
   width: 100%;
   border-radius: 7px;
-}
+} */
 
 .button-adicionar-produto-adm {
-  height: 100%;
+  /* Seu CSS Original (com ajustes de tamanho) */
   background-color: #fff;
-  width: 100%;
   cursor: pointer;
   border: none;
   color: #021c41;
   border-radius: 7px;
+  border: solid #a2c9cd;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1%;
+
+  /* Propriedades para fixar e adaptar */
+  position: fixed; /* Tira do fluxo normal e fixa na tela */
+  bottom: 82%; /* Cola no fundo */
+  left: 1; /* Cola na esquerda */
+  width: 15%; /* Ocupa 100% da largura da tela */
+  height: 40px; /* Altura fixa (não use 100% aqui ou cobrirá a tela) */
+  z-index: 1000; /* Garante que fique por cima de tudo */
 }
 
 .plus-png-adm {
@@ -184,12 +192,11 @@
   height: 100%;
   width: 80%;
 }
- .preco-categoria-produto-adm{
+.preco-categoria-produto-adm {
   /* border: solid; */
   height: 100%;
   margin-top: 5%;
-  
- }
+}
 
 .div-valor-do-produto-adm {
   /* border: solid blue; */
@@ -376,7 +383,7 @@
 .modal-content-produtos-adm {
   background: #fff;
   width: 31%;
-  height:80%;
+  height: 80%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -556,7 +563,6 @@
   width: 100%;
   margin-top: 4%;
   color: #021c41;
-
 }
 .form-row-produtos-adm-tres textarea {
   /* background-color: #a2c9cd; */
@@ -709,6 +715,5 @@
 .botoes-modal button:last-child:hover {
   background: #8dcdd4;
 }
-
 
 /* Personalizção das categorias */
