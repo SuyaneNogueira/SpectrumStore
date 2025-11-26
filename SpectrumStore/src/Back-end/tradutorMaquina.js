@@ -227,7 +227,7 @@ const MAPA_RO_TAMANHO = {
 };
 const MAPA_RO_ESTILO = {
   "Fotos reais": 1,
-  Pictogramas: 2,
+  "Pictogramas": 2,
   "Desenhos lúdicos": 3,
 };
 const MAPA_RO_EXTRAS = {
@@ -259,18 +259,20 @@ function traduzirRotinaEOrganizacao(customs) {
 // =========================================================
 // CATEGORIA 4: Moda e Acessórios Sensoriais
 // =========================================================
-const MAPA_MODA_COR = {Branco: 1, Azul: 2,
-  Preto: 3,
-  Verde: 4,
-  Roxo: 5,
-  Amarelo: 6,
+const MAPA_MODA_COR = {
+  "Branco": 1,
+  "Azul": 2,
+  "Preto": 3,
+  "Verde": 4,
+  "Roxo": 5,
+  "Amarelo": 6,
 };
 const MAPA_MODA_TECIDO = {
-  Algodão: 1,
+  "Algodão": 1,
   "Dry fit": 2,
-  Lycra: 3,
-  Plush: 4,
-  Viscose: 5,
+  "Lycra": 3,
+  "Plush": 4,
+  "Viscose": 5,
   "Malha fria": 6,
 };
 const MAPA_MODA_TAMANHO = { PP: 1, P: 2, M: 3, G: 4, GG: 5, XG: 6 };
@@ -308,22 +310,29 @@ const MAPA_AR_TAMANHO = {
   "Média (2 crianças)": 2,
   "Grande (3+ crianças)": 3,
 };
-const MAPA_AR_MATERIAL = { Algodão: 1, Poliéster: 2, Plush: 3 };
-const MAPA_AR_FORMATO = {
-  Pirâmide: 1,
-  Casinha: 2,
-  Circular: 3,
-  Triangular: 4,
-  Tipi: 5,
-  Túnel: 6,
+
+const MAPA_AR_MATERIAL = {
+  "Algodão": 1,
+  "Poliéster": 2,
+  "Plush": 3,
 };
+
+const MAPA_AR_FORMATO = {
+  "Pirâmide": 1,
+  "Casinha": 2,
+  "Circular": 3,
+  "Triangular": 4,
+  "Tipi": 5,
+  "Túnel": 6,
+};
+
 const MAPA_AR_EXTRAS = {
-  "Com luzes LED": "1",
-  "Com janelas": "2",
-  "Com cortinas blackout": "3",
-  "Com bolso interno": "4",
-  "Com piso acolchoado": "5",
-  "Com entrada dupla": "6",
+  "Com luzes LED": 1,
+  "Com janelas": 2,
+  "Com cortinas blackout": 3,
+  "Com bolso interno": 4,
+  "Com piso acolchoado": 5,
+  "Com entrada dupla": 6,
 };
 
 function traduzirAmbienteERelaxamento(customs) {
@@ -333,8 +342,8 @@ function traduzirAmbienteERelaxamento(customs) {
       cor: getOrDefault(MAPA_AR_TAMANHO, customs.tamanho, 1),
       lamina1: getOrDefault(MAPA_AR_MATERIAL, customs.material, 0),
       lamina2: getOrDefault(MAPA_AR_FORMATO, customs.formato, 0),
-      // 👇👇👇 "CURA" 2: O "Interruptor Mestre" (Sua Lógica) 👇👇👇
       lamina3: customs.extras && customs.extras.length > 0 ? 1 : 0,
+
       ...traduzirExtrasParaPadroes(MAPA_AR_EXTRAS, customs.extras),
     },
     bloco2: DEFAULT_BLOCO_VAZIO,
@@ -347,47 +356,48 @@ function traduzirAmbienteERelaxamento(customs) {
 // CATEGORIA 6: Jogos Cognitivos e Educacionais
 // =========================================================
 
-const MAPA_JCE_COMPLEXIDADE = { 
-  "Simples": 1, 
-  "Médio": 2, 
-  "Avançado": 3 
+const MAPA_JCE_COMPLEXIDADE = {
+  Simples: 1,
+  Médio: 2,
+  Avançado: 3,
 };
 
-const MAPA_JCE_FORMATO = { 
-  "Cartas": 1, 
-  "Painéis": 2, 
-  "Tabuleiros": 3 
+const MAPA_JCE_FORMATO = {
+  Cartas: 1,
+  Painéis: 2,
+  Tabuleiros: 3,
 };
 
-const MAPA_JCE_TEMA = { 
-  "Animais": 1, "Carros": 1, 
-  "Frutas": 2, 
-  "Rotina": 3, "Profissões": 3,
-  "Objetos": 4, 
-  "Países": 5, "Natureza": 5,
-  "Heróis": 6, "Transportes": 6
+const MAPA_JCE_TEMA = {
+  Animais: 1,
+  Carros: 1,
+  Frutas: 2,
+  Rotina: 3,
+  Objetos: 4,
+  Países: 5,
+  Heróis: 6,
 };
 
-const MAPA_JCE_DESIGN = { 
-  "Alto contraste": "1", 
-  "Cores vibrantes": "2", 
-  "Desenhos simples": "3" 
+const MAPA_JCE_DESIGN = {
+  "Alto contraste": "1",
+  "Cores vibrantes": "2",
+  "Desenhos simples": "3",
 };
 
 function traduzirJogosCognitivosEEducacionais(customs) {
-  const objetoCaixa = { 
-    codigoProduto: 1, 
+  const objetoCaixa = {
+    codigoProduto: 1,
     bloco1: {
       cor: getOrDefault(MAPA_JCE_COMPLEXIDADE, customs.complexidade, 1),
       lamina1: getOrDefault(MAPA_JCE_FORMATO, customs.formato, 0),
       lamina2: getOrDefault(MAPA_JCE_TEMA, customs.tema, 0),
-      lamina3: (customs.designVisual && customs.designVisual.length > 0) ? 1 : 0,
-      
+      lamina3: customs.designVisual && customs.designVisual.length > 0 ? 1 : 0,
+
       // Padrões <= Design Visual
-      ...traduzirExtrasParaPadroes(MAPA_JCE_DESIGN, customs.designVisual)
+      ...traduzirExtrasParaPadroes(MAPA_JCE_DESIGN, customs.designVisual),
     },
     bloco2: DEFAULT_BLOCO_VAZIO,
-    bloco3: DEFAULT_BLOCO_VAZIO
+    bloco3: DEFAULT_BLOCO_VAZIO,
   };
   return { objetoCaixa, skuMaquina: "JOGO-01" };
 }
