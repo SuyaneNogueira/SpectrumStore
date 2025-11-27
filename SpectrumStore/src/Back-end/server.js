@@ -33,8 +33,8 @@ const __dirname = path.dirname(__filename);
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'TesteSpectrum',
-  password: 'senai',
+  database: '',
+  password: '',
   port: 5432,
 });
 
@@ -90,7 +90,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // =========================================================
 
 async function enviarPedidoParaMaquina(payloadCompleto, idDoPedido) {
-  const URL_DA_MAQUINA = "http://52.1.197.112:3000/queue/items";
+  const URL_DA_MAQUINA = "http://52.72.137.244:3000/queue/items";
 
   if (!payloadCompleto || !payloadCompleto.payload) {
     console.log(
@@ -1111,7 +1111,7 @@ defineRoutes(app);
 app.use(adminRoutes);
 
 // Middleware para rotas não encontradas
-app.use('*', (req, res) => {
+app.use( (req, res) => {
   console.log(`❌ Rota não encontrada: ${req.method} ${req.originalUrl}`);
   res.status(404).json({
     success: false,
@@ -1128,7 +1128,7 @@ app.listen(PORT, () => {
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
   console.log(`🔐 Sistema de Usuários: http://localhost:${PORT}/api/usuarios`);
   console.log(`🛒 Sistema de Carrinho: http://localhost:${PORT}/create-checkout-session`);
-  console.log(`📦 Sistema de Retirada: http://localhost:${Port}/retirada/pedidos-prontos`);
+  console.log(`📦 Sistema de Retirada: http://localhost:${PORT}/retirada/pedidos-prontos`);
   console.log(`🛍️  Sistema de Produtos: http://localhost:${PORT}/api/produtos`);
   console.log('==============================================');
 });
