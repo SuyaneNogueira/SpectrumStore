@@ -1,5 +1,5 @@
 import { pool } from "./db.js";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 /**
  * Define todas as rotas da API para pedidos, usuários e produtos.
@@ -52,10 +52,25 @@ export const defineRoutes = (app) => {
   });
 
   // ROTA GET /api/pedido — lista todos os pedidos
-  app.get('/api/pedido', async (req, res) => {
- try {
- const result = await pool.query('SELECT * FROM pedidos ORDER BY data_pedido DESC');
-   res.json(result.rows);
+
+  app.get("/api/pedido", async (req, res) => {
+    try {
+      const query = `
+        SELECT 
+          p.id, 
+          p.usuario_id, 
+          p.total, 
+          p.data_pedido, 
+          p.status, 
+          p.status_maquina,
+          u.nome,            
+          u.endereco         
+        FROM pedidos p
+        LEFT JOIN usuario u ON p.usuario_id = u.id 
+        ORDER BY p.data_pedido DESC
+      `;
+
+      const result = await pool.query(query);
       res.json(result.rows);
     } catch (error) {
       console.error("Erro ao buscar pedidos:", error);
@@ -64,7 +79,6 @@ export const defineRoutes = (app) => {
         .json({ error: "Erro interno no servidor ao listar pedidos." });
     }
   });
-
   // ==========================================================
   // ROTAS DE USUÁRIO
   // ==========================================================
@@ -100,120 +114,145 @@ export const defineRoutes = (app) => {
     }
   });
 
-
   app.get("/api/usuarios", async (req, res) => {
-  try {
-   const result = await pool.query(
+    try {
+      const result = await pool.query(
         // 👇 "CURA" 3: Adicionei o 'role' para o Admin ver quem é quem 👇
-    "SELECT id, nome, email, role, criado_em FROM usuarios ORDER BY id" 
-   );
-   res.json(result.rows);
-  } catch (error) {
-   console.error("Erro ao listar usuários:", error);
-   res.status(500).json({ error: "Erro no servidor ao listar usuários." });
-  }
-});
+        "SELECT id, nome, email, role, criado_em FROM usuarios ORDER BY id"
+      );
+      res.json(result.rows);
+    } catch (error) {
+      console.error("Erro ao listar usuários:", error);
+      res.status(500).json({ error: "Erro no servidor ao listar usuários." });
+    }
+  });
 
-///
-//  ROTA USUARIO ADMIN
-///
-// =========================================================
-// 👇👇👇 "CURA" 2: A "Porta dos Fundos" (Cadastro de ADMINS) 👇👇👇
-// =========================================================
-// ROTA POST /api/admin/criar-usuario — cria um novo usuário (ADMIN)
-app.post("/api/cadastro/admin", async (req, res) => {
-  const { nome, email, senha, codigoMestre } = req.body; 
-    
+  ///
+  //  ROTA USUARIO ADMIN
+  ///
+  // =========================================================
+  // 👇👇👇 "CURA" 2: A "Porta dos Fundos" (Cadastro de ADMINS) 👇👇👇
+  // =========================================================
+  // ROTA POST /api/admin/criar-usuario — cria um novo usuário (ADMIN)
+  app.post("/api/cadastro/admin", async (req, res) => {
+    const { nome, email, senha, codigoMestre } = req.body;
+
     // (O "Segurança" da Porta dos Fundos)
-    const SENHA_MESTRA_DO_PROJETO = "SPECTRUM_ADMIN_2025"; 
+    const SENHA_MESTRA_DO_PROJETO = "SPECTRUM_ADMIN_2025";
     if (codigoMestre !== SENHA_MESTRA_DO_PROJETO) {
-        return res.status(403).json({ error: 'Código Mestre inválido!' });
+      return res.status(403).json({ error: "Código Mestre inválido!" });
     }
 
-  if (!nome || !email || !senha) {
-    return res.status(400).json({ error: 'Nome, email e senha são obrigatórios.' });
-  }
+    if (!nome || !email || !senha) {
+      return res
+        .status(400)
+        .json({ error: "Nome, email e senha são obrigatórios." });
+    }
 
-  try {
-        // (Salva a senha pura na tabela de admins)
-   const query = "INSERT INTO usuarios_admins (nome, email, senha) VALUES ($1, $2, $3) RETURNING id, nome, email";
-   const values = [nome, email, senha]; 
+    try {
+      // (Salva a senha pura na tabela de admins)
+      const query =
+        "INSERT INTO usuarios_admins (nome, email, senha) VALUES ($1, $2, $3) RETURNING id, nome, email";
+      const values = [nome, email, senha];
 
-   const result = await pool.query(query, values);
-   res.status(201).json({ message: "Usuário ADMIN criado com sucesso", usuario: result.rows[0] });
-
-  } catch (error) {
-   if (error.code === "23505") { return res.status(400).json({ error: "Email já cadastrado." }); }
-   console.error("Erro ao cadastrar admin:", error);
-   res.status(500).json({ error: "Erro no servidor." });
-  }
-});
-
-/// metodo get admin
-
-app.get('/api/admin/listar-admins', async (req, res) => {
-  console.log("[API Admin] Recebida requisição para listar APENAS admins...");
-  
-  try {
-    const query = "SELECT id, nome, email, data_cadastro FROM usuarios_admins ORDER BY nome ASC";
-    const result = await pool.query(query);
-    res.json(result.rows);
-
-  } catch (err) {
-    console.error("❌ Erro ao listar admins:", err);
-    res.status(500).json({ error: 'Erro interno no servidor.' });
-  }
-});
-// 
-// Login Unificado
-// =========================================================
-app.post("/api/login", async (req, res) => {
-  const { email, senha } = req.body;
-
-  if (!email || !senha) {
-    return res.status(400).json({ error: "Email e senha são obrigatórios." });
-  }
-
-  try {
-    // 1. O "Segurança" procura na Lista de Admins
-    let result = await pool.query("SELECT * FROM usuarios_admins WHERE email = $1", [email]);
-
-    if (result.rowCount > 0) {
-      const admin = result.rows[0];
-            // 👇 (Verifica a senha pura, ex: "admin123" === "admin123")
-      if (senha === admin.senha) { 
-        console.log(`[API] Login de ADMIN: ${admin.email}`);
-        return res.json({
-          message: "Login Admin bem-sucedido!",
-          usuario: { id: admin.id, nome: admin.nome, email: admin.email, role: "admin" } // <-- Avisa o React que é "admin"
+      const result = await pool.query(query, values);
+      res
+        .status(201)
+        .json({
+          message: "Usuário ADMIN criado com sucesso",
+          usuario: result.rows[0],
         });
+    } catch (error) {
+      if (error.code === "23505") {
+        return res.status(400).json({ error: "Email já cadastrado." });
       }
+      console.error("Erro ao cadastrar admin:", error);
+      res.status(500).json({ error: "Erro no servidor." });
+    }
+  });
+
+  /// metodo get admin
+
+  app.get("/api/admin/listar-admins", async (req, res) => {
+    console.log("[API Admin] Recebida requisição para listar APENAS admins...");
+
+    try {
+      const query =
+        "SELECT id, nome, email, data_cadastro FROM usuarios_admins ORDER BY nome ASC";
+      const result = await pool.query(query);
+      res.json(result.rows);
+    } catch (err) {
+      console.error("❌ Erro ao listar admins:", err);
+      res.status(500).json({ error: "Erro interno no servidor." });
+    }
+  });
+  //
+  // Login Unificado
+  // =========================================================
+  app.post("/api/login", async (req, res) => {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios." });
     }
 
-    // 2. Se não achou Admin, procura na Lista de Clientes
-    result = await pool.query("SELECT * FROM usuarios_clientes WHERE email = $1", [email]);
+    try {
+      // 1. O "Segurança" procura na Lista de Admins
+      let result = await pool.query(
+        "SELECT * FROM usuarios_admins WHERE email = $1",
+        [email]
+      );
 
-    if (result.rowCount > 0) {
-      const cliente = result.rows[0];
-            // 👇 (Verifica a senha pura, ex: "senha123" === "senha123")
-      if (senha === cliente.senha) {
-        console.log(`[API] Login de CLIENTE: ${cliente.email}`);
-        return res.json({
-          message: "Login Cliente bem-sucedido!",
-          usuario: { id: cliente.id, nome: cliente.nome, email: cliente.email, role: "cliente" } // <-- Avisa o React que é "cliente"
-        });
+      if (result.rowCount > 0) {
+        const admin = result.rows[0];
+        // 👇 (Verifica a senha pura, ex: "admin123" === "admin123")
+        if (senha === admin.senha) {
+          console.log(`[API] Login de ADMIN: ${admin.email}`);
+          return res.json({
+            message: "Login Admin bem-sucedido!",
+            usuario: {
+              id: admin.id,
+              nome: admin.nome,
+              email: admin.email,
+              role: "admin",
+            }, // <-- Avisa o React que é "admin"
+          });
+        }
       }
+
+      // 2. Se não achou Admin, procura na Lista de Clientes
+      result = await pool.query(
+        "SELECT * FROM usuarios_clientes WHERE email = $1",
+        [email]
+      );
+
+      if (result.rowCount > 0) {
+        const cliente = result.rows[0];
+        // 👇 (Verifica a senha pura, ex: "senha123" === "senha123")
+        if (senha === cliente.senha) {
+          console.log(`[API] Login de CLIENTE: ${cliente.email}`);
+          return res.json({
+            message: "Login Cliente bem-sucedido!",
+            usuario: {
+              id: cliente.id,
+              nome: cliente.nome,
+              email: cliente.email,
+              role: "cliente",
+            }, // <-- Avisa o React que é "cliente"
+          });
+        }
+      }
+
+      // 3. Se não achou em nenhuma lista (ou a senha estava errada)
+      console.warn(
+        `[API] Tentativa de login falhou (Credenciais inválidas): ${email}`
+      );
+      return res.status(401).json({ error: "Credenciais inválidas." });
+    } catch (err) {
+      console.error("Erro fatal no /api/login:", err);
+      res.status(500).json({ error: "Erro interno no servidor." });
     }
-
-    // 3. Se não achou em nenhuma lista (ou a senha estava errada)
-    console.warn(`[API] Tentativa de login falhou (Credenciais inválidas): ${email}`);
-    return res.status(401).json({ error: "Credenciais inválidas." });
-
-  } catch (err) {
-    console.error("Erro fatal no /api/login:", err);
-    res.status(500).json({ error: "Erro interno no servidor." });
-  }
-});
+  });
 
   // ==========================================================
   // ROTAS DE PRODUTO

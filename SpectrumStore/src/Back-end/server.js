@@ -33,8 +33,8 @@ const __dirname = path.dirname(__filename);
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: '',
-  password: '',
+  database: 'Loja_tea_teste',
+  password: 'senai',
   port: 5432,
 });
 
@@ -653,7 +653,9 @@ app.post('/api/usuarios/:id/foto', upload.single('foto'), async (req, res) => {
   }
 });
 
-// Deletar usuário
+///////////////////////
+//////// Deletar usuário
+//////////////////////
 app.delete('/api/usuarios/:id', async (req, res) => {
   try {
     const { id } = req.params;

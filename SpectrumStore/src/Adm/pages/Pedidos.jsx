@@ -53,7 +53,6 @@ export default function Pedidos() {
     }
 
     try {
-      // Chama a NOSSA rota "proxy" (o "Garçom" no adminRoutes.js)
       const res = await fetch(
         `http://localhost:3001/api/maquina/expedicao/liberar/${ordemDePedido}`,
         {
