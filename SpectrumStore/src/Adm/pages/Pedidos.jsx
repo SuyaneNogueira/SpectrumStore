@@ -87,7 +87,7 @@ export default function Pedidos() {
       <div className="titulo-pedidos-adm">
         <div className="pedidos-encontrados-adm">
           <h1>Pedidos</h1>
-          <p>28 pedidos encontrados</p>
+          <p>{pedidos.length} pedidos encontrados</p>
         </div>
 
         <div className="icones-geral-adm">

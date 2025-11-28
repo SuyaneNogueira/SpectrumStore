@@ -78,19 +78,13 @@ function PerfilAdm() {
           className={abaAtiva === "meucarrinho" ? "aba ativa" : "aba"}
           onClick={() => setAbaAtiva("meucarrinho")}
         >
-          Meu Carrinho
+          Ultimas Mensagens
         </button>
         <button
           className={abaAtiva === "historico" ? "aba ativa" : "aba"}
           onClick={() => setAbaAtiva("historico")}
         >
-          Histórico de Compras Realizadas
-        </button>
-        <button
-          className={abaAtiva === "avaliacoes" ? "aba ativa" : "aba"}
-          onClick={() => setAbaAtiva("avaliacoes")}
-        >
-          Avaliações
+      Denuncias
         </button>
         <input
           placeholder="Pesquisa"

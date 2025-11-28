@@ -34,7 +34,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'Loja_tea_teste',
-  password: 'senai',
+  password: 'manuel',
   port: 5432,
 });
 
@@ -743,30 +743,48 @@ app.post("/create-checkout-session", async (req, res) => {
   console.log("\n--- INÍCIO DA ROTA /create-checkout-session ---");
 
   try {
-    const { cartItems, paymentMethod } = req.body;
-    console.log(
-      "DADOS PUROS DO FRONTEND (cartItems):",
-      JSON.stringify(cartItems, null, 2)
-    );
+    // 1. RECEBE O USER_ID DO FRONTEND
+    const { cartItems, paymentMethod, userId } = req.body;
 
-    if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
+    console.log(`👤 Usuário ID recebido: ${userId}`);
+
+    if (!cartItems || cartItems.length === 0) {
       return res.status(400).json({ error: "Carrinho está vazio." });
     }
+    
+    // Validação de segurança: se não vier ID, não deixa criar
+    if (!userId) {
+        return res.status(400).json({ error: "Usuário não identificado. Faça login novamente." });
+    }
 
+    // 2. BUSCA DADOS DO CLIENTE (Para mandar pra máquina saber quem é)
+    let userName = "Cliente";
+    let userEmail = "email@teste.com";
+    
+    try {
+        const userResult = await pool.query("SELECT nome, email FROM usuarios_clientes WHERE id = $1", [userId]);
+        if (userResult.rows.length > 0) {
+            userName = userResult.rows[0].nome;
+            userEmail = userResult.rows[0].email;
+        }
+    } catch (e) {
+        console.log("Aviso: Não foi possível buscar nome do usuário, seguindo...");
+    }
+
+    // Calcula total
     let totalPedido = 0;
     cartItems.forEach((item) => {
-      totalPedido +=
-        (Number(item.price) || 0) *
-        (Number(item.quantity || item.quantidade) || 1);
+      totalPedido += (Number(item.price) || 0) * (Number(item.quantity || item.quantidade) || 1);
     });
 
+    // 3. INSERE O PEDIDO COM O ID CORRETO (Não mais o '1' fixo)
     const pedidoQuery = `
             INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido, status_maquina)
             VALUES ($1, $2, $3, $4, now(), 'pendente')
             RETURNING id;
         `;
     const pedidoValues = [
-      1,
+      userId, // <--- AGORA SIM! Usa a variável.
       totalPedido,
       paymentMethod || "indefinido",
       "pendente",
@@ -774,12 +792,22 @@ app.post("/create-checkout-session", async (req, res) => {
     const pedidoResult = await pool.query(pedidoQuery, pedidoValues);
     const pedidoId = pedidoResult.rows[0].id;
 
-    console.log(`💾 Pedido ${pedidoId} salvo como 'pendente'.`);
+    console.log(`💾 Pedido ${pedidoId} salvo para o Usuário ${userId}.`);
 
     const lineItemsParaStripe = [];
 
     for (const item of cartItems) {
+      // Traduz para a máquina
       const payloadMaquina = traduzirItemParaPayload(item, pedidoId);
+
+      // INJETA O CLIENTE NO PAYLOAD DA MÁQUINA
+      if (payloadMaquina && payloadMaquina.payload) {
+          payloadMaquina.payload.client = {
+              id: userId,
+              name: userName,
+              email: userEmail
+          };
+      }
 
       await pool.query(
         `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario, customizacao_json, payload_maquina)
@@ -794,35 +822,40 @@ app.post("/create-checkout-session", async (req, res) => {
         ]
       );
 
+      // Lógica da Imagem para o Stripe
+      const imagensParaStripe = [];
+      if (item.image && (item.image.startsWith("http://") || item.image.startsWith("https://"))) {
+         imagensParaStripe.push(item.image);
+      }
+
       lineItemsParaStripe.push({
         price_data: {
           currency: "brl",
-          product_data: { name: item.name || "Produto sem nome" },
+          product_data: { 
+              name: item.name || "Produto sem nome",
+              images: imagensParaStripe // Adiciona a foto no Stripe
+          },
           unit_amount: Math.round((Number(item.price) || 0) * 100),
         },
         quantity: Number(item.quantity || item.quantidade) || 1,
       });
     }
 
-    console.log(`💾 Itens do Pedido ${pedidoId} salvos e traduzidos.`);
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: paymentMethod === "pix" ? ["pix"] : ["card"],
       mode: "payment",
       line_items: lineItemsParaStripe,
-      success_url:
-        "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
+      success_url: "http://localhost:5173/sucesso?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: "http://localhost:5173/cancelado",
       metadata: {
         pedidoId: pedidoId,
       },
     });
 
-    console.log(`✅ Sessão Stripe criada para Pedido ${pedidoId}.`);
     res.json({ url: session.url });
   } catch (err) {
     console.error("❌❌❌ FALHA EM /create-checkout-session:", err);
-    res.status(500).json({ error: err.message, message: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
