@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 110%;
+  width: 80%;
   /* margin-left: 1%; */
 }
 
@@ -143,14 +143,11 @@
   align-items: center;
   justify-content: center;
   gap: 1%;
+  position: fixed; 
+  bottom: 81.5%; 
+  width: 14%; 
+  height: 38px; 
 
-  /* Propriedades para fixar e adaptar */
-  position: fixed; /* Tira do fluxo normal e fixa na tela */
-  bottom: 82%; /* Cola no fundo */
-  left: 1; /* Cola na esquerda */
-  width: 15%; /* Ocupa 100% da largura da tela */
-  height: 40px; /* Altura fixa (não use 100% aqui ou cobrirá a tela) */
-  z-index: 1000; /* Garante que fique por cima de tudo */
 }
 
 .plus-png-adm {

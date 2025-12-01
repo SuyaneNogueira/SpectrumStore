@@ -1,0 +1,79 @@
+/* Container que ocupa toda a tela disponível e centraliza o conteúdo */
+.construction-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ocupa 80% da altura da tela */
+  /* background-color: #f4f7f6; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* O cartão branco central */
+.construction-card {
+  /* background: white; */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  border-top: 5px solid #a2c9cd; 
+}
+
+/* Tamanho do ícone */
+.construction-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  display: inline-block;
+  animation: spin 4s linear infinite; /* Animação de rotação */
+}
+
+/* Título */
+.construction-card h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+/* Texto principal */
+.construction-text {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Texto de destaque "Em breve" */
+.construction-subtext {
+  color: #03374c;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+  background-color: #03374c;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-voltar:hover {
+  background-color: #0f3c4c;
+  transform: scale(1.05); /* Aumenta um pouco ao passar o mouse */
+}
+
+/* Animação de girar a engrenagem */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

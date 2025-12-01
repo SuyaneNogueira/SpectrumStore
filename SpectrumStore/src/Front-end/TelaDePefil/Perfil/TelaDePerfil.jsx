@@ -227,7 +227,7 @@ function TelaDePerfil() {
                 onClick={() => {
                   localStorage.removeItem('authToken');
                   localStorage.removeItem('userData');
-                  window.location.href = "/login";
+                  window.location.href = "/";
                 }}
               >
                 Sair
