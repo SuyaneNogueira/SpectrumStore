@@ -292,24 +292,21 @@
 }
 
 .button-editar-produtos-adm {
-  display: inline-block;
-  max-width: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: default;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  display: flex; /* melhor para centralizar conteúdo */
+  width: 30%; /* agora realmente funciona */
+  padding: 8px 12px; 
   background-color: #a2c9cd;
   color: #03374c;
   border: none;
-  width: 30%;
-  height: 31%;
   border-radius: 7px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
   font-size: 12px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .button-editar-produtos-adm:hover {
   background-color: #f5f5f5; /* leve cinza no hover */
