@@ -1,48 +1,88 @@
 .div-principal-info{
-    /* border: 2px solid; */
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Inclusive Sans', sans-serif;
 }
-.div-infos{
-    /* border: 2px solid pink; */
+
+.div-fundo-b-container{
     width: 100%;
-    height: 41%;
-    display: flex;
-    justify-content: center;
+    height: 240px;
+    position: relative;
 }
-.texts-infos-elements{
-    /* border: 2px solid; */
-    width: 30%;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column;
+
+.foto-fundo-b{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-.titulo-infos{
-    /* border: 2px solid; */
-    width: 85%;
-    height: 15%;
-    font-size: 105%;
+
+.titulo-um{
+    position: absolute;
+    top: 20%;
+    font-size: 32px;
+    font-weight: 500;
+    color: #03374C;
+    margin-left: 115px;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.titulo-dois{
+    position: absolute;
+    top: 42%;
+    font-size: 32px;
+    font-weight: 500;
+    color: #03374C;
+    margin-left: 115px;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.infos-container{
+    width: 88%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.info-box{
+    margin-bottom: 18px;
+}
+
+.info-header{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.info-header h3{
+    font-size: 18px;
     font-weight: 600;
     color: #03374C;
 }
-.text-infos{
-    /* border: 2px solid; */
-    width: 85%;
-    height: 70%;
+
+.seta-icone{
+    width: 30px;
+    transition: .3s;
+}
+
+.seta-icone.aberta{
+    transform: rotate(90deg);
+}
+
+.info-text{
+    font-size: 15px;
+    margin-top: 8px;
+    white-space: pre-line;
+    line-height: 1.4;
+    color: #063B52;
+    margin-left: 53px;
+}
+
+.linha{
+    width: 97%;
+    height: 4px;
+    background: #C7DEE1;
+    margin-top: 36px;
+    border-radius: 6px;
     
-}
-.espacamento-infos{
-    /* border: 2px solid; */
-    width: 1%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.linha-separacao{
-    /* border: 2px solid; */
-    border-radius: 5px;
-    width: 40%;
-    height: 88%;
-    background-color: #C7DEE1;
 }
