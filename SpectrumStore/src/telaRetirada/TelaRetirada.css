@@ -1,298 +1,69 @@
-/* Estrutura Principal - Mesmo padrão da tela inicial */
-.div-tela-retirada-principal{
+/* TelaRetirada.css - Versão Final */
+
+.div-tela-retirada-principal {
     width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden; 
+    min-height: 100vh;
+    background: #f5f5f5;
 }
 
-.div-elementos-tela-retirada{
+.div-elementos-tela-retirada {
     width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
+    min-height: 100vh;
 }
 
-/* Header/Banner Similar ao da Tela Inicial */
+/* Header */
 .div-fundo-retirada-container {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, #03374C 0%, #03374C 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #03374C 0%, #022a3a 100%);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
 }
 
 .conteudo-principal-retirada {
-    text-align: center;
-    color: white;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .titulo-retirada {
     font-size: 2.5em;
+    margin: 0 0 10px 0;
     font-weight: bold;
-    margin: 0;
-    color: white;
 }
 
 .subtitulo-retirada {
     font-size: 1.2em;
-    margin-top: 10px;
     opacity: 0.9;
-}
-
-/* Container Principal */
-.separacao-divs-conteudo-retirada{
-    width: 100%;
-    height: 100%;
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Cards no padrão do site */
-.card-retirada {
-    border: 2px solid #dadada;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 25px;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* Status de Confirmação */
-.confirmacao-card {
-    background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
-    border: 2px solid #4CAF50;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.checkbox-custom {
-    width: 20px;
-    height: 20px;
-    accent-color: #4CAF50;
-}
-
-.status-texto {
-    font-weight: bold;
-    color: #0e6f13;
-    font-size: 1.1em;
-}
-
-.codigo-status {
-    color: #666;
-    font-size: 0.9em;
-}
-
-.codigo-retirada-destaque {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    border: 2px dashed #4CAF50;
-}
-
-.titulo-codigo {
-    color: #03374C;
-    margin-bottom: 15px;
-}
-
-.codigo-numero {
-    font-size: 2em;
-    font-weight: bold;
-    color: #2196F3;
-    margin: 15px 0;
-    font-family: 'Courier New', monospace;
-}
-
-.instrucao-codigo {
-    color: #666;
-    font-style: italic;
-}
-
-/* Status da Loja */
-.titulo-secao-retirada {
-    color: #03374C;
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.status-loja-card {
-    background: #f8f9fa;
-}
-
-.status-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.status-item-loja {
-    text-align: center;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-}
-
-.label-status {
-    display: block;
-    font-weight: bold;
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
-
-.valor-status {
-    display: block;
-    font-size: 2em;
-    color: #03374C;
-    font-weight: bold;
-}
-
-.tempo-medio {
-    text-align: center;
-    padding-top: 15px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.info-tempo {
-    color: #666;
-    font-size: 0.9em;
-}
-
-/* Pedidos Prontos */
-.sem-pedidos-card {
-    text-align: center;
-    padding: 40px;
-}
-
-.icone-sem-pedidos {
-    font-size: 3em;
-    margin-bottom: 15px;
-}
-
-.texto-sem-pedidos {
-    color: #03374C;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.texto-informativo {
-    color: #666;
-    font-style: italic;
-}
-
-/* Lista de Pedidos */
-.lista-pedidos-container {
-    display: grid;
-    gap: 20px;
-}
-
-.pedido-card {
-    transition: transform 0.2s ease;
-}
-
-.pedido-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.pedido-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.numero-pedido {
-    color: #03374C;
     margin: 0;
 }
 
-.status-pedido {
-    color: #4CAF50;
-    font-weight: bold;
+/* Container Principal */
+.separacao-divs-conteudo-retirada {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
 }
 
-.pedido-detalhes {
-    margin-bottom: 20px;
+/* Cards */
+.card-retirada {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    overflow: hidden;
 }
 
-.info-pedido {
-    margin: 5px 0;
-    color: #555;
-}
-
-.acoes-pedido {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.botao-confirmar, .botao-cancelar, .botao-tentar-novamente {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.botao-confirmar {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.botao-confirmar:hover {
-    background-color: #45a049;
-}
-
-.botao-cancelar {
-    background-color: #f44336;
-    color: white;
-}
-
-.botao-cancelar:hover {
-    background-color: #da190b;
-}
-
-.botao-tentar-novamente {
-    background-color: #6ba5ac;
-    color: white;
-    margin-top: 10px;
-}
-
-.botao-tentar-novamente:hover {
-    background-color: #5a949b;
-}
-
-/* Estados de Loading e Error */
+/* Loading */
 .retirada-loading {
     text-align: center;
-    padding: 50px;
-    color: #03374C;
+    padding: 60px 20px;
 }
 
 .loading-spinner {
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #6ba5ac;
+    border-top: 4px solid #03374C;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     animation: spin 1s linear infinite;
     margin: 0 auto 20px;
 }
@@ -302,184 +73,458 @@
     100% { transform: rotate(360deg); }
 }
 
-.retirada-error {
+/* Mensagem de erro */
+.mensagem-erro-retirada {
+    background: #ffebee;
+    border-left: 4px solid #f44336;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+
+.icone-erro {
+    font-size: 1.3em;
+}
+
+.texto-erro {
+    flex: 1;
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+.botao-fechar-erro {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+/* Entrada de código */
+.container-entrada-codigo {
+    margin-bottom: 30px;
+}
+
+.entrada-codigo-card {
+    padding: 40px 30px;
     text-align: center;
-    padding: 50px;
-    color: #f44336;
+}
+
+.icone-busca {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #03374C;
+}
+
+.titulo-busca {
+    color: #03374C;
+    margin: 0 0 10px 0;
+    font-size: 1.8em;
+}
+
+.instrucao-busca {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.grupo-input-codigo {
+    max-width: 300px;
+    margin: 0 auto 25px;
+}
+
+.input-codigo {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #03374C;
+    border-radius: 8px;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.input-codigo:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.mensagem-validacao {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.mensagem-validacao.erro {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.botao-buscar-pedido {
+    width: 100%;
+    padding: 16px;
+    background: #03374C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.botao-buscar-pedido:hover:not(:disabled) {
+    background: #022a3a;
+}
+
+.botao-buscar-pedido:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.dica-codigo {
+    text-align: center;
+    max-width: 400px;
+    margin: 30px auto 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.dica-codigo p {
+    color: #03374C;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dica-codigo ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #666;
+}
+
+.dica-codigo li {
+    margin-bottom: 8px;
+}
+
+/* Informações do Slot */
+.container-info-slot {
+    margin-bottom: 30px;
+}
+
+.info-slot-card {
+    padding: 30px;
+}
+
+.cabecalho-slot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.botao-voltar-slot {
+    background: none;
+    border: 2px solid #03374C;
+    color: #03374C;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.botao-voltar-slot:hover {
+    background: #03374C;
+    color: white;
+}
+
+.titulo-slot-encontrado {
+    flex: 1;
+    text-align: center;
+    color: #03374C;
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* Detalhes do Slot */
+.detalhes-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .status-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+.slot-marcador-grande {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.slot-id-grande {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.slot-localizacao {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.info-status {
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.status-badge.ocupado {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 2px solid #4CAF50;
+}
+
+.status-badge.reservado {
+    background: #fff3e0;
+    color: #ef6c00;
+    border: 2px solid #FF9800;
+}
+
+.instrucao-status {
+    color: #666;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+/* Mapa de Localização */
+.mapa-localizacao {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.titulo-mapa {
+    color: #03374C;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 1.5em;
+}
+
+.planta-baixa {
+    margin-bottom: 30px;
+}
+
+.linha-slots {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rotulo-linha {
+    width: 80px;
+    font-weight: bold;
+    color: #03374C;
+    font-size: 1.2em;
+}
+
+.slots-linha {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+}
+
+.slot-mapa {
+    flex: 1;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: all 0.3s;
+}
+
+.slot-seu {
+    background: #4CAF50;
+    color: white;
+    border: 3px solid #2196F3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(33, 150, 243, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0); }
+}
+
+.slot-outro {
+    background: #f0f0f0;
+    color: #666;
+    border: 2px solid #ddd;
+}
+
+.instrucoes {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #03374C;
+}
+
+.instrucoes h4 {
+    color: #03374C;
+    margin: 0 0 15px 0;
+}
+
+.instrucoes ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.instrucoes li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Ações */
+.acoes-container {
+    text-align: center;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.botao-confirmar {
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: transform 0.3s;
+    margin-bottom: 15px;
+}
+
+.botao-confirmar:hover {
+    transform: translateY(-2px);
+}
+
+.texto-ajuda {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Aviso de preparação */
+.aviso-preparacao {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff3e0;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.icone-aviso {
+    font-size: 2.5em;
+}
+
+.texto-aviso h4 {
+    color: #ef6c00;
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+}
+
+.texto-aviso p {
+    color: #666;
+    margin: 0;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .separacao-divs-conteudo-retirada {
-        padding: 15px;
-    }
-    
-    .status-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .acoes-pedido {
-        flex-direction: column;
-    }
-    
     .titulo-retirada {
         font-size: 2em;
     }
+    
+    .titulo-busca {
+        font-size: 1.5em;
+    }
+    
+    .slots-linha {
+        flex-wrap: wrap;
+    }
+    
+    .slot-mapa {
+        min-width: 60px;
+    }
 }
 
-/* Mantém o rodapé igual ao da tela inicial */
-.rodape-tela-inicial{
-    background-color: #03374C;
-    width: 100%;
-    min-height: 15%;
-    margin-top: 3%;
-}
-
-.logo-rodape-spectrum{
-    width: 30%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-escrita-spectrum-store-rodape{
-    color: #FFFF;
-    font-family: "Inknut Antiqua", serif;
-    font-weight: 600;
-    font-style: normal;
-}
-
-.span-cor-logo-spectrum-rodape{
-    color: #A2C9CC;
-}
-
-/* Estilos existentes... */
-
-.botao-fechar-codigo {
-  background: #ff4757;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-.botao-fechar-codigo:hover {
-  background: #ff3742;
-}
-
-.botao-adicionar-teste {
-  background: #00b894;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-.botao-adicionar-teste:hover {
-  background: #00a085;
-}
-
-/* Informações da fila */
-.info-fila-tempo-real {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
-}
-
-.fila-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.fila-header h4 {
-  margin: 0;
-  color: #333;
-}
-
-.total-fila {
-  background: #667eea;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.itens-fila {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.item-fila {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  border-left: 4px solid #667eea;
-}
-
-.posicao-fila {
-  font-weight: bold;
-  color: #667eea;
-  min-width: 30px;
-}
-
-.pedido-fila {
-  flex: 1;
-  margin: 0 10px;
-}
-
-.tempo-fila {
-  color: #666;
-  font-size: 12px;
-}
-
-/* Header dos pedidos prontos */
-.header-pedidos-prontos {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.contador-pedidos {
-  background: #28a745;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.info-tempo-espera {
-  margin: 10px 0;
-  padding: 8px;
-  background: #fff3cd;
-  border-radius: 4px;
-  border-left: 4px solid #ffc107;
-}
-
-.tempo-estimado {
-  font-size: 14px;
-  color: #856404;
-}
-
-.info-fila {
-  margin: 8px 0;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
+@media (max-width: 480px) {
+    .separacao-divs-conteudo-retirada {
+        padding: 20px 15px;
+    }
+    
+    .entrada-codigo-card {
+        padding: 30px 20px;
+    }
+    
+    .info-slot-card {
+        padding: 20px 15px;
+    }
+    
+    .slot-marcador-grande {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .slot-id-grande {
+        font-size: 2em;
+    }
+    
+    .botao-confirmar {
+        padding: 16px 30px;
+        font-size: 1.1em;
+    }
 }

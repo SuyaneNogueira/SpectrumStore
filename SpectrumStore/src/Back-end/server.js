@@ -33,8 +33,8 @@ const __dirname = path.dirname(__filename);
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'Loja_tea_teste',
-  password: 'manuel',
+  database: 'TesteSpectrum',
+  password: 'senai',
   port: 5432,
 });
 
@@ -653,9 +653,7 @@ app.post('/api/usuarios/:id/foto', upload.single('foto'), async (req, res) => {
   }
 });
 
-///////////////////////
-//////// Deletar usuário
-//////////////////////
+// Deletar usuário
 app.delete('/api/usuarios/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -777,14 +775,14 @@ app.post("/create-checkout-session", async (req, res) => {
       totalPedido += (Number(item.price) || 0) * (Number(item.quantity || item.quantidade) || 1);
     });
 
-    // 3. INSERE O PEDIDO COM O ID CORRETO (Não mais o '1' fixo)
+    // 3. INSERE O PEDIDO COM O ID CORRETO
     const pedidoQuery = `
             INSERT INTO pedidos (usuario_id, total, forma_pagamento, status, data_pedido, status_maquina)
             VALUES ($1, $2, $3, $4, now(), 'pendente')
             RETURNING id;
         `;
     const pedidoValues = [
-      userId, // <--- AGORA SIM! Usa a variável.
+      userId,
       totalPedido,
       paymentMethod || "indefinido",
       "pendente",
@@ -809,9 +807,32 @@ app.post("/create-checkout-session", async (req, res) => {
           };
       }
 
+      // Gera código de retirada para este item (4 dígitos)
+      let codigoRetirada;
+      let tentativas = 0;
+      
+      do {
+        codigoRetirada = Math.floor(1000 + Math.random() * 9000).toString();
+        tentativas++;
+        
+        // Verifica se o código já existe
+        const checkResult = await pool.query(
+          'SELECT 1 FROM pedido_itens WHERE codigo_retirada = $1',
+          [codigoRetirada]
+        );
+        
+        if (checkResult.rows.length === 0 || tentativas > 10) {
+          break;
+        }
+      } while (true);
+      
+      if (tentativas > 10) {
+        codigoRetirada = Date.now().toString().slice(-4).padStart(4, '0');
+      }
+
       await pool.query(
-        `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario, customizacao_json, payload_maquina)
-                 VALUES ($1, $2, $3, $4, $5, $6);`,
+        `INSERT INTO pedido_itens (pedido_id, descricao, quantidade, preco_unitario, customizacao_json, payload_maquina, codigo_retirada)
+         VALUES ($1, $2, $3, $4, $5, $6, $7);`,
         [
           pedidoId,
           item.name || "Produto sem nome",
@@ -819,8 +840,12 @@ app.post("/create-checkout-session", async (req, res) => {
           Number(item.price) || 0,
           JSON.stringify(item.customizations || {}),
           JSON.stringify(payloadMaquina || {}),
+          codigoRetirada  // Adiciona o código de retirada
         ]
       );
+
+      // Envia código por email (simulação)
+      console.log(`📧 Código de retirada gerado para ${item.name}: ${codigoRetirada}`);
 
       // Lógica da Imagem para o Stripe
       const imagensParaStripe = [];
@@ -833,7 +858,7 @@ app.post("/create-checkout-session", async (req, res) => {
           currency: "brl",
           product_data: { 
               name: item.name || "Produto sem nome",
-              images: imagensParaStripe // Adiciona a foto no Stripe
+              images: imagensParaStripe
           },
           unit_amount: Math.round((Number(item.price) || 0) * 100),
         },
@@ -966,21 +991,82 @@ app.post('/api/produtos', async (req, res) => {
   }
   
   const personalizacaoJson = JSON.stringify(personalizacao || {});
-
+  
+  // Gera código de retirada único
+  let codigoRetirada;
+  let tentativas = 0;
+  
   try {
+    do {
+      codigoRetirada = Math.floor(1000 + Math.random() * 9000).toString();
+      tentativas++;
+      
+      // Verifica se o código já existe
+      const checkResult = await pool.query(
+        'SELECT 1 FROM produtos WHERE codigo_retirada = $1',
+        [codigoRetirada]
+      );
+      
+      if (checkResult.rows.length === 0 || tentativas > 10) {
+        break;
+      }
+    } while (true);
+    
+    if (tentativas > 10) {
+      // Se não conseguir gerar único, usa timestamp
+      codigoRetirada = Date.now().toString().slice(-4).padStart(4, '0');
+    }
+
     const query = `
-      INSERT INTO produtos (name, price, description, category, image, personalizacao)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO produtos (name, price, description, category, image, personalizacao, codigo_retirada)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *; 
     `;
-    const values = [name, price, description, category, image, personalizacaoJson];
+    const values = [name, price, description, category, image, personalizacaoJson, codigoRetirada];
     const result = await pool.query(query, values);
 
-    console.log(`[API] Produto #${result.rows[0].id} salvo no banco.`);
+    console.log(`[API] Produto #${result.rows[0].id} salvo no banco com código: ${codigoRetirada}`);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error("❌ Erro ao salvar produto:", err);
     res.status(500).json({ error: 'Erro interno ao salvar produto.', details: err.message });
+  }
+});
+
+// Buscar produto por código de retirada
+app.get('/api/produtos/codigo/:codigo', async (req, res) => {
+  try {
+    const { codigo } = req.params;
+    
+    console.log(`🔍 Buscando produto por código de retirada: ${codigo}`);
+    
+    // Verifica se é um código de 4 dígitos
+    if (!/^\d{4}$/.test(codigo)) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Código deve ter 4 dígitos numéricos' 
+      });
+    }
+    
+    // Busca o produto pelo código de retirada
+    const produtoResult = await pool.query(
+      `SELECT * FROM produtos WHERE codigo_retirada = $1`,
+      [codigo]
+    );
+    
+    if (produtoResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Produto não encontrado com este código' 
+      });
+    }
+    
+    const produto = produtoResult.rows[0];
+    res.json(produto);
+    
+  } catch (error) {
+    console.error('❌ Erro ao buscar produto por código:', error);
+    res.status(500).json({ error: 'Erro interno no servidor' });
   }
 });
 
@@ -1023,7 +1109,562 @@ app.delete('/api/produtos/:id', async (req, res) => {
 });
 
 // =========================================================
-// 🔹 6. ROTAS DE RETIRADA
+// 🔹 6. ROTAS DE RETIRADA POR CÓDIGO (SELF-SERVICE)
+// =========================================================
+
+// ROTA GET — busca produto por código de retirada (4 dígitos)
+app.get('/api/retirada/codigo/:codigo', async (req, res) => {
+  try {
+    const { codigo } = req.params;
+    
+    console.log(`🔍 Buscando produto por código de retirada: ${codigo}`);
+    
+    // Verifica se é um código de 4 dígitos
+    if (!/^\d{4}$/.test(codigo)) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Código deve ter 4 dígitos numéricos' 
+      });
+    }
+    
+    // Busca o produto pelo código de retirada
+    const produtoResult = await pool.query(
+      `SELECT * FROM produtos WHERE codigo_retirada = $1`,
+      [codigo]
+    );
+    
+    if (produtoResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Produto não encontrado com este código' 
+      });
+    }
+    
+    const produto = produtoResult.rows[0];
+    
+    // Busca se há algum pedido com este produto pendente de retirada
+    const pedidoResult = await pool.query(
+      `SELECT 
+         pi.pedido_id,
+         p.status as pedido_status,
+         p.data_pedido,
+         u.nome as cliente_nome
+       FROM pedido_itens pi
+       JOIN pedidos p ON pi.pedido_id = p.id
+       JOIN usuario u ON p.usuario_id = u.id
+       WHERE pi.codigo_retirada = $1 
+       AND p.status IN ('pago', 'processando', 'pronto para retirada')
+       ORDER BY p.data_pedido DESC
+       LIMIT 1`,
+      [codigo]
+    );
+    
+    let infoPedido = null;
+    let slotAtribuido = null;
+    
+    if (pedidoResult.rows.length > 0) {
+      const pedido = pedidoResult.rows[0];
+      infoPedido = {
+        pedidoId: pedido.pedido_id,
+        status: pedido.pedido_status,
+        dataPedido: pedido.data_pedido,
+        clienteNome: pedido.cliente_nome
+      };
+      
+      // Simular atribuição de slot baseado no código
+      const slots = ['A1', 'A2', 'A3', 'A4', 'B5', 'B6', 'B7', 'B8', 'C9', 'C10', 'C11', 'C12'];
+      const slotIndex = parseInt(codigo.slice(-2)) % slots.length;
+      slotAtribuido = slots[slotIndex];
+    }
+    
+    res.json({
+      success: true,
+      produto: {
+        id: produto.id,
+        nome: produto.name,
+        descricao: produto.description,
+        imagem: produto.image,
+        codigoRetirada: produto.codigo_retirada,
+        categoria: produto.category
+      },
+      pedido: infoPedido,
+      slot: slotAtribuido,
+      status: infoPedido ? infoPedido.status : 'disponivel',
+      horarioRetirada: infoPedido && infoPedido.status === 'pronto para retirada' 
+        ? new Date().toISOString() 
+        : null
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao buscar produto por código:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno no servidor' 
+    });
+  }
+});
+
+// ROTA POST — confirmar retirada de produto
+app.post('/api/retirada/confirmar', async (req, res) => {
+  try {
+    const { codigo, pedidoId, slotId } = req.body;
+    
+    console.log(`✅ Confirmando retirada - Código: ${codigo}, Pedido: ${pedidoId}, Slot: ${slotId}`);
+    
+    if (!codigo) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Código é obrigatório' 
+      });
+    }
+    
+    // Verifica se o código existe e está pendente de retirada
+    const pedidoItemResult = await pool.query(
+      `SELECT 
+         pi.id,
+         p.status,
+         pr.name as produto_nome
+       FROM pedido_itens pi
+       JOIN pedidos p ON pi.pedido_id = p.id
+       JOIN produtos pr ON pi.produto_id = pr.id
+       WHERE pi.codigo_retirada = $1 
+       AND p.id = $2
+       AND p.status IN ('pago', 'processando', 'pronto para retirada')`,
+      [codigo, pedidoId]
+    );
+    
+    if (pedidoItemResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Produto não encontrado ou já retirado' 
+      });
+    }
+    
+    const pedidoItem = pedidoItemResult.rows[0];
+    
+    // Atualiza o status do item para "retirado"
+    await pool.query(
+      `UPDATE pedido_itens 
+       SET status_retirada = 'retirado', 
+           data_retirada = NOW(),
+           slot_retirada = $1
+       WHERE codigo_retirada = $2`,
+      [slotId || null, codigo]
+    );
+    
+    // Verifica se todos os itens do pedido foram retirados
+    const itensPendentesResult = await pool.query(
+      `SELECT COUNT(*) as pendentes
+       FROM pedido_itens
+       WHERE pedido_id = $1 
+       AND status_retirada IS NULL`,
+      [pedidoId]
+    );
+    
+    const itensPendentes = parseInt(itensPendentesResult.rows[0].pendentes);
+    
+    if (itensPendentes === 0) {
+      // Todos os itens foram retirados, atualiza status do pedido
+      await pool.query(
+        `UPDATE pedidos 
+         SET status = 'concluido',
+             data_conclusao = NOW()
+         WHERE id = $1`,
+        [pedidoId]
+      );
+    }
+    
+    // Libera o código para reutilização (opcional)
+    await pool.query(
+      `UPDATE produtos 
+       SET codigo_retirada = NULL
+       WHERE codigo_retirada = $1`,
+      [codigo]
+    );
+    
+    console.log(`✅ Retirada confirmada para código ${codigo}`);
+    
+    res.json({
+      success: true,
+      message: 'Retirada confirmada com sucesso!',
+      produto: pedidoItem.produto_nome,
+      pedidoId: pedidoId,
+      slotId: slotId,
+      dataRetirada: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao confirmar retirada:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno ao confirmar retirada' 
+    });
+  }
+});
+
+// ROTA GET — histórico de retiradas do usuário
+app.get('/api/retirada/historico/:usuarioId', async (req, res) => {
+  try {
+    const { usuarioId } = req.params;
+    
+    console.log(`📋 Buscando histórico de retiradas do usuário ${usuarioId}`);
+    
+    const historicoResult = await pool.query(
+      `SELECT 
+         pi.codigo_retirada,
+         pr.name as produto_nome,
+         pr.image as produto_imagem,
+         p.id as pedido_id,
+         p.total as pedido_total,
+         p.data_pedido,
+         pi.data_retirada,
+         pi.slot_retirada,
+         pi.status_retirada
+       FROM pedido_itens pi
+       JOIN pedidos p ON pi.pedido_id = p.id
+       JOIN produtos pr ON pi.produto_id = pr.id
+       WHERE p.usuario_id = $1
+       AND pi.status_retirada = 'retirado'
+       ORDER BY pi.data_retirada DESC
+       LIMIT 20`,
+      [usuarioId]
+    );
+    
+    res.json({
+      success: true,
+      historico: historicoResult.rows,
+      total: historicoResult.rows.length
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao buscar histórico de retiradas:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno ao buscar histórico' 
+    });
+  }
+});
+
+// ROTA GET — status dos slots de retirada
+app.get('/api/retirada/slots', async (req, res) => {
+  try {
+    console.log('📊 Buscando status dos slots de retirada');
+    
+    // Slots fixos conforme especificado
+    const slotsFixos = [
+      { id: 'A1', status: 'disponivel', produto: null },
+      { id: 'A2', status: 'disponivel', produto: null },
+      { id: 'A3', status: 'disponivel', produto: null },
+      { id: 'A4', status: 'disponivel', produto: null },
+      { id: 'B5', status: 'disponivel', produto: null },
+      { id: 'B6', status: 'disponivel', produto: null },
+      { id: 'B7', status: 'disponivel', produto: null },
+      { id: 'B8', status: 'disponivel', produto: null },
+      { id: 'C9', status: 'disponivel', produto: null },
+      { id: 'C10', status: 'disponivel', produto: null },
+      { id: 'C11', status: 'disponivel', produto: null },
+      { id: 'C12', status: 'disponivel', produto: null }
+    ];
+    
+    // Busca produtos ocupando slots no momento
+    const slotsOcupadosResult = await pool.query(
+      `SELECT 
+         pi.slot_retirada,
+         pr.name as produto_nome,
+         pi.codigo_retirada
+       FROM pedido_itens pi
+       JOIN produtos pr ON pi.produto_id = pr.id
+       WHERE pi.slot_retirada IS NOT NULL
+       AND pi.status_retirada IS NULL
+       AND pi.data_retirada IS NULL`
+    );
+    
+    // Atualiza slots ocupados
+    const slotsAtualizados = slotsFixos.map(slot => {
+      const ocupado = slotsOcupadosResult.rows.find(s => s.slot_retirada === slot.id);
+      if (ocupado) {
+        return {
+          ...slot,
+          status: 'ocupado',
+          produto: {
+            nome: ocupado.produto_nome,
+            codigoRetirada: ocupado.codigo_retirada
+          }
+        };
+      }
+      return slot;
+    });
+    
+    res.json({
+      success: true,
+      slots: slotsAtualizados,
+      totalSlots: slotsAtualizados.length,
+      slotsDisponiveis: slotsAtualizados.filter(s => s.status === 'disponivel').length,
+      slotsOcupados: slotsAtualizados.filter(s => s.status === 'ocupado').length
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao buscar status dos slots:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno ao buscar status dos slots' 
+    });
+  }
+});
+
+// ROTA POST — atribuir produto a um slot
+app.post('/api/retirada/atribuir-slot', async (req, res) => {
+  try {
+    const { codigo, slotId } = req.body;
+    
+    console.log(`🎯 Atribuindo código ${codigo} ao slot ${slotId}`);
+    
+    if (!codigo || !slotId) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Código e slot são obrigatórios' 
+      });
+    }
+    
+    // Verifica se o slot está disponível
+    const slotOcupadoResult = await pool.query(
+      `SELECT 1 FROM pedido_itens WHERE slot_retirada = $1 AND status_retirada IS NULL`,
+      [slotId]
+    );
+    
+    if (slotOcupadoResult.rows.length > 0) {
+      return res.status(400).json({ 
+        success: false,
+        error: `Slot ${slotId} já está ocupado` 
+      });
+    }
+    
+    // Atribui o slot ao produto
+    const updateResult = await pool.query(
+      `UPDATE pedido_itens 
+       SET slot_retirada = $1
+       WHERE codigo_retirada = $2
+       AND status_retirada IS NULL
+       RETURNING id`,
+      [slotId, codigo]
+    );
+    
+    if (updateResult.rows.length === 0) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Código não encontrado ou produto já retirado' 
+      });
+    }
+    
+    // Atualiza status do pedido para "pronto para retirada"
+    const pedidoResult = await pool.query(
+      `UPDATE pedidos p
+       SET status = 'pronto para retirada',
+           data_pronto = NOW()
+       FROM pedido_itens pi
+       WHERE p.id = pi.pedido_id
+       AND pi.codigo_retirada = $1
+       RETURNING p.id`,
+      [codigo]
+    );
+    
+    res.json({
+      success: true,
+      message: `Produto atribuído ao slot ${slotId} com sucesso!`,
+      codigo: codigo,
+      slotId: slotId,
+      pedidoId: pedidoResult.rows[0]?.id || null
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao atribuir slot:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno ao atribuir slot' 
+    });
+  }
+});
+
+// =========================================================
+// 🔹 7. ROTAS PARA GERAR CÓDIGOS DE RETIRADA (ADMIN)
+// =========================================================
+
+// ROTA POST — gerar códigos para produtos existentes
+app.post('/api/admin/gerar-codigos-retirada', async (req, res) => {
+  try {
+    console.log('🔑 Gerando códigos de retirada para produtos...');
+    
+    // Busca produtos sem código de retirada
+    const produtosSemCodigoResult = await pool.query(
+      `SELECT id, name FROM produtos WHERE codigo_retirada IS NULL`
+    );
+    
+    let codigosGerados = 0;
+    let erros = [];
+    
+    for (const produto of produtosSemCodigoResult.rows) {
+      try {
+        // Gera código único de 4 dígitos
+        let codigo;
+        let tentativas = 0;
+        let codigoUnico = false;
+        
+        while (!codigoUnico && tentativas < 10) {
+          codigo = Math.floor(1000 + Math.random() * 9000).toString();
+          
+          // Verifica se o código já existe
+          const checkResult = await pool.query(
+            'SELECT 1 FROM produtos WHERE codigo_retirada = $1',
+            [codigo]
+          );
+          
+          if (checkResult.rows.length === 0) {
+            codigoUnico = true;
+          }
+          
+          tentativas++;
+        }
+        
+        if (!codigoUnico) {
+          // Se não conseguir gerar único, usa timestamp
+          codigo = Date.now().toString().slice(-4).padStart(4, '0');
+        }
+        
+        // Atualiza o produto com o código
+        await pool.query(
+          'UPDATE produtos SET codigo_retirada = $1 WHERE id = $2',
+          [codigo, produto.id]
+        );
+        
+        codigosGerados++;
+        console.log(`✅ Produto "${produto.name}" recebeu código: ${codigo}`);
+        
+      } catch (error) {
+        erros.push({
+          produto: produto.name,
+          erro: error.message
+        });
+        console.error(`❌ Erro ao gerar código para ${produto.name}:`, error);
+      }
+    }
+    
+    res.json({
+      success: true,
+      message: `${codigosGerados} códigos gerados com sucesso`,
+      totalProdutos: produtosSemCodigoResult.rows.length,
+      codigosGerados: codigosGerados,
+      erros: erros
+    });
+    
+  } catch (error) {
+    console.error('❌ Erro ao gerar códigos de retirada:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Erro interno ao gerar códigos' 
+    });
+  }
+});
+
+// =========================================================
+// 🔹 8. ROTAS DE PEDIDOS
+// =========================================================
+
+// ROTA GET — lista todos os pedidos
+app.get('/api/pedidos', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT 
+         p.*,
+         u.nome as usuario_nome,
+         u.email as usuario_email
+       FROM pedidos p
+       JOIN usuario u ON p.usuario_id = u.id
+       ORDER BY p.data_pedido DESC`
+    );
+    res.json(result.rows);
+  } catch (error) {
+    console.error('❌ Erro ao buscar pedidos:', error);
+    res.status(500).json({ error: 'Erro interno no servidor ao listar pedidos.' });
+  }
+});
+
+// ROTA GET — pedido por ID
+app.get('/api/pedidos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const result = await pool.query(
+      `SELECT 
+         p.*,
+         json_agg(
+           json_build_object(
+             'produto_id', pi.produto_id,
+             'nome', pr.name,
+             'quantidade', pi.quantidade,
+             'preco_unitario', pi.preco_unitario,
+             'codigo_retirada', pi.codigo_retirada,
+             'imagem', pr.image,
+             'total_item', (pi.quantidade * pi.preco_unitario)
+           )
+         ) as produtos
+       FROM pedidos p
+       JOIN pedido_itens pi ON p.id = pi.pedido_id
+       JOIN produtos pr ON pi.produto_id = pr.id
+       WHERE p.id = $1
+       GROUP BY p.id`,
+      [id]
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Pedido não encontrado' });
+    }
+    
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('❌ Erro ao buscar pedido:', error);
+    res.status(500).json({ error: 'Erro ao buscar pedido' });
+  }
+});
+
+// ROTA GET — histórico de pedidos do usuário
+app.get('/api/pedidos/usuario/:usuario_id', async (req, res) => {
+  try {
+    const { usuario_id } = req.params;
+    
+    const result = await pool.query(
+      `SELECT 
+         p.id,
+         p.total,
+         p.status,
+         p.data_pedido,
+         json_agg(
+           json_build_object(
+             'produto_id', pi.produto_id,
+             'nome', pr.name,
+             'quantidade', pi.quantidade,
+             'preco_unitario', pi.preco_unitario,
+             'codigo_retirada', pi.codigo_retirada,
+             'imagem', pr.image
+           )
+         ) as produtos
+       FROM pedidos p
+       JOIN pedido_itens pi ON p.id = pi.pedido_id
+       JOIN produtos pr ON pi.produto_id = pr.id
+       WHERE p.usuario_id = $1
+       GROUP BY p.id, p.total, p.status, p.data_pedido
+       ORDER BY p.data_pedido DESC`,
+      [usuario_id]
+    );
+    
+    res.json(result.rows);
+  } catch (error) {
+    console.error('❌ Erro ao buscar pedidos do usuário:', error);
+    res.status(500).json({ error: 'Erro ao buscar pedidos' });
+  }
+});
+
+// =========================================================
+// 🔹 9. ROTAS DE RETIRADA (MANUTENÇÃO)
 // =========================================================
 
 // Listar pedidos prontos para retirada
@@ -1130,7 +1771,7 @@ app.get('/queue/items/:id', (req, res) => {
 });
 
 // =========================================================
-// 🔹 7. ROTAS ADICIONAIS E ADMIN
+// 🔹 10. ROTAS ADICIONAIS
 // =========================================================
 
 // Rota de teste simples
@@ -1163,9 +1804,10 @@ app.listen(PORT, () => {
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
   console.log(`🔐 Sistema de Usuários: http://localhost:${PORT}/api/usuarios`);
   console.log(`🛒 Sistema de Carrinho: http://localhost:${PORT}/create-checkout-session`);
-  console.log(`📦 Sistema de Retirada: http://localhost:${PORT}/retirada/pedidos-prontos`);
+  console.log(`📦 Sistema de Retirada Self-Service: http://localhost:${PORT}/api/retirada/codigo/1234`);
+  console.log(`🔑 Gerar códigos: http://localhost:${PORT}/api/admin/gerar-codigos-retirada`);
   console.log(`🛍️  Sistema de Produtos: http://localhost:${PORT}/api/produtos`);
-  console.log('==============================================');
+  console.log(`📋 Sistema de Pedidos: http://localhost:${PORT}/api/pedidos`);
 });
 
 export default app;

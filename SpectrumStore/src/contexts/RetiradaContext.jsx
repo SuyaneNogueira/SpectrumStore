@@ -1,217 +1,160 @@
-import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
+// RetiradaContext.js - Versão Conectada com Backend
+import React, { createContext, useState, useContext, useCallback } from 'react';
 
 const RetiradaContext = createContext();
 
 export function RetiradaProvider({ children }) {
-  const [pedidosProntos, setPedidosProntos] = useState([]);
-  const [filaRetirada, setFilaRetirada] = useState([]);
-  const [statusRetirada, setStatusRetirada] = useState({});
+  // Estado
+  const [slotSelecionado, setSlotSelecionado] = useState(null);
+  const [codigoDigitado, setCodigoDigitado] = useState('');
+  const [mostrarEntradaCodigo, setMostrarEntradaCodigo] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [codigoRetirada, setCodigoRetirada] = useState(null);
-  const [estatisticasLoja, setEstatisticasLoja] = useState({
-    pessoasNaFila: 0,
-    funcionariosDisponiveis: 2,
-    tempoMedioAtendimento: 2.5 // em minutos
-  });
+  const [slots, setSlots] = useState([]);
 
-  // Função para gerar código único
-  const gerarCodigoRetirada = useCallback(() => {
-    const timestamp = Date.now();
-    const random = Math.floor(Math.random() * 1000);
-    return `RET-${timestamp}${random}`;
-  }, []);
-
-  // Calcular tempo de espera baseado na fila
-  const calcularTempoEspera = useCallback((fila, funcionarios, tempoMedio) => {
-    if (fila.length === 0) return 0;
-    return (fila.length / funcionarios) * tempoMedio;
-  }, []);
-
-  // Atualizar estatísticas quando a fila mudar
-  useEffect(() => {
-    const tempoEspera = calcularTempoEspera(
-      filaRetirada,
-      estatisticasLoja.funcionariosDisponiveis,
-      estatisticasLoja.tempoMedioAtendimento
-    );
-
-    setEstatisticasLoja(prev => ({
-      ...prev,
-      pessoasNaFila: filaRetirada.length,
-      tempoEsperaFila: tempoEspera
-    }));
-  }, [filaRetirada, estatisticasLoja.funcionariosDisponiveis, estatisticasLoja.tempoMedioAtendimento, calcularTempoEspera]);
-
-  // Simular chegada de novos pedidos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // 20% de chance de chegar um novo pedido a cada 30 segundos
-      if (Math.random() < 0.2) {
-        const novosPedidos = [
-          {
-            id: `P${Date.now()}`,
-            clienteNome: 'Cliente ' + Math.floor(Math.random() * 1000),
-            quantidadeItens: Math.floor(Math.random() * 5) + 1,
-            valorTotal: Math.random() * 200 + 50
-          }
-        ];
-        
-        setPedidosProntos(prev => [...prev, ...novosPedidos]);
-      }
-    }, 30000); // Verifica a cada 30 segundos
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const adicionarNaFila = useCallback((pedidoId) => {
-    const novoItemFila = {
-      id: `F${Date.now()}`,
-      pedidoId: pedidoId,
-      horarioEntrada: new Date(),
-      tempoEstimado: estatisticasLoja.tempoEsperaFila || 0
-    };
-
-    setFilaRetirada(prev => [...prev, novoItemFila]);
-    return novoItemFila;
-  }, [estatisticasLoja.tempoEsperaFila]);
-
-  const removerDaFila = useCallback((pedidoId) => {
-    setFilaRetirada(prev => prev.filter(item => item.pedidoId !== pedidoId));
-  }, []);
-
-  const confirmarRetiradaPedido = useCallback(async (pedidoId) => {
-    try {
-      setLoading(true);
-      
-      // Gerar novo código
-      const novoCodigo = gerarCodigoRetirada();
-      setCodigoRetirada(novoCodigo);
-      
-      // Adicionar na fila de retirada
-      adicionarNaFila(pedidoId);
-      
-      // Simular chamada API
-      console.log(`Confirmando retirada do pedido ${pedidoId} com código: ${novoCodigo}`);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Atualizar lista de pedidos
-      setPedidosProntos(prev => prev.filter(pedido => pedido.id !== pedidoId));
-      
-      setError(null);
-    } catch (err) {
-      setError('Erro ao confirmar retirada');
-      setCodigoRetirada(null);
-    } finally {
-      setLoading(false);
-    }
-  }, [gerarCodigoRetirada, adicionarNaFila]);
-
-  const cancelarRetiradaPedido = useCallback(async (pedidoId, motivo) => {
-    try {
-      setLoading(true);
-      setCodigoRetirada(null); // Limpar código ao cancelar
-      
-      // Remover da fila se estiver lá
-      removerDaFila(pedidoId);
-      
-      // Simular chamada API
-      console.log(`Cancelando retirada do pedido ${pedidoId}. Motivo: ${motivo}`);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setPedidosProntos(prev => prev.filter(pedido => pedido.id !== pedidoId));
-      setError(null);
-    } catch (err) {
-      setError('Erro ao cancelar retirada');
-    } finally {
-      setLoading(false);
-    }
-  }, [removerDaFila]);
-
-  const buscarPedidosProntos = useCallback(async () => {
-    try {
-      setLoading(true);
-      // Simular busca de pedidos
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Dados mockados para exemplo
-      const pedidosMock = [
-        {
-          id: '1001',
-          clienteNome: 'João Silva',
-          quantidadeItens: 3,
-          valorTotal: 149.90
-        },
-        {
-          id: '1002', 
-          clienteNome: 'Maria Santos',
-          quantidadeItens: 2,
-          valorTotal: 89.50
-        }
-      ];
-      setPedidosProntos(pedidosMock);
-      setError(null);
-    } catch (err) {
-      setError('Erro ao buscar pedidos');
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Função para simular atendimento (remover da fila)
-  const simularAtendimentoConcluido = useCallback(() => {
-    if (filaRetirada.length > 0) {
-      setFilaRetirada(prev => prev.slice(1)); // Remove o primeiro da fila
-    }
-  }, [filaRetirada.length]);
-
-  // Simular atendimento automático
-  useEffect(() => {
-    if (filaRetirada.length > 0) {
-      const interval = setInterval(() => {
-        // Tempo de atendimento base + variação aleatória
-        const tempoAtendimento = (estatisticasLoja.tempoMedioAtendimento * 60000) + (Math.random() * 60000);
-        
-        setTimeout(() => {
-          simularAtendimentoConcluido();
-        }, tempoAtendimento);
-      }, 10000); // Verifica a cada 10 segundos
-
-      return () => clearInterval(interval);
-    }
-  }, [filaRetirada.length, estatisticasLoja.tempoMedioAtendimento, simularAtendimentoConcluido]);
-
-  // Adicionar função para limpar código
-  const limparCodigoRetirada = useCallback(() => {
-    setCodigoRetirada(null);
-  }, []);
-
-  // Função para adicionar pedido de teste
-  const adicionarPedidoTeste = useCallback(() => {
-    const novoPedido = {
-      id: `TEST${Date.now()}`,
-      clienteNome: `Cliente Teste ${Math.floor(Math.random() * 1000)}`,
-      quantidadeItens: Math.floor(Math.random() * 5) + 1,
-      valorTotal: Math.random() * 200 + 50
-    };
+  // Buscar produto por código no backend
+  const buscarSlotPorCodigo = useCallback(async (codigo) => {
+    setLoading(true);
+    setError(null);
     
-    setPedidosProntos(prev => [...prev, novoPedido]);
+    try {
+      const response = await fetch(`/api/retirada/codigo/${codigo}`);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erro ao buscar código');
+      }
+      
+      const data = await response.json();
+      
+      if (!data.success) {
+        throw new Error(data.error || 'Código não encontrado');
+      }
+      
+      // Formatar dados para o slot
+      const slotEncontrado = {
+        id: data.slot,
+        status: data.status === 'pronto para retirada' ? 'ocupado' : 
+                data.status === 'processando' ? 'reservado' : 'disponivel',
+        codigoPedido: data.produto.codigoRetirada,
+        pedidoId: data.pedido?.pedidoId,
+        produtoNome: data.produto.nome,
+        horarioDisponivel: data.horarioRetirada ? new Date(data.horarioRetirada) : null,
+        cor: data.status === 'pronto para retirada' ? '#4CAF50' : 
+             data.status === 'processando' ? '#2196F3' : '#CCCCCC'
+      };
+      
+      setSlotSelecionado(slotEncontrado);
+      setMostrarEntradaCodigo(false);
+      return slotEncontrado;
+      
+    } catch (err) {
+      setError(err.message);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Confirmar retirada no backend
+  const confirmarRetirada = useCallback(async (slotId) => {
+    if (!slotSelecionado) return false;
+    
+    setLoading(true);
+    
+    try {
+      const response = await fetch('/api/retirada/confirmar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          codigo: slotSelecionado.codigoPedido,
+          pedidoId: slotSelecionado.pedidoId,
+          slotId: slotId
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erro ao confirmar retirada');
+      }
+      
+      const data = await response.json();
+      
+      if (!data.success) {
+        throw new Error(data.message || 'Erro ao confirmar retirada');
+      }
+      
+      // Limpar estado
+      setSlotSelecionado(null);
+      setMostrarEntradaCodigo(true);
+      setCodigoDigitado('');
+      setError(null);
+      
+      return true;
+      
+    } catch (err) {
+      setError(err.message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  }, [slotSelecionado]);
+
+  // Buscar status dos slots
+  const buscarStatusSlots = useCallback(async () => {
+    try {
+      const response = await fetch('/api/retirada/slots');
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar status dos slots');
+      }
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setSlots(data.slots);
+        return data.slots;
+      }
+      
+      return [];
+      
+    } catch (err) {
+      console.error('Erro ao buscar slots:', err);
+      return [];
+    }
+  }, []);
+
+  // Limpar busca
+  const limparBusca = useCallback(() => {
+    setCodigoDigitado('');
+    setSlotSelecionado(null);
+    setMostrarEntradaCodigo(true);
+    setError(null);
   }, []);
 
   return (
     <RetiradaContext.Provider value={{
-      pedidosProntos,
-      filaRetirada,
-      statusRetirada,
-      codigoRetirada,
-      estatisticasLoja,
+      // Estado
+      slotSelecionado,
+      codigoDigitado,
+      setCodigoDigitado,
+      mostrarEntradaCodigo,
       loading,
       error,
-      confirmarRetiradaPedido,
-      cancelarRetiradaPedido,
-      buscarPedidosProntos,
-      limparCodigoRetirada,
-      adicionarPedidoTeste,
-      simularAtendimentoConcluido
+      slots,
+      
+      // Ações
+      buscarSlotPorCodigo,
+      confirmarRetirada,
+      limparBusca,
+      buscarStatusSlots,
+      
+      // Controles
+      setError,
+      setMostrarEntradaCodigo,
+      setSlotSelecionado
     }}>
       {children}
     </RetiradaContext.Provider>

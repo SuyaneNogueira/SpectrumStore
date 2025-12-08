@@ -1,42 +1,65 @@
-import React from 'react';
+// TelaRetirada.js - Versão Conectada
+import React, { useState, useEffect } from 'react';
 import { useRetirada } from '../contexts/RetiradaContext';
 import './TelaRetirada.css';
 
 function TelaRetirada() {
   const {
-    pedidosProntos,
-    filaRetirada,
-    codigoRetirada,
-    estatisticasLoja,
+    slotSelecionado,
+    codigoDigitado,
+    setCodigoDigitado,
+    mostrarEntradaCodigo,
     loading,
     error,
-    confirmarRetiradaPedido,
-    cancelarRetiradaPedido,
-    buscarPedidosProntos,
-    limparCodigoRetirada,
-    adicionarPedidoTeste
+    buscarSlotPorCodigo,
+    confirmarRetirada,
+    limparBusca,
+    buscarStatusSlots,
+    setError
   } = useRetirada();
 
-  // Formatar tempo para exibição
-  const formatarTempo = (minutos) => {
-    if (minutos < 1) return 'Menos de 1 min';
-    if (minutos === 1) return '1 min';
-    return `${minutos.toFixed(1)} min`;
+  const [mensagemValidacao, setMensagemValidacao] = useState('');
+
+  // Buscar status dos slots ao carregar
+  useEffect(() => {
+    buscarStatusSlots();
+  }, [buscarStatusSlots]);
+
+  const handleBuscarPedido = () => {
+    if (!codigoDigitado.trim()) {
+      setMensagemValidacao('Por favor, digite o código do seu pedido');
+      return;
+    }
+
+    if (!/^\d{4}$/.test(codigoDigitado)) {
+      setMensagemValidacao('O código deve ter exatamente 4 dígitos');
+      return;
+    }
+
+    buscarSlotPorCodigo(codigoDigitado);
+  };
+
+  const handleConfirmarRetirada = async () => {
+    if (slotSelecionado) {
+      const sucesso = await confirmarRetirada(slotSelecionado.id);
+      if (sucesso) {
+        alert('✅ Retirada confirmada! Obrigado pela compra!');
+        // Recarregar status dos slots
+        buscarStatusSlots();
+      }
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleBuscarPedido();
+    }
   };
 
   if (loading) return (
     <div className="retirada-loading">
       <div className="loading-spinner"></div>
-      <p>Carregando informações de retirada...</p>
-    </div>
-  );
-
-  if (error) return (
-    <div className="retirada-error">
-      <p>❌ {error}</p>
-      <button onClick={buscarPedidosProntos} className="botao-tentar-novamente">
-        Tentar Novamente
-      </button>
+      <p>Localizando seu pedido...</p>
     </div>
   );
 
@@ -44,161 +67,214 @@ function TelaRetirada() {
     <div className='div-tela-retirada-principal'>
       <div className='div-elementos-tela-retirada'>
         
-        {/* Header Similar ao Banner de Brinquedos */}
+        {/* Header */}
         <div className="div-fundo-retirada-container">
           <div className="conteudo-principal-retirada">
-            <h2 className="titulo-retirada">Área de Retirada</h2>
-            <p className="subtitulo-retirada">Acompanhe seus pedidos prontos para retirada</p>
-            
-            {/* Botão para teste - pode remover em produção */}
-            <button 
-              onClick={adicionarPedidoTeste}
-              className="botao-adicionar-teste"
-            >
-              + Adicionar Pedido Teste
-            </button>
+            <h1 className="titulo-retirada">📦 Retirada Self-Service</h1>
+            <p className="subtitulo-retirada">Digite o código do pedido para localizar seu pacote</p>
           </div>
         </div>
 
         <div className="separacao-divs-conteudo-retirada">
           
-          {/* Status de Confirmação - Só mostra quando tem código */}
-          {codigoRetirada && (
-            <div className="container-status-confirmacao">
-              <div className="card-retirada confirmacao-card">
-                <div className="status-item">
-                  <div className="checkbox-container">
-                    <input type="checkbox" checked readOnly className="checkbox-custom" />
-                    <span className="status-texto">Retirada confirmada!</span>
-                  </div>
-                  <span className="codigo-status">Código: {codigoRetirada}</span>
-                </div>
+          {/* Mensagem de erro */}
+          {error && (
+            <div className="mensagem-erro-retirada">
+              <div className="icone-erro">⚠️</div>
+              <div className="texto-erro">{error}</div>
+              <button 
+                onClick={() => setError(null)}
+                className="botao-fechar-erro"
+              >
+                ✕
+              </button>
+            </div>
+          )}
+
+          {/* Tela de entrada de código */}
+          {mostrarEntradaCodigo && (
+            <div className="container-entrada-codigo">
+              <div className="card-retirada entrada-codigo-card">
+                <div className="icone-busca">🔍</div>
+                <h2 className="titulo-busca">Digite o código do pedido</h2>
+                <p className="instrucao-busca">
+                  Insira o código de 4 dígitos recebido na confirmação da compra
+                </p>
                 
-                <div className="codigo-retirada-destaque">
-                  <h3 className="titulo-codigo">🎯 Código de Retirada</h3>
-                  <div className="codigo-numero">{codigoRetirada}</div>
-                  <p className="instrucao-codigo">Apresente este código no balcão</p>
-                  <p className="info-fila">
-                    Sua posição na fila: <strong>#{filaRetirada.findIndex(item => item.pedidoId === codigoRetirada?.split('-')[1]) + 1}</strong>
-                  </p>
+                <div className="grupo-input-codigo">
+                  <input
+                    type="text"
+                    value={codigoDigitado}
+                    onChange={(e) => {
+                      setCodigoDigitado(e.target.value.replace(/\D/g, '').slice(0, 4));
+                      setMensagemValidacao('');
+                    }}
+                    onKeyPress={handleKeyPress}
+                    placeholder="0000"
+                    className="input-codigo"
+                    maxLength="4"
+                    autoFocus
+                  />
+                  
+                  {mensagemValidacao && (
+                    <div className="mensagem-validacao erro">
+                      ⚠️ {mensagemValidacao}
+                    </div>
+                  )}
+                  
                   <button 
-                    onClick={limparCodigoRetirada}
-                    className="botao-fechar-codigo"
+                    onClick={handleBuscarPedido}
+                    className="botao-buscar-pedido"
+                    disabled={codigoDigitado.length !== 4}
                   >
-                    ✕ Fechar
+                    Buscar Pedido
                   </button>
+                </div>
+
+                <div className="dica-codigo">
+                  <p>📍 Encontre seu código:</p>
+                  <ul>
+                    <li>📧 No e-mail de confirmação</li>
+                    <li>📱 No aplicativo - "Meus Pedidos"</li>
+                    <li>🖨️ No comprovante impresso</li>
+                  </ul>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Status da Loja */}
-          <div className="container-status-loja">
-            <h3 className="titulo-secao-retirada">Status da Loja</h3>
-            <div className="card-retirada status-loja-card">
-              <div className="status-grid">
-                <div className="status-item-loja">
-                  <span className="label-status">Pessoas para Retirada</span>
-                  <span className="valor-status">{filaRetirada.length}</span>
+          {/* Tela de localização do slot */}
+          {slotSelecionado && (
+            <div className="container-info-slot">
+              <div className="card-retirada info-slot-card">
+                <div className="cabecalho-slot">
+                  <button 
+                    onClick={limparBusca}
+                    className="botao-voltar-slot"
+                  >
+                    ← Voltar
+                  </button>
+                  <h2 className="titulo-slot-encontrado">Pedido Localizado!</h2>
                 </div>
-                <div className="status-item-loja">
-                  <span className="label-status">Previsão na Fila</span>
-                  <span className="valor-status">
-                    {formatarTempo(estatisticasLoja.tempoEsperaFila || 0)}
-                  </span>
-                </div>
-                <div className="status-item-loja">
-                  <span className="label-status">Funcionários Disponíveis</span>
-                  <span className="valor-status">{estatisticasLoja.funcionariosDisponiveis}</span>
-                </div>
-              </div>
-              <div className="tempo-medio">
-                <span className="info-tempo">
-                  ⏱️ Tempo médio de atendimento: {estatisticasLoja.tempoMedioAtendimento} minutos
-                </span>
-              </div>
-              
-              {/* Informações da Fila em Tempo Real */}
-              <div className="info-fila-tempo-real">
-                <div className="fila-header">
-                  <h4>📊 Fila de Retirada</h4>
-                  <span className="total-fila">{filaRetirada.length} pessoa(s)</span>
-                </div>
-                {filaRetirada.length > 0 && (
-                  <div className="itens-fila">
-                    {filaRetirada.map((item, index) => (
-                      <div key={item.id} className="item-fila">
-                        <span className="posicao-fila">#{index + 1}</span>
-                        <span className="pedido-fila">Pedido {item.pedidoId}</span>
-                        <span className="tempo-fila">
-                          ~{formatarTempo((index + 1) * estatisticasLoja.tempoMedioAtendimento)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
 
-          {/* Pedidos Prontos para Retirada */}
-          <div className="container-pedidos-prontos">
-            <div className="header-pedidos-prontos">
-              <h3 className="titulo-secao-retirada">Pedidos Prontos para Retirada</h3>
-              <span className="contador-pedidos">{pedidosProntos.length} pedido(s) disponível(is)</span>
-            </div>
-            
-            {pedidosProntos.length === 0 ? (
-              <div className="card-retirada sem-pedidos-card">
-                <div className="icone-sem-pedidos">📦</div>
-                <p className="texto-sem-pedidos">Nenhum pedido pronto para retirada no momento.</p>
-                <p className="texto-informativo">Os pedidos aparecerão aqui quando estiverem prontos.</p>
-                <button onClick={buscarPedidosProntos} className="botao-tentar-novamente">
-                  Atualizar Lista
-                </button>
-              </div>
-            ) : (
-              <div className="lista-pedidos-container">
-                {pedidosProntos.map(pedido => (
-                  <div key={pedido.id} className="card-retirada pedido-card">
-                    <div className="pedido-header">
-                      <h4 className="numero-pedido">Pedido #{pedido.id}</h4>
-                      <span className="status-pedido">🟢 Pronto</span>
+                <div className="detalhes-slot">
+                  {/* Status */}
+                  <div className="status-container">
+                    <div className="slot-marcador-grande" style={{ backgroundColor: slotSelecionado.cor }}>
+                      <span className="slot-id-grande">{slotSelecionado.id}</span>
+                      <span className="slot-localizacao">SLOT {slotSelecionado.id}</span>
                     </div>
-                    <div className="pedido-detalhes">
-                      <p className="info-pedido"><strong>Cliente:</strong> {pedido.clienteNome}</p>
-                      <p className="info-pedido"><strong>Itens:</strong> {pedido.quantidadeItens} produtos</p>
-                      <p className="info-pedido"><strong>Total:</strong> R$ {pedido.valorTotal?.toFixed(2)}</p>
+                    
+                    <div className="info-status">
+                      <div className={`status-badge ${slotSelecionado.status}`}>
+                        {slotSelecionado.status === 'ocupado' ? '🟢 PRONTO PARA RETIRADA' :
+                         slotSelecionado.status === 'reservado' ? '🟡 EM PREPARAÇÃO' : '🔵 DISPONÍVEL'}
+                      </div>
+                      
+                      {slotSelecionado.produtoNome && (
+                        <p className="instrucao-status">Produto: {slotSelecionado.produtoNome}</p>
+                      )}
+                      
+                      {slotSelecionado.codigoPedido && (
+                        <p className="codigo-status">Código: {slotSelecionado.codigoPedido}</p>
+                      )}
                     </div>
-                    <div className="info-tempo-espera">
-                      <span className="tempo-estimado">
-                        ⏱️ Tempo estimado na fila: {formatarTempo(
-                          (filaRetirada.length + 1) * estatisticasLoja.tempoMedioAtendimento
-                        )}
-                      </span>
+                  </div>
+
+                  {/* Mapa de Localização */}
+                  <div className="mapa-localizacao">
+                    <h3 className="titulo-mapa">📍 Localize o Slot {slotSelecionado.id}</h3>
+                    
+                    <div className="planta-baixa">
+                      {/* Linha A */}
+                      <div className="linha-slots">
+                        <div className="rotulo-linha">Linha A</div>
+                        <div className="slots-linha">
+                          {['A1', 'A2', 'A3', 'A4'].map(slotId => (
+                            <div 
+                              key={slotId}
+                              className={`slot-mapa ${slotId === slotSelecionado.id ? 'slot-seu' : 'slot-outro'}`}
+                            >
+                              {slotId}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Linha B */}
+                      <div className="linha-slots">
+                        <div className="rotulo-linha">Linha B</div>
+                        <div className="slots-linha">
+                          {['B5', 'B6', 'B7', 'B8'].map(slotId => (
+                            <div 
+                              key={slotId}
+                              className={`slot-mapa ${slotId === slotSelecionado.id ? 'slot-seu' : 'slot-outro'}`}
+                            >
+                              {slotId}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Linha C */}
+                      <div className="linha-slots">
+                        <div className="rotulo-linha">Linha C</div>
+                        <div className="slots-linha">
+                          {['C9', 'C10', 'C11', 'C12'].map(slotId => (
+                            <div 
+                              key={slotId}
+                              className={`slot-mapa ${slotId === slotSelecionado.id ? 'slot-seu' : 'slot-outro'}`}
+                            >
+                              {slotId}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <div className="acoes-pedido">
+
+                    <div className="instrucoes">
+                      <h4>Instruções:</h4>
+                      <ol>
+                        <li>Dirija-se à <strong>Área de Retirada Self-Service</strong></li>
+                        <li>Encontre o slot <strong>{slotSelecionado.id}</strong></li>
+                        <li>Verifique se a luz do slot está verde</li>
+                        <li>Abra a porta e retire seu pedido</li>
+                        <li>Feche a porta após a retirada</li>
+                      </ol>
+                    </div>
+                  </div>
+
+                  {/* Botão de Confirmação */}
+                  {slotSelecionado.status === 'ocupado' && (
+                    <div className="acoes-container">
                       <button 
-                        onClick={() => confirmarRetiradaPedido(pedido.id)}
+                        onClick={handleConfirmarRetirada}
                         className="botao-confirmar"
                       >
-                        ✅ Confirmar Retirada
+                        ✅ CONFIRMAR RETIRADA
                       </button>
-                      <button 
-                        onClick={() => cancelarRetiradaPedido(pedido.id, 'Cliente solicitou')}
-                        className="botao-cancelar"
-                      >
-                        ❌ Cancelar
-                      </button>
+                      <p className="texto-ajuda">
+                        Clique aqui após retirar todos os itens do slot
+                      </p>
                     </div>
-                  </div>
-                ))}
+                  )}
+
+                  {/* Aviso de preparação */}
+                  {slotSelecionado.status === 'reservado' && (
+                    <div className="aviso-preparacao">
+                      <div className="icone-aviso">⏳</div>
+                      <div className="texto-aviso">
+                        <h4>Pedido em Preparação</h4>
+                        <p>Seu pedido ainda está sendo preparado. Retorne ao horário indicado para retirada.</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
         </div>
-
       </div>
     </div>
   );
