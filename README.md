@@ -6,18 +6,9 @@ Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de auto
 Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expressão**.
 
 ---
-## 🏦Script do Banco de Dados🎲##
+##🏦Script do Banco de Dados🎲
 
-
-    CREATE TABLE pedido_itens (
-    id SERIAL PRIMARY KEY,
-    pedido_id INTEGER NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
-    descricao TEXT NOT NULL, -- (Ex: "Camisa de Compressão")
-    quantidade INTEGER NOT NULL,
-    preco_unitario DECIMAL(10, 2) NOT NULL,
-    customizacao_json TEXT, 
-    payload_maquina TEXT );
-
+---
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -30,15 +21,27 @@ CREATE TABLE usuario (
     ativo BOOLEAN DEFAULT true
     foto_url TEXT NULL);
 
-
+ 
     CREATE TABLE pedidos (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES usuarios(id), 
+    usuario_id INTEGER REFERENCES usuario(id), 
     total DECIMAL(10, 2) NOT NULL,
     forma_pagamento VARCHAR(50),
     status VARCHAR(50) DEFAULT 'pendente', -- (Ex: 'pendente', 'pago')
     status_maquina TEXT DEFAULT 'pendente', -- (Ex: 'pendente', 'enviando', 'enviado', 'erro')
-    data_pedido TIMESTAMP DEFAULT NOW());
+    data_pedido TIMESTAMP DEFAULT NOW());  
+    
+    
+    CREATE TABLE pedido_itens (
+    id SERIAL PRIMARY KEY,
+    pedido_id INTEGER NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
+    descricao TEXT NOT NULL, -- (Ex: "Camisa de Compressão")
+    quantidade INTEGER NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    customizacao_json TEXT, 
+    payload_maquina TEXT );
+
+    
 ---
 ## 🛒 Nossas Categorias
 
