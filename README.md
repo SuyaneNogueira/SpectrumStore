@@ -7,33 +7,6 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ---
 ## 🏦Script do Banco de Dados🎲
-
-CREATE TABLE IF NOT EXISTS usuario (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL,
-    data_nascimento DATE,
-    termos_aceitos BOOLEAN DEFAULT false,
-    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ativo BOOLEAN DEFAULT true
-    foto_url TEXT NULL
-);
-
--- Criar índices
-CREATE INDEX IF NOT EXISTS idx_usuario_email ON usuario(email);
-CREATE INDEX IF NOT EXISTS idx_usuario_ativo ON usuario(ativo);
-
-CREATE TABLE pedidos (
-    id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES usuario(id), 
-    total DECIMAL(10, 2) NOT NULL,
-    forma_pagamento VARCHAR(50),
-    status VARCHAR(50) DEFAULT 'pendente', -- (Ex: 'pendente', 'pago')
-    status_maquina TEXT DEFAULT 'pendente', -- (Ex: 'pendente', 'enviando', 'enviado', 'erro')
-    data_pedido TIMESTAMP DEFAULT NOW()
-    );
 --
     CREATE TABLE pedido_itens (
     id SERIAL PRIMARY KEY,
