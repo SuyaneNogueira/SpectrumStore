@@ -298,7 +298,8 @@
 
 .ajuste-opcao-editar, 
 .ajuste-opcao-excluir, 
-.ajuste-opcao-suporte {
+.ajuste-opcao-suporte,
+.ajuste-opcao-sair {
   display: block;
   width: 100%;
   text-align: left;
@@ -316,12 +317,14 @@
 
 .ajuste-opcao-editar:hover, 
 .ajuste-opcao-excluir:hover, 
-.ajuste-opcao-suporte:hover {
+.ajuste-opcao-suporte:hover,
+.ajuste-opcao-sair:hover {
   background: #7ab7be;
   color: white;
 }
 
-.ajuste-opcao-excluir {
+.ajuste-opcao-excluir,
+.ajuste-opcao-sair {
   color: #b22222;
   font-weight: bolder;
 }

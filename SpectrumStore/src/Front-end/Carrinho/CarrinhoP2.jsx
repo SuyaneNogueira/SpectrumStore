@@ -46,55 +46,60 @@ function CarrinhoP2() {
 
   // (Esta função que você colou agora vai funcionar, pois 'cartItems' está correto)
   const finalizarCompra = async () => {
-    if (cartItems.length === 0) {
-      alert("O carrinho está vazio.");
-      return;
-    }
-
-    if (!formaPagamento) {
-      alert("Escolha uma forma de pagamento.");
-      return;
-    }
-
-    // DEBUG: Verifique o que você está prestes a enviar
-    console.log("Enviando estes cartItems (do localStorage) para o backend:", JSON.stringify(cartItems, null, 2));
-
-    try {
-      
-      // O seu bloco 'cartItemsParaStripe' está comentado (ou apagado), o que está CORRETO.
-
-      // Este fetch agora envia os 'cartItems' corretos (com 'customizations')
-      const res = await fetch("http://localhost:3001/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cartItems: cartItems, // <--- CORRETO
-          paymentMethod: formaPagamento,
-        }),
-      });
-
-    // --- MELHORIA NO TRATAMENTO DE ERRO ---
-    const data = await res.json(); 
-
-    if (!res.ok) {
-      console.error("❌ Erro retornado pelo backend:", data);
-      throw new Error(data.error || data.message || "Erro do servidor");
-    }
-    // --- FIM DA MELHORIA ---
-
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      console.error("❌ Erro ao criar sessão: URL não recebida.", data);
-      alert("Erro ao criar sessão de pagamento.");
-    }
-    
-  } catch (err) {
-    console.error("Erro ao enviar pedido:", err);
-    alert(`Erro ao processar pagamento: ${err.message}`);
+    // 1. Validação Básica
+  if (cartItems.length === 0) {
+   alert("O carrinho está vazio.");
+   return;
   }
-};
 
+  if (!formaPagamento) {
+   alert("Escolha uma forma de pagamento.");
+   return;
+  }
+
+    // 2. PEGAR O USUÁRIO LOGADO (A Correção!)
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+    const idDoCliente = usuarioLogado ? usuarioLogado.id : null;
+
+    if (!idDoCliente) {
+        alert("Erro: Você precisa estar logado para finalizar a compra!");
+        // Opcional: Redirecionar para login
+        // window.location.href = "/login";
+        return;
+    }
+
+  console.log("Finalizando compra para Usuário ID:", idDoCliente);
+
+  try {
+   const res = await fetch("http://localhost:3001/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+     cartItems: cartItems,
+     paymentMethod: formaPagamento,
+          userId: idDoCliente // <--- AGORA SIM! O Backend vai saber quem é.
+    }),
+   });
+
+  const data = await res.json(); 
+
+  if (!res.ok) {
+   console.error("❌ Erro retornado pelo backend:", data);
+   throw new Error(data.error || data.message || "Erro do servidor");
+  }
+
+  if (data.url) {
+   window.location.href = data.url;
+  } else {
+   console.error("❌ Erro ao criar sessão: URL não recebida.", data);
+   alert("Erro ao criar sessão de pagamento.");
+  }
+  
+ } catch (err) {
+  console.error("Erro ao enviar pedido:", err);
+  alert(`Erro ao processar pagamento: ${err.message}`);
+ }
+};
 return (
     <div className="fundoPagamento">
       <Navbar />

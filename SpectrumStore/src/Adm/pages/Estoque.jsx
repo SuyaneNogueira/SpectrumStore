@@ -53,37 +53,7 @@ export default function Estoque() {
       <div className="titulo-estoque-adm">
         <div className="titulo-definitivo-estoque">
           <h1>Estoque</h1>
-          <div className="icones-estoque-adm">
-            <div className="icons-notification-adm-estoque">
-              <FaRegBell
-                className="notification-estoque-adm"
-                size={30}
-                color="#03374C"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/")}
-              />
-            </div>
-
-            <div className="icon-search-adm-estoque">
-              <CiSearch
-                className="search-estoque-adm"
-                size={30}
-                color="#03374C"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/")}
-              />
-            </div>
-
-            <div className="icon-perfil-adm-estoque">
-              <CgProfile
-                className="icon-estoque-adm"
-                size={30}
-                color="#03374C"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/PerfilAdm")}
-              />
-            </div>
-          </div>
+    
         </div>
         <div className="categorias-estoque-adm">
           <div className="aba-categorias-estoque-produto">

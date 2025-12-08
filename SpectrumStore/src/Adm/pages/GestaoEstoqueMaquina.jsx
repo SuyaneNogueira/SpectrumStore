@@ -26,63 +26,76 @@ function EditModal({ peca, onClose, onSave }) {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h2>
-            Editar Peça: {peca.nome_peca} (Posição #{peca.id})
-          </h2>
-          <button onClick={onClose} className="modal-close-btn">
+    <div className="modal-overlay-gem">
+      <div className="modal-content-gem">
+        
+        {/* Cabeçalho */}
+        <div className="modal-header-gem">
+          <h3>Editar Peça (ID #{peca.id})</h3>
+          <button onClick={onClose} className="modal-close-btn-gem">
             &times;
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="modal-body">
-            <label>Nome da Peça:</label>
-            <input
-              type="text"
-              name="nome_peca"
-              value={formData.nome_peca}
-              onChange={handleChange}
-            />
-
-            <label>Quantidade (Repor):</label>
-            <input
-              type="number"
-              name="quantidade"
-              value={formData.quantidade}
-              onChange={handleChange}
-            />
-
-            <label>Status:</label>
-            <div className="checkbox-container">
+        {/* Formulário */}
+        <form onSubmit={handleSubmit} className="modal-form-gem">
+          <div className="modal-body-gem">
+            
+            <div className="input-group-gem">
+              <label>Nome da Peça:</label>
               <input
-                type="checkbox"
-                id="disponivel"
-                name="disponivel"
-                checked={formData.disponivel}
+                type="text"
+                name="nome_peca"
+                value={formData.nome_peca}
                 onChange={handleChange}
+                placeholder="Ex: Chassi Azul"
+                required
               />
-              <label htmlFor="disponivel">Peça Disponível (Ativa)</label>
             </div>
 
-            {/* NOTA: Se a API da máquina (a foto) exigir { "cor": "..." }, 
-                você precisa adicionar um input para "cor" aqui. */}
+            <div className="input-group-gem">
+              <label>Quantidade (Estoque/Repor):</label>
+              <input
+                type="number"
+                name="quantidade"
+                value={formData.quantidade}
+                onChange={handleChange}
+                min="0"
+                required
+              />
+            </div>
+
+            <div className="input-group-gem checkbox-group">
+              <label className="switch-container">
+                <input
+                  type="checkbox"
+                  name="disponivel"
+                  checked={formData.disponivel}
+                  onChange={handleChange}
+                />
+                <span className="slider-round"></span>
+              </label>
+              <span className="status-label">
+                {formData.disponivel ? "Peça Ativa (Disponível)" : "Peça Inativa (Indisponível)"}
+              </span>
+            </div>
+
           </div>
-          <div className="modal-footer">
-            <button type="button" className="btn-cancelar" onClick={onClose}>
+
+          {/* Rodapé com Botões */}
+          <div className="modal-footer-gem">
+            <button type="button" className="btn-cancelar-gem" onClick={onClose}>
               Cancelar
             </button>
-            <button type="submit" className="btn-salvar">
-              Salvar Mudanças
+            <button type="submit" className="btn-salvar-gem">
+              Salvar Alterações
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-}
+} 
 
 // =========================================================
 // 🔹 COMPONENTE PRINCIPAL (O seu Dashboard/GEM)

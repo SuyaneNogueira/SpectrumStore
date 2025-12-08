@@ -186,35 +186,7 @@ export default function Produtos() {
           </div>
         </div>
 
-        <div className="icones-geral-adm-produtos">
-          <div className="icons-notification-adm-produtos">
-            <FaRegBell
-              className="notification-produtos-adm"
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            />
-          </div>
-          <div className="icon-search-adm-produtos">
-            <CiSearch
-              className="search-adm-produto"
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            />
-          </div>
-          <div className="icon-perfil-adm-produtos">
-            <CgProfile
-              className="perfil-adm-produtos"
-              size={30}
-              color="#03374C"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/PerfilAdm")}
-            />
-          </div>
-        </div>
+      
       </div>
 
       <div className="cadastro-dos-produtos-adm">
