@@ -6,7 +6,58 @@ Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de auto
 Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expressão**.
 
 ---
+##🏦Script do Banco de Dados🎲
 
+```
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    data_nascimento DATE,
+    termos_aceitos BOOLEAN DEFAULT false,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT true,
+    foto_url TEXT NULL
+    );
+
+ 
+    CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuario(id), 
+    total DECIMAL(10, 2) NOT NULL,
+    forma_pagamento VARCHAR(50),
+    status VARCHAR(50) DEFAULT 'pendente', -- (Ex: 'pendente', 'pago')
+    status_maquina TEXT DEFAULT 'pendente', -- (Ex: 'pendente', 'enviando', 'enviado', 'erro')
+    data_pedido TIMESTAMP DEFAULT NOW()
+    );  
+    
+    
+    CREATE TABLE pedido_itens (
+    id SERIAL PRIMARY KEY,
+    pedido_id INTEGER NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
+    descricao TEXT NOT NULL, -- (Ex: "Camisa de Compressão")
+    quantidade INTEGER NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    customizacao_json TEXT, 
+    payload_maquina TEXT );
+
+-- Adicionar coluna codigo_retirada na tabela produtos
+ALTER TABLE produto ADD COLUMN IF NOT EXISTS codigo_retirada VARCHAR(4) UNIQUE;
+
+-- Adicionar colunas na tabela pedido_itens para controle de retirada
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS codigo_retirada VARCHAR(4);
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS status_retirada VARCHAR(20);
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_retirada TIMESTAMP;
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS slot_retirada VARCHAR(10);
+
+-- Adicionar colunas na tabela pedidos para controle de retirada
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_pronto TIMESTAMP;
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_conclusao TIMESTAMP;
+```
+    
+---
 ## 🛒 Nossas Categorias
 
 ### 1. Brinquedos Sensoriais

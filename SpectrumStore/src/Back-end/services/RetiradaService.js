@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3030';
+const API_BASE_URL = 'http://localhost:3001';
 
 /**
  * Função auxiliar para fazer requisições
