@@ -8,7 +8,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 ##🏦Script do Banco de Dados🎲
 
----
+___
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
