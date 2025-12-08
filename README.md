@@ -7,7 +7,20 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 
 ---
 ## 🏦Script do Banco de Dados🎲
---
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    data_nascimento DATE,
+    termos_aceitos BOOLEAN DEFAULT false,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT true
+    foto_url TEXT NULL
+);
+
     CREATE TABLE pedido_itens (
     id SERIAL PRIMARY KEY,
     pedido_id INTEGER NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
