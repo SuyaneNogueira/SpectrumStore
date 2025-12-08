@@ -6,7 +6,7 @@ Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de auto
 Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expressão**.
 
 ---
-
+---
 ## 🛒 Nossas Categorias
 
 ### 1. Brinquedos Sensoriais
