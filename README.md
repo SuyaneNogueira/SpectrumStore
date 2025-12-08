@@ -6,9 +6,9 @@ Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de auto
 Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expressão**.
 
 ---
-## 🏦Script do Banco de Dados🎲
+## 🏦Script do Banco de Dados🎲##
 
-CREATE TABLE IF NOT EXISTS usuario (
+CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -18,8 +18,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOLEAN DEFAULT true
-    foto_url TEXT NULL
-);
+    foto_url TEXT NULL);
 
     CREATE TABLE pedido_itens (
     id SERIAL PRIMARY KEY,
@@ -28,8 +27,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     quantidade INTEGER NOT NULL,
     preco_unitario DECIMAL(10, 2) NOT NULL,
     customizacao_json TEXT, 
-    payload_maquina TEXT 
-);
+    payload_maquina TEXT );
 ---
 ## 🛒 Nossas Categorias
 
