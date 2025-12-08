@@ -6,7 +6,7 @@ Aqui você encontra brinquedos sensoriais, objetos de segurança e itens de auto
 Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expressão**.
 
 ---
-## Script do Banco de Dados
+## 🏦🎲Script do Banco de Dados
 ---
 ## 🛒 Nossas Categorias
 
