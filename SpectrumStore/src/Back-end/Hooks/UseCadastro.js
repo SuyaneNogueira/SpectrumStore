@@ -1,4 +1,4 @@
-// hooks/useCadastro.js - ATUALIZADO
+// hooks/useCadastro.js - VERSÃO ATUALIZADA
 import { useState } from 'react';
 import UserService from '../services/UserService';
 
@@ -7,7 +7,7 @@ export const useCadastro = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Função para verificar saúde do servidor (MAIS TOLERANTE)
+  // Função para verificar saúde do servidor
   const verificarServidor = async () => {
     console.log('🔍 Verificando conexão com o servidor...');
     
@@ -16,7 +16,6 @@ export const useCadastro = () => {
       
       if (!health.success) {
         console.log('⚠️ Health check falhou, mas continuando...');
-        // Continua mesmo se o health check falhar
         return true;
       }
       
@@ -25,7 +24,6 @@ export const useCadastro = () => {
       
     } catch (error) {
       console.log('⚠️ Erro no health check, mas continuando...', error.message);
-      // Continua mesmo com erro no health check
       return true;
     }
   };
@@ -58,13 +56,14 @@ export const useCadastro = () => {
         throw new Error('Você deve aceitar os Termos de Uso');
       }
 
-      // Formatar dados para envio
+      // Formatar dados para envio (COM FOTO)
       const dadosParaEnvio = {
         nome: userData.nome.trim(),
         email: userData.email.trim().toLowerCase(),
-        dataNascimento: userData.dataNascimento,
+        dataNascimento: userData.dataNascimento || null,
         senha: userData.senha,
-        termosAceitos: userData.termosAceitos
+        termosAceitos: userData.termosAceitos,
+        foto_url: userData.foto_url || null
       };
 
       console.log('📤 Enviando dados para cadastro:', dadosParaEnvio);
@@ -92,8 +91,6 @@ export const useCadastro = () => {
       setLoading(false);
     }
   };
-
-  // ... (outras funções permanecem iguais)
 
   return {
     loading,

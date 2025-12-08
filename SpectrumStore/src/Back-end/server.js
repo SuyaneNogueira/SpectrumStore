@@ -17,7 +17,7 @@ import adminRoutes from './AdminRoutes.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3001;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const { Pool } = pkg;
 
@@ -33,8 +33,8 @@ const __dirname = path.dirname(__filename);
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: '',
-  password: '',
+  database: 'TesteSpectrum',
+  password: 'senai',
   port: 5432,
 });
 
