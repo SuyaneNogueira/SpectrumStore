@@ -68,7 +68,7 @@
 .info-item {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .info-label {
@@ -83,9 +83,44 @@
   font-weight: 600;
 }
 
-.pedido-numero {
+/* Número do Pedido em 4 dígitos */
+.numero-pedido-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.numero-pedido {
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: bold;
   color: #067591;
-  font-size: 16px;
+  letter-spacing: 2px;
+  background: #f0f9ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid #7AB7BE;
+  min-width: 80px;
+  text-align: center;
+}
+
+.botao-copiar-pequeno {
+  background: #2196F3;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.botao-copiar-pequeno:hover {
+  background: #1976D2;
 }
 
 .total-pedido {
@@ -220,6 +255,186 @@
   font-style: italic;
 }
 
+/* Código de Retirada Geral */
+.codigo-retirada-geral {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 25px 0;
+}
+
+.codigo-header h3 {
+  color: #2e7d32;
+  font-size: 20px;
+  margin: 0 0 5px 0;
+}
+
+.codigo-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 20px 0;
+}
+
+.codigo-principal-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.codigo-grande {
+  display: flex;
+  gap: 10px;
+}
+
+.codigo-digito {
+  font-family: 'Courier New', monospace;
+  font-size: 36px;
+  font-weight: bold;
+  color: #03374C;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.codigo-acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.botao-copiar-grande {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+
+.botao-copiar-grande:hover {
+  background: #1976D2;
+}
+
+.botao-ajuda {
+  background: #FF9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+
+.botao-ajuda:hover {
+  background: #F57C00;
+}
+
+.icone-copiar, .icone-ajuda {
+  font-size: 16px;
+}
+
+.codigo-instrucoes {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.codigo-instrucoes p {
+  margin: 0 0 10px 0;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.codigo-instrucoes ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #555;
+}
+
+.codigo-instrucoes li {
+  margin-bottom: 5px;
+}
+
+/* Código de Retirada por item */
+.codigo-retirada-container {
+  grid-column: 1 / -1;
+  background: #f1f8e9;
+  border: 1px solid #C8E6C9;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0 5px 0;
+}
+
+.codigo-label {
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 13px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.codigo-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.codigo-numero {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #03374C;
+  letter-spacing: 1px;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px dashed #4CAF50;
+}
+
+.botao-copiar-codigo {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.botao-copiar-codigo:hover {
+  background: #1976D2;
+}
+
 /* Status Timeline */
 .pedido-status-container {
   margin: 25px 0;
@@ -318,71 +533,6 @@
   color: #2e7d32;
 }
 
-/* Código de Retirada */
-.codigo-retirada-container {
-  background: #e8f5e8;
-  border: 1px solid #4CAF50;
-  border-radius: 8px;
-  padding: 12px;
-  margin: 10px 0 5px 0;
-}
-
-.codigo-label {
-  font-weight: 600;
-  color: #2e7d32;
-  font-size: 14px;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.codigo-display {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 8px 0;
-  flex-wrap: wrap;
-}
-
-.codigo-numero {
-  font-family: 'Courier New', monospace;
-  font-size: 22px;
-  font-weight: bold;
-  color: #03374C;
-  letter-spacing: 2px;
-  background: white;
-  padding: 8px 15px;
-  border-radius: 6px;
-  border: 1px dashed #4CAF50;
-  min-width: 120px;
-  text-align: center;
-}
-
-.botao-copiar-codigo {
-  background: #2196F3;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.botao-copiar-codigo:hover {
-  background: #1976D2;
-}
-
-.codigo-instrucao {
-  display: block;
-  color: #666;
-  font-size: 12px;
-  margin-top: 5px;
-  font-style: italic;
-}
-
 /* Botões de Ação */
 .pedido-acoes {
   display: flex;
@@ -390,6 +540,7 @@
   gap: 10px;
   padding-top: 20px;
   border-top: 1px solid #e0e0e0;
+  flex-wrap: wrap;
 }
 
 .botao-secundario {
@@ -406,6 +557,25 @@
 
 .botao-secundario:hover {
   background: #e0e0e0;
+}
+
+.botao-retirada {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.botao-retirada:hover {
+  background: #3d8b40;
 }
 
 .botao-imprimir {
@@ -436,7 +606,13 @@
   
   .pedido-info-geral {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
+  }
+  
+  .numero-pedido {
+    font-size: 18px;
+    min-width: 70px;
+    padding: 6px 10px;
   }
   
   .pedido-item {
@@ -447,6 +623,21 @@
   .pedido-item-imagem {
     width: 100%;
     height: 150px;
+  }
+  
+  .codigo-principal-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .codigo-grande {
+    justify-content: center;
+  }
+  
+  .codigo-digito {
+    font-size: 28px;
+    width: 50px;
+    height: 50px;
   }
   
   .pedido-status-timeline {
@@ -483,16 +674,6 @@
   .pedido-acoes button {
     width: 100%;
   }
-  
-  .codigo-display {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .codigo-numero {
-    font-size: 20px;
-    padding: 10px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -504,8 +685,14 @@
     grid-template-columns: 1fr;
   }
   
-  .codigo-numero {
-    font-size: 18px;
-    padding: 8px;
+  .codigo-digito {
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .codigo-acoes button {
+    font-size: 13px;
+    padding: 10px 15px;
   }
 }
