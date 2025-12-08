@@ -8,7 +8,7 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 ##🏦Script do Banco de Dados🎲
 
-___
+```
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -18,8 +18,9 @@ CREATE TABLE usuario (
     termos_aceitos BOOLEAN DEFAULT false,
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ativo BOOLEAN DEFAULT true
-    foto_url TEXT NULL);
+    ativo BOOLEAN DEFAULT true,
+    foto_url TEXT NULL
+    );
 
  
     CREATE TABLE pedidos (
@@ -29,7 +30,8 @@ CREATE TABLE usuario (
     forma_pagamento VARCHAR(50),
     status VARCHAR(50) DEFAULT 'pendente', -- (Ex: 'pendente', 'pago')
     status_maquina TEXT DEFAULT 'pendente', -- (Ex: 'pendente', 'enviando', 'enviado', 'erro')
-    data_pedido TIMESTAMP DEFAULT NOW());  
+    data_pedido TIMESTAMP DEFAULT NOW()
+    );  
     
     
     CREATE TABLE pedido_itens (
@@ -40,7 +42,7 @@ CREATE TABLE usuario (
     preco_unitario DECIMAL(10, 2) NOT NULL,
     customizacao_json TEXT, 
     payload_maquina TEXT );
-
+```
     
 ---
 ## 🛒 Nossas Categorias
