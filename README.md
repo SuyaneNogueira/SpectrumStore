@@ -8,7 +8,6 @@ Mais do que produtos, oferecemos **possibilidades de conforto, autonomia e expre
 ---
 ## 🏦Script do Banco de Dados🎲##
 
-´´´
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -20,8 +19,7 @@ CREATE TABLE usuario (
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOLEAN DEFAULT true
     foto_url TEXT NULL);
-´´´
-´´´
+
     CREATE TABLE pedido_itens (
     id SERIAL PRIMARY KEY,
     pedido_id INTEGER NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
@@ -30,7 +28,7 @@ CREATE TABLE usuario (
     preco_unitario DECIMAL(10, 2) NOT NULL,
     customizacao_json TEXT, 
     payload_maquina TEXT );
-´´´
+
     CREATE TABLE pedidos (
     id SERIAL PRIMARY KEY,
     usuario_id INTEGER REFERENCES usuarios(id), 
@@ -39,7 +37,6 @@ CREATE TABLE usuario (
     status VARCHAR(50) DEFAULT 'pendente', -- (Ex: 'pendente', 'pago')
     status_maquina TEXT DEFAULT 'pendente', -- (Ex: 'pendente', 'enviando', 'enviado', 'erro')
     data_pedido TIMESTAMP DEFAULT NOW());
-    ´´´
 ---
 ## 🛒 Nossas Categorias
 
