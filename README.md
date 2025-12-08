@@ -42,6 +42,19 @@ CREATE TABLE usuario (
     preco_unitario DECIMAL(10, 2) NOT NULL,
     customizacao_json TEXT, 
     payload_maquina TEXT );
+
+-- Adicionar coluna codigo_retirada na tabela produtos
+ALTER TABLE produto ADD COLUMN IF NOT EXISTS codigo_retirada VARCHAR(4) UNIQUE;
+
+-- Adicionar colunas na tabela pedido_itens para controle de retirada
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS codigo_retirada VARCHAR(4);
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS status_retirada VARCHAR(20);
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_retirada TIMESTAMP;
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS slot_retirada VARCHAR(10);
+
+-- Adicionar colunas na tabela pedidos para controle de retirada
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_pronto TIMESTAMP;
+ALTER TABLE pedido ADD COLUMN IF NOT EXISTS data_conclusao TIMESTAMP;
 ```
     
 ---
