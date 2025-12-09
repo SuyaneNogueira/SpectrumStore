@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { auth, provider, signInWithPopup } from "../Cadastro/Firebase";
 import { useNavigate } from "react-router-dom";
-import UserService from "../../Back-end/services/UserService"; // Importe o UserService
+import userService from "../../Back-end/services/UserService"; // Importe o UserService
 
 function Login({ onClose, onOpenCadastro }) {
   const [nome, setNome] = useState("");
@@ -22,7 +22,7 @@ function Login({ onClose, onOpenCadastro }) {
       console.log("Tentando login:", { nome, senha });
       
       // 🔐 Fazer login via API
-      const resultado = await UserService.loginUsuario({
+      const resultado = await userService.loginUsuario({
         email: nome, // ou nome, dependendo do seu backend
         senha: senha
       });

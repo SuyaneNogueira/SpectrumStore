@@ -15,6 +15,7 @@ function TelaDePerfil() {
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
   const [menuAberto, setMenuAberto] = useState(false);
   const { toggleFavorite, isFavorited } = useFavorites();
+  const [historico, setHistorico] = useState([]);
 
   // Estados para os modais
   const [modalEditar, setModalEditar] = useState(false);
@@ -66,7 +67,7 @@ function TelaDePerfil() {
         console.log("🖼️ Foto do usuário:", fotoUsuario);
       } else {
         console.log("⚠️ Nenhum usuário logado encontrado");
-        window.location.href = "/login";
+        window.location.href = "/";
       }
     } catch (error) {
       console.error("❌ Erro ao carregar dados do usuário:", error);

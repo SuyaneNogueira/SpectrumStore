@@ -33,12 +33,8 @@ const __dirname = path.dirname(__filename);
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-<<<<<<< HEAD
   database: 'Loja_tea_teste',
-=======
-  database: 'TesteSpectrum',
->>>>>>> b2d2c5d44439e60832d2c8e4ea209a38d0ab9c7f
-  password: 'senai',
+  password: 'manuel',
   port: 5432,
 });
 
@@ -1634,38 +1630,43 @@ app.get('/api/pedidos/:id', async (req, res) => {
 app.get('/api/pedidos/usuario/:usuario_id', async (req, res) => {
   try {
     const { usuario_id } = req.params;
-    
+
     const result = await pool.query(
       `SELECT 
-         p.id,
-         p.total,
-         p.status,
-         p.data_pedido,
-         json_agg(
-           json_build_object(
-             'produto_id', pi.produto_id,
-             'nome', pr.name,
-             'quantidade', pi.quantidade,
-             'preco_unitario', pi.preco_unitario,
-             'codigo_retirada', pi.codigo_retirada,
-             'imagem', pr.image
-           )
-         ) as produtos
-       FROM pedidos p
-       JOIN pedido_itens pi ON p.id = pi.pedido_id
-       JOIN produtos pr ON pi.produto_id = pr.id
-       WHERE p.usuario_id = $1
-       GROUP BY p.id, p.total, p.status, p.data_pedido
-       ORDER BY p.data_pedido DESC`,
+          p.id,
+          p.total,
+          p.status,
+          p.data_pedido,
+          COALESCE(
+            json_agg(
+              json_build_object(
+                'produto_id', pi.produto_id,
+                'nome', pr.nome,          -- COLUNA CERTA
+                'quantidade', pi.quantidade,
+                'preco_unitario', pi.preco_unitario,
+                'codigo_retirada', pi.codigo_retirada,
+                'imagem', pr.imagem       -- COLUNA CERTA
+              )
+            ) FILTER (WHERE pi.id IS NOT NULL),
+            '[]'::json
+          ) AS produtos
+        FROM pedidos p
+        LEFT JOIN pedido_itens pi ON p.id = pi.pedido_id
+        LEFT JOIN produtos pr ON pi.produto_id = pr.id
+        WHERE p.usuario_id = $1
+        GROUP BY p.id, p.total, p.status, p.data_pedido
+        ORDER BY p.data_pedido DESC`,
       [usuario_id]
     );
-    
+
     res.json(result.rows);
+
   } catch (error) {
     console.error('❌ Erro ao buscar pedidos do usuário:', error);
     res.status(500).json({ error: 'Erro ao buscar pedidos' });
   }
 });
+
 
 // =========================================================
 // 🔹 9. ROTAS DE RETIRADA (MANUTENÇÃO)

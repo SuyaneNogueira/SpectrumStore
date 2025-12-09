@@ -58,7 +58,7 @@ function CarrinhoP2() {
   }
 
     // 2. PEGAR O USUÁRIO LOGADO (A Correção!)
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+    const usuarioLogado = JSON.parse(localStorage.getItem("userData"));
     const idDoCliente = usuarioLogado ? usuarioLogado.id : null;
 
     if (!idDoCliente) {
